@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <title>敬老院管理系统</title>
     <meta charset="utf-8">
@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/supersized.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body oncontextmenu="return false">
 <div class="page-container">
