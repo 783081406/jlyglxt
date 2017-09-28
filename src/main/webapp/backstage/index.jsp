@@ -46,7 +46,7 @@
 </div>
 
 <!-- Javascript -->
-<script src="../jquery/jquery-3.0.0.min.js" type="text/javascript"></script>
+<script src="../jquery/jquery.min.js" type="text/javascript"></script>
 <script src="js/supersized.3.2.7.min.js"></script>
 <script src="js/supersized-init.js"></script>
 <script>
