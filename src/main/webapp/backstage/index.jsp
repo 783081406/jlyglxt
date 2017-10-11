@@ -24,10 +24,10 @@
     <h1>C<sup>c</sup>敬老院管理系统</h1>
     <form action="" method="post">
         <div>
-            <input type="text" name="username" class="username" placeholder="Username" autocomplete="off"/>
+            <input type="text" id="userName" name="userName" class="username" placeholder="Username" autocomplete="off"/>
         </div>
         <div>
-            <input type="password" name="password" class="password" placeholder="Password" oncontextmenu="return false"
+            <input type="password" id="password" name="password" class="password" placeholder="Password" oncontextmenu="return false"
                    onpaste="return false"/>
         </div>
         <button id="submit" type="button">登 录</button>
