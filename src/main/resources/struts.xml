@@ -4,9 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="backstage" namespace="/backstage" extends="struts-default">
-        <action name="*">
-            <result>/WEB-INF/backstage/{1}.jsp</result>
-        </action>
+
     </package>
     <package name="home" namespace="/backstage/home" extends="struts-default">
         <action name="*">
