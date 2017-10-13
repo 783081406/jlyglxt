@@ -6,7 +6,10 @@
   Time: 16:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%> <%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -22,15 +25,17 @@
 <body oncontextmenu="return false">
 <div class="page-container">
     <h1>C<sup>c</sup>敬老院管理系统</h1>
-    <form action="" method="post">
+    <form action="<%=basePath %>backstage/index.action" method="post">
         <div>
-            <input type="text" id="userName" name="userName" class="username" placeholder="Username" autocomplete="off"/>
+            <input type="text" id="userName" name="userName" class="username" placeholder="Username"
+                   autocomplete="off"/>
         </div>
         <div>
-            <input type="password" id="password" name="password" class="password" placeholder="Password" oncontextmenu="return false"
+            <input type="password" id="password" name="password" class="password" placeholder="Password"
+                   oncontextmenu="return false"
                    onpaste="return false"/>
         </div>
-        <button id="submit" type="button">登 录</button>
+        <button id="submit" type="submit">登 录</button>
     </form>
     <div class="connect">
         <p>If we can only encounter each other rather than stay with each other,then I wish we had never
