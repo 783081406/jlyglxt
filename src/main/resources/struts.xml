@@ -4,11 +4,13 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="backstage" namespace="/backstage" extends="struts-default">
-
+        <action name="index" class="loginAction" method="CheckForntLogin">
+            <result name="success">/WEB-INF/backstage/index.jsp</result>
+        </action>
     </package>
-    <package name="home" namespace="/backstage/home" extends="struts-default">
+    <package name="reception" namespace="/reception" extends="struts-default">
         <action name="*">
-            <result>/WEB-INF/backstage/home/{1}.jsp</result>
+            <result>/WEB-INF/reception/{1}.jsp</result>
         </action>
     </package>
 </struts>
