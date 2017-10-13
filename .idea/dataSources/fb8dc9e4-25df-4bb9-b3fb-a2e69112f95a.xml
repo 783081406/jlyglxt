@@ -12,5 +12,45 @@
     <schema id="6" parent="1" name="performance_schema"/>
     <schema id="7" parent="1" name="ssh2_db"/>
     <schema id="8" parent="1" name="test"/>
+    <table id="9" parent="2" name="user">
+      <Comment>用户表</Comment>
+    </table>
+    <column id="10" parent="9" name="id">
+      <Position>1</Position>
+      <Comment>id号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="11" parent="9" name="userName">
+      <Position>2</Position>
+      <Comment>用户名</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="12" parent="9" name="password">
+      <Position>3</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="13" parent="9" name="uType">
+      <Position>4</Position>
+      <Comment>类型:1为管理员2为工作人员</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="14" parent="9" name="userName">
+      <ColNames>userName</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="15" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="16" parent="9" name="userName">
+      <ColNames>userName</ColNames>
+      <UnderlyingIndexName>userName</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>
