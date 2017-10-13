@@ -3,14 +3,15 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+    <!--首台首页-->
     <package name="backstage" namespace="/backstage" extends="struts-default">
         <action name="index" class="loginAction" method="CheckForntLogin">
-            <result name="success">/WEB-INF/backstage/index.jsp</result>
+            <result name="success">/backstage/index.jsp</result>
         </action>
     </package>
-    <package name="reception" namespace="/reception" extends="struts-default">
-        <action name="*">
-            <result>/WEB-INF/reception/{1}.jsp</result>
-        </action>
-    </package>
+    <!--    <package name="reception" namespace="/reception" extends="struts-default">
+            <action name="*">
+                <result>/WEB-INF/reception/{1}.jsp</result>
+            </action>
+        </package>-->
 </struts>
