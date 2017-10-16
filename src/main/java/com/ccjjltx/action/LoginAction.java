@@ -62,9 +62,7 @@ public class LoginAction extends ActionSupport {
      */
     public String CheckForntLogin() {
         if (getUserName() != null && getPassword() != null) {
-            User user = new User(getUserName(), getPassword());
-            int iResult = userDAO.checkUser(user);
-            System.out.println(2);
+            int iResult = userDAO.checkUser(getUserName(), getPassword());
             switch (iResult) {
                 case 1:
                     setError("用户名错误！");
