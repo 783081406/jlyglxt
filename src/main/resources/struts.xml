@@ -4,9 +4,13 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <!--首台首页-->
-    <package name="backstage" namespace="/backstage" extends="struts-default">
+    <package name="backstage" namespace="/backstage" extends="struts-default,json-default">
         <action name="index" class="loginAction" method="CheckForntLogin">
-            <result name="success">/backstage/index.jsp</result>
+            <result name="first">/backstage/index.jsp</result>
+            <!--返回json类型数据-->
+            <result name="error" type="json">result</result>
+            <!--后台首页-->
+            <result name="success">/backstage/home/index.jsp</result>
         </action>
     </package>
     <!--    <package name="reception" namespace="/reception" extends="struts-default">
