@@ -64,6 +64,7 @@ public class LoginAction extends ActionSupport {
         if (getUserName() != null && getPassword() != null) {
             User user = new User(getUserName(), getPassword());
             int iResult = userDAO.checkUser(user);
+            System.out.println(2);
             switch (iResult) {
                 case 1:
                     setError("用户名错误！");
