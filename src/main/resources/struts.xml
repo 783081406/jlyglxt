@@ -8,9 +8,11 @@
         <action name="index" class="loginAction" method="CheckForntLogin">
             <result name="first">/backstage/index.jsp</result>
             <!--返回json类型数据-->
-            <result name="error" type="json">result</result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
             <!--后台首页-->
-            <result name="success">/backstage/home/index.jsp</result>
+            <result name="success" type="redirect">/backstage/home/index.jsp</result>
         </action>
     </package>
     <!--    <package name="reception" namespace="/reception" extends="struts-default">
