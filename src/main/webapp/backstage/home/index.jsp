@@ -55,7 +55,7 @@
                     "menuid": "4", "icon": "icon-sys", "menuname": "员工中心",
                     "menus": [{"menuid": "41", "menuname": "个人信息", "icon": "icon-nav", "url": "demo1.html"},
                         {"menuid": "42", "menuname": "排班信息", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "43", "menuname": "创建账户", "icon": "icon-nav", "url": "demo1.html"}
+                        {"menuid": "43", "menuname": "创建账户", "icon": "icon-nav", "url": "ygzx/cjzh.jsp"}
                     ]
                 }
             ]
