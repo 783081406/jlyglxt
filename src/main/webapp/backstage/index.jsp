@@ -26,7 +26,7 @@
 <body oncontextmenu="return false">
 <div class="page-container">
     <h1>C<sup>c</sup>敬老院管理系统</h1>
-    <form action="" method="post" id="myform">
+    <form action="<%=basePath %>backstage/index.action" method="post" id="myForm">
         <div>
             <input type="text" id="userName" name="userName" class="username" placeholder="Username"
                    autocomplete="off"/>
@@ -36,7 +36,7 @@
                    oncontextmenu="return false"
                    onpaste="return false"/>
         </div>
-        <button id="submit" type="button">登 录</button>
+        <button id="submit" type="submit">登 录</button>
     </form>
     <div class="connect">
         <p>If we can only encounter each other rather than stay with each other,then I wish we had never
@@ -62,7 +62,8 @@
     });
     var u = $("input[name=username]");
     var p = $("input[name=password]");
-    $("#submit").live('click', function () {
+
+    $("#submit").live('mouseover', function () {
         if (u.val() == '' || p.val() == '') {
             $("#ts").html("用户名或密码不能为空~");
             is_show();
@@ -79,10 +80,11 @@
         $.ajax({
             type: "post",
             url: "<%=basePath %>backstage/index.action",
-            data:$('#myform').serialize(),
+            data: $("input").serialize(),
             dataType: "json",
             success: function (data) {
-                $("#ts").html(data.message);
+                var json = eval("(" + data + ")");
+                $("#ts").html(json.message);
                 is_show();
                 return false;
             }
