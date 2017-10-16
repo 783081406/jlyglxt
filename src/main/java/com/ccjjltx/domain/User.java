@@ -23,12 +23,6 @@ public class User {
 
     }
 
-    //构造函数
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-
     public int getId() {
         return id;
     }
