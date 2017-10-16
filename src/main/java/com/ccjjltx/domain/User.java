@@ -18,6 +18,17 @@ public class User {
     private String password;
     private int uType;
 
+    //无参构造器
+    public User() {
+
+    }
+
+    //构造函数
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
