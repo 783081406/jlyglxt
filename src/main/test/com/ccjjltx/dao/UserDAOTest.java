@@ -33,6 +33,7 @@ public class UserDAOTest extends AbstractJUnit4SpringContextTests {
     public void testCheckUser1() {
         //实例化一个User类
         int iResult = userDAO.checkUser("1234", "1234");
+        //断言
         Assert.assertEquals(1, iResult);
     }
 
@@ -43,6 +44,7 @@ public class UserDAOTest extends AbstractJUnit4SpringContextTests {
     public void testCheckUser2() {
         //实例化一个User类
         int iResult = userDAO.checkUser("admin", "1234");
+        //断言
         Assert.assertEquals(2, iResult);
     }
 
@@ -53,6 +55,7 @@ public class UserDAOTest extends AbstractJUnit4SpringContextTests {
     public void testCheckUser3() {
         //实例化一个User类
         int iResult = userDAO.checkUser("admin", "admin");
+        //断言
         Assert.assertEquals(3, iResult);
     }
 }
