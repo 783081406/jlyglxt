@@ -110,6 +110,11 @@
             <artifactId>struts2-junit-plugin</artifactId>
             <version>${struts.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
 
         <!--mysql数据库-->
         <dependency>
@@ -153,10 +158,17 @@
         </dependency>
 
         <!--json-->
+        <!--        <dependency>
+                    <groupId>org.json</groupId>
+                    <artifactId>json</artifactId>
+                    <version>20160810</version>
+                </dependency>-->
+
         <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20160810</version>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
         </dependency>
 
         <!--servlet-->
