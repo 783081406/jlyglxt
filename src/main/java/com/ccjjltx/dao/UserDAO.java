@@ -1,6 +1,7 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
@@ -24,16 +25,19 @@ public class UserDAO {
     /**
      * 验证用户名密码正确与否
      *
-     * @param user User实例
+     * @param userName User实例
+     * @param password User实例
      * @return 返回1表示用户名错误，2表示密码错误，3表示正确
      */
-    public int checkUser(User user) {
+    public int checkUser(String userName, String password) {
         //得到Session
-        Session s = factory.getCurrentSession();
-        User db_user = (User) s.get(User.class, user.getUserName());
+        Session session = factory.getCurrentSession();
+        String hql = "from User user where userName=:userName";
+        Query query = session.createQuery(hql).setParameter("userName", userName);
+        User db_user = (User) query.uniqueResult();
         if (db_user == null) {
             return 1;
-        } else if (!db_user.getPassword().equals(user.getPassword())) {
+        } else if (!db_user.getPassword().equals(password)) {
             return 2;
         }
         return 3;
