@@ -18,7 +18,7 @@ public class HomeAction extends ActionSupport {
     public String checkValidity() {
         //验证合法性，是否是经过登录页面登录进来的还是非法进入的
         //如果不为空表示判断过了，可以进入
-        if ((String) ActionContext.getContext().getSession().get("userName") != null) {
+        if (ActionContext.getContext().getSession().get("userName") != null) {
             return SUCCESS;
         } else {
             return ERROR;
