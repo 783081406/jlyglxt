@@ -27,6 +27,13 @@
         </action>
     </package>
 
+    <package name="useraction" namespace="/useraction" extends="struts-default,json-default">
+        <action name="*" class="userAction" method="{1}">
+            <result type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
 
     <!--    <package name="reception" namespace="/reception" extends="struts-default">
             <action name="*">
