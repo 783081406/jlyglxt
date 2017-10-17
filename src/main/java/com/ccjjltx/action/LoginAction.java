@@ -61,7 +61,7 @@ public class LoginAction extends ActionSupport {
      *
      * @return 返回success或者error，分别打包成json和redict
      */
-    public String CheckForntLogin() {
+    public String checkForntLogin() {
         if (getUserName() != null && getPassword() != null) {
             int iResult = userDAO.checkUser(getUserName(), getPassword());
             switch (iResult) {
