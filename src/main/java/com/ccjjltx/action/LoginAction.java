@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.UserDAO;
 import com.ccjjltx.domain.User;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
@@ -71,16 +72,32 @@ public class LoginAction extends ActionSupport {
                     setError("密码错误！");
                     return ERROR;
                 default:
+                    setSession();
                     return SUCCESS;
             }
         }
         return "first";
     }
 
+    /**
+     * 设置错误信息
+     *
+     * @param message 错误信息
+     */
     public void setError(String message) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("message", message);
         JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
         result = json.toString();//给result赋值，传递给页面
+    }
+
+    //验证通过的时候设置Session
+    public void setSession() {
+        ActionContext.getContext().getSession().put("userName", getUserName());
+    }
+
+    //退出登录删除Session
+    public void removeSession() {
+        ActionContext.getContext().getSession().remove("userName");
     }
 }
