@@ -26,35 +26,35 @@
                 {
                     "menuid": "1", "icon": "icon-sys", "menuname": "前端功能",
                     "menus": [
-                        {"menuid": "12", "menuname": "服务项目", "icon": "icon-page", "url": "demo1.html"},
-                        {"menuid": "13", "menuname": "美好风采", "icon": "icon-class", "url": "demo1.html"},
-                        {"menuid": "14", "menuname": "新闻动态", "icon": "icon-role", "url": "demo1.html"},
-                        {"menuid": "15", "menuname": "入住费用", "icon": "icon-set", "url": "demo.html"},
-                        {"menuid": "16", "menuname": "常见问题", "icon": "icon-log", "url": "demo1.html"},
-                        {"menuid": "17", "menuname": "联系我们", "icon": "icon-log", "url": "demo1.html"}
+                        {"menuid": "12", "menuname": "服务项目", "icon": "icon-page", "url": "qdgn/fwxm.jsp"},
+                        {"menuid": "13", "menuname": "美好风采", "icon": "icon-class", "url": "qdgn/mhfc.jsp"},
+                        {"menuid": "14", "menuname": "新闻动态", "icon": "icon-role", "url": "qdgn/xwdt.jsp"},
+                        {"menuid": "15", "menuname": "入住费用", "icon": "icon-set", "url": "qdgn/rzfy.jsp"},
+                        {"menuid": "16", "menuname": "常见问题", "icon": "icon-log", "url": "qdgn/cjwt.jsp"},
+                        {"menuid": "17", "menuname": "联系我们", "icon": "icon-nav", "url": "qdgn/lxwm.jsp"}
                     ]
                 },
                 {
                     "menuid": "2", "icon": "icon-sys", "menuname": "信息中心",
                     "menus": [
-                        {"menuid": "21", "menuname": "信息登记", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "22", "menuname": "相关病历", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "23", "menuname": "信息查看", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "24", "menuname": "病例查看", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "25", "menuname": "床位信息", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "26", "menuname": "特殊服务", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "27", "menuname": "出入院", "icon": "icon-nav", "url": "demo1.html"}
+                        {"menuid": "21", "menuname": "信息登记", "icon": "icon-page", "url": "xxzx/xxdj.jsp"},
+                        {"menuid": "22", "menuname": "相关病历", "icon": "icon-class", "url": "xxzx/xgbl.jsp"},
+                        {"menuid": "23", "menuname": "信息查看", "icon": "icon-role", "url": "xxzx/xxck.jsp"},
+                        {"menuid": "24", "menuname": "病例查看", "icon": "icon-nav", "url": "xxzx/blck.jsp"},
+                        {"menuid": "25", "menuname": "床位信息", "icon": "icon-set", "url": "xxzx/cwxx.jsp"},
+                        {"menuid": "26", "menuname": "特殊服务", "icon": "icon-log", "url": "xxzx/tsfw.jsp"},
+                        {"menuid": "27", "menuname": "出入院", "icon": "icon-nav", "url": "xxzx/cry.jsp"}
                     ]
                 }, {
                     "menuid": "3", "icon": "icon-sys", "menuname": "体验预约",
                     "menus": [
-                        {"menuid": "31", "menuname": "未处理预约", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "32", "menuname": "已处理预约", "icon": "icon-nav", "url": "demo1.html"}
+                        {"menuid": "31", "menuname": "未处理预约", "icon": "icon-page", "url": "tjyy/wclyy.jsp"},
+                        {"menuid": "32", "menuname": "已处理预约", "icon": "icon-class", "url": "tjyy/yclyy.jsp"}
                     ]
                 }, {
                     "menuid": "4", "icon": "icon-sys", "menuname": "员工中心",
-                    "menus": [{"menuid": "41", "menuname": "个人信息", "icon": "icon-nav", "url": "demo1.html"},
-                        {"menuid": "42", "menuname": "排班信息", "icon": "icon-nav", "url": "demo1.html"},
+                    "menus": [{"menuid": "41", "menuname": "个人信息", "icon": "icon-page", "url": "ygzx/grxx.jsp"},
+                        {"menuid": "42", "menuname": "排班信息", "icon": "icon-class", "url": "ygzx/pbxx.jsp"},
                         {"menuid": "43", "menuname": "创建账户", "icon": "icon-nav", "url": "ygzx/cjzh.jsp"}
                     ]
                 }
