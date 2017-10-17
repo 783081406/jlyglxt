@@ -3,18 +3,31 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <!--首台首页-->
+    <!--后台登录页面-->
     <package name="backstage" namespace="/backstage" extends="struts-default,json-default">
-        <action name="index" class="loginAction" method="CheckForntLogin">
+        <action name="index" class="loginAction" method="checkForntLogin">
+            <!--第一次进入-->
             <result name="first">/backstage/index.jsp</result>
-            <!--返回json类型数据-->
+            <!--判定用户名密码是否正确，错误的话返回json类型数据-->
             <result name="error" type="json">
                 <param name="root">result</param>
             </result>
-            <!--后台首页-->
+            <!--用户名密码正确，进入后台首页-->
             <result name="success" type="redirect">/backstage/home/index.jsp</result>
         </action>
     </package>
+
+    <!--后台首页-->
+    <package name="home" namespace="/home" extends="struts-default">
+        <action name="index" class="homeAction" method="checkValidity">
+            <!--合法进入表示成功-->
+            <result name="success" type="redirect">/backstage/home/index.jsp</result>
+            <!--非合法进入表示失败-->
+            <result name="error" type="redirect">/backstage/index.jsp</result>
+        </action>
+    </package>
+
+
     <!--    <package name="reception" namespace="/reception" extends="struts-default">
             <action name="*">
                 <result>/WEB-INF/reception/{1}.jsp</result>
