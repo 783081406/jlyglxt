@@ -25,7 +25,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:beans.xml")
-public class UserDAOTest{
+public class UserDAOTest {
     @Resource(name = "userDAO")
     private UserDAO userDAO;
 
@@ -116,5 +116,22 @@ public class UserDAOTest{
     public void testAddUser3() {
         int result = userDAO.addUser("ccj15", "ccj15", 2);
         Assert.assertEquals(3, result);
+    }
+
+    /**
+     * 验证：是否能准确更新
+     */
+    @Test
+    //标明此方法需使用事务
+    @Transactional
+    //标明使用完此方法后事务回滚
+    @Rollback(true)
+    public void testUpdateUser() {
+        User user = new User();
+        user.setId(15);
+        user.setUserName("ccj1515");
+        user.setPassword("ccj1515");
+        user.setuType(2);
+        userDAO.updateUser(user);
     }
 }
