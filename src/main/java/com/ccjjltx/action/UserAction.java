@@ -161,6 +161,10 @@ public class UserAction extends ActionSupport {
      * @return json结果信息
      */
     public String updateUser() {
+        if (!(getUType() == 1 || getUType() == 2)) {
+            result = returnMessage(false, "插入失败：类型必须是1或者2");
+            return ERROR;
+        }
         //实例化得到的信息
         User user = new User();
         user.setId(getId());
