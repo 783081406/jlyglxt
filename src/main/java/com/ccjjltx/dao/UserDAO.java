@@ -107,4 +107,14 @@ public class UserDAO {
             return 2;
         }
     }
+
+    /**
+     * 更新信息
+     *
+     * @param user User类实例化
+     */
+    public void updateUser(User user) {
+        Session session = factory.getCurrentSession();
+        session.update(user);
+    }
 }
