@@ -115,10 +115,10 @@
         var row = $('#dg').datagrid('getSelected');
         if (row) {
             $('#dlg').dialog('open').dialog('setTitle', '编辑账户');
-            //加载那一行的数据
+            //加载点击那一行的数据
             $('#fm').form('load', row);
             //提交数据处理的URL
-            url = 'update_user.php?id=' + row.id;
+            url = '<%=basePath %>useraction/updateUser.action?id=' + row.id;
         }
     }
     //提交功能
