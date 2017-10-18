@@ -6,9 +6,11 @@ import org.hibernate.SessionFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -23,7 +25,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:beans.xml")
-public class UserDAOTest extends AbstractJUnit4SpringContextTests {
+public class UserDAOTest{
     @Resource(name = "userDAO")
     private UserDAO userDAO;
 
@@ -83,5 +85,36 @@ public class UserDAOTest extends AbstractJUnit4SpringContextTests {
         //得到user表的总条数
         int total = userDAO.getAllUserNumber();
         Assert.assertEquals(1, total);
+    }
+
+    /**
+     * 验证：当uType非1或2时候是否返回false
+     */
+    @Test
+    public void testAddUser1() {
+        int result = userDAO.addUser("1234", "134", 3);
+        Assert.assertEquals(1, result);
+    }
+
+    /**
+     * 验证：当有相同用户名时候是否返回false
+     */
+    @Test
+    public void testAddUser2() {
+        int result = userDAO.addUser("ccj2", "ccj2", 2);
+        Assert.assertEquals(2, result);
+    }
+
+    /**
+     * 验证：当唯一用户名，密码和正确utype时，数据是否插入成功
+     */
+    @Test
+    //标明此方法需使用事务
+    @Transactional
+    //标明使用完此方法后事务回滚
+    @Rollback(true)
+    public void testAddUser3() {
+        int result = userDAO.addUser("ccj15", "ccj15", 2);
+        Assert.assertEquals(3, result);
     }
 }
