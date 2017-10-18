@@ -29,7 +29,7 @@
 
     <package name="useraction" namespace="/useraction" extends="struts-default,json-default">
         <action name="*" class="userAction" method="{1}">
-            <result type="json">
+            <result name="success" type="json">
                 <param name="root">result</param>
             </result>
         </action>
