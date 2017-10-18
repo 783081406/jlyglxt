@@ -119,19 +119,40 @@ public class UserDAOTest {
     }
 
     /**
-     * 验证：是否能准确更新
+     * 验证：全部信息错误是否是否返回false
      */
     @Test
     //标明此方法需使用事务
     @Transactional
     //标明使用完此方法后事务回滚
     @Rollback(true)
-    public void testUpdateUser() {
+    public void testUpdateUser1() {
+        User user = new User();
+        user.setId(100);
+        user.setUserName("ccj100");
+        user.setPassword("ccj100");
+        user.setuType(2);
+        //预期应该是插入失败，返回false
+        boolean result = userDAO.updateUser(user);
+        //Assert.assertFalse(result);
+    }
+
+    /**
+     * 验证：全部信息正确是否是否能更新
+     */
+    @Test
+    //标明此方法需使用事务
+    @Transactional
+    //标明使用完此方法后事务回滚
+    @Rollback(true)
+    public void testUpdateUser2() {
         User user = new User();
         user.setId(15);
         user.setUserName("ccj1515");
         user.setPassword("ccj1515");
         user.setuType(2);
-        userDAO.updateUser(user);
+        //预期应该是插入成功返回true
+        boolean result = userDAO.updateUser(user);
+        Assert.assertTrue(result);
     }
 }
