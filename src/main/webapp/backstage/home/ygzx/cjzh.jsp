@@ -152,8 +152,8 @@
             $.messager.confirm('警告', '是否确定删除本行数据?', function (r) {
                 //如果选择确定，执行if里面语句
                 if (r) {
-                    //post提交，提交
-                    $.post('remove_user.php', {id: row.id}, function (result) {
+                    //post提交
+                    $.post('<%=basePath %>useraction/removeUser.action', {id: row.id}, function (result) {
                         if (result.success) {
                             $('#dg').datagrid('reload');	// 重新加载数据
                         } else {
