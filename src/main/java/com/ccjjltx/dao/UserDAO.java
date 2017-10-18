@@ -1,6 +1,7 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.User;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -112,9 +113,16 @@ public class UserDAO {
      * 更新信息
      *
      * @param user User类实例化
+     * @return 返回是否插入成功
      */
-    public void updateUser(User user) {
+    public boolean updateUser(User user) {
         Session session = factory.getCurrentSession();
-        session.update(user);
+        boolean result = true;
+        try {
+            session.update(user);
+        } catch (HibernateException e) {
+            result = false;
+        }
+        return result;
     }
 }
