@@ -155,8 +155,28 @@ public class UserAction extends ActionSupport {
         }
     }
 
+    /**
+     * 更新信息
+     *
+     * @return json结果信息
+     */
     public String updateUser() {
-        return SUCCESS;
+        //实例化得到的信息
+        User user = new User();
+        user.setId(getId());
+        user.setUserName(getUserName());
+        user.setPassword(getPassword());
+        user.setuType(getUType());
+        //执行更新操作
+        if (userDAO.updateUser(user)) {
+            //如果返回true，表示更新成功执行if里面的语句
+            result = returnMessage(true, "success");
+            return SUCCESS;
+        } else {
+            //如果返回false，表示更新失败，执行下面语句
+            result = returnMessage(false, "更新失败");
+            return ERROR;
+        }
     }
 
     public String removeUser() {
