@@ -72,7 +72,40 @@ public class UserDAO {
         Session session = factory.getCurrentSession();
         //得到总条数
         String hql = "select count(*) from User user";
-        return (int) session.createQuery(hql).uniqueResult();
+        long l = (long) session.createQuery(hql).uniqueResult();
+        return (int) l;
+    }
+
+    /**
+     * 增加用户
+     *
+     * @param userName 用户名
+     * @param password 密码
+     * @param uType    类型，只能是1和2,
+     * @return 表示插入数据成功，否则表示失败
+     */
+    public boolean addUser(String userName, String password, int uType) {
+        //如果uType不是1或者2，直接返回插入失败
+        if ((uType != 1) || (uType != 2)) {
+            return false;
+        }
+        Session session = factory.getCurrentSession();
+        //看是否有相同的用户名
+        String hql = "from User user where userName=:userName";
+        Query query = session.createQuery(hql).setParameter("userName", userName);
+        //得到唯一结果，如果结果是null，表示没有相同的用户名，否则表示有相同的用户名返回false
+        User user = (User) query.uniqueResult();
+        if (user != null) {
+            return false;
+        }
+        //将得到的数据形成一个新的User实例化
+        User user1 = new User();
+        user1.setUserName(userName);
+        user1.setPassword(password);
+        user1.setuType(uType);
+        //持久化user1实例
+        session.save(user1);
+        return true;
     }
 
 }
