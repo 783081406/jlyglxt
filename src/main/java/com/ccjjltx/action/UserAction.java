@@ -82,11 +82,11 @@ public class UserAction extends ActionSupport {
         this.password = password;
     }
 
-    public int getuType() {
+    public int getUType() {
         return uType;
     }
 
-    public void setuType(int uType) {
+    public void setUType(int uType) {
         this.uType = uType;
     }
 
@@ -134,11 +134,25 @@ public class UserAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 增加User
+     *
+     * @return Json，成功或者失败的数据
+     */
     public String saveUser() {
-        System.out.println(getUserName());
-        result = new JSONObject();
-        result.put("success", true);
-        return SUCCESS;
+        //执行UserDao的增加User方法，返回数字，1,2或3，分别表示uType输入错误，已经存在相同用户名，插入成功
+        int queryResult = userDAO.addUser(getUserName(), getPassword(), getUType());
+        switch (queryResult) {
+            case 1:
+                result = returnMessage(false, "类型只能填入1或2");
+                return ERROR;
+            case 2:
+                result = returnMessage(false, "数据库中已经存在相同的用户名了");
+                return ERROR;
+            default:
+                result = returnMessage(true, "success");
+                return SUCCESS;
+        }
     }
 
     public String updateUser() {
@@ -149,4 +163,22 @@ public class UserAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 设置json返回的结果值处理中心
+     *
+     * @param trueOfFalse 表示是否是成功true，表示成功，false表示失败
+     * @param message     表示返回的结果信息
+     * @return Json对象
+     */
+    public JSONObject returnMessage(boolean trueOfFalse, String message) {
+        JSONObject js = new JSONObject();
+        if (trueOfFalse) {
+            //表示成功
+            js.put("success", true);
+        } else {
+            //表示失败
+            js.put("msg", message);
+        }
+        return js;
+    }
 }
