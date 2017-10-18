@@ -155,4 +155,16 @@ public class UserDAOTest {
         boolean result = userDAO.updateUser(user);
         Assert.assertTrue(result);
     }
+
+    /**
+     * 验证：删除操作
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testDeleteUser() {
+        //应该返回true
+        boolean result = userDAO.deleteUser(15);
+        Assert.assertTrue(result);
+    }
 }
