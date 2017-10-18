@@ -50,7 +50,8 @@
     </style>
 </head>
 <body>
-<table id="dg" title="账户列表" class="easyui-datagrid" style="width:700px;height:400px" url="<%=basePath %>useraction/getUser.action"
+<table id="dg" title="账户列表" class="easyui-datagrid" style="width:700px;height:400px"
+       url="<%=basePath %>useraction/getUser.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
@@ -61,9 +62,17 @@
     </thead>
 </table>
 <div id="toolbar">
-    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新账户</a>
-    <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改账户</a>
-    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除账户</a>
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加账户</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改账户</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除账户</a>
+    </div>
+    <div>
+        <div style="padding:0 0 0 7px;color:#333;">
+            查询账号：<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search();">查询</a>
+        </div>
+    </div>
 </div>
 <!--新账户window-->
 <div id="dlg" class="easyui-dialog" style="width:400px;height:250px;padding:10px 20px" closed="true"
@@ -99,8 +108,9 @@
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
-        url = 'save_user.php';
+        url = '<%=basePath %>useraction/saveUser.action';
     }
+
     function editUser() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
