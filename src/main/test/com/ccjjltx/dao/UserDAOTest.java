@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/10/16.
@@ -57,5 +58,30 @@ public class UserDAOTest extends AbstractJUnit4SpringContextTests {
         int iResult = userDAO.checkUser("admin", "admin");
         //断言
         Assert.assertEquals(3, iResult);
+    }
+
+    /**
+     * 验证：是否能返回全部的User
+     */
+    @Test
+    public void testGetAllUser() {
+        //得到一个list，该list只有一条数据，首条数据，id为1，是admin的账户
+        List<User> list = userDAO.getAllUser(0, 1);
+        int id = 0;
+        for (User user : list) {
+            //如果正确返回，这个时候id变成1
+            id = user.getId();
+        }
+        Assert.assertEquals(1, id);
+    }
+
+    /**
+     * 验证：是否返回正确的总条数
+     */
+    @Test
+    public void testGetAllUserNumber() {
+        //得到user表的总条数
+        int total = userDAO.getAllUserNumber();
+        Assert.assertEquals(1, total);
     }
 }
