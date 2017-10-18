@@ -184,7 +184,15 @@ public class UserAction extends ActionSupport {
     }
 
     public String removeUser() {
-        return SUCCESS;
+        if (userDAO.deleteUser(getId())) {
+            //如果成功执行删除语句执行以下语句
+            result = returnMessage(true, "success");
+            return SUCCESS;
+        } else {
+            //执行删除语句失败执行以下方法
+            result = returnMessage(false, "删除失败");
+            return ERROR;
+        }
     }
 
     /**
@@ -194,7 +202,7 @@ public class UserAction extends ActionSupport {
      * @param message     表示返回的结果信息
      * @return Json对象
      */
-    public JSONObject returnMessage(boolean trueOfFalse, String message) {
+    private JSONObject returnMessage(boolean trueOfFalse, String message) {
         JSONObject js = new JSONObject();
         if (trueOfFalse) {
             //表示成功
