@@ -65,7 +65,6 @@
     </tr>
     </thead>
 </table>
-<!--/////////////////////////////////////////////////////////-->
 <div id="toolbar">
     <div>
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
@@ -75,10 +74,12 @@
     <div>
         <div style="padding:0 0 0 7px;color:#333;">
             查询姓名：<input type="text" class="textbox" name="name" style="width:150px;height:25px">
+            用户账号:<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search();">查询</a>
         </div>
     </div>
 </div>
+<!--//////////////////////////查询的search方法里面传入参数还没修改///////////////////////////////-->
 <!--添加的window-->
 <div id="dlg" class="easyui-dialog" style="width:400px;height:250px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
