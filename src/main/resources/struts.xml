@@ -27,6 +27,19 @@
         </action>
     </package>
 
+    <!--员工中心>>y员工信息-->
+    <package name="einformationaction" namespace="/einformationaction" extends="struts-default,json-default">
+        <action name="*" class="einformationAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--员工中心>>账户列表-->
     <package name="useraction" namespace="/useraction" extends="struts-default,json-default">
         <action name="*" class="userAction" method="{1}">
             <result name="success" type="json">
