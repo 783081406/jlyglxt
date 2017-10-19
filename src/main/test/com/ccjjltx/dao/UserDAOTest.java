@@ -66,9 +66,24 @@ public class UserDAOTest {
      * 验证：是否能返回全部的User
      */
     @Test
-    public void testGetAllUser() {
+    public void testGetAllUser1() {
         //得到一个list，该list只有一条数据，首条数据，id为1，是admin的账户
-        List<User> list = userDAO.getAllUser(0, 1);
+        List<User> list = userDAO.getAllUser(0, 1, null);
+        int id = 0;
+        for (User user : list) {
+            //如果正确返回，这个时候id变成1
+            id = user.getId();
+        }
+        Assert.assertEquals(1, id);
+    }
+
+    /**
+     * 验证：是否能返回查询的数据
+     */
+    @Test
+    public void testGetAllUser2() {
+        //得到一个list，该list只有一条数据，首条数据，id为1，是admin的账户
+        List<User> list = userDAO.getAllUser(0, 1, "admi");
         int id = 0;
         for (User user : list) {
             //如果正确返回，这个时候id变成1
@@ -81,9 +96,19 @@ public class UserDAOTest {
      * 验证：是否返回正确的总条数
      */
     @Test
-    public void testGetAllUserNumber() {
+    public void testGetAllUserNumber1() {
         //得到user表的总条数
-        int total = userDAO.getAllUserNumber();
+        int total = userDAO.getAllUserNumber(null);
+        Assert.assertEquals(15, total);
+    }
+
+    /**
+     * 验证：是否返回正确的总条数
+     */
+    @Test
+    public void testGetAllUserNumber2() {
+        //得到user表的总条数
+        int total = userDAO.getAllUserNumber("admi");
         Assert.assertEquals(1, total);
     }
 
