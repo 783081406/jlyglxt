@@ -19,9 +19,16 @@ public class Einformation {
     private String idCard;
     private String sex;
     private String pType;
+    @Temporal(value = TemporalType.DATE)
     private Date hiredate;
     private String education;
+    @Temporal(value = TemporalType.DATE)
     private Date birthday;
+    //定义该实体关联的User实体类
+    @OneToOne(targetEntity = User.class)
+    //映射外键名字
+    @JoinColumn(name = "uid")
+    private User user;
 
     public int getPid() {
         return pid;
@@ -85,6 +92,14 @@ public class Einformation {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
