@@ -115,9 +115,9 @@ public class UserAction extends ActionSupport {
         //得到起始的行数，方便之后的hql语句
         int offset = (getPage() - 1) * getRows();
         //得到所有的User
-        List<User> list = userDAO.getAllUser(offset, getRows());
+        List<User> list = userDAO.getAllUser(offset, getRows(), getUserName());
         //得到所有的User的总条数
-        int total = userDAO.getAllUserNumber();
+        int total = userDAO.getAllUserNumber(getUserName());
         result = new JSONObject();
         result.put("total", total);
         //jsonarrya对象
