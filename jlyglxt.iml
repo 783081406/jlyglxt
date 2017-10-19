@@ -37,7 +37,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="a.xml" value="fb8dc9e4-25df-4bb9-b3fb-a2e69112f95a" />
-          <unit-entry name="sessionFactory" value="c3p0DataSource" />
+          <unit-entry name="sessionFactory" value="fb8dc9e4-25df-4bb9-b3fb-a2e69112f95a" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/beans.xml" />
