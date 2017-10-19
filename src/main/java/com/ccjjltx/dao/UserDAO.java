@@ -60,7 +60,6 @@ public class UserDAO {
         //总查询语句
         String hql = "from User user";
         Query query;
-        List<User> list;
         //如果搜索引擎触发，则userName不为空
         if (userName != null) {
             hql += " where user.userName like :userName";
@@ -68,7 +67,7 @@ public class UserDAO {
         } else {
             query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
         }
-        list = (List<User>) query.list();
+        List<User> list = (List<User>) query.list();
         return list;
     }
 
