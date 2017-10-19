@@ -49,31 +49,49 @@ public class UserDAO {
     /**
      * 得到所有User数据
      *
-     * @param offset 起始Number
-     * @param rows   行数
+     * @param offset   起始Number
+     * @param rows     行数
+     * @param userName 获得的userName
      * @return 所有的User
      */
-    public List<User> getAllUser(int offset, int rows) {
+    public List<User> getAllUser(int offset, int rows, String userName) {
         //得到Session
         Session session = factory.getCurrentSession();
         //总查询语句
         String hql = "from User user";
-        Query query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
-        List<User> list = (List<User>) query.list();
+        Query query;
+        List<User> list;
+        //如果搜索引擎触发，则userName不为空
+        if (userName != null) {
+            hql += " where user.userName like :userName";
+            query = session.createQuery(hql).setParameter("userName", "%" + userName + "%").setFirstResult(offset).setMaxResults(rows);
+        } else {
+            query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
+        }
+        list = (List<User>) query.list();
         return list;
     }
 
     /**
      * 得到所有User的总条数
      *
+     * @param userName 提交的userName
      * @return 总条数
      */
-    public int getAllUserNumber() {
+    public int getAllUserNumber(String userName) {
         //得到Session
         Session session = factory.getCurrentSession();
         //得到总条数
         String hql = "select count(*) from User user";
-        long l = (long) session.createQuery(hql).uniqueResult();
+        Query query;
+        if (userName != null) {
+            //表示由搜索功能触发
+            hql += " where user.userName like :userName";
+            query = session.createQuery(hql).setParameter("userName", "%" + userName + "%");
+        } else {
+            query = session.createQuery(hql);
+        }
+        long l = (long) query.uniqueResult();
         return (int) l;
     }
 
