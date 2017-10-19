@@ -1,6 +1,7 @@
 package com.ccjjltx.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.sql.Date;
  */
 @Entity
 @Table
-public class Einformation {
+public class Einformation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pid;
@@ -29,6 +30,9 @@ public class Einformation {
     //映射外键名字
     @JoinColumn(name = "uid")
     private User user;
+
+    public Einformation() {
+    }
 
     public int getPid() {
         return pid;
