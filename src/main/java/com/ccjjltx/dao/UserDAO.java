@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,10 +33,7 @@ public class UserDAO {
      */
     public int checkUser(String userName, String password) {
         //得到Session
-        Session session = factory.getCurrentSession();
-        String hql = "from User user where userName=:userName";
-        Query query = session.createQuery(hql).setParameter("userName", userName);
-        User db_user = (User) query.uniqueResult();
+        User db_user = searchUser(userName);
         if (db_user == null) {
             return 1;
         } else if (!db_user.getPassword().equals(password)) {
@@ -108,10 +104,8 @@ public class UserDAO {
             return 1;
         }
         Session session = factory.getCurrentSession();
-        String hql = "from User user where userName=:userName";
-        Query query = session.createQuery(hql).setParameter("userName", userName);
         //得到唯一结果，如果结果是null，表示没有相同的用户名，否则表示有相同的用户名返回false
-        User db_user = (User) query.uniqueResult();
+        User db_user = searchUser(userName);
         if (db_user == null) {
             //将得到的数据形成一个新的User实例化
             User user1 = new User();
@@ -162,5 +156,18 @@ public class UserDAO {
             result = false;
         }
         return result;
+    }
+
+    /**
+     * 根据用户名得到User
+     *
+     * @param userName 要查询的用户名
+     * @return User实例化
+     */
+    public User searchUser(String userName) {
+        Session session = factory.getCurrentSession();
+        String hql = "from User user where userName=:userName";
+        Query query = session.createQuery(hql).setParameter("userName", userName);
+        return (User) query.uniqueResult();
     }
 }
