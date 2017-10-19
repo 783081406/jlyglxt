@@ -14,4 +14,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Scope("prototype")
 public class EinformationAction extends ActionSupport {
+
+
 }
