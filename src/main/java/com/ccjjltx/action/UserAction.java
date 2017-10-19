@@ -9,13 +9,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by ccjjltx on 2017/10/17.
- * 用户数据的增删改查
+ * 账户数据的增删改查
  *
  * @author ccj
  * @version 1.0
