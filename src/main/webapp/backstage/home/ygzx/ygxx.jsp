@@ -50,7 +50,7 @@
 </head>
 <body>
 <table id="dg" title="员工信息" class="easyui-datagrid" style="width:900px;height:400px"
-       url="<%=basePath %>useraction/getUser.action"
+       url="<%=basePath %>einformationaction/getAllInformation.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
@@ -65,6 +65,7 @@
     </tr>
     </thead>
 </table>
+<!--/////////////////////////////////////////////////////////-->
 <div id="toolbar">
     <div>
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
@@ -113,7 +114,8 @@
         </div>
         <div class="fitem">
             <label>用户账号:</label>
-            <input name="userName" class="easyui-combobox" valueField="id", textField:="user", url="content.json", required="required" >
+            <input name="userName" class="easyui-combobox" valueField="id" , textField:="user" , url="content.json" ,
+                   required="required">
         </div>
     </form>
 </div>
