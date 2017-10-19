@@ -102,6 +102,16 @@
 
 <!--自定义javascript-->
 <script type="text/javascript">
+    ////////////////////////////////////////////////
+    //搜索功能
+    obj = {
+        search: function () {
+            $('#dg').datagrid('load', {
+                userName: $.trim($('input[name="userName"]').val())
+            });
+        }
+    };
+    //////////////////////////////////////////////
     var url;
     function newUser() {
         $('#dlg').dialog('open').dialog('setTitle', '新账户');
