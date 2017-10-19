@@ -20,10 +20,8 @@ public class Einformation implements Serializable {
     private String idCard;
     private String sex;
     private String pType;
-    @Temporal(value = TemporalType.DATE)
     private Date hiredate;
     private String education;
-    @Temporal(value = TemporalType.DATE)
     private Date birthday;
     //定义该实体关联的User实体类
     @OneToOne(targetEntity = User.class)
