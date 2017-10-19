@@ -192,4 +192,26 @@ public class UserDAOTest {
         boolean result = userDAO.deleteUser(15);
         Assert.assertTrue(result);
     }
+
+    /**
+     * 验证：输入合法用户名是否返回正确的User实例化
+     */
+    @Test
+    @Transactional
+    public void testSearchUser1() {
+        User db_User = userDAO.searchUser("admin");
+        //admin数据的id号是1
+        Assert.assertEquals(1, db_User.getId());
+    }
+
+    /**
+     * 验证：输入不合法用户名是否返回null
+     */
+    @Test
+    @Transactional
+    public void testSearchUser2() {
+        User db_User = userDAO.searchUser("123456789");
+        //数据库无此用户名，所以应该返回null
+        Assert.assertNull(db_User);
+    }
 }
