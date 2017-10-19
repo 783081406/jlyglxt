@@ -1,6 +1,7 @@
 package com.ccjjltx.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by ccjjltx on 2017/10/13.
@@ -10,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
