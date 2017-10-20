@@ -73,11 +73,11 @@ public class Einformation implements Serializable {
         this.address = address;
     }
 
-    public String getPType() {
+    public String getpType() {
         return pType;
     }
 
-    public void setPType(String pType) {
+    public void setpType(String pType) {
         this.pType = pType;
     }
 
