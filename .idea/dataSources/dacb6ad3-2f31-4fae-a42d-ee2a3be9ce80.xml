@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="c3p0DataSource">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="jlyglxt">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="phpmyadmin"/>
+    <schema id="7" parent="1" name="test"/>
+    <table id="8" parent="2" name="einformation">
+      <Comment>员工信息</Comment>
+    </table>
+    <table id="9" parent="2" name="user">
+      <Comment>用户表</Comment>
+    </table>
+    <column id="10" parent="8" name="pid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="11" parent="8" name="name">
+      <Position>2</Position>
+      <Comment>员工姓名</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="12" parent="8" name="idCard">
+      <Position>3</Position>
+      <Comment>身份证号</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="13" parent="8" name="sex">
+      <Position>4</Position>
+      <Comment>性别</Comment>
+      <DataType>varchar(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="8" name="address">
+      <Position>5</Position>
+      <Comment>家庭住址</Comment>
+      <DataType>varchar(60)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="8" name="pType">
+      <Position>6</Position>
+      <Comment>人员类型</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="8" name="hiredate">
+      <Position>7</Position>
+      <Comment>入职时间</Comment>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="8" name="education">
+      <Position>8</Position>
+      <Comment>学历</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="8" name="birthday">
+      <Position>9</Position>
+      <Comment>出生日期</Comment>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="8" name="uid">
+      <Position>10</Position>
+      <Comment>user表外键关联</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="20" parent="8" name="fk_uid">
+      <ColNames>uid</ColNames>
+    </index>
+    <key id="21" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>pid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="22" parent="8" name="fk_uid">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>jlyglxt</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="23" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="24" parent="9" name="userName">
+      <Position>2</Position>
+      <Comment>用户名</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="9" name="password">
+      <Position>3</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="9" name="uType">
+      <Position>4</Position>
+      <Comment>类型:1为管理员2为工作人员</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="9" name="userName">
+      <ColNames>userName</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="28" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="29" parent="9" name="userName">
+      <ColNames>userName</ColNames>
+      <UnderlyingIndexName>userName</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
