@@ -3,6 +3,10 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <!--Struts2中Action对象的创建交给spring完成-->
+    <constant name="struts.objectFactory" value="spring"/>
+
     <!--后台登录页面-->
     <package name="backstage" namespace="/backstage" extends="struts-default,json-default">
         <action name="index" class="loginAction" method="checkForntLogin">
