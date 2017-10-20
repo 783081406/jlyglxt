@@ -57,6 +57,7 @@
         <th field="name" width="100">姓名</th>
         <th field="idCard" width="250">身份证号码</th>
         <th field="sex" width="60">性别</th>
+        <th field="address" width="250">家庭住址</th>
         <th field="pType" width="100">人员类型</th>
         <th field="hiredate" width="100">入职时间</th>
         <th field="education" width="100">学历</th>
@@ -96,6 +97,10 @@
         <div class="fitem">
             <label>性别:</label>
             <input name="sex" class="easyui-validatebox" required="true">
+        </div>
+        <div class="fitem">
+            <label>家庭住址:</label>
+            <input name="address" class="easyui-validatebox" required="true">
         </div>
         <div class="fitem">
             <label>人员类型:</label>
