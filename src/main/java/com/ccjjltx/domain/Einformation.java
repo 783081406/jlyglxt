@@ -19,6 +19,7 @@ public class Einformation implements Serializable {
     private String name;
     private String idCard;
     private String sex;
+    private String address;
     private String pType;
     private Date hiredate;
     private String education;
@@ -62,6 +63,14 @@ public class Einformation implements Serializable {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getpType() {
