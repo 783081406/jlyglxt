@@ -49,7 +49,7 @@
     </style>
 </head>
 <body>
-<table id="dg" title="员工信息" class="easyui-datagrid" style="width:900px;height:400px"
+<table id="dg" title="员工信息" class="easyui-datagrid" style="width:980px;height:400px"
        url="<%=basePath %>einformationaction/getAllInformation.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
@@ -59,9 +59,9 @@
         <th field="sex" width="60">性别</th>
         <th field="address" width="250">家庭住址</th>
         <th field="pType" width="100">人员类型</th>
-        <th field="hiredate" width="100">入职时间</th>
+        <th field="hiredate" width="130">入职时间</th>
         <th field="education" width="100">学历</th>
-        <th field="birthday" width="100">出生日期</th>
+        <th field="birthday" width="130">出生日期</th>
         <th field="userName" width="100">用户账号</th>
     </tr>
     </thead>
