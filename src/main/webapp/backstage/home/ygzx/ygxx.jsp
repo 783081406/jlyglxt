@@ -82,29 +82,32 @@
 </div>
 <!--//////////////////////////查询的search方法里面传入参数还没修改///////////////////////////////-->
 <!--添加的window-->
-<div id="dlg" class="easyui-dialog" style="width:400px;height:250px;padding:10px 20px" closed="true"
+<div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
     <div class="ftitle">员工信息</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>姓名:</label>
-            <input name="name" class="easyui-validatebox" required="true">
+            <input name="name" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>身份证号码:</label>
-            <input name="idCard" class="easyui-validatebox" required="true">
+            <input name="idCard" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>性别:</label>
-            <input name="sex" class="easyui-validatebox" required="true">
+            <select name="sex" class="easyui-combobox" style="width:173px;" required="required">
+                <option value="1">男</option>
+                <option value="2">女</option>
+            </select>
         </div>
         <div class="fitem">
             <label>家庭住址:</label>
-            <input name="address" class="easyui-validatebox" required="true">
+            <input name="address" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>人员类型:</label>
-            <input name="pType" class="easyui-validatebox" required="true">
+            <input name="pType" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>入职时间:</label>
@@ -112,7 +115,7 @@
         </div>
         <div class="fitem">
             <label>学历:</label>
-            <input name="education" class="easyui-validatebox" required="true">
+            <input name="education" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>出生日期:</label>
@@ -120,8 +123,7 @@
         </div>
         <div class="fitem">
             <label>用户账号:</label>
-            <input name="userName" class="easyui-combobox" valueField="id" , textField:="user" , url="content.json" ,
-                   required="required">
+            <input id="box" name="userName" required="required" style="width:173px;">
         </div>
     </form>
 </div>
@@ -145,6 +147,15 @@
         }
     };
     //////////////////////////////////////////////
+    //下拉框功能
+    $(function () {
+        $('#box').combobox({
+            valueField: 'id',
+            textField: 'userName',
+            url: '<%=basePath %>user2action/getIdUserName.action'
+        })
+    });
+    /////////////////////////////////////////////
     var url;
     function newUser() {
         $('#dlg').dialog('open').dialog('setTitle', '新员工');
