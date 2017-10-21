@@ -59,12 +59,24 @@ public class UserDAO {
         //如果搜索引擎触发，则userName不为空
         if (userName != null) {
             hql += " where user.userName like :userName";
-            query = session.createQuery(hql).setParameter("userName", "%" + userName + "%").setFirstResult(offset).setMaxResults(rows);
+            query = session.createQuery(hql).setParameter("userName", "%" + userName + "%");
         } else {
-            query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
+            query = session.createQuery(hql);
         }
-        List<User> list = (List<User>) query.list();
-        return list;
+        query = query.setFirstResult(offset).setMaxResults(rows);
+        return (List<User>) query.list();
+    }
+
+    /**
+     * 得到所有的User
+     *
+     * @return 返回所有的User
+     */
+    public List<User> getAllUser() {
+        Session session = factory.getCurrentSession();
+        String hql = "from User user";
+        Query query = session.createQuery(hql);
+        return (List<User>) query.list();
     }
 
     /**
