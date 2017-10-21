@@ -214,4 +214,13 @@ public class UserDAOTest {
         //数据库无此用户名，所以应该返回null
         Assert.assertNull(db_User);
     }
+
+    /**
+     * 验证重载的getAllUser方法是否能返回全部数据
+     */
+    @Test
+    @Transactional
+    public void testGetAllUser3() {
+        Assert.assertEquals(16, userDAO.getAllUser().size());
+    }
 }
