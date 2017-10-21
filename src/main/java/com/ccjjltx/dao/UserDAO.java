@@ -111,7 +111,7 @@ public class UserDAO {
             User user1 = new User();
             user1.setUserName(userName);
             user1.setPassword(password);
-            user1.setuType(uType);
+            user1.setUType(uType);
             //持久化user1实例
             session.save(user1);
             return 3;
