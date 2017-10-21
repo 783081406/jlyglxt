@@ -156,7 +156,7 @@ public class UserDAOTest {
         user.setId(100);
         user.setUserName("ccj100");
         user.setPassword("ccj100");
-        user.setuType(2);
+        user.setUType(2);
         //预期应该是插入失败，返回false
         boolean result = userDAO.updateUser(user);
         //Assert.assertFalse(result);
@@ -175,7 +175,7 @@ public class UserDAOTest {
         user.setId(15);
         user.setUserName("ccj1515");
         user.setPassword("ccj1515");
-        user.setuType(2);
+        user.setUType(2);
         //预期应该是插入成功返回true
         boolean result = userDAO.updateUser(user);
         Assert.assertTrue(result);
