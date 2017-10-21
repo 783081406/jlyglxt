@@ -56,14 +56,14 @@ public class EinformationDAO {
         } else {
             //进入该判断表示搜索框只填入一个或者什么都没填
             if (name != null) {
-                //搜索框的name值都开启了模糊查询
+                //搜索框的name有值开启模糊查询
                 hql += " where name like :name";
-                query = session.createQuery(hql).setParameter("name", name);
+                query = session.createQuery(hql).setParameter("name", "%" + name + "%");
             } else if (userName != null) {
-                //搜索框的userName值不为0，开启精确查询
+                //搜索框的userName值不为null，开启精确查询
                 db_user = userDAO.searchUser(userName);
                 if (db_user == null) {
-                    //如果用户账户错误直接返回null
+                    //如果没有该用户账户直接返回0
                     return null;
                 } else {
                     //查询不为空开启精确查询
@@ -79,5 +79,53 @@ public class EinformationDAO {
         return (List<Einformation>) query.list();
     }
 
-
+    /**
+     * 得到总条数，全部的或者是特定数据的
+     *
+     * @param name     姓名
+     * @param userName 用户账号
+     * @return 总条数
+     */
+    public int getAllInformationNumber(String name, String userName) {
+        Session session = factory.getCurrentSession();
+        //得到总条数
+        String hql = "select count(*) from Einformation einformation";
+        User db_user;
+        Query query;
+        if (name != null && userName != null) {
+            //通过UserDAO查询得到是否有该User账户
+            db_user = userDAO.searchUser(userName);
+            if (db_user == null) {
+                //如果没有该用户账户直接返回0
+                return 0;
+            } else {
+                //如果有该用户账户使用and进行精准查询
+                hql += " where einformation.name=:name and einformation.user=:user";
+                query = session.createQuery(hql).setParameter("name", name).setParameter("user", db_user);
+            }
+        } else {
+            //只有name或usrName或什么值都没有的情况下
+            if (name != null) {
+                //搜索框的name有值开启模糊查询
+                hql += " where name like :name";
+                query = session.createQuery(hql).setParameter("name", "%" + name + "%");
+            } else if (userName != null) {
+                //搜索框的userName值不为null，开启精确查询
+                db_user = userDAO.searchUser(userName);
+                if (db_user == null) {
+                    //如果没有该用户账户直接返回0
+                    return 0;
+                } else {
+                    //查询不为空开启精确查询
+                    hql += " where einformation.user=:user";
+                    query = session.createQuery(hql).setParameter("user", db_user);
+                }
+            } else {
+                //搜索框什么都没有输入
+                query = session.createQuery(hql);
+            }
+        }
+        long l = (long) query.uniqueResult();
+        return (int) l;
+    }
 }
