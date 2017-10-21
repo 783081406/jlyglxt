@@ -80,15 +80,15 @@
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>用户名:</label>
-            <input name="userName" class="easyui-validatebox" required="true">
+            <input name="userName" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>密码:</label>
-            <input name="password" class="easyui-validatebox" required="true">
+            <input name="password" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>类型:</label>
-            <input name="uType" class="easyui-validatebox" required="true">
+            <input name="uType" class="easyui-validatebox" required="required">
         </div>
     </form>
 </div>
