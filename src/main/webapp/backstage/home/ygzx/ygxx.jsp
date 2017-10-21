@@ -74,8 +74,8 @@
     </div>
     <div>
         <div style="padding:0 0 0 7px;color:#333;">
-            查询姓名：<input type="text" class="textbox" name="name" style="width:150px;height:25px">
-            用户账号:<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
+            查询姓名：<input type="text" class="textbox" name="vname" style="width:150px;height:25px">
+            用户账号:<input type="text" class="textbox" name="vuserName" style="width:150px;height:25px">
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search();">查询</a>
         </div>
     </div>
@@ -139,7 +139,8 @@
     obj = {
         search: function () {
             $('#dg').datagrid('load', {
-                name: $.trim($('input[name="name"]').val())
+                name: $.trim($('input[name="vname"]').val()),
+                userName: $.trim($('input[name="vuserName"]').val())
             });
         }
     };
