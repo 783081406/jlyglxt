@@ -158,6 +158,14 @@ public class EinformationAction extends ActionSupport {
     public String getAllInformation() {
         //得到起始的行数，方便之后的hql语句
         int offset = (getPage() - 1) * getRows();
+        //不为空表示搜索按钮触发
+        //如果是空数据赋值为null,方便后面的dao层的判断
+        if (getName() != null && getName().equals("")) {
+            setName(null);
+        }
+        if (getUserName() != null && getUserName().equals("")) {
+            setUserName(null);
+        }
         //得到所有的员工信息
         List<Einformation> list = einformationDAO.getAllInformation(offset, getRows(), getName(), getUserName());
         //得到总条数
