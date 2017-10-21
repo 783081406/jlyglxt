@@ -48,11 +48,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public int getuType() {
+    public int getUType() {
         return uType;
     }
 
-    public void setuType(int uType) {
+    public void setUType(int uType) {
         this.uType = uType;
     }
 
