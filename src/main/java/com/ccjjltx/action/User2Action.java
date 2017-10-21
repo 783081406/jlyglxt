@@ -48,7 +48,6 @@ public class User2Action extends ActionSupport {
      * @return 设置为SUCCESS
      */
     public String getIdUserName() {
-        System.out.println(11);
         result = new JSONArray();
         List<User> list = userDAO.getAllUser();
         for (User user : list) {
@@ -57,7 +56,6 @@ public class User2Action extends ActionSupport {
             js.put("userName", user.getUserName());
             result.add(js);
         }
-        System.out.println(result);
         return SUCCESS;
     }
 }
