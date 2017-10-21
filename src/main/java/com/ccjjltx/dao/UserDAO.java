@@ -182,4 +182,15 @@ public class UserDAO {
         Query query = session.createQuery(hql).setParameter("userName", userName);
         return (User) query.uniqueResult();
     }
+
+    /**
+     * 根据id得到User
+     *
+     * @param id 要查询的id号
+     * @return User实例化
+     */
+    public User searchUser(int id) {
+        Session session = factory.getCurrentSession();
+        return (User) session.get(User.class, id);
+    }
 }
