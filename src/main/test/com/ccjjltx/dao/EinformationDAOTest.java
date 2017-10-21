@@ -108,4 +108,64 @@ public class EinformationDAOTest {
         Assert.assertEquals(1001, pid);
     }
 
+    /**
+     * 验证:当空name与userName是否返回全部信息的总数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber1() {
+        int result = einformationDAO.getAllInformationNumber(null, null);
+        Assert.assertEquals(12, result);
+    }
+
+    /**
+     * 验证:当只有name是否返回全部信息的总数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber2() {
+        int result = einformationDAO.getAllInformationNumber("卫照捷", null);
+        Assert.assertEquals(1, result);
+    }
+
+    /**
+     * 验证:当只有userName是否返回全部信息的总数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber3() {
+        int result = einformationDAO.getAllInformationNumber(null, "weizj");
+        Assert.assertEquals(1, result);
+    }
+
+    /**
+     * 验证:当有正确user与username是否返回全部信息的总数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber4() {
+        int result = einformationDAO.getAllInformationNumber("卫照捷", "weizj");
+        Assert.assertEquals(1, result);
+    }
+
+    /**
+     * 验证:当有正确user与错误username是否返回0
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber5() {
+        int result = einformationDAO.getAllInformationNumber("卫照捷", "zj");
+        Assert.assertEquals(0, result);
+    }
+
+
+    /**
+     * 验证:当有错误user与正确username是否返回0
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber6() {
+        int result = einformationDAO.getAllInformationNumber("天地人", "weizj");
+        Assert.assertEquals(0, result);
+    }
 }
