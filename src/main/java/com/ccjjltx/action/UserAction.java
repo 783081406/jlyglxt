@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.UserDAO;
 import com.ccjjltx.domain.User;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -142,13 +143,13 @@ public class UserAction extends ActionSupport {
         int queryResult = userDAO.addUser(getUserName(), getPassword(), getUType());
         switch (queryResult) {
             case 1:
-                result = returnMessage(false, "类型只能填入1或2");
+                result = JsonMessage.returnMessage(false, "类型只能填入1或2");
                 return ERROR;
             case 2:
-                result = returnMessage(false, "数据库中已经存在相同的用户名了");
+                result = JsonMessage.returnMessage(false, "数据库中已经存在相同的用户名了");
                 return ERROR;
             default:
-                result = returnMessage(true, "success");
+                result = JsonMessage.returnMessage(true, "success");
                 return SUCCESS;
         }
     }
@@ -160,7 +161,7 @@ public class UserAction extends ActionSupport {
      */
     public String updateUser() {
         if (!(getUType() == 1 || getUType() == 2)) {
-            result = returnMessage(false, "插入失败：类型必须是1或者2");
+            result = JsonMessage.returnMessage(false, "插入失败：类型必须是1或者2");
             return ERROR;
         }
         //实例化得到的信息
@@ -172,11 +173,11 @@ public class UserAction extends ActionSupport {
         //执行更新操作
         if (userDAO.updateUser(user)) {
             //如果返回true，表示更新成功执行if里面的语句
-            result = returnMessage(true, "success");
+            result = JsonMessage.returnMessage(true, "success");
             return SUCCESS;
         } else {
             //如果返回false，表示更新失败，执行下面语句
-            result = returnMessage(false, "更新失败");
+            result = JsonMessage.returnMessage(false, "更新失败");
             return ERROR;
         }
     }
@@ -184,31 +185,12 @@ public class UserAction extends ActionSupport {
     public String removeUser() {
         if (userDAO.deleteUser(getId())) {
             //如果成功执行删除语句执行以下语句
-            result = returnMessage(true, "success");
+            result = JsonMessage.returnMessage(true, "success");
             return SUCCESS;
         } else {
             //执行删除语句失败执行以下方法
-            result = returnMessage(false, "删除失败");
+            result = JsonMessage.returnMessage(false, "删除失败");
             return ERROR;
         }
-    }
-
-    /**
-     * 设置json返回的结果值处理中心
-     *
-     * @param trueOfFalse 表示是否是成功true，表示成功，false表示失败
-     * @param message     表示返回的结果信息
-     * @return Json对象
-     */
-    private JSONObject returnMessage(boolean trueOfFalse, String message) {
-        JSONObject js = new JSONObject();
-        if (trueOfFalse) {
-            //表示成功
-            js.put("success", true);
-        } else {
-            //表示失败
-            js.put("msg", message);
-        }
-        return js;
     }
 }
