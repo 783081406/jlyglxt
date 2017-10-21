@@ -223,4 +223,25 @@ public class UserDAOTest {
     public void testGetAllUser3() {
         Assert.assertEquals(16, userDAO.getAllUser().size());
     }
+
+
+    /**
+     * 验证重载的searchUser是否能根据用户得到正确的User
+     */
+    @Test
+    @Transactional
+    public void testSearchUser3() {
+        User db_user = userDAO.searchUser(1);
+        Assert.assertEquals(1, db_user.getId());
+    }
+
+    /**
+     * 验证重载的searchUser是否能错误用户名返回null
+     */
+    @Test
+    @Transactional
+    public void testSearchUser4() {
+        User db_user = userDAO.searchUser(100);
+        Assert.assertNull(db_user);
+    }
 }
