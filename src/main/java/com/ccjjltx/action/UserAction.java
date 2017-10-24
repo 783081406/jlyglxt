@@ -182,6 +182,11 @@ public class UserAction extends ActionSupport {
         }
     }
 
+    /**
+     * 删除功能
+     *
+     * @return 失败或成功
+     */
     public String removeUser() {
         if (userDAO.deleteUser(getId())) {
             //如果成功执行删除语句执行以下语句
