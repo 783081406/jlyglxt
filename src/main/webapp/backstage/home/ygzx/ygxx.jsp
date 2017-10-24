@@ -80,11 +80,10 @@
         </div>
     </div>
 </div>
-<!--//////////////////////////查询的search方法里面传入参数还没修改///////////////////////////////-->
 <!--添加的window-->
 <div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
-    <div class="ftitle">员工信息</div>
+    <div class="ftitle">新员工信息</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>姓名:</label>
@@ -97,8 +96,8 @@
         <div class="fitem">
             <label>性别:</label>
             <select name="sex" class="easyui-combobox" style="width:173px;" required="required">
-                <option value="1">男</option>
-                <option value="2">女</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
             </select>
         </div>
         <div class="fitem">
@@ -158,11 +157,11 @@
     /////////////////////////////////////////////
     var url;
     function newUser() {
-        $('#dlg').dialog('open').dialog('setTitle', '新员工');
+        $('#dlg').dialog('open').dialog('setTitle', '新员工信息');
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
-        url = '<%=basePath %>useraction/saveUser.action';
+        url = '<%=basePath %>einformationaction/saveInformation.action';
     }
 
     function editUser() {
