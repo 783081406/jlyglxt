@@ -196,4 +196,14 @@ public class EinformationDAOTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 验证是否能够删除
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testDeleteInformation() {
+        einformationDAO.deleteInformation(1016);
+    }
 }
