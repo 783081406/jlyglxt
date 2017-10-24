@@ -140,4 +140,13 @@ public class EinformationDAO {
         einformation.setUser(userDAO.searchUser(id));
         session.save(einformation);
     }
+
+    /**
+     * @param einformation Einformation实例化（数据库有的）
+     */
+    public void updateInformation(Einformation einformation, int id) {
+        Session session = factory.getCurrentSession();
+        einformation.setUser(userDAO.searchUser(id));
+        session.update(einformation);
+    }
 }
