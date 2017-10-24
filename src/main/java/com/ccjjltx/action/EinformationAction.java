@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -202,13 +202,18 @@ public class EinformationAction extends ActionSupport {
         //将得到的数据实例化
         Einformation einformation = new Einformation(getName(), getIdCard(), getSex(), getAddress(), getPType(), getHiredate(), getEducation(), getBirthday());
         //此时返回的userName是User的id号来的，所以可以转换int类型
-        int iresult = einformationDAO.addInformation(einformation, Integer.parseInt(getUserName()));
-        if (iresult == 1) {
+        // 如果是错误的帐号就直接返回字符串
+        int id = 0;
+        try {
+            //如果格式解析错误表示是字符串，表示是错误格式
+            id = Integer.parseInt(getUserName());
+        } catch (NumberFormatException e) {
             result = JsonMessage.returnMessage(false, "用户帐号错误");
             return ERROR;
-        } else {
-            result = JsonMessage.returnMessage(true, "success");
-            return SUCCESS;
         }
+        //进过上面的过滤只能得到正确的id号了，所以不用下面相应的判断
+        einformationDAO.addInformation(einformation, id);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
     }
 }
