@@ -166,31 +166,15 @@ public class EinformationDAOTest {
     }
 
     /**
-     * 验证:错误id号时候是否返回1
+     * 验证:当正确id号时
      */
     @Test
     @Transactional
     @Rollback(true)
-    public void testAddInformation1() {
+    public void testAddInformation() {
         try {
             Einformation einformation = new Einformation("陈彩君", "1234567894152", "男", "广东省广州市从化区", "护工", MyDateFormat.parse("2017-07-07"), "本科", MyDateFormat.parse("2017-07-07"));
-            int result = einformationDAO.addInformation(einformation, 100);
-            Assert.assertEquals(1, result);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 验证:当正确id号时是否返回2
-     */
-    @Test
-    @Transactional
-    @Rollback(true)
-    public void testAddInformation2() {
-        try {
-            int result = einformationDAO.addInformation(new Einformation("陈彩君", "1234567894152", "男", "广东省广州市从化区", "护工", MyDateFormat.parse("2017-07-07"), "本科", MyDateFormat.parse("2017-07-07")), 2);
-            Assert.assertEquals(2, result);
+            einformationDAO.addInformation(einformation, 2);
         } catch (ParseException e) {
             e.printStackTrace();
         }
