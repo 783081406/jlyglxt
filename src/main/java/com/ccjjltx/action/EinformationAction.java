@@ -5,6 +5,7 @@ import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.utils.JsonMessage;
 import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.net.httpserver.Authenticator;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
@@ -36,6 +37,7 @@ public class EinformationAction extends ActionSupport {
     //保存json结果
     private JSONObject result;
     /////////////提交过来的Einformation表中的字段////////////////
+    private int pid;
     private String name;
     private String idCard;
     private String sex;
@@ -77,6 +79,14 @@ public class EinformationAction extends ActionSupport {
 
     public void setResult(JSONObject result) {
         this.result = result;
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public String getName() {
@@ -213,6 +223,30 @@ public class EinformationAction extends ActionSupport {
         }
         //进过上面的过滤只能得到正确的id号了，所以不用下面相应的判断
         einformationDAO.addInformation(einformation, id);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+    /**
+     * 更新信息
+     *
+     * @return json结果信息
+     */
+    public String updateInformation() {
+        //将得到的数据实例化
+        Einformation einformation = new Einformation(getName(), getIdCard(), getSex(), getAddress(), getPType(), getHiredate(), getEducation(), getBirthday());
+        einformation.setPid(getPid());
+        //此时返回的userName是User的id号来的，所以可以转换int类型
+        // 如果是错误的帐号就直接返回字符串
+        int id = 0;
+        try {
+            //如果格式解析错误表示是字符串，表示是错误格式
+            id = Integer.parseInt(getUserName());
+        } catch (NumberFormatException e) {
+            result = JsonMessage.returnMessage(false, "用户帐号错误");
+            return ERROR;
+        }
+        einformationDAO.updateInformation(einformation, id);
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
