@@ -5,7 +5,6 @@ import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.utils.JsonMessage;
 import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.net.httpserver.Authenticator;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
