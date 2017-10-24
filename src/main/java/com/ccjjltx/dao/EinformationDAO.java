@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.action.EinformationAction;
 import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.domain.User;
 import org.hibernate.Query;
@@ -148,5 +149,13 @@ public class EinformationDAO {
         Session session = factory.getCurrentSession();
         einformation.setUser(userDAO.searchUser(id));
         session.update(einformation);
+    }
+
+    public void deleteInformation(int pid) {
+        Session session = factory.getCurrentSession();
+        //根据pid得到Einformation
+        Einformation einformation = (Einformation) session.load(Einformation.class, pid);
+        //删除操作
+        session.delete(einformation);
     }
 }

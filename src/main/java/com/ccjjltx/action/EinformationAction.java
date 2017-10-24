@@ -250,4 +250,15 @@ public class EinformationAction extends ActionSupport {
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
+
+    /**
+     * 删除功能
+     *
+     * @return 返回成功
+     */
+    public String removeInformation() {
+        einformationDAO.deleteInformation(getPid());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
