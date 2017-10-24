@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +32,6 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
     public void testGetAllInformation1() {
         List<Einformation> list = einformationDAO.getAllInformation(0, 1, null, null);
         int pid = 0;
@@ -48,7 +46,6 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
     public void testGetAllInformation2() {
         List<Einformation> list = einformationDAO.getAllInformation(0, 1, "卫照捷", null);
         int pid = 0;
@@ -63,7 +60,6 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
     public void testGetAllInformation3() {
         List<Einformation> list = einformationDAO.getAllInformation(0, 1, null, "weizj");
         int pid = 0;
@@ -78,7 +74,6 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
     public void testGetAllInformation4() {
         List<Einformation> list = einformationDAO.getAllInformation(0, 1, "ccc", "weizj");
         //当list为空的时候，list为[]
@@ -90,7 +85,6 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
     public void testGetAllInformation5() {
         List<Einformation> list = einformationDAO.getAllInformation(0, 1, "卫照捷", "ccc");
         Assert.assertNull(list);
@@ -101,7 +95,6 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
     public void testGetAllInformation6() {
         List<Einformation> list = einformationDAO.getAllInformation(0, 1, "卫照捷", "weizj");
         int pid = 0;
