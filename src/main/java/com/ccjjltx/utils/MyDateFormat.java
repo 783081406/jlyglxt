@@ -1,5 +1,6 @@
 package com.ccjjltx.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,5 +25,9 @@ public class MyDateFormat {
      */
     public static String format(Date date) {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    public static Date parse(String dateString) throws ParseException {
+        return new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
     }
 }
