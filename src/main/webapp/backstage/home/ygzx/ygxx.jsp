@@ -167,11 +167,11 @@
     function editUser() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
-            $('#dlg').dialog('open').dialog('setTitle', '编辑员工信息');
+            $('#dlg').dialog('open').dialog('setTitle', '更新员工信息');
             //加载点击那一行的数据
             $('#fm').form('load', row);
             //提交数据处理的URL
-            url = '<%=basePath %>useraction/updateUser.action?id=' + row.id;
+            url = '<%=basePath %>einformationaction/updateInformation.action?pid=' + row.pid;
         }
     }
     //提交功能
