@@ -2,7 +2,7 @@ package com.ccjjltx.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by ccjjltx on 2017/10/19.
@@ -31,6 +31,17 @@ public class Einformation implements Serializable {
     private User user;
 
     public Einformation() {
+    }
+
+    public Einformation(String name, String idCard, String sex, String address, String pType, Date hiredate, String education, Date birthday) {
+        this.name = name;
+        this.idCard = idCard;
+        this.sex = sex;
+        this.address = address;
+        this.pType = pType;
+        this.hiredate = hiredate;
+        this.education = education;
+        this.birthday = birthday;
     }
 
     public int getPid() {
