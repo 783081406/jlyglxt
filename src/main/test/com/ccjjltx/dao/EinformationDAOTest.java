@@ -179,4 +179,21 @@ public class EinformationDAOTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 验证:更新数据库
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateInformation() {
+        try {
+            Einformation einformation = new Einformation("陈彩君", "1234567894561423453", "男", "123", "123",
+                    MyDateFormat.parse("2017-10-24"), "12", MyDateFormat.parse("2017-10-24"));
+            einformation.setPid(1016);
+            einformationDAO.updateInformation(einformation, 2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 }
