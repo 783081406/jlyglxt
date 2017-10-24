@@ -1,6 +1,7 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Einformation;
+import com.ccjjltx.utils.MyDateFormat;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -167,5 +170,36 @@ public class EinformationDAOTest {
     public void testGetAllInformationNumber6() {
         int result = einformationDAO.getAllInformationNumber("天地人", "weizj");
         Assert.assertEquals(0, result);
+    }
+
+    /**
+     * 验证:错误id号时候是否返回1
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation1() {
+        try {
+            Einformation einformation = new Einformation("陈彩君", "1234567894152", "男", "广东省广州市从化区", "护工", MyDateFormat.parse("2017-07-07"), "本科", MyDateFormat.parse("2017-07-07"));
+            int result = einformationDAO.addInformation(einformation, 100);
+            Assert.assertEquals(1, result);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 验证:当正确id号时是否返回2
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation2() {
+        try {
+            int result = einformationDAO.addInformation(new Einformation("陈彩君", "1234567894152", "男", "广东省广州市从化区", "护工", MyDateFormat.parse("2017-07-07"), "本科", MyDateFormat.parse("2017-07-07")), 2);
+            Assert.assertEquals(2, result);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
