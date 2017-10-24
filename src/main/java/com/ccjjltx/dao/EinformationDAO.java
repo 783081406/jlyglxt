@@ -134,19 +134,10 @@ public class EinformationDAO {
      *
      * @param einformation Einformation实例化
      * @param id           User类的id号码
-     * @return 1表示无此用户账号，2表示插入成功
      */
-    public int addInformation(Einformation einformation, int id) {
+    public void addInformation(Einformation einformation, int id) {
         Session session = factory.getCurrentSession();
-        User db_user = userDAO.searchUser(id);
-        if (db_user == null) {
-            //表示没有该帐号
-            return 1;
-        } else {
-            //表示有此用户账号
-            einformation.setUser(db_user);
-            session.save(einformation);
-            return 2;
-        }
+        einformation.setUser(userDAO.searchUser(id));
+        session.save(einformation);
     }
 }
