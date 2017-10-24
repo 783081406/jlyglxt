@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.EinformationDAO;
 import com.ccjjltx.domain.Einformation;
+import com.ccjjltx.utils.JsonMessage;
 import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
@@ -190,5 +191,24 @@ public class EinformationAction extends ActionSupport {
         }
         result.put("rows", jsonArray);
         return SUCCESS;
+    }
+
+    /**
+     * 增加新员工信息
+     *
+     * @return Json，成功或者失败的数据
+     */
+    public String saveInformation() {
+        //将得到的数据实例化
+        Einformation einformation = new Einformation(getName(), getIdCard(), getSex(), getAddress(), getPType(), getHiredate(), getEducation(), getBirthday());
+        //此时返回的userName是User的id号来的，所以可以转换int类型
+        int iresult = einformationDAO.addInformation(einformation, Integer.parseInt(getUserName()));
+        if (iresult == 1) {
+            result = JsonMessage.returnMessage(false, "用户帐号错误");
+            return ERROR;
+        } else {
+            result = JsonMessage.returnMessage(true, "success");
+            return SUCCESS;
+        }
     }
 }
