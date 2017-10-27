@@ -37,11 +37,9 @@
                 {
                     "menuid": "2", "icon": "icon-sys", "menuname": "信息中心",
                     "menus": [
-                        {"menuid": "21", "menuname": "信息登记", "icon": "icon-page", "url": "xxzx/xxdj.jsp"},
-                        {"menuid": "22", "menuname": "相关病历", "icon": "icon-class", "url": "xxzx/xgbl.jsp"},
-                        {"menuid": "23", "menuname": "信息查看", "icon": "icon-role", "url": "xxzx/xxck.jsp"},
-                        {"menuid": "24", "menuname": "病例查看", "icon": "icon-nav", "url": "xxzx/blck.jsp"},
-                        {"menuid": "25", "menuname": "床位信息", "icon": "icon-set", "url": "xxzx/cwxx.jsp"},
+                        {"menuid": "23", "menuname": "信息查看", "icon": "icon-page", "url": "xxzx/xxck.jsp"},
+                        {"menuid": "24", "menuname": "病例查看", "icon": "icon-class", "url": "xxzx/blck.jsp"},
+                        {"menuid": "25", "menuname": "床位信息", "icon": "icon-role", "url": "xxzx/cwxx.jsp"},
                         {"menuid": "26", "menuname": "特殊服务", "icon": "icon-log", "url": "xxzx/tsfw.jsp"},
                         {"menuid": "27", "menuname": "出入院", "icon": "icon-nav", "url": "xxzx/cry.jsp"}
                     ]
