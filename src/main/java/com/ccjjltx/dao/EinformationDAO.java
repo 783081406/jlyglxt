@@ -156,7 +156,7 @@ public class EinformationDAO {
     /**
      * 删除操作
      *
-     * @param pid
+     * @param pid id号(主键)
      */
     public void deleteInformation(int pid) {
         Session session = factory.getCurrentSession();
