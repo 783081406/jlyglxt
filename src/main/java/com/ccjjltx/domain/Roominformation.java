@@ -19,7 +19,7 @@ public class Roominformation implements Serializable {
     private String floor;
     private String roomNumber;
     //定义关联实体类Bedcost
-    @OneToOne(targetEntity = Roomcost.class)
+    @ManyToOne(targetEntity = Roomcost.class)
     //映射外键名字
     @JoinColumn(name = "rcId")
     private Roomcost roomcost;
