@@ -27,19 +27,19 @@ public class Bedcost implements Serializable {
         this.bcId = bcId;
     }
 
-    public String getbType() {
+    public String getBType() {
         return bType;
     }
 
-    public void setbType(String bType) {
+    public void setBType(String bType) {
         this.bType = bType;
     }
 
-    public int getbCost() {
+    public int getBCost() {
         return bCost;
     }
 
-    public void setbCost(int bCost) {
+    public void setBCost(int bCost) {
         this.bCost = bCost;
     }
 
