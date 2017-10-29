@@ -14,9 +14,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>床位信息</title>
+    <title>房间信息</title>
     <meta charset="utf-8"/>
-    <meta name="description" content="信息中心->床位信息"/>
+    <meta name="description" content="信息中心->房间信息"/>
     <meta name="author" content="陈彩君"/>
     <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css"/>
     <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css"/>
@@ -49,28 +49,29 @@
     </style>
 </head>
 <body>
-<table id="dg" title="床位信息列表" class="easyui-datagrid" style="width:700px;height:400px"
+<table id="dg" title="房间信息列表" class="easyui-datagrid" style="width:700px;height:400px"
        url="<%=basePath %>useraction/getUser.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
         <th field="floor" width="100">楼号</th>
         <th field="roomNumber" width="100">房间号</th>
-        <th field="bType" width="100">床位类型</th>
-        <th field="bType" width="100">床位类型</th>
-        <th field="bType" width="100">床位类型</th>
+        <th field="rType" width="100">房间类型</th>
+        <th field="rCost" width="100">房间价格</th>
+        <th field="ename" width="100">入住者名字</th>
     </tr>
     </thead>
 </table>
 <div id="toolbar">
     <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加账户</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改账户</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除账户</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除</a>
     </div>
     <div>
         <div style="padding:0 0 0 7px;color:#333;">
-            查询账号：<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
+            查询楼层：<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
+            房间号：<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search();">查询</a>
         </div>
     </div>
@@ -78,19 +79,27 @@
 <!--新账户window-->
 <div id="dlg" class="easyui-dialog" style="width:400px;height:250px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
-    <div class="ftitle">账户信息</div>
+    <div class="ftitle">新房间</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
-            <label>用户名:</label>
-            <input name="userName" class="easyui-validatebox" required="required">
+            <label>楼号:</label>
+            <input name="floor" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
-            <label>密码:</label>
-            <input name="password" class="easyui-validatebox" required="required">
+            <label>房间号:</label>
+            <input name="roomNumber" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
-            <label>类型:</label>
-            <input name="uType" class="easyui-validatebox" required="required">
+            <label>房间类型:</label>
+            <input name="rType" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>房间价格:</label>
+            <input name="rCost" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>入住者名字:</label>
+            <input name="ename" class="easyui-validatebox" required="required">
         </div>
     </form>
 </div>
@@ -115,7 +124,7 @@
     //////////////////////////////////////////////
     var url;
     function newUser() {
-        $('#dlg').dialog('open').dialog('setTitle', '新账户');
+        $('#dlg').dialog('open').dialog('setTitle', '新房间');
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
@@ -125,7 +134,7 @@
     function editUser() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
-            $('#dlg').dialog('open').dialog('setTitle', '编辑账户');
+            $('#dlg').dialog('open').dialog('setTitle', '编辑信息');
             //加载点击那一行的数据
             $('#fm').form('load', row);
             //提交数据处理的URL
