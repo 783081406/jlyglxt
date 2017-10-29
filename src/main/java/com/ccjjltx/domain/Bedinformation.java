@@ -28,11 +28,11 @@ public class Bedinformation implements Serializable {
     @JoinColumn(name = "eId")
     private Elder elder;
 
-    public int getbId() {
+    public int getBId() {
         return bId;
     }
 
-    public void setbId(int bId) {
+    public void setBId(int bId) {
         this.bId = bId;
     }
 
