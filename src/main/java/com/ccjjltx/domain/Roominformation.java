@@ -5,35 +5,36 @@ import java.io.Serializable;
 
 /**
  * Created by ccjjltx on 2017/10/29.
- * 床位信息表
+ * 房间信息
  *
  * @author ccj
  * @version 1.0
  */
 @Entity
-public class Bedinformation implements Serializable {
+@Table
+public class Roominformation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bId;
+    private int rId;
     private String floor;
     private String roomNumber;
     //定义关联实体类Bedcost
-    @OneToOne(targetEntity = Bedcost.class)
+    @OneToOne(targetEntity = Roomcost.class)
     //映射外键名字
-    @JoinColumn(name = "bcId")
-    private Bedcost bedcost;
+    @JoinColumn(name = "rcId")
+    private Roomcost roomcost;
     //定义关联实体类Elder
     @OneToOne(targetEntity = Elder.class)
     //映射外键名字
     @JoinColumn(name = "eId")
     private Elder elder;
 
-    public int getBId() {
-        return bId;
+    public int getRId() {
+        return rId;
     }
 
-    public void setBId(int bId) {
-        this.bId = bId;
+    public void setRId(int rId) {
+        this.rId = rId;
     }
 
     public String getFloor() {
@@ -52,12 +53,12 @@ public class Bedinformation implements Serializable {
         this.roomNumber = roomNumber;
     }
 
-    public Bedcost getBedcost() {
-        return bedcost;
+    public Roomcost getRoomcost() {
+        return roomcost;
     }
 
-    public void setBedcost(Bedcost bedcost) {
-        this.bedcost = bedcost;
+    public void setRoomcost(Roomcost roomcost) {
+        this.roomcost = roomcost;
     }
 
     public Elder getElder() {
@@ -73,9 +74,9 @@ public class Bedinformation implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Bedinformation that = (Bedinformation) o;
+        Roominformation that = (Roominformation) o;
 
-        if (bId != that.bId) return false;
+        if (rId != that.rId) return false;
         if (floor != null ? !floor.equals(that.floor) : that.floor != null) return false;
         if (roomNumber != null ? !roomNumber.equals(that.roomNumber) : that.roomNumber != null) return false;
 
@@ -84,7 +85,7 @@ public class Bedinformation implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = bId;
+        int result = rId;
         result = 31 * result + (floor != null ? floor.hashCode() : 0);
         result = 31 * result + (roomNumber != null ? roomNumber.hashCode() : 0);
         return result;
