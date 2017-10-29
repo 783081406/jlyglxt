@@ -19,11 +19,11 @@ public class Elder implements Serializable {
     private String ename;
     private int isIn;
 
-    public int geteId() {
+    public int getEId() {
         return eId;
     }
 
-    public void seteId(int eId) {
+    public void setEId(int eId) {
         this.eId = eId;
     }
 
