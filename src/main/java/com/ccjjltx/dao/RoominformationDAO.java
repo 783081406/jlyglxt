@@ -58,4 +58,32 @@ public class RoominformationDAO {
             return (List<Roominformation>) query.list();
         }
     }
+
+    /**
+     * 得到全部或者特定的总条数
+     *
+     * @param ename 老人的姓名
+     * @return 总条数
+     */
+    public int getAllInformationNumber(String ename) {
+        Session session = factory.getCurrentSession();
+        //总查询语句
+        String hql = "select count(*) from Roominformation roominformation";
+        Query query;
+        Elder db_elder;
+        if (ename != null) {
+            db_elder = elderDAO.getSearchElder(ename);
+            if (db_elder == null) {
+                return 0;
+            } else {
+                hql += " where elder=:elder";
+                query = session.createQuery(hql).setParameter("elder", db_elder);
+            }
+        } else {
+            query = session.createQuery(hql);
+        }
+        long l = (long) query.uniqueResult();
+        return (int) l;
+    }
+
 }
