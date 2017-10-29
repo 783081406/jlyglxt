@@ -1,6 +1,7 @@
 package com.ccjjltx.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by ccjjltx on 2017/10/29.
@@ -10,7 +11,7 @@ import javax.persistence.*;
  * @version 1.0
  */
 @Entity
-public class Elder {
+public class Elder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int eId;
