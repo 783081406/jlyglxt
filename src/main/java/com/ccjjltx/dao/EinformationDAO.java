@@ -143,6 +143,8 @@ public class EinformationDAO {
     }
 
     /**
+     * 更新操作
+     *
      * @param einformation Einformation实例化（数据库有的）
      */
     public void updateInformation(Einformation einformation, int id) {
@@ -151,6 +153,11 @@ public class EinformationDAO {
         session.update(einformation);
     }
 
+    /**
+     * 删除操作
+     *
+     * @param pid
+     */
     public void deleteInformation(int pid) {
         Session session = factory.getCurrentSession();
         //根据pid得到Einformation
