@@ -63,4 +63,24 @@ public class RoominformationDAOTest {
         Assert.assertEquals(1, rid);
     }
 
+    /**
+     * 验证：无enmae的是否是否返回正确的总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber1() {
+        int result = roominformationDAO.getAllInformationNumber(null);
+        Assert.assertEquals(32, result);
+    }
+
+    /**
+     * 验证：无enmae的是否是否返回正确的总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber2() {
+        int result = roominformationDAO.getAllInformationNumber("张志新");
+        Assert.assertEquals(1, result);
+    }
+
 }
