@@ -17,7 +17,7 @@ public class Roominformation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rId;
     private String floor;
-    private String roomNumber;
+    private int roomNumber;
     //定义关联实体类Bedcost
     @ManyToOne(targetEntity = Roomcost.class)
     //映射外键名字
@@ -45,11 +45,11 @@ public class Roominformation implements Serializable {
         this.floor = floor;
     }
 
-    public String getRoomNumber() {
+    public int getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(String roomNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
@@ -77,17 +77,19 @@ public class Roominformation implements Serializable {
         Roominformation that = (Roominformation) o;
 
         if (rId != that.rId) return false;
+        if (roomNumber != that.roomNumber) return false;
         if (floor != null ? !floor.equals(that.floor) : that.floor != null) return false;
-        if (roomNumber != null ? !roomNumber.equals(that.roomNumber) : that.roomNumber != null) return false;
-
-        return true;
+        if (roomcost != null ? !roomcost.equals(that.roomcost) : that.roomcost != null) return false;
+        return elder != null ? elder.equals(that.elder) : that.elder == null;
     }
 
     @Override
     public int hashCode() {
         int result = rId;
         result = 31 * result + (floor != null ? floor.hashCode() : 0);
-        result = 31 * result + (roomNumber != null ? roomNumber.hashCode() : 0);
+        result = 31 * result + roomNumber;
+        result = 31 * result + (roomcost != null ? roomcost.hashCode() : 0);
+        result = 31 * result + (elder != null ? elder.hashCode() : 0);
         return result;
     }
 }
