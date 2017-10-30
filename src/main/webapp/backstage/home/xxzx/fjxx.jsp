@@ -98,7 +98,7 @@
         </div>
         <div class="fitem">
             <label>入住者名字:</label>
-            <input name="ename" class="easyui-validatebox" required="required">
+            <input id="box" name="ename" required="required" style="width:173px;">
         </div>
     </form>
 </div>
@@ -121,6 +121,15 @@
         }
     };
     //////////////////////////////////////////////
+    //下拉功能
+    $(function () {
+        $('#box').combobox({
+            valueField: 'eId',
+            textField: 'ename',
+            url: '<%=basePath %>elderaction/getIdElderName.action'
+        })
+    });
+    ///////////////////////////////////////////////
     var url;
     function newUser() {
         $('#dlg').dialog('open').dialog('setTitle', '新房间信息');
