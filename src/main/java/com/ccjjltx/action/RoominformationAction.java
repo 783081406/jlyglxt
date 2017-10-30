@@ -100,15 +100,10 @@ public class RoominformationAction extends ActionSupport {
             JSONObject js = new JSONObject();
             Elder elder = new Elder();
             js.put("rId", ri.getRId());
-            System.out.println(1);
             js.put("floor", ri.getFloor());
-            System.out.println(2);
             js.put("roomNumber", ri.getRoomNumber());
-            System.out.println(3);
             js.put("rType", ri.getRoomcost().getRType());
-            System.out.println(4);
             js.put("rCost", ri.getRoomcost().getRCost());
-            System.out.println(5);
             elder = ri.getElder();
             if (elder != null) {
                 js.put("ename", elder.getEname());
@@ -118,7 +113,15 @@ public class RoominformationAction extends ActionSupport {
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
-        System.out.println(result);
+        return SUCCESS;
+    }
+
+    /**
+     * 用于增加新的房间信息
+     *
+     * @return json, 成功或者失败的提示信息
+     */
+    public String addInformation() {
         return SUCCESS;
     }
 
