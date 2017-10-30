@@ -83,4 +83,44 @@ public class RoominformationDAOTest {
         Assert.assertEquals(1, result);
     }
 
+    /**
+     * 验证：当用楼号和房间号都存在的时候是否返回true；
+     */
+    @Test
+    @Transactional
+    public void testIsFloorAndRoomNumber1() {
+        boolean result = roominformationDAO.isFloorAndRoomNumber("东", 101);
+        Assert.assertTrue(result);
+    }
+
+    /**
+     * 验证：当楼号是新的，房间号是存在的是否返回false；
+     */
+    @Test
+    @Transactional
+    public void testIsFloorAndRoomNumber2() {
+        boolean result = roominformationDAO.isFloorAndRoomNumber("清风阁", 101);
+        Assert.assertFalse(result);
+    }
+
+    /**
+     * 验证：当楼号是存在的，房间号是不存在的是否返回false；
+     */
+    @Test
+    @Transactional
+    public void testIsFloorAndRoomNumber3() {
+        boolean result = roominformationDAO.isFloorAndRoomNumber("东", 120);
+        Assert.assertFalse(result);
+    }
+
+    /**
+     * 验证：当楼号与房间号都是不存在的是否返回false；
+     */
+    @Test
+    @Transactional
+    public void testIsFloorAndRoomNumber4() {
+        boolean result = roominformationDAO.isFloorAndRoomNumber("清风阁", 120);
+        Assert.assertFalse(result);
+    }
+
 }
