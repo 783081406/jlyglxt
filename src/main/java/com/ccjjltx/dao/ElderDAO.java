@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/10/29.
@@ -21,6 +22,18 @@ import javax.annotation.Resource;
 public class ElderDAO {
     @Resource(name = "sessionFactory")
     private SessionFactory factory;
+
+    /**
+     * 得到所有的Elder
+     *
+     * @return 返回所有的Elder信息
+     */
+    public List<Elder> getAllElder() {
+        Session session = factory.getCurrentSession();
+        String hql = "from Elder elder";
+        Query query = session.createQuery(hql);
+        return (List<Elder>) query.list();
+    }
 
     /**
      * 根据ename得到Elder实例化
