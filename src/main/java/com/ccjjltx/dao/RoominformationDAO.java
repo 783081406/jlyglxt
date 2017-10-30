@@ -86,4 +86,26 @@ public class RoominformationDAO {
         return (int) l;
     }
 
+
+
+
+    /**
+     * 是否存在该楼号与房间号
+     *
+     * @param floor      楼号
+     * @param roomNumber 房间号
+     * @return true表示存在，false表示不存在
+     */
+    public boolean isFloorAndRoomNumber(String floor, int roomNumber) {
+        Session session = factory.getCurrentSession();
+        String hql = "from Roominformation roominformation where floor=:floor and roomNumber=:roomNumber";
+        Query query = session.createQuery(hql).setParameter("floor", floor).setParameter("roomNumber", roomNumber);
+        Roominformation r = (Roominformation) query.uniqueResult();
+        if (r != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
