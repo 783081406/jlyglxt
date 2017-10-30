@@ -4,6 +4,7 @@ import com.ccjjltx.domain.Roominformation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -141,6 +142,52 @@ public class RoominformationDAOTest {
     public void testIsLive2() {
         boolean result = roominformationDAO.isLive(15);
         Assert.assertFalse(result);
+    }
+
+    /**
+     * 验证：当已经存在楼号与房间号码时候是否返回1
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation1() {
+        int result = roominformationDAO.addInformation("东", 101, null, 0, 0);
+        Assert.assertEquals(1, result);
+    }
+
+    /**
+     * 验证：当新的房间信息的时候，老人已经入住是否返回2
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation2() {
+        int result = roominformationDAO.addInformation("ccj", 101, "ccj", 900, 2);
+        Assert.assertEquals(2, result);
+
+    }
+
+    /**
+     * 验证：当新的房间信息的时候，类型是新的，价格是新的，老人无入住是否返回3
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation3() {
+        int result = roominformationDAO.addInformation("ccj", 101, "ccj", 900, 15);
+        Assert.assertEquals(3, result);
+
+    }
+
+    /**
+     * 验证：当新的房间信息的时候，类型是旧的，价格是新的，老人无入住是否返回3
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation4() {
+        int result = roominformationDAO.addInformation("ccj", 101, "标准", 1000, 15);
+        Assert.assertEquals(3, result);
     }
 
 }
