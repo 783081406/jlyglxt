@@ -136,7 +136,7 @@
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
-        url = '<%=basePath %>useraction/saveUser.action';
+        url = '<%=basePath %>roomiaction/addInformation.action';
     }
 
     function editUser() {
