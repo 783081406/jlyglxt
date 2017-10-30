@@ -190,4 +190,13 @@ public class RoominformationDAOTest {
         Assert.assertEquals(3, result);
     }
 
+    /**
+     * 验证：当正确的rId的时候是否返回正确的Roominformation实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchRoominformation() {
+        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
+        Assert.assertEquals(1, ri.getRId());
+    }
 }
