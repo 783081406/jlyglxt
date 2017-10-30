@@ -53,4 +53,15 @@ public class ElderDAOTest {
         List<Elder> list = elderDAO.getAllElder();
         Assert.assertEquals(15, list.size());
     }
+
+    /**
+     * 验证:当正确的eId的是否是否返回正确的Elder实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchElder3() {
+        Elder db_elder = elderDAO.getSearchElder(1);
+        Assert.assertEquals(1, db_elder.getEId());
+    }
+
 }
