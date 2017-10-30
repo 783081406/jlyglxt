@@ -29,6 +29,22 @@ public class Roominformation implements Serializable {
     @JoinColumn(name = "eId")
     private Elder elder;
 
+    //无参构造函数
+    public Roominformation() {
+    }
+
+    public Roominformation(String floor, int roomNumber) {
+        this.floor = floor;
+        this.roomNumber = roomNumber;
+    }
+
+    public Roominformation(String floor, int roomNumber, Roomcost roomcost, Elder elder) {
+        this.floor = floor;
+        this.roomNumber = roomNumber;
+        this.roomcost = roomcost;
+        this.elder = elder;
+    }
+
     public int getRId() {
         return rId;
     }
