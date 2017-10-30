@@ -4,6 +4,7 @@ import com.ccjjltx.domain.Roomcost;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,4 +54,26 @@ public class RoomcostDAOTest {
         Assert.assertNull(roomcost);
     }
 
+    /**
+     * 验证:是否能新增房间类型与房价价格新数据
+     */
+    @Test
+    @Transactional
+    //新增，防止数据冗余，回滚
+    @Rollback(true)
+    public void testAddRoomcost() {
+        roomcostDAO.addRoomcost("ccj", 1200);
+    }
+
+    /**
+     * 验证是否能更新已存在的数据
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateRoomcost() {
+        Roomcost roomcost = roomcostDAO.getSearchRoomcost(1);
+        roomcost.setRCost(3600);
+        roomcostDAO.updateRoomcost(roomcost);
+    }
 }
