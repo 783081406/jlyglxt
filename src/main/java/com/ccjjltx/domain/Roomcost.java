@@ -19,6 +19,15 @@ public class Roomcost implements Serializable {
     private String rType;
     private int rCost;
 
+    //无参构造函数
+    public Roomcost() {
+    }
+
+    public Roomcost(String rType, int rCost) {
+        this.rType = rType;
+        this.rCost = rCost;
+    }
+
     public int getRcId() {
         return rcId;
     }
