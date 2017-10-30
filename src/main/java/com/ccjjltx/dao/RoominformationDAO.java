@@ -1,6 +1,7 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Elder;
+import com.ccjjltx.domain.Roomcost;
 import com.ccjjltx.domain.Roominformation;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -25,6 +26,8 @@ public class RoominformationDAO {
     private SessionFactory factory;
     @Resource(name = "elderDAO")
     private ElderDAO elderDAO;
+    @Resource(name = "roomcostDAO")
+    private RoomcostDAO roomcostDAO;
 
     /**
      * 得到所有楼层房间的数据
@@ -86,7 +89,58 @@ public class RoominformationDAO {
         return (int) l;
     }
 
-
+    /**
+     * 增加房间信息
+     *
+     * @param floor      楼号
+     * @param roomNumber 房间号
+     * @param rType      房间类型
+     * @param rCost      房间价格
+     * @param eId        老人信息表的eId
+     * @return int类型（1表示已经存在该楼号与房间号码，2表示该名老人已经入住，3表示插入成功）
+     */
+    public int addInformation(String floor, int roomNumber, String rType, int rCost, int eId) {
+        Session session = factory.getCurrentSession();
+        //首先得出数据库中是否有相应的数据信息（楼号与房间号）
+        if (!isFloorAndRoomNumber(floor, roomNumber)) {//表示确定是一个新房间
+            ///////////////////////////////////////////////////////
+            //验证是否有相同的房间类型
+            Roomcost db_roomcost = roomcostDAO.getSearchRoomcost(rType);
+            if (db_roomcost != null) {//如果不为空，表示已经存在，如果费用一样则不变否则，更新
+                if (db_roomcost.getRCost() != rCost) {//费用不同，选择更新
+                    db_roomcost.setRCost(rCost);
+                    roomcostDAO.updateRoomcost(db_roomcost);
+                }
+            } else {//为空，表示不存在，则应该增加数据
+                roomcostDAO.addRoomcost(rType, rCost);
+                //更新db_roomcost
+                db_roomcost = roomcostDAO.getSearchRoomcost(rType);
+            }
+            /////////////////////////////////////////////////////////
+            //验证该老人是否已经房间了
+            Elder db_elder;
+            if (eId != 0) {
+                //验证该老人是否已有房间
+                if (isLive(eId)) {//表示已经有房间//返回2插入失败
+                    return 2;
+                } else {
+                    //表示还没有房间则实例化
+                    db_elder = elderDAO.getSearchElder(eId);
+                }
+            } else {
+                //表示为eId为空
+                db_elder = null;
+            }
+            ///////////////////通过所有的判断则插入数据///////////////////////
+            Roominformation ri = new Roominformation(floor, roomNumber, db_roomcost, db_elder);
+            //输入数据
+            session.save(ri);
+            return 3;
+        } else {
+            //表示已经有相同的楼号和房间号了，添加失败
+            return 1;
+        }
+    }
 
     /**
      * 是否存在该楼号与房间号
