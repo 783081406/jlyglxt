@@ -47,4 +47,15 @@ public class ElderDAO {
         Query query = session.createQuery(hql).setParameter("ename", ename);
         return (Elder) query.uniqueResult();
     }
+
+    /**
+     * 根据主键的eId得到Elderly实例化
+     *
+     * @param eId 主键eId
+     * @return Elderly的实例化
+     */
+    public Elder getSearchElder(int eId) {
+        Session session = factory.getCurrentSession();
+        return (Elder) session.load(Elder.class, eId);
+    }
 }
