@@ -88,7 +88,6 @@ public class RoominformationDAO {
 
 
 
-
     /**
      * 是否存在该楼号与房间号
      *
@@ -108,4 +107,22 @@ public class RoominformationDAO {
         }
     }
 
+    /**
+     * 根据老人的eid得到是否该老人已经入住某个房间了
+     *
+     * @param eId 老人缩略表中的eid主键
+     * @return true表示已经入住了，false表示还没入住
+     */
+    public boolean isLive(int eId) {
+        Session session = factory.getCurrentSession();
+        Elder db_elder = elderDAO.getSearchElder(eId);
+        String hql = "from Roominformation roominformation where elder=:elder";
+        Query query = session.createQuery(hql).setParameter("elder", db_elder);
+        Roominformation ri = (Roominformation) query.uniqueResult();
+        if (ri != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
