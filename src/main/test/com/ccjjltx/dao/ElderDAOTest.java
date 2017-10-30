@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/10/29.
@@ -41,5 +42,15 @@ public class ElderDAOTest {
     public void testGetSearchElder2() {
         Elder elder = elderDAO.getSearchElder("张志新");
         Assert.assertEquals(1, elder.getEId());
+    }
+
+    /**
+     * 验证:是否返回所有的Elder信息
+     */
+    @Test
+    @Transactional
+    public void testGetAllElder() {
+        List<Elder> list = elderDAO.getAllElder();
+        Assert.assertEquals(15, list.size());
     }
 }
