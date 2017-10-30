@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  床位信息
+  房间信息
   User: ccjjltx
   Date: 2017/10/16
   Time: 23:56
@@ -50,7 +50,7 @@
 </head>
 <body>
 <table id="dg" title="房间信息列表" class="easyui-datagrid" style="width:700px;height:400px"
-       url="<%=basePath %>useraction/getUser.action"
+       url="<%=basePath %>roomiaction/getAllInformation.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
@@ -70,8 +70,7 @@
     </div>
     <div>
         <div style="padding:0 0 0 7px;color:#333;">
-            查询楼层：<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
-            房间号：<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
+            查询入住者姓名：<input type="text" class="textbox" name="ename" style="width:150px;height:25px">
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search();">查询</a>
         </div>
     </div>
@@ -117,14 +116,14 @@
     obj = {
         search: function () {
             $('#dg').datagrid('load', {
-                userName: $.trim($('input[name="userName"]').val())
+                ename: $.trim($('input[name="ename"]').val())
             });
         }
     };
     //////////////////////////////////////////////
     var url;
     function newUser() {
-        $('#dlg').dialog('open').dialog('setTitle', '新房间');
+        $('#dlg').dialog('open').dialog('setTitle', '新房间信息');
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
