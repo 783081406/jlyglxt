@@ -98,7 +98,7 @@
         </div>
         <div class="fitem">
             <label>入住者名字:</label>
-            <input id="box" name="ename" required="required" style="width:173px;">
+            <input id="box" name="ename" style="width:173px;">
         </div>
     </form>
 </div>
