@@ -142,6 +142,9 @@ public class RoominformationDAO {
         }
     }
 
+
+
+
     /**
      * 是否存在该楼号与房间号
      *
@@ -178,5 +181,17 @@ public class RoominformationDAO {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 根据rId得到Roominformation实例化
+     *
+     * @param rId 主键rId
+     * @return Roominformation实例化
+     */
+    public Roominformation getSearchRoominformation(int rId) {
+        Session session = factory.getCurrentSession();
+        //根据rId得到Roominformation实例化
+        return (Roominformation) session.load(Roominformation.class, rId);
     }
 }
