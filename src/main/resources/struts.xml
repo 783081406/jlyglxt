@@ -67,7 +67,7 @@
         </action>
     </package>
 
-    <!--下拉框选择用户账户使用-->
+    <!--下拉框选择用户账户的时候使用-->
     <package name="user2action" namespace="/user2action" extends="struts-default,json-default">
         <action name="*" class="user2Action" method="{1}">
             <result name="success" type="json">
@@ -79,7 +79,17 @@
         </action>
     </package>
 
-
+    <!--下拉框选择老人的名字的时候使用使用-->
+    <package name="elderaction" namespace="/elderaction" extends="struts-default,json-default">
+        <action name="*" class="elderAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
 
     <!--    <package name="reception" namespace="/reception" extends="struts-default">
             <action name="*">
