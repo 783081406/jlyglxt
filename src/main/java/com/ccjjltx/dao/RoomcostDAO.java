@@ -46,4 +46,26 @@ public class RoomcostDAO {
         return (Roomcost) query.uniqueResult();
     }
 
+    /**
+     * 新增房间类型与房价价格
+     *
+     * @param rType 房间类型
+     * @param rCost 房间价格
+     */
+    public void addRoomcost(String rType, int rCost) {
+        Session session = factory.getCurrentSession();
+        Roomcost roomcost = new Roomcost(rType, rCost);
+        session.save(roomcost);
+    }
+
+    /**
+     * 更新房间类型与房间价格
+     *
+     * @param roomcost Roomcost实例化
+     */
+    public void updateRoomcost(Roomcost roomcost) {
+        Session session = factory.getCurrentSession();
+        session.update(roomcost);
+    }
+
 }
