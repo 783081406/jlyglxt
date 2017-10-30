@@ -123,4 +123,24 @@ public class RoominformationDAOTest {
         Assert.assertFalse(result);
     }
 
+    /**
+     * 验证:当老人的eid正确的是否，且已经入住是否返回true
+     */
+    @Test
+    @Transactional
+    public void testIsLive1() {
+        boolean result = roominformationDAO.isLive(1);
+        Assert.assertTrue(result);
+    }
+
+    /**
+     * 验证;当老人的eid正确的前提下，且没有入住是否返回false
+     */
+    @Test
+    @Transactional
+    public void testIsLive2() {
+        boolean result = roominformationDAO.isLive(15);
+        Assert.assertFalse(result);
+    }
+
 }
