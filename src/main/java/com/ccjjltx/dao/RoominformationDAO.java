@@ -148,7 +148,7 @@ public class RoominformationDAO {
      *
      * @param roominformation Roominformation实例化
      * @param eId             老人缩略表中的主键eId
-     * @return int类型，1表示该老人已经入住，2表示更新成功
+     * @return int类型，1表示该老人已经入住，2表示已经存在该楼号与房间号，3表示更新成功
      */
     public int updateInformation(Roominformation roominformation, int eId) {
         Session session = factory.getCurrentSession();
@@ -165,15 +165,20 @@ public class RoominformationDAO {
             //表示为空
             roominformation.setElder(null);
         }
+        //判断是否已经有相同的楼号与房间号
+        if (isFloorAndRoomNumber(roominformation.getFloor(), roominformation.getRoomNumber())) {
+            return 2;
+        }
         //更新Roomcost
         session.update(roominformation.getRoomcost());
         //更新roominformation
         session.update(roominformation);
-        return 2;
+        return 3;
     }
 
     /**
      * 是否存在该楼号与房间号
+     * 用于新增操作
      *
      * @param floor      楼号
      * @param roomNumber 房间号
@@ -190,6 +195,28 @@ public class RoominformationDAO {
             return false;
         }
     }
+
+    /**
+     * 重载isFloorAndRoomNumber，用于判断是否存在相同的楼号与房间号
+     * 主要用于更新
+     *
+     * @param rId        RoomInformation主键rId
+     * @param floor      楼号
+     * @param roomNumber 房间号
+     * @return true表示存在，false表示不存在
+     */
+    public boolean isFloorAndRoomNumber(int rId, String floor, int roomNumber) {
+        Session session = factory.getCurrentSession();
+        String hql = "from Roominformation roominformation where rId!=:rId and floor=:floor and roomNumber=:roomNumber";
+        Query query = session.createQuery(hql).setParameter("rId", rId).setParameter("floor", floor).setParameter("roomNumber", roomNumber);
+        Roominformation r = (Roominformation) query.uniqueResult();
+        if (r != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * 根据老人的eid得到是否该老人已经入住某个房间了
