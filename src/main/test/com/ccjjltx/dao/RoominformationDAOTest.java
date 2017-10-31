@@ -128,6 +128,26 @@ public class RoominformationDAOTest {
     }
 
     /**
+     * 验证：测试重载的isFloorAndRoomNumber方法，当存在相同的楼号与房间号，rId不同，是否返回false
+     */
+    @Test
+    @Transactional
+    public void testIsFloorAndRoomNumber5() {
+        boolean result = roominformationDAO.isFloorAndRoomNumber(1, "东", 101);
+        Assert.assertFalse(result);
+    }
+
+    /**
+     * 验证：测试重载的isFloorAndRoomNumber方法，当存在相同的楼号与房间号，rId相同，是否返回true
+     */
+    @Test
+    @Transactional
+    public void testIsFloorAndRoomNumber6() {
+        boolean result = roominformationDAO.isFloorAndRoomNumber(2, "东", 101);
+        Assert.assertTrue(result);
+    }
+
+    /**
      * 验证:当老人的eid正确的是否，且已经入住是否返回true
      */
     @Test
@@ -244,7 +264,7 @@ public class RoominformationDAOTest {
     public void testUpdateInformation2() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         int result = roominformationDAO.updateInformation(ri, 0);
-        Assert.assertEquals(2, result);
+        Assert.assertEquals(3, result);
     }
 
     /**
@@ -256,7 +276,7 @@ public class RoominformationDAOTest {
     public void testUpdateInformation3() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         int result = roominformationDAO.updateInformation(ri, 1);
-        Assert.assertEquals(2, result);
+        Assert.assertEquals(3, result);
     }
 
     /**
