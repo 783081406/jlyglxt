@@ -143,6 +143,13 @@ public class RoominformationDAO {
     }
 
 
+    /**
+     * 更新信息
+     *
+     * @param roominformation Roominformation实例化
+     * @param eId             老人缩略表中的主键eId
+     * @return int类型，1表示该老人已经入住，2表示更新成功
+     */
     public int updateInformation(Roominformation roominformation, int eId) {
         Session session = factory.getCurrentSession();
         if (eId != 0) {
