@@ -166,7 +166,7 @@ public class RoominformationDAO {
             roominformation.setElder(null);
         }
         //判断是否已经有相同的楼号与房间号
-        if (isFloorAndRoomNumber(roominformation.getFloor(), roominformation.getRoomNumber())) {
+        if (isFloorAndRoomNumber(roominformation.getRId(), roominformation.getFloor(), roominformation.getRoomNumber())) {
             return 2;
         }
         //更新Roomcost
