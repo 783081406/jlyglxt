@@ -143,7 +143,27 @@ public class RoominformationDAO {
     }
 
 
-
+    public int updateInformation(Roominformation roominformation, int eId) {
+        Session session = factory.getCurrentSession();
+        if (eId != 0) {
+            //首先查询该老人是否入住
+            if (isLive(eId, roominformation.getRId())) {
+                //表示已入住
+                return 1;
+            } else {
+                //无入住
+                roominformation.setElder(elderDAO.getSearchElder(eId));
+            }
+        } else {
+            //表示为空
+            roominformation.setElder(null);
+        }
+        //更新Roomcost
+        session.update(roominformation.getRoomcost());
+        //更新roominformation
+        session.update(roominformation);
+        return 2;
+    }
 
     /**
      * 是否存在该楼号与房间号
@@ -166,8 +186,9 @@ public class RoominformationDAO {
 
     /**
      * 根据老人的eid得到是否该老人已经入住某个房间了
+     * 主要用于：新增
      *
-     * @param eId 老人缩略表中的eid主键
+     * @param eId 老人缩略表中的eId主键
      * @return true表示已经入住了，false表示还没入住
      */
     public boolean isLive(int eId) {
@@ -175,6 +196,27 @@ public class RoominformationDAO {
         Elder db_elder = elderDAO.getSearchElder(eId);
         String hql = "from Roominformation roominformation where elder=:elder";
         Query query = session.createQuery(hql).setParameter("elder", db_elder);
+        Roominformation ri = (Roominformation) query.uniqueResult();
+        if (ri != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 根据老人的eid得到是否该老人已经入住某个房间了
+     * 主要作用：更新
+     *
+     * @param eId 老人缩略表中的eId主键
+     * @param rId 房间信息中的主键rId
+     * @return true表示已经入住，false表示还没入住
+     */
+    public boolean isLive(int eId, int rId) {
+        Session session = factory.getCurrentSession();
+        Elder db_elder = elderDAO.getSearchElder(eId);
+        String hql = "from Roominformation roominformation where rId!=:rId and elder=:elder";
+        Query query = session.createQuery(hql).setParameter("rId", rId).setParameter("elder", db_elder);
         Roominformation ri = (Roominformation) query.uniqueResult();
         if (ri != null) {
             return true;
