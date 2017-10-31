@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Roomcost;
 import com.ccjjltx.domain.Roominformation;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class RoominformationDAOTest {
 
     @Resource(name = "roominformationDAO")
     private RoominformationDAO roominformationDAO;
+    @Resource(name = "roomcostDAO")
+    private RoomcostDAO roomcostDAO;
 
     /**
      * 验证:无ename的时候是否返回正确的信息
@@ -227,8 +230,9 @@ public class RoominformationDAOTest {
     @Transactional
     @Rollback(true)
     public void testUpdateInformation1() {
-//        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
-//        int result = roominformationDAO.updateInformation(ri);
+        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
+        int result = roominformationDAO.updateInformation(ri, 2);
+        Assert.assertEquals(1, result);
     }
 
     /**
@@ -238,7 +242,9 @@ public class RoominformationDAOTest {
     @Transactional
     @Rollback(true)
     public void testUpdateInformation2() {
-
+        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
+        int result = roominformationDAO.updateInformation(ri, 0);
+        Assert.assertEquals(2, result);
     }
 
     /**
@@ -248,6 +254,23 @@ public class RoominformationDAOTest {
     @Transactional
     @Rollback(true)
     public void testUpdateInformation3() {
+        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
+        int result = roominformationDAO.updateInformation(ri, 1);
+        Assert.assertEquals(2, result);
+    }
 
+    /**
+     * 验证:更新外键Roomcost表的信息的时候是否能更新
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateInformation4() {
+        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
+        Roomcost r = ri.getRoomcost();
+        r.setRCost(810);
+        int result = roominformationDAO.updateInformation(ri, 1);
+        Roomcost r2 = roomcostDAO.getSearchRoomcost(1);
+        Assert.assertEquals(810, r2.getRCost());
     }
 }
