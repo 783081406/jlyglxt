@@ -293,4 +293,18 @@ public class RoominformationDAOTest {
         Roomcost r2 = roomcostDAO.getSearchRoomcost(1);
         Assert.assertEquals(810, r2.getRCost());
     }
+
+    /**
+     * 验证：当存在相同的楼号与房间号的时候是否返回2
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateInformation5() {
+        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
+        ri.setFloor("西");
+        ri.setRoomNumber(101);
+        int result = roominformationDAO.updateInformation(ri, 0);
+        Assert.assertEquals(2, result);
+    }
 }
