@@ -145,6 +145,26 @@ public class RoominformationDAOTest {
     }
 
     /**
+     * 验证：重载的方法，当老人的eId已经入住，但是不是对应的rI段是否返回false
+     */
+    @Test
+    @Transactional
+    public void testIsLive3() {
+        boolean result = roominformationDAO.isLive(1, 2);
+        Assert.assertTrue(result);
+    }
+
+    /**
+     * 验证：重载的方法，当老人的eId已经入住，但是不是对应的rI段是否返回true
+     */
+    @Test
+    @Transactional
+    public void testIsLive4() {
+        boolean result = roominformationDAO.isLive(1, 1);
+        Assert.assertFalse(result);
+    }
+
+    /**
      * 验证：当已经存在楼号与房间号码时候是否返回1
      */
     @Test
@@ -198,5 +218,36 @@ public class RoominformationDAOTest {
     public void testGetSearchRoominformation() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         Assert.assertEquals(1, ri.getRId());
+    }
+
+    /**
+     * 验证：信息正确的时候是否能准确更新，同时Elder为入住人员
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateInformation1() {
+//        Roominformation ri = roominformationDAO.getSearchRoominformation(1);
+//        int result = roominformationDAO.updateInformation(ri);
+    }
+
+    /**
+     * 验证：信息正确的时候是否能准确更新，同时Elder为null
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateInformation2() {
+
+    }
+
+    /**
+     * 验证：信息正确的时候是否能准确更新，同时Elder为未入住
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateInformation3() {
+
     }
 }

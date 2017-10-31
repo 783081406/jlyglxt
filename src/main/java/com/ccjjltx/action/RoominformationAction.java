@@ -3,6 +3,7 @@ package com.ccjjltx.action;
 import com.ccjjltx.dao.RoominformationDAO;
 import com.ccjjltx.domain.Elder;
 import com.ccjjltx.domain.Roominformation;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -36,9 +37,12 @@ public class RoominformationAction extends ActionSupport {
     private JSONObject result;
 
     /////////////提交过来的Roominformation表中的字段////////////////
+    private String floor;
+    private int roomNumber;
+    private String rType;
+    private int rCost;
     private String ename;
     ////////////////////////////////////////////////////////////
-
 
     public RoominformationDAO getRoominformationDAO() {
         return roominformationDAO;
@@ -70,6 +74,38 @@ public class RoominformationAction extends ActionSupport {
 
     public void setResult(JSONObject result) {
         this.result = result;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public String getRType() {
+        return rType;
+    }
+
+    public void setRType(String rType) {
+        this.rType = rType;
+    }
+
+    public int getRCost() {
+        return rCost;
+    }
+
+    public void setRCost(int rCost) {
+        this.rCost = rCost;
     }
 
     public String getEname() {
@@ -122,6 +158,34 @@ public class RoominformationAction extends ActionSupport {
      * @return json, 成功或者失败的提示信息
      */
     public String addInformation() {
+        int eId = -1;
+        try {
+            //这里的ename传过来的实际上是eId
+            //如果格式解析错误表示是字符串，表示格式错误
+            eId = Integer.parseInt(getEname());
+        } catch (NumberFormatException e) {
+            eId = 0;
+        }
+        int thisRusult = roominformationDAO.addInformation(getFloor(), getRoomNumber(), getRType(), getRCost(), eId);
+        switch (thisRusult) {
+            case 1:
+                result = JsonMessage.returnMessage(false, "已经存在有相同的楼号与房间号");
+                return ERROR;
+            case 2:
+                result = JsonMessage.returnMessage(false, "该名老人已经入住了");
+                return ERROR;
+            default:
+                result = JsonMessage.returnMessage(true, "success");
+                return SUCCESS;
+        }
+    }
+
+    /**
+     * 更新信息
+     *
+     * @return json结果信息
+     */
+    public String updateInformation() {
         return SUCCESS;
     }
 
