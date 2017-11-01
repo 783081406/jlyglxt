@@ -56,6 +56,6 @@ public class ElderDAO {
      */
     public Elder getSearchElder(int eId) {
         Session session = factory.getCurrentSession();
-        return (Elder) session.load(Elder.class, eId);
+        return (Elder) session.get(Elder.class, eId);
     }
 }
