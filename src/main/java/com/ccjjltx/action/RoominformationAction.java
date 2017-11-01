@@ -3,16 +3,16 @@ package com.ccjjltx.action;
 import com.ccjjltx.dao.RoominformationDAO;
 import com.ccjjltx.domain.Elder;
 import com.ccjjltx.domain.Roominformation;
+import com.ccjjltx.domain.Roomcost;
 import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.swing.plaf.SeparatorUI;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,6 +37,7 @@ public class RoominformationAction extends ActionSupport {
     private JSONObject result;
 
     /////////////提交过来的Roominformation表中的字段////////////////
+    private int rId;
     private String floor;
     private int roomNumber;
     private String rType;
@@ -74,6 +75,14 @@ public class RoominformationAction extends ActionSupport {
 
     public void setResult(JSONObject result) {
         this.result = result;
+    }
+
+    public int getRId() {
+        return rId;
+    }
+
+    public void setRId(int rId) {
+        this.rId = rId;
     }
 
     public String getFloor() {
@@ -186,7 +195,30 @@ public class RoominformationAction extends ActionSupport {
      * @return json结果信息
      */
     public String updateInformation() {
-        return SUCCESS;
+        Roominformation db_ri = roominformationDAO.getSearchRoominformation(getRId());
+        db_ri.setFloor(getFloor());
+        db_ri.setRoomNumber(getRoomNumber());
+        db_ri.getRoomcost().setRType(getRType());
+        db_ri.getRoomcost().setRCost(getRCost());
+        int eId = 0;
+        try {
+            eId = Integer.parseInt(getEname());
+        } catch (NumberFormatException e) {
+            eId = 0;
+        }
+        //执行更新操作
+        int this_result = roominformationDAO.updateInformation(db_ri, eId);
+        switch (this_result) {
+            case 1:
+                result = JsonMessage.returnMessage(false, "该名老人已入住");
+                return ERROR;
+            case 2:
+                result = JsonMessage.returnMessage(false, "已有相同的楼号与房间号");
+                return ERROR;
+            default:
+                result = JsonMessage.returnMessage(true, "success");
+                return SUCCESS;
+        }
     }
 
 }
