@@ -30,6 +30,18 @@ public class RoominformationDAO {
     private RoomcostDAO roomcostDAO;
 
     /**
+     * 根据rId得到Roominformation实例化
+     *
+     * @param rId 主键rId
+     * @return Roominformation实例化
+     */
+    public Roominformation getSearchRoominformation(int rId) {
+        Session session = factory.getCurrentSession();
+        //根据rId得到Roominformation实例化
+        return (Roominformation) session.get(Roominformation.class, rId);
+    }
+
+    /**
      * 得到所有楼层房间的数据
      *
      * @param offset 起始的行数
@@ -257,17 +269,5 @@ public class RoominformationDAO {
         } else {
             return false;
         }
-    }
-
-    /**
-     * 根据rId得到Roominformation实例化
-     *
-     * @param rId 主键rId
-     * @return Roominformation实例化
-     */
-    public Roominformation getSearchRoominformation(int rId) {
-        Session session = factory.getCurrentSession();
-        //根据rId得到Roominformation实例化
-        return (Roominformation) session.load(Roominformation.class, rId);
     }
 }
