@@ -307,4 +307,14 @@ public class RoominformationDAOTest {
         int result = roominformationDAO.updateInformation(ri, 0);
         Assert.assertEquals(2, result);
     }
+
+    /**
+     * 验证：删除功能
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testDeleteInformation() {
+        roominformationDAO.deleteInformation(1);
+    }
 }
