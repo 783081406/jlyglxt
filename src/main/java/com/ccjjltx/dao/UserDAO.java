@@ -152,14 +152,14 @@ public class UserDAO {
     /**
      * 根据id，得到User，进而删除User
      *
-     * @param id User的id号，使用load方法根据主键得到User
+     * @param id User的id号，使用get方法根据主键得到User
      * @return 删除成功得到true，失败返回false
      */
     public boolean deleteUser(int id) {
         //得到session
         Session session = factory.getCurrentSession();
         //根据id得到User
-        User db_user = (User) session.load(User.class, id);
+        User db_user = (User) session.get(User.class, id);
         boolean result = true;
         try {
             //删除操作
