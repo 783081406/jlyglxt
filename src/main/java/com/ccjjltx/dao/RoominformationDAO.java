@@ -270,4 +270,11 @@ public class RoominformationDAO {
             return false;
         }
     }
+
+    public void deleteInformation(int rId) {
+        Session session = factory.getCurrentSession();
+        //根据rId得到Roominformation
+        //删除操作
+        session.update(getSearchRoominformation(rId));
+    }
 }
