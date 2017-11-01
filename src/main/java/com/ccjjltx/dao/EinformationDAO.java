@@ -161,8 +161,18 @@ public class EinformationDAO {
     public void deleteInformation(int pid) {
         Session session = factory.getCurrentSession();
         //根据pid得到Einformation
-        Einformation einformation = (Einformation) session.load(Einformation.class, pid);
         //删除操作
-        session.delete(einformation);
+        session.delete(getSearchEinformation(pid));
+    }
+
+    /**
+     * 根据pid得到Einformation
+     *
+     * @param pid 主键pid
+     * @return Einformation实例化
+     */
+    public Einformation getSearchEinformation(int pid) {
+        Session session = factory.getCurrentSession();
+        return (Einformation) session.get(Einformation.class, pid);
     }
 }
