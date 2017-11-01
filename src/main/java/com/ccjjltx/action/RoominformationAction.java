@@ -221,4 +221,14 @@ public class RoominformationAction extends ActionSupport {
         }
     }
 
+    /**
+     * 删除功能
+     *
+     * @return 返回成功
+     */
+    public String removeInformation() {
+        roominformationDAO.deleteInformation(getRId());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
