@@ -30,7 +30,7 @@ public class RoomcostDAO {
      */
     public Roomcost getSearchRoomcost(int rcId) {
         Session session = factory.getCurrentSession();
-        return (Roomcost) session.load(Roomcost.class, rcId);
+        return (Roomcost) session.get(Roomcost.class, rcId);
     }
 
     /**
