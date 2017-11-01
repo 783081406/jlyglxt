@@ -181,7 +181,7 @@
                 //如果选择确定，执行if里面语句
                 if (r) {
                     //post提交
-                    $.post('<%=basePath %>useraction/removeUser.action', {id: row.id}, function (result) {
+                    $.post('<%=basePath %>roomiaction/removeInformation.action', {rId: row.rId}, function (result) {
                         if (result.success) {
                             $('#dg').datagrid('reload');	// 重新加载数据
                         } else {
