@@ -53,4 +53,30 @@ public class ElderlyinformationDAO {
         }
         return (List<Elderlyinformation>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
+
+    /**
+     * 得到总条数
+     *
+     * @param ename 搜索框触发的名字
+     * @return 整数，总条数
+     */
+    public int getAllInformationNumber(String ename) {
+        Session session = factory.getCurrentSession();
+        String hql = "select count(*) from Elderlyinformation elderlyinformation";
+        Query query;
+        if (ename != null) {
+            Elder db_elder = elderDAO.getSearchElder(ename);
+            if (db_elder == null) {//如果为空表示没有此数据，返回0
+                return 0;
+            } else {
+                //表示非空
+                hql += " where elder=:elder";
+                query = session.createQuery(hql).setParameter("elder", db_elder);
+            }
+        } else {
+            query = session.createQuery(hql);
+        }
+        long l = (long) query.uniqueResult();
+        return (int) l;
+    }
 }
