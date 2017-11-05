@@ -163,7 +163,7 @@ public class EinformationAction extends ActionSupport {
     /**
      * 得到全部或者特地（搜索框触发）的员工信息数据
      *
-     * @return 只返回SUCCESS，因前台页面没有json的success或error信息过滤处理
+     * @return 只返回SUCCESS
      */
     public String getAllInformation() {
         //得到起始的行数，方便之后的hql语句
