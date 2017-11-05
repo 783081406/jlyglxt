@@ -61,4 +61,35 @@ public class ElderlyinformationDAOTest {
         List<Elderlyinformation> list = elderlyinformationDAO.getAllInformation(0, 10, "juncc");
         Assert.assertNull(list);
     }
+
+    /**
+     * 验证：当名字为null时候是否返回数据库的总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber1() {
+        int result = elderlyinformationDAO.getAllInformationNumber(null);
+        Assert.assertEquals(15, result);
+    }
+
+    /**
+     * 验证：当用户名为正确且唯一,总条数结果是否为1
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber2() {
+        int result = elderlyinformationDAO.getAllInformationNumber("张志新");
+        Assert.assertEquals(1, result);
+    }
+
+    /**
+     * 验证：当错误名字时候是否返回0
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber3() {
+        int result = elderlyinformationDAO.getAllInformationNumber("ccjccj");
+        Assert.assertEquals(0, result);
+    }
+
 }
