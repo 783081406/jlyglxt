@@ -28,7 +28,7 @@
 </head>
 <body>
 <table id="dg" title="信息列表" class="easyui-datagrid" style="width:700px;height:400px"
-       url="<%=basePath %>useraction/getUser.action"
+       url="<%=basePath %>elderlyimaction/getAllInformation.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
@@ -49,7 +49,7 @@
     </div>
     <div>
         <div style="padding:0 0 0 7px;color:#333;">
-            查询账号：<input type="text" class="textbox" name="userName" style="width:150px;height:25px">
+            查询姓名：<input type="text" class="textbox" name="ename" style="width:150px;height:25px">
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="obj.search();">查询</a>
         </div>
     </div>
@@ -163,7 +163,7 @@
     obj = {
         search: function () {
             $('#dg').datagrid('load', {
-                userName: $.trim($('input[name="userName"]').val())
+                ename: $.trim($('input[name="ename"]').val())
             });
         }
     };
