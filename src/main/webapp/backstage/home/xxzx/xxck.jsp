@@ -56,50 +56,31 @@
         </div>
     </div>
 </div>
-<!--查看与修改的window-->
-<div id="morecheck" class="easyui-dialog" style="width:600px;height:400px;padding:10px 20px" closed="true"
+<!--查看的window-->
+<div id="morecheck" class="easyui-dialog" style="width:700px;height:400px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
-    <div class="ftitle">账户信息</div>
-    <form id="moref" method="post" novalidate>
-        <div class="fitem">
-            <label>名字:</label>
-            <input name="userName" class="easyui-validatebox" required="required">
-        </div>
-        <div class="fitem">
-            <label>性别:</label>
-            <input name="sex" class="easyui-validatebox" required="required">
-        </div>
-        <div class="fitem">
-            <label>出生日期:</label>
-            <input name="birthDate" class="easyui-datebox" required="required">
-        </div>
-        <div class="fitem">
-            <label>身份证号:</label>
-            <input name="idcard" class="easyui-validatebox" required="required">
-        </div>
-        <div class="fitem">
-            <label>手机号:</label>
-            <input name="phone" class="easyui-validatebox" required="required">
-        </div>
-        <div class="fitem">
-            <label>家庭住址:</label>
-            <input name="homeAddress" class="easyui-validatebox" required="required">
-        </div>
-        <div class="fitem">
-            <label>户籍住址:</label>
-            <input name="originAddress" class="easyui-validatebox" required="required">
-        </div>
-        <table id="moret" title="家庭信息" class="easyui-datagrid">
+    <div class="ftitle">家庭信息</div>
+    <div>
+        <table id="moret" class="easyui-datagrid" style="width: 620px;height: auto;" title="家庭信息" toolbar="#mtoolbar"
+               rownumbers="true" fitColumns="true" singleSelect="true">
             <thead>
             <tr>
-                <th field="familyName" width="100">家属名字</th>
-                <th field="relationship" width="100">关系</th>
+                <th field="familyName" width="50">家属名字</th>
+                <th field="relationship" width="50">关系</th>
                 <th field="faddress" width="200">家庭地址</th>
-                <th field="phone" width="100">联系电话</th>
+                <th field="phone" width="80">联系电话</th>
             </tr>
             </thead>
         </table>
-    </form>
+    </div>
+</div>
+<!--查看window的工具栏-->
+<div id="mtoolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除</a>
+    </div>
 </div>
 <!--新账户window-->
 <div id="dlg" class="easyui-dialog" style="width:600px;height:400px;padding:10px 20px" closed="true"
@@ -184,8 +165,7 @@
         if (row) {
             $('#morecheck').dialog('open').dialog('setTitle', '详细信息');
             //加载form表单的数据
-            $('#moref').form('load', '<%=basePath %>xx/xx.action?eId=' + row.eId);
-            $('#moret').datagrid('load', '<%=basePath %>xx/xx.action?eId=' + row.eId);
+            $('#moret').datagrid('load', '<%=basePath %>familyimaction/getAllInformation.action?eiId=' + row.eiId);
             //提交数据处理的url
             url = '<%=basePath %>xx/xx.action?eId=' + row.eId;
         }
