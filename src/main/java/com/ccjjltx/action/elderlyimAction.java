@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.ElderlyinformationDAO;
 import com.ccjjltx.domain.Elderlyinformation;
+import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -98,11 +99,12 @@ public class elderlyimAction extends ActionSupport {
             js.put("sex", ei.getSex());
             js.put("idcard", ei.getIdcard());
             js.put("phone", ei.getPhone());
+            js.put("birthDate", MyDateFormat.format(ei.getBirthDate()));
             js.put("homeAddress", ei.getHomeAddress());
+            js.put("originAddress", ei.getOriginAddress());
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
         return SUCCESS;
     }
-
 }
