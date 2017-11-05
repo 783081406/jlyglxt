@@ -43,7 +43,7 @@
 <!--工具栏-->
 <div id="toolbar">
     <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="movec()">查看</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="morec()">查看</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newc()">添加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removec()">删除</a>
     </div>
@@ -66,12 +66,16 @@
         <div class="fitem">
             <label>性别:</label>
             <input name="sex" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
             <label>出生日期:</label>
             <input name="birthDate" class="easyui-datebox" required="required">
         </div>
         <div class="fitem">
             <label>身份证号:</label>
             <input name="idcard" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
             <label>手机号:</label>
             <input name="phone" class="easyui-validatebox" required="required">
         </div>
@@ -86,7 +90,7 @@
         <table id="moret" title="家庭信息" class="easyui-datagrid">
             <thead>
             <tr>
-                <th field="familyName" width="100">家属信息</th>
+                <th field="familyName" width="100">家属名字</th>
                 <th field="relationship" width="100">关系</th>
                 <th field="faddress" width="200">家庭地址</th>
                 <th field="phone" width="100">联系电话</th>
@@ -107,12 +111,16 @@
         <div class="fitem">
             <label>性别:</label>
             <input name="sex" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
             <label>出生日期:</label>
             <input name="birthDate" class="easyui-datebox" required="required">
         </div>
         <div class="fitem">
             <label>身份证号:</label>
             <input name="idcard" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
             <label>手机号:</label>
             <input name="phone" class="easyui-validatebox" required="required">
         </div>
@@ -124,12 +132,12 @@
             <label>户籍住址:</label>
             <input name="originAddress" class="easyui-validatebox" required="required">
         </div>
-        <table id="te" class="easyui-datagrid">
+        <table id="te" title="家庭信息" class="table">
             <tr>
-                <th width="100">家属信息</th>
-                <th width="100">关系</th>
-                <th width="200">家庭地址</th>
-                <th width="100">联系电话</th>
+                <th>家属名字</th>
+                <th>关系</th>
+                <th>家庭地址</th>
+                <th>联系电话</th>
             </tr>
             <tr>
                 <td><input name="familyName" class="easyui-validatebox" required="required"/></td>
@@ -185,7 +193,7 @@
         $('#dlg').dialog('open').dialog('setTitle', '添加信息');
         //清空表单，来显示空表单
         $('#fm').form('clear');
-        $('#te tr').empty();
+//        $('#te tr').empty();
         //提交数据处理的URL
         url = '<%=basePath %>einformationaction/saveInformation.action';
     }
