@@ -80,6 +80,18 @@
     </package>
 
     <!--下拉框选择用户账户的时候使用-->
+    <package name="familyimaction" namespace="/familyimaction" extends="struts-default,json-default">
+        <action name="*" class="familyinformationAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--下拉框选择用户账户的时候使用-->
     <package name="user2action" namespace="/user2action" extends="struts-default,json-default">
         <action name="*" class="user2Action" method="{1}">
             <result name="success" type="json">
