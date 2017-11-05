@@ -79,4 +79,15 @@ public class ElderlyinformationDAO {
         long l = (long) query.uniqueResult();
         return (int) l;
     }
+
+    /**
+     * 根据主键得到实例化
+     *
+     * @param eiId 主键
+     * @return 实例化
+     */
+    public Elderlyinformation getSearchInformation(int eiId) {
+        Session session = factory.getCurrentSession();
+        return (Elderlyinformation) session.get(Elderlyinformation.class, eiId);
+    }
 }
