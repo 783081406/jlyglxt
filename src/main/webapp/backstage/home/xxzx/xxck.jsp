@@ -27,15 +27,15 @@
     <script type="text/javascript" src="../../../easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-<table id="dg" title="信息列表" class="easyui-datagrid" style="width:700px;height:400px"
+<table id="dg" title="信息列表" class="easyui-datagrid" style="width:800px;height:400px"
        url="<%=basePath %>elderlyimaction/getAllInformation.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
         <th field="ename" width="100">名字</th>
-        <th field="sex" width="100">性别</th>
+        <th field="sex" width="50">性别</th>
         <th field="idcard" width="200">身份证号</th>
-        <th field="phone" width="100">手机号</th>
+        <th field="phone" width="150">手机号</th>
         <th field="homeAddress" width="400">家庭住址</th>
     </tr>
     </thead>
