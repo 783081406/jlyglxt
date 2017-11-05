@@ -92,4 +92,13 @@ public class ElderlyinformationDAOTest {
         Assert.assertEquals(0, result);
     }
 
+    /**
+     * 验证：getSearchInformation是否能根据主键得到Elderlyinformation实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchInformation() {
+        Elderlyinformation elderlyinformation = elderlyinformationDAO.getSearchInformation(1);
+        Assert.assertEquals(1, elderlyinformation.getEiId());
+    }
 }
