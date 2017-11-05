@@ -42,7 +42,7 @@
     </tr>
     </thead>
 </table>
-<!--工具栏-->
+<!--大table的工具栏-->
 <div id="toolbar">
     <div>
         <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="morec()">查看</a>
@@ -56,9 +56,9 @@
         </div>
     </div>
 </div>
+<!--////////////////////////////////////////////////-->
 <!--查看的window-->
-<div id="morecheck" class="easyui-dialog" style="width:700px;height:400px;padding:10px 20px" closed="true"
-     buttons="#dlg-buttons">
+<div id="morecheck" class="easyui-dialog" style="width:660px;height:270px;padding:10px 20px" closed="true">
     <div class="ftitle">家庭信息</div>
     <div>
         <table id="moret" class="easyui-datagrid" style="width: 620px;height: auto;" title="家庭信息" toolbar="#mtoolbar"
@@ -77,13 +77,14 @@
 <!--查看window的工具栏-->
 <div id="mtoolbar">
     <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newm()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editm()">修改</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removem()">删除</a>
     </div>
 </div>
+<!--////////////////////////////////////////////////-->
 <!--新账户window-->
-<div id="dlg" class="easyui-dialog" style="width:600px;height:400px;padding:10px 20px" closed="true"
+<div id="dlg" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
     <div class="ftitle">相关信息</div>
     <form id="fm" method="post" novalidate>
@@ -96,16 +97,16 @@
             <input name="sex" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
-            <label>出生日期:</label>
-            <input name="birthDate" class="easyui-datebox" required="required">
-        </div>
-        <div class="fitem">
             <label>身份证号:</label>
             <input name="idcard" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>手机号:</label>
             <input name="phone" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>出生日期:</label>
+            <input name="birthDate" class="easyui-datebox" required="required">
         </div>
         <div class="fitem">
             <label>家庭住址:</label>
@@ -115,28 +116,39 @@
             <label>户籍住址:</label>
             <input name="originAddress" class="easyui-validatebox" required="required">
         </div>
-        <table id="te" title="家庭信息" class="table">
-            <tr>
-                <th>家属名字</th>
-                <th>关系</th>
-                <th>家庭地址</th>
-                <th>联系电话</th>
-            </tr>
-            <tr>
-                <td><input name="familyName" class="easyui-validatebox" required="required"/></td>
-                <td><input name="relationship" class="easyui-validatebox" required="required"/></td>
-                <td><input name="faddress" class="easyui-validatebox" required="required"/></td>
-                <td><input name="phone" class="easyui-validatebox" required="required"/></td>
-            </tr>
-        </table>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="moreadd()">添加</a>
     </form>
 </div>
+<!--/////////////////////////////////////////////////////-->
 <!--提交与取消按钮-->
 <div id="dlg-buttons">
     <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">保存</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
        onclick="javascript:$('#dlg').dialog('close')">取消</a>
+</div>
+
+<!--//////////////////////////////////////////////////////-->
+<!--家庭信息的添加window-->
+<div id="mdlg" class="easyui-dialog" style="width:380px;height:280px;padding:10px 20px" closed="true"
+     buttons="#dlg-buttons">
+    <div class="ftitle">家属信息</div>
+    <form id="mfm" method="post" novalidate>
+        <div class="fitem">
+            <label>家属名字:</label>
+            <input name="familyName" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>关系:</label>
+            <input name="relationship" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>家庭地址:</label>
+            <input name="faddress" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>联系电话:</label>
+            <input name="phone" class="easyui-validatebox" required="required">
+        </div>
+    </form>
 </div>
 
 <!--自定义javascript-->
@@ -151,14 +163,14 @@
         }
     };
     //增加家属信息功能
-    function moreadd() {
-        $('#te').append("<tr>" +
-            "<td><input name='familyName' class='easyui-validatebox' required='required'/></td>" +
-            "<td><input name='relationship' class='easyui-validatebox' required='required'/></td>" +
-            "<td><input name='faddress' class='easyui-validatebox' required='required'/></td>" +
-            "<td><input name='phone' class='easyui-validatebox' required='required'/></td>" +
-            "</tr>");
-    }
+    /*    function moreadd() {
+     $('#te').append("<tr>" +
+     "<td><input name='familyName' class='easyui-validatebox' required='required'/></td>" +
+     "<td><input name='relationship' class='easyui-validatebox' required='required'/></td>" +
+     "<td><input name='faddress' class='easyui-validatebox' required='required'/></td>" +
+     "<td><input name='phone' class='easyui-validatebox' required='required'/></td>" +
+     "</tr>");
+     }*/
     //查看功能
     function morec() {
         var row = $('#dg').datagrid('getSelected');
@@ -170,15 +182,24 @@
             url = '<%=basePath %>xx/xx.action?eId=' + row.eId;
         }
     }
+    ////////////////////////////////////////////////////////////////////////
     //添加功能
     function newc() {
-        $('#dlg').dialog('open').dialog('setTitle', '添加信息');
+        $('#dlg').dialog('open').dialog('setTitle', '相关信息');
         //清空表单，来显示空表单
         $('#fm').form('clear');
-//        $('#te tr').empty();
         //提交数据处理的URL
-        url = '<%=basePath %>einformationaction/saveInformation.action';
+        url = '<%=basePath %>xx/xx.action';
     }
+    //添加功能
+    function newm() {
+        $('#mdlg').dialog('open').dialog('setTitle', '添加信息');
+        //清空表单，来显示空表单
+        $('#mfm').form('clear');
+        //提交数据处理的URL
+        url = '<%=basePath %>xx/xx.action';
+    }
+    /////////////////////////////////////////////////////////////////////////
     //提交功能
     function saveUser() {
         $('#fm').form('submit', {
