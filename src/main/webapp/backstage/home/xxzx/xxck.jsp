@@ -90,11 +90,14 @@
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>名字:</label>
-            <input name="userName" class="easyui-validatebox" required="required">
+            <input name="ename" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>性别:</label>
-            <input name="sex" class="easyui-validatebox" required="required">
+            <select name="sex" class="easyui-combobox" style="width:173px;" required="required">
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
         </div>
         <div class="fitem">
             <label>身份证号:</label>
@@ -122,14 +125,12 @@
 <!--提交与取消按钮-->
 <div id="dlg-buttons">
     <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">保存</a>
-    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-       onclick="javascript:$('#dlg').dialog('close')">取消</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
 </div>
 
 <!--//////////////////////////////////////////////////////-->
 <!--家庭信息的添加window-->
-<div id="mdlg" class="easyui-dialog" style="width:380px;height:280px;padding:10px 20px" closed="true"
-     buttons="#dlg-buttons">
+<div id="mdlg" class="easyui-dialog" style="width:380px;height:280px;padding:10px 20px" closed="true">
     <div class="ftitle">家属信息</div>
     <form id="mfm" method="post" novalidate>
         <div class="fitem">
@@ -183,15 +184,15 @@
         }
     }
     ////////////////////////////////////////////////////////////////////////
-    //添加功能
+    //添加功能(大表格)
     function newc() {
         $('#dlg').dialog('open').dialog('setTitle', '相关信息');
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
-        url = '<%=basePath %>xx/xx.action';
+        url = '<%=basePath %>elderlyimaction/saveInformation.action';
     }
-    //添加功能
+    //添加功能（细表格）
     function newm() {
         $('#mdlg').dialog('open').dialog('setTitle', '添加信息');
         //清空表单，来显示空表单
@@ -213,7 +214,6 @@
                 var result = eval('(' + result + ')');
                 if (result.success) {//如果返回成功信息
                     $('#dlg').dialog('close');		// 关闭window
-                    $('#morecheck').dialog('close');//关闭window
                     $('#dg').datagrid('reload');	//重新加载数据
                 } else {//返回是失败信息
                     $.messager.show({//弹出提示框来说明插入失败以及返回的信息
