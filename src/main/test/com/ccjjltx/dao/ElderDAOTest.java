@@ -90,4 +90,15 @@ public class ElderDAOTest {
         Assert.assertEquals("ccc", elderDAO.getSearchElder(16).getEname());
     }
 
+    /**
+     * 验证：删除操作
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        Elder elder = elderDAO.getSearchElder("陈岑");
+        elderDAO.deleteInformation(elder);
+        Assert.assertNull(elderDAO.getSearchElder("陈岑"));
+    }
 }
