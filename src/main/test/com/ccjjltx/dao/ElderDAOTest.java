@@ -4,6 +4,7 @@ import com.ccjjltx.domain.Elder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +63,18 @@ public class ElderDAOTest {
     public void testGetSearchElder3() {
         Elder db_elder = elderDAO.getSearchElder(1);
         Assert.assertEquals(1, db_elder.getEId());
+    }
+
+    /**
+     * 验证：当正确的用户名等是否能存储
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation() {
+        Elder e = new Elder("ccc", 1);
+        elderDAO.addInformation(e);
+        Assert.assertEquals("ccc",elderDAO.getSearchElder("ccc").getEname());
     }
 
 }
