@@ -58,4 +58,14 @@ public class ElderDAO {
         Session session = factory.getCurrentSession();
         return (Elder) session.get(Elder.class, eId);
     }
+
+    /**
+     * 增加Elder信息
+     *
+     * @param e Elder实例化
+     */
+    public void addInformation(Elder e) {
+        Session session = factory.getCurrentSession();
+        session.save(e);
+    }
 }
