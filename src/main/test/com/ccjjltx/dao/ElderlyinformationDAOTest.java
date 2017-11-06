@@ -1,14 +1,17 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Elderlyinformation;
+import com.ccjjltx.utils.MyDateFormat;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -100,5 +103,20 @@ public class ElderlyinformationDAOTest {
     public void testGetSearchInformation() {
         Elderlyinformation elderlyinformation = elderlyinformationDAO.getSearchInformation(1);
         Assert.assertEquals(1, elderlyinformation.getEiId());
+    }
+
+    /**
+     * 验证：是否能根据Elderlyinformation实例化与Elder的id正确是是否插入成功
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddInformation() {
+        try {
+            Elderlyinformation ei = new Elderlyinformation("12341234", "1234", "男", MyDateFormat.parse("1995-01-01"), "guangzhou", "guangzhou");
+            elderlyinformationDAO.addInformation(ei, 16);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
