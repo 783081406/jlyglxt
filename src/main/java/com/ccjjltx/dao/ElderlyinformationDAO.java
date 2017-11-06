@@ -2,6 +2,7 @@ package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Elder;
 import com.ccjjltx.domain.Elderlyinformation;
+import com.ccjjltx.domain.Familyinformation;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +26,8 @@ public class ElderlyinformationDAO {
     private SessionFactory factory;
     @Resource(name = "elderDAO")
     private ElderDAO elderDAO;
+    @Resource(name = "familyinformationDAO")
+    private FamilyinformationDAO familyinformationDAO;
 
     /**
      * 得到所有老人的详细信息缩略版本
@@ -107,11 +110,29 @@ public class ElderlyinformationDAO {
         session.save(ei);
     }
 
+    /**
+     * 更新操作
+     *
+     * @param ei Elderlyinformation实例
+     */
     public void updateInformation(Elderlyinformation ei) {
         Session session = factory.getCurrentSession();
         //先更新Elder的信息
         elderDAO.updateInformation(ei.getElder());
         //接着更新Elderlyinformation信息
         session.update(ei);
+    }
+
+    /**
+     * 删除操作
+     *
+     * @param eiId 主键
+     */
+    public void deleteInformation(int eiId) {
+        Session session = factory.getCurrentSession();
+        //先删除Familyinformation的数据
+        familyinformationDAO.deleteInformation(eiId);
+        //再删除自己的数据
+        session.delete(getSearchInformation(eiId));
     }
 }
