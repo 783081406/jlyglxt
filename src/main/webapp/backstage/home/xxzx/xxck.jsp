@@ -47,6 +47,7 @@
     <div>
         <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="morec()">查看</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newc()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editc()">修改</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removec()">删除</a>
     </div>
     <div>
@@ -172,6 +173,7 @@
      "<td><input name='phone' class='easyui-validatebox' required='required'/></td>" +
      "</tr>");
      }*/
+    //////////////////////////////////////////////////////////////////////////
     //查看功能
     function morec() {
         var row = $('#dg').datagrid('getSelected');
@@ -201,6 +203,17 @@
         url = '<%=basePath %>xx/xx.action';
     }
     /////////////////////////////////////////////////////////////////////////
+    function editc() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg').dialog('open').dialog('setTitle', '更新信息');
+            //加载点击那一行的数据
+            $('#fm').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>elderlyimaction/updateInformation.action?eiId=' + row.eiId;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////
     //提交功能
     function saveUser() {
         $('#fm').form('submit', {
@@ -225,7 +238,7 @@
         });
     }
     //删除功能
-    function removeUser() {
+    function removec() {
         //得到那一行的数据，如果没选为空，不能进入if语句里面
         var row = $('#dg').datagrid('getSelected');
         if (row) {
@@ -233,7 +246,7 @@
                 //如果选择确定，执行if里面语句
                 if (r) {
                     //post提交
-                    $.post('<%=basePath %>xx/xx.action', {eId: row.eId}, function (result) {
+                    $.post('<%=basePath %>elderlyimaction/removeInformation.action', {eiId: row.eiId}, function (result) {
                         if (result.success) {
                             $('#dg').datagrid('reload');	// 重新加载数据
                         } else {
