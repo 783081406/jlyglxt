@@ -19,6 +19,16 @@ public class Elder implements Serializable {
     private String ename;
     private int isIn;
 
+    //无参构造函数
+    public Elder() {
+    }
+
+    //有参构造函数
+    public Elder(String ename, int isIn) {
+        this.ename = ename;
+        this.isIn = isIn;
+    }
+
     public int getEId() {
         return eId;
     }
