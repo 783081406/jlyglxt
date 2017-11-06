@@ -74,7 +74,20 @@ public class ElderDAOTest {
     public void testAddInformation() {
         Elder e = new Elder("ccc", 1);
         elderDAO.addInformation(e);
-        Assert.assertEquals("ccc",elderDAO.getSearchElder("ccc").getEname());
+        Assert.assertEquals("ccc", elderDAO.getSearchElder("ccc").getEname());
+    }
+
+    /**
+     * 验证：是否能正确更新信息
+     */
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testUpdateInformation() {
+        Elder e = elderDAO.getSearchElder(16);
+        e.setEname("ccc");
+        elderDAO.updateInformation(e);
+        Assert.assertEquals("ccc", elderDAO.getSearchElder(16).getEname());
     }
 
 }
