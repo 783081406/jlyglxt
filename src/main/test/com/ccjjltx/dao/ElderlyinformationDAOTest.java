@@ -111,7 +111,7 @@ public class ElderlyinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testAddInformation() {
         try {
             Elderlyinformation ei = new Elderlyinformation("12341234", "1234", "男", MyDateFormat.parse("1995-01-01"), "guangzhou", "guangzhou");
@@ -122,4 +122,31 @@ public class ElderlyinformationDAOTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 验证：是否能准确更新信息
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation1() {
+        Elderlyinformation db_ei = elderlyinformationDAO.getSearchInformation(1);
+        db_ei.setIdcard("123123");
+        elderlyinformationDAO.updateInformation(db_ei);
+        Assert.assertEquals("123123", elderlyinformationDAO.getSearchInformation(1).getIdcard());
+    }
+
+    /**
+     * 验证：是否能准确更新信息
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation2() {
+        Elderlyinformation db_ei = elderlyinformationDAO.getSearchInformation(1);
+        db_ei.getElder().setEname("cccc");
+        elderlyinformationDAO.updateInformation(db_ei);
+        Assert.assertEquals("cccc", elderlyinformationDAO.getSearchInformation(1).getElder().getEname());
+    }
+
 }
