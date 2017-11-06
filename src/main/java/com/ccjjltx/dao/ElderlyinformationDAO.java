@@ -106,4 +106,12 @@ public class ElderlyinformationDAO {
         //最后再保存Elderlyinformation信息
         session.save(ei);
     }
+
+    public void updateInformation(Elderlyinformation ei) {
+        Session session = factory.getCurrentSession();
+        //先更新Elder的信息
+        elderDAO.updateInformation(ei.getElder());
+        //接着更新Elderlyinformation信息
+        session.update(ei);
+    }
 }
