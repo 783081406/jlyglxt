@@ -38,7 +38,7 @@ public class ElderlyinformationDAOTest {
         //得到实际的大小
         //编写此代码测试的时候数据库的数据为15条
         int result = list.size();
-        Assert.assertEquals(15, result);
+        Assert.assertEquals(16, result);
     }
 
     /**
@@ -73,7 +73,7 @@ public class ElderlyinformationDAOTest {
     @Transactional
     public void testGetAllInformationNumber1() {
         int result = elderlyinformationDAO.getAllInformationNumber(null);
-        Assert.assertEquals(15, result);
+        Assert.assertEquals(16, result);
     }
 
     /**
@@ -149,4 +149,19 @@ public class ElderlyinformationDAOTest {
         Assert.assertEquals("cccc", elderlyinformationDAO.getSearchInformation(1).getElder().getEname());
     }
 
+    /**
+     * 验证：删除功能
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        //得到总条数
+        int result = elderlyinformationDAO.getAllInformationNumber(null);
+        //删除第一条数据
+        elderlyinformationDAO.deleteInformation(1);
+        //删除后的总条数
+        int result2 = elderlyinformationDAO.getAllInformationNumber(null);
+        Assert.assertEquals(result - 1, result2);
+    }
 }
