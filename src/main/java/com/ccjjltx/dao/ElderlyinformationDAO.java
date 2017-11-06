@@ -90,4 +90,16 @@ public class ElderlyinformationDAO {
         Session session = factory.getCurrentSession();
         return (Elderlyinformation) session.get(Elderlyinformation.class, eiId);
     }
+
+    /**
+     * 增加老人信息
+     *
+     * @param ei  Elderlyinformation实例化
+     * @param eId 老人缩略表的主键
+     */
+    public void addInformation(Elderlyinformation ei, int eId) {
+        Session session = factory.getCurrentSession();
+        ei.setElder(elderDAO.getSearchElder(eId));
+        session.save(ei);
+    }
 }
