@@ -26,12 +26,29 @@ public class FamilyinformationDAO {
     @Resource(name = "elderlyinformationDAO")
     private ElderlyinformationDAO elderlyinformationDAO;
 
+    /**
+     * 得到所有包含该eiId的Familyinformation实例化
+     *
+     * @param eiId Elderlyinformation主键eiId
+     * @return
+     */
     public List<Familyinformation> getAllInformation(int eiId) {
         Session session = factory.getCurrentSession();
         String hql = "from Familyinformation familyinformation where elderlyinformation=:elderlyinformation";
         Elderlyinformation elderlyinformation = elderlyinformationDAO.getSearchInformation(eiId);
         Query query = session.createQuery(hql).setParameter("elderlyinformation", elderlyinformation);
         return (List<Familyinformation>) query.list();
+    }
+
+    /**
+     * 增加信息
+     *
+     * @param fi Familinformation实例化
+     */
+    public void addInformation(Familyinformation fi) {
+        Session session = factory.getCurrentSession();
+        //实例化保存
+        session.save(fi);
     }
 
     /**
