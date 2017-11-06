@@ -94,12 +94,16 @@ public class ElderlyinformationDAO {
     /**
      * 增加老人信息
      *
-     * @param ei  Elderlyinformation实例化
-     * @param eId 老人缩略表的主键
+     * @param ei Elderlyinformation实例化
+     * @param e  Elder实例化
      */
-    public void addInformation(Elderlyinformation ei, int eId) {
+    public void addInformation(Elderlyinformation ei, Elder e) {
         Session session = factory.getCurrentSession();
-        ei.setElder(elderDAO.getSearchElder(eId));
+        //先新Elder信息
+        elderDAO.addInformation(e);
+        //设置Elder
+        ei.setElder(e);
+        //最后再保存Elderlyinformation信息
         session.save(ei);
     }
 }
