@@ -211,6 +211,7 @@
         url = '<%=basePath %>familyimaction/saveInformation.action?eiId=' + eiId;
     }
     /////////////////////////////////////////////////////////////////////////
+    //修改功能（大表格）
     function editc() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
@@ -221,6 +222,11 @@
             url = '<%=basePath %>elderlyimaction/updateInformation.action?eiId=' + row.eiId;
         }
     }
+    //修改功能（细表格）
+    function editm() {
+        ////////
+    }
+
     /////////////////////////////////////////////////////////////////////////
     //提交功能(大表格)
     function saveUser() {
