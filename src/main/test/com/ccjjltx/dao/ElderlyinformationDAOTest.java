@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Elder;
 import com.ccjjltx.domain.Elderlyinformation;
 import com.ccjjltx.utils.MyDateFormat;
 import org.junit.Assert;
@@ -114,7 +115,9 @@ public class ElderlyinformationDAOTest {
     public void testAddInformation() {
         try {
             Elderlyinformation ei = new Elderlyinformation("12341234", "1234", "男", MyDateFormat.parse("1995-01-01"), "guangzhou", "guangzhou");
-            elderlyinformationDAO.addInformation(ei, 16);
+            Elder e = new Elder("ccc", 1);
+            elderlyinformationDAO.addInformation(ei, e);
+            Assert.assertEquals(1, elderlyinformationDAO.getAllInformationNumber("ccc"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
