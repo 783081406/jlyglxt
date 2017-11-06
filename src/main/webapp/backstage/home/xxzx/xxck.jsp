@@ -131,7 +131,8 @@
 
 <!--//////////////////////////////////////////////////////-->
 <!--家庭信息的添加window-->
-<div id="mdlg" class="easyui-dialog" style="width:380px;height:280px;padding:10px 20px" closed="true">
+<div id="mdlg" class="easyui-dialog" style="width:380px;height:280px;padding:10px 20px" closed="true"
+     buttons="#mdlg-buttons">
     <div class="ftitle">家属信息</div>
     <form id="mfm" method="post" novalidate>
         <div class="fitem">
@@ -152,10 +153,17 @@
         </div>
     </form>
 </div>
+<!--提交与取消按钮-->
+<div id="mdlg-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savem()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#mdlg').dialog('close')">取消</a>
+</div>
 
+<!--////////////////////////////////////////////////////////////////////////-->
 <!--自定义javascript-->
 <script type="text/javascript">
     var url;
+    var eiId;
     //搜索功能
     obj = {
         search: function () {
@@ -181,8 +189,7 @@
             $('#morecheck').dialog('open').dialog('setTitle', '详细信息');
             //加载form表单的数据
             $('#moret').datagrid('load', '<%=basePath %>familyimaction/getAllInformation.action?eiId=' + row.eiId);
-            //提交数据处理的url
-            url = '<%=basePath %>xx/xx.action?eId=' + row.eId;
+            eiId = row.eiId;
         }
     }
     ////////////////////////////////////////////////////////////////////////
@@ -194,13 +201,14 @@
         //提交数据处理的URL
         url = '<%=basePath %>elderlyimaction/saveInformation.action';
     }
+
     //添加功能（细表格）
     function newm() {
         $('#mdlg').dialog('open').dialog('setTitle', '添加信息');
         //清空表单，来显示空表单
         $('#mfm').form('clear');
         //提交数据处理的URL
-        url = '<%=basePath %>xx/xx.action';
+        url = '<%=basePath %>familyimaction/saveInformation.action?eiId=' + eiId;
     }
     /////////////////////////////////////////////////////////////////////////
     function editc() {
@@ -214,7 +222,7 @@
         }
     }
     /////////////////////////////////////////////////////////////////////////
-    //提交功能
+    //提交功能(大表格)
     function saveUser() {
         $('#fm').form('submit', {
             url: url,
@@ -237,6 +245,30 @@
             }
         });
     }
+    //提交功能(小表格)
+    function savem() {
+        $('#mfm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#mdlg').dialog('close');		// 关闭window
+                    $('#moret').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
+    ///////////////////////////////////////////////////////////////////////////////
     //删除功能
     function removec() {
         //得到那一行的数据，如果没选为空，不能进入if语句里面
