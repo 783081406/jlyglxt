@@ -1,7 +1,10 @@
 package com.ccjjltx.action;
 
+import com.ccjjltx.dao.ElderlyinformationDAO;
 import com.ccjjltx.dao.FamilyinformationDAO;
+import com.ccjjltx.domain.Elderlyinformation;
 import com.ccjjltx.domain.Familyinformation;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -23,8 +26,18 @@ import java.util.List;
 public class FamilyinformationAction extends ActionSupport {
     @Resource(name = "familyinformationDAO")
     private FamilyinformationDAO familyinformationDAO;
-    private int eiId;
+    @Resource(name = "elderlyinformationDAO")
+    private ElderlyinformationDAO elderlyinformationDAO;
+
     private JSONObject result;
+    //////////////////////传送过来的数据////////////////////////////
+    private int eiId;
+    private int fId;
+    private String familyName;
+    private String relationship;
+    private String faddress;
+    private String phone;
+    /////////////////////////////////////////////////
 
     public FamilyinformationDAO getFamilyinformationDAO() {
         return familyinformationDAO;
@@ -32,6 +45,22 @@ public class FamilyinformationAction extends ActionSupport {
 
     public void setFamilyinformationDAO(FamilyinformationDAO familyinformationDAO) {
         this.familyinformationDAO = familyinformationDAO;
+    }
+
+    public ElderlyinformationDAO getElderlyinformationDAO() {
+        return elderlyinformationDAO;
+    }
+
+    public void setElderlyinformationDAO(ElderlyinformationDAO elderlyinformationDAO) {
+        this.elderlyinformationDAO = elderlyinformationDAO;
+    }
+
+    public JSONObject getResult() {
+        return result;
+    }
+
+    public void setResult(JSONObject result) {
+        this.result = result;
     }
 
     public int getEiId() {
@@ -42,12 +71,44 @@ public class FamilyinformationAction extends ActionSupport {
         this.eiId = eiId;
     }
 
-    public JSONObject getResult() {
-        return result;
+    public int getFId() {
+        return fId;
     }
 
-    public void setResult(JSONObject result) {
-        this.result = result;
+    public void setFId(int fId) {
+        this.fId = fId;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    public String getRelationship() {
+        return relationship;
+    }
+
+    public void setRelationship(String relationship) {
+        this.relationship = relationship;
+    }
+
+    public String getFaddress() {
+        return faddress;
+    }
+
+    public void setFaddress(String faddress) {
+        this.faddress = faddress;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     /**
@@ -72,4 +133,21 @@ public class FamilyinformationAction extends ActionSupport {
         result.put("rows", jsonArray);
         return SUCCESS;
     }
+
+    /**
+     * 增加新信息
+     *
+     * @return Json，成功或失败的数据
+     */
+    public String saveInformation() {
+        Elderlyinformation ei = elderlyinformationDAO.getSearchInformation(getEiId());
+        //实例化
+        Familyinformation fi = new Familyinformation(getFamilyName(), getPhone(), getRelationship(), getFaddress());
+        fi.setElderlyinformation(ei);
+        //插入数据
+        familyinformationDAO.addInformation(fi);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 }
