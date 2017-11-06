@@ -68,4 +68,9 @@ public class ElderDAO {
         Session session = factory.getCurrentSession();
         session.save(e);
     }
+
+    public void updateInformation(Elder e) {
+        Session session = factory.getCurrentSession();
+        session.update(e);
+    }
 }
