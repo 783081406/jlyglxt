@@ -33,4 +33,18 @@ public class FamilyinformationDAO {
         Query query = session.createQuery(hql).setParameter("elderlyinformation", elderlyinformation);
         return (List<Familyinformation>) query.list();
     }
+
+    /**
+     * 删除操作
+     *
+     * @param eiId Elderlyinformation主键
+     */
+    public void deleteInformation(int eiId) {
+        Session session = factory.getCurrentSession();
+        List<Familyinformation> list = getAllInformation(eiId);
+        //遍历  删除
+        for (Familyinformation db_fi : list) {
+            session.delete(db_fi);
+        }
+    }
 }
