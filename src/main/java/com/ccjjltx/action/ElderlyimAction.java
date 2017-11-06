@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Controller
 @Scope("prototype")
-public class elderlyimAction extends ActionSupport {
+public class ElderlyimAction extends ActionSupport {
     @Resource(name = "elderlyinformationDAO")
     private ElderlyinformationDAO elderlyinformationDAO;
     //得到页数（第几页）
