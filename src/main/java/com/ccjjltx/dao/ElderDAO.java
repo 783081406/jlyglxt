@@ -69,8 +69,25 @@ public class ElderDAO {
         session.save(e);
     }
 
+    /**
+     * 更新操作
+     *
+     * @param e Elder实例化
+     */
     public void updateInformation(Elder e) {
         Session session = factory.getCurrentSession();
+        //更新操作
         session.update(e);
+    }
+
+    /**
+     * 删除操作
+     *
+     * @param elder Elder实例化
+     */
+    public void deleteInformation(Elder elder) {
+        Session session = factory.getCurrentSession();
+        //删除操作
+        session.delete(elder);
     }
 }
