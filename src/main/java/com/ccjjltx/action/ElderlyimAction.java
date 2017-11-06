@@ -36,6 +36,7 @@ public class ElderlyimAction extends ActionSupport {
     //保存json结果
     private JSONObject result;
     ///////////////////提交过来的表中的字段///////////////////////
+    private int eiId;
     private String ename;
     private String sex;
     private String idcard;
@@ -75,6 +76,14 @@ public class ElderlyimAction extends ActionSupport {
 
     public void setResult(JSONObject result) {
         this.result = result;
+    }
+
+    public int getEiId() {
+        return eiId;
+    }
+
+    public void setEiId(int eiId) {
+        this.eiId = eiId;
     }
 
     public String getEname() {
@@ -176,6 +185,37 @@ public class ElderlyimAction extends ActionSupport {
         Elderlyinformation ei = new Elderlyinformation(getIdcard(), getPhone(), getSex(), getBirthDate(), getHomeAddress(), getOriginAddress());
         //保存数据操作
         elderlyinformationDAO.addInformation(ei, e);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+    /**
+     * 更新信息
+     *
+     * @return SUCCESS
+     */
+    public String updateInformation() {
+        //根据传送过来的主键实例化
+        Elderlyinformation db_ei = elderlyinformationDAO.getSearchInformation(getEiId());
+        db_ei.getElder().setEname(getEname());
+        db_ei.setSex(getSex());
+        db_ei.setIdcard(getIdcard());
+        db_ei.setPhone(getPhone());
+        db_ei.setBirthDate(getBirthDate());
+        db_ei.setHomeAddress(getHomeAddress());
+        db_ei.setOriginAddress(getOriginAddress());
+        elderlyinformationDAO.updateInformation(db_ei);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+    /**
+     * 删除功能
+     *
+     * @return 返回成功
+     */
+    public String removeInformation() {
+        elderlyinformationDAO.deleteInformation(getEiId());
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
