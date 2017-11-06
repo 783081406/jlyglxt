@@ -1,10 +1,10 @@
 package com.ccjjltx.dao;
 
-import com.ccjjltx.domain.Elderlyinformation;
 import com.ccjjltx.domain.Familyinformation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +34,17 @@ public class FamilyinformationDAOTest {
         List<Familyinformation> list = familyinformationDAO.getAllInformation(1);
         int resultLength = list.size();
         Assert.assertEquals(2, resultLength);
+    }
+
+    /**
+     * 验证：是否能删除
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        familyinformationDAO.deleteInformation(1);
+        //删除之后则没有eiId为1的数据，则size应该是0
+        Assert.assertEquals(0, familyinformationDAO.getAllInformation(1).size());
     }
 }
