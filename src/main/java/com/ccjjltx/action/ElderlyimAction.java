@@ -1,7 +1,9 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.ElderlyinformationDAO;
+import com.ccjjltx.domain.Elder;
 import com.ccjjltx.domain.Elderlyinformation;
+import com.ccjjltx.utils.JsonMessage;
 import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,6 +37,12 @@ public class ElderlyimAction extends ActionSupport {
     private JSONObject result;
     ///////////////////提交过来的表中的字段///////////////////////
     private String ename;
+    private String sex;
+    private String idcard;
+    private String phone;
+    private Date birthDate;
+    private String homeAddress;
+    private String originAddress;
     //////////////////////////////////////////////////////////////
 
     public ElderlyinformationDAO getElderlyinformationDAO() {
@@ -76,6 +85,54 @@ public class ElderlyimAction extends ActionSupport {
         this.ename = ename;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public String getOriginAddress() {
+        return originAddress;
+    }
+
+    public void setOriginAddress(String originAddress) {
+        this.originAddress = originAddress;
+    }
+
     /**
      * 得到全部或者特定的（搜索框触发）的信息
      *
@@ -105,6 +162,21 @@ public class ElderlyimAction extends ActionSupport {
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
+        return SUCCESS;
+    }
+
+    /**
+     * 增加新信息
+     *
+     * @return Json，成功或失败的json信息
+     */
+    public String saveInformation() {
+        //将得到的数据实例化
+        Elder e = new Elder(getEname(), 1);
+        Elderlyinformation ei = new Elderlyinformation(getIdcard(), getPhone(), getSex(), getBirthDate(), getHomeAddress(), getOriginAddress());
+        //保存数据操作
+        elderlyinformationDAO.addInformation(ei, e);
+        result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
 }
