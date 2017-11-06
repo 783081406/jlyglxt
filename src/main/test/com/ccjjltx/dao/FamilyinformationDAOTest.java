@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Elderlyinformation;
 import com.ccjjltx.domain.Familyinformation;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,6 +25,8 @@ import java.util.List;
 public class FamilyinformationDAOTest {
     @Resource(name = "familyinformationDAO")
     private FamilyinformationDAO familyinformationDAO;
+    @Resource(name = "elderlyinformationDAO")
+    private ElderlyinformationDAO elderlyinformationDAO;
 
     /**
      * 验证：传入正确的eiId是否得到所有Familyinformation实例化
@@ -47,4 +50,23 @@ public class FamilyinformationDAOTest {
         //删除之后则没有eiId为1的数据，则size应该是0
         Assert.assertEquals(0, familyinformationDAO.getAllInformation(1).size());
     }
+
+    /**
+     * 验证：当信息正确的时候是否能插入成功
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation() {
+        int result = familyinformationDAO.getAllInformation(1).size();
+        Elderlyinformation ei = elderlyinformationDAO.getSearchInformation(1);
+        //实例化
+        Familyinformation fi = new Familyinformation("ccj", "123", "123", "123");
+        fi.setElderlyinformation(ei);
+        //插入数据
+        familyinformationDAO.addInformation(fi);
+        //得到的结果应该是未插入前加1
+        Assert.assertEquals(result + 1, familyinformationDAO.getAllInformation(1).size());
+    }
+
 }
