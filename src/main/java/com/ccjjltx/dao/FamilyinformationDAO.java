@@ -77,6 +77,16 @@ public class FamilyinformationDAO {
     }
 
     /**
+     * 删除操作
+     *
+     * @param fId Familyinformation主键
+     */
+    public void deleteInformation2(int fId) {
+        Session session = factory.getCurrentSession();
+        session.delete(getSearchInformation(fId));
+    }
+
+    /**
      * 根据主键得到实例化
      *
      * @param fId Familyinformation主键
