@@ -80,6 +80,21 @@ public class FamilyinformationDAOTest {
         Assert.assertEquals(1, db_fi.getFId());
     }
 
-
-
+    /**
+     * 验证：是否能更新
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        //得到实例化
+        Familyinformation db_fi1 = familyinformationDAO.getSearchInformation(1);
+        //更新
+        db_fi1.setFamilyName("ccj");
+        familyinformationDAO.updateInformation(db_fi1);
+        //再次得到修改的实例化
+        Familyinformation db_fi2 = familyinformationDAO.getSearchInformation(1);
+        //断言
+        Assert.assertEquals("ccj", db_fi2.getFamilyName());
+    }
 }
