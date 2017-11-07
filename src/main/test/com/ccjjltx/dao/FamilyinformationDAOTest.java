@@ -97,4 +97,21 @@ public class FamilyinformationDAOTest {
         //断言
         Assert.assertEquals("ccj", db_fi2.getFamilyName());
     }
+
+    /**
+     * 验证：是否能根据主键删除
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation2() {
+        //得到eiId为1的大小
+        int resultSize = familyinformationDAO.getAllInformation(1).size();
+        //第一条信息是eiId为1
+        //执行删除功能
+        familyinformationDAO.deleteInformation2(1);
+        //删除之后再次查询，应该是resultSize-1的大小
+        int resultSize2 = familyinformationDAO.getAllInformation(1).size();
+        Assert.assertEquals(resultSize - 1, resultSize2);
+    }
 }
