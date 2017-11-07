@@ -51,6 +51,17 @@ public class FamilyinformationDAO {
         session.save(fi);
     }
 
+
+    /**
+     * 更新操作
+     *
+     * @param fi Familyinformation实例化
+     */
+    public void updateInformation(Familyinformation fi) {
+        Session session = factory.getCurrentSession();
+        session.update(fi);
+    }
+
     /**
      * 删除操作
      *
