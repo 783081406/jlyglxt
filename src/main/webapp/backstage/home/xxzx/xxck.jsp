@@ -59,7 +59,7 @@
 </div>
 <!--////////////////////////////////////////////////-->
 <!--查看的window-->
-<div id="morecheck" class="easyui-dialog" style="width:660px;height:270px;padding:10px 20px" closed="true">
+<div id="morecheck" class="easyui-dialog" style="width:680px;height:270px;padding:10px 20px" closed="true">
     <div class="ftitle">家庭信息</div>
     <div>
         <table id="moret" class="easyui-datagrid" style="width: 620px;height: auto;" title="家庭信息" toolbar="#mtoolbar"
@@ -283,7 +283,7 @@
         });
     }
     ///////////////////////////////////////////////////////////////////////////////
-    //删除功能
+    //删除功能（大表格）
     function removec() {
         //得到那一行的数据，如果没选为空，不能进入if语句里面
         var row = $('#dg').datagrid('getSelected');
@@ -295,6 +295,29 @@
                     $.post('<%=basePath %>elderlyimaction/removeInformation.action', {eiId: row.eiId}, function (result) {
                         if (result.success) {
                             $('#dg').datagrid('reload');	// 重新加载数据
+                        } else {
+                            $.messager.show({	// 显示错误的信息
+                                title: '错误提示',
+                                msg: result.msg
+                            });
+                        }
+                    }, 'json');
+                }
+            });
+        }
+    }
+    //删除功能（小表格）
+    function removem() {
+        //得到那一行的数据，如果没选为空，不能进入if语句里面
+        var row = $('#moret').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('警告', '是否确定删除本行数据?', function (r) {
+                //如果选择确定，执行if里面语句
+                if (r) {
+                    //post提交
+                    $.post('<%=basePath %>familyimaction/removeInformation.action', {fId: row.fId}, function (result) {
+                        if (result.success) {
+                            $('#moret').datagrid('reload');	// 重新加载数据
                         } else {
                             $.messager.show({	// 显示错误的信息
                                 title: '错误提示',
