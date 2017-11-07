@@ -222,11 +222,19 @@
             url = '<%=basePath %>elderlyimaction/updateInformation.action?eiId=' + row.eiId;
         }
     }
+
     //修改功能（细表格）
     function editm() {
         ////////
+        var row = $('#moret').datagrid('getSelected');
+        if (row) {
+            $('#mdlg').dialog('open').dialog('setTitle', '更新信息');
+            //加载点击那一行的数据
+            $('#mfm').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>familyimaction/updateInformation.action?fId=' + row.fId;
+        }
     }
-
     /////////////////////////////////////////////////////////////////////////
     //提交功能(大表格)
     function saveUser() {
