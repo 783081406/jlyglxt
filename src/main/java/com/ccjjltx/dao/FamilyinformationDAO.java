@@ -75,4 +75,15 @@ public class FamilyinformationDAO {
             session.delete(db_fi);
         }
     }
+
+    /**
+     * 根据主键得到实例化
+     *
+     * @param fId Familyinformation主键
+     * @return
+     */
+    public Familyinformation getSearchInformation(int fId) {
+        Session session = factory.getCurrentSession();
+        return (Familyinformation) session.get(Familyinformation.class, fId);
+    }
 }
