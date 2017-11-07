@@ -150,4 +150,24 @@ public class FamilyinformationAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 更新操作
+     *
+     * @return 返回成功
+     */
+    public String updateInformation() {
+        //得到实例化
+        Familyinformation db_fi = familyinformationDAO.getSearchInformation(getFId());
+        //更新信息
+        db_fi.setFamilyName(getFamilyName());
+        db_fi.setRelationship(getRelationship());
+        db_fi.setFaddress(getFaddress());
+        db_fi.setFaddress(getFaddress());
+        db_fi.setPhone(getPhone());
+        //更新操作
+        familyinformationDAO.updateInformation(db_fi);
+        //返回json信息
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
