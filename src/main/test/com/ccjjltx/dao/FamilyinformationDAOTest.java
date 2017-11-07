@@ -69,4 +69,17 @@ public class FamilyinformationDAOTest {
         Assert.assertEquals(result + 1, familyinformationDAO.getAllInformation(1).size());
     }
 
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testSearchInformation() {
+        Familyinformation db_fi = familyinformationDAO.getSearchInformation(1);
+        Assert.assertEquals(1, db_fi.getFId());
+    }
+
+
+
 }
