@@ -170,4 +170,15 @@ public class FamilyinformationAction extends ActionSupport {
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
+
+    /**
+     * 删除功能
+     *
+     * @return SUCCESS成功信息
+     */
+    public String removeInformation() {
+        familyinformationDAO.deleteInformation2(getFId());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
