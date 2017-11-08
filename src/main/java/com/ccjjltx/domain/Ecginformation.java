@@ -2,6 +2,7 @@ package com.ccjjltx.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by ccjjltx on 2017/11/8.
@@ -21,6 +22,7 @@ public class Ecginformation implements Serializable {
     private String rr;
     private String analysisResult;
     private String rhythm;
+    private Date rdate;
     @ManyToOne(targetEntity = Casehistory.class)
     @JoinColumn(name = "chId")
     private Casehistory casehistory;
@@ -30,12 +32,13 @@ public class Ecginformation implements Serializable {
     }
 
     //有参构造函数
-    public Ecginformation(String qrs, String comment, String rr, String analysisResult, String rhythm, Casehistory casehistory) {
+    public Ecginformation(String qrs, String comment, String rr, String analysisResult, String rhythm, Date rdate, Casehistory casehistory) {
         this.qrs = qrs;
         this.comment = comment;
         this.rr = rr;
         this.analysisResult = analysisResult;
         this.rhythm = rhythm;
+        this.rdate = rdate;
         this.casehistory = casehistory;
     }
 
@@ -87,6 +90,14 @@ public class Ecginformation implements Serializable {
         this.rhythm = rhythm;
     }
 
+    public Date getRdate() {
+        return rdate;
+    }
+
+    public void setRdate(Date rdate) {
+        this.rdate = rdate;
+    }
+
     public Casehistory getCasehistory() {
         return casehistory;
     }
@@ -109,6 +120,7 @@ public class Ecginformation implements Serializable {
         if (analysisResult != null ? !analysisResult.equals(that.analysisResult) : that.analysisResult != null)
             return false;
         if (rhythm != null ? !rhythm.equals(that.rhythm) : that.rhythm != null) return false;
+        if (rdate != null ? !rdate.equals(that.rdate) : that.rdate != null) return false;
 
         return true;
     }
@@ -121,6 +133,7 @@ public class Ecginformation implements Serializable {
         result = 31 * result + (rr != null ? rr.hashCode() : 0);
         result = 31 * result + (analysisResult != null ? analysisResult.hashCode() : 0);
         result = 31 * result + (rhythm != null ? rhythm.hashCode() : 0);
+        result = 31 * result + (rdate != null ? rdate.hashCode() : 0);
         return result;
     }
 }
