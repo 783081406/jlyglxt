@@ -38,7 +38,7 @@
                     "menuid": "2", "icon": "icon-sys", "menuname": "信息中心",
                     "menus": [
                         {"menuid": "23", "menuname": "信息查看", "icon": "icon-page", "url": "xxzx/xxck.jsp"},
-                        {"menuid": "24", "menuname": "病例查看", "icon": "icon-class", "url": "xxzx/blck.jsp"},
+                        {"menuid": "24", "menuname": "病历查看", "icon": "icon-class", "url": "xxzx/blck.jsp"},
                         {"menuid": "25", "menuname": "房间信息", "icon": "icon-role", "url": "xxzx/fjxx.jsp"},
                         {"menuid": "26", "menuname": "特殊服务", "icon": "icon-log", "url": "xxzx/tsfw.jsp"},
                         {"menuid": "27", "menuname": "出入院", "icon": "icon-nav", "url": "xxzx/cry.jsp"}
