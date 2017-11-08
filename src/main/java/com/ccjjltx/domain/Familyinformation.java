@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @version 1.0
  */
 @Entity
+@Table
 public class Familyinformation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
