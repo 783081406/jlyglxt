@@ -31,9 +31,57 @@
         </action>
     </package>
 
-    <!--信息中心>>信息查看-->
+    <!--信息中心>>信息查看>>老人信息信息-->
     <package name="elderlyimaction" namespace="/elderlyimaction" extends="struts-default,json-default">
         <action name="*" class="elderlyimAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--信息中心>>信息查看>>老人家属信息-->
+    <package name="familyimaction" namespace="/familyimaction" extends="struts-default,json-default">
+        <action name="*" class="familyinformationAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--信息中心>> 病例查看>>病历-->
+    <package name="chaction" namespace="/chaction" extends="struts-default,json-default">
+        <action name="*" class="casehistoryAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--信息中心>> 病例查看>>心电信息-->
+    <package name="ecgiaction" namespace="/ecgiaction" extends="struts-default,json-default">
+        <action name="*" class="ecginformationAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--信息中心>> 病例查看>>就医记录-->
+    <package name="mraction" namespace="/mraction" extends="struts-default,json-default">
+        <action name="*" class="medicalrecordAction" method="{1}">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
@@ -70,18 +118,6 @@
     <!--员工中心>>账户列表-->
     <package name="useraction" namespace="/useraction" extends="struts-default,json-default">
         <action name="*" class="userAction" method="{1}">
-            <result name="success" type="json">
-                <param name="root">result</param>
-            </result>
-            <result name="error" type="json">
-                <param name="root">result</param>
-            </result>
-        </action>
-    </package>
-
-    <!--下拉框选择用户账户的时候使用-->
-    <package name="familyimaction" namespace="/familyimaction" extends="struts-default,json-default">
-        <action name="*" class="familyinformationAction" method="{1}">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
