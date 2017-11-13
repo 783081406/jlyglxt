@@ -57,7 +57,7 @@
       <Comment>医院</Comment>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="21" parent="8" name="hospitalName">
+    <column id="21" parent="8" name="hospitalPhone">
       <Position>4</Position>
       <Comment>医院电话</Comment>
       <DataType>varchar(20)|0</DataType>
