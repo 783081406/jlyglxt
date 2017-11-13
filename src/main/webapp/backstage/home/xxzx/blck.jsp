@@ -149,7 +149,7 @@
     //搜索功能
     obj = {
         search: function () {
-            $('#dg').datagrid('load', {
+            $('#blt').datagrid('load', {
                 ename: $.trim($('input[name="ename"]').val())
             });
         }
