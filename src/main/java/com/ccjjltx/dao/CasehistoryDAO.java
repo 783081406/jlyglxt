@@ -26,6 +26,14 @@ public class CasehistoryDAO {
     @Resource(name = "elderDAO")
     private ElderDAO elderDAO;
 
+    /**
+     * 得到全部或特定的信息
+     *
+     * @param offset 起始数
+     * @param rows   行数
+     * @param ename  ename值
+     * @return List集合
+     */
     public List<Casehistory> getAllInformation(int offset, int rows, String ename) {
         Session session = factory.getCurrentSession();
         //总查询语句
@@ -45,5 +53,28 @@ public class CasehistoryDAO {
         return (List<Casehistory>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
 
+    /**
+     * 得到总条数
+     *
+     * @param ename 搜索框触发的名字
+     * @return 整数，总条数
+     */
+    public int getAllInformationNumber(String ename) {
+        Session session = factory.getCurrentSession();
+        String hql = "select count(*) from Casehistory casehistory";
+        Query query;
+        if (ename != null) {
+            Elder elder = elderDAO.getSearchElder(ename);
+            if (elder == null) {
+                return 0;
+            }
+            hql += " where elder=:elder";
+            query = session.createQuery(hql).setParameter("elder", elder);
+        } else {
+            query = session.createQuery(hql);
+        }
+        long l = (long) query.uniqueResult();
+        return (int) l;
+    }
 
 }
