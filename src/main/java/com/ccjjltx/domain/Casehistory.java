@@ -18,7 +18,7 @@ public class Casehistory implements Serializable {
     private int chId;
     private String physician;
     private String hospital;
-    private String hospitalName;
+    private String hospitalPhone;
     private String allergyDrugs;
     private String majorDiseases;
     private String height;
@@ -41,20 +41,20 @@ public class Casehistory implements Serializable {
     }
 
     //有参数构造函数
-    public Casehistory(String physician, String hospital, String hospitalName, String allergyDrugs, String majorDiseases, String height, String weight) {
+    public Casehistory(String physician, String hospital, String hospitalPhone, String allergyDrugs, String majorDiseases, String height, String weight) {
         this.physician = physician;
         this.hospital = hospital;
-        this.hospitalName = hospitalName;
+        this.hospitalPhone = hospitalPhone;
         this.allergyDrugs = allergyDrugs;
         this.majorDiseases = majorDiseases;
         this.height = height;
         this.weight = weight;
     }
 
-    public Casehistory(String physician, String hospital, String hospitalName, String allergyDrugs, String majorDiseases, String height, String weight, String highHanded, String lowHanded, String bloodOxygenValue, String fastingPlasmaGlucose, String postprandialBloodGlucose, String totalCholesterol, String triglyceride, String hdlc, String ldlc, Elder elder) {
+    public Casehistory(String physician, String hospital, String hospitalPhone, String allergyDrugs, String majorDiseases, String height, String weight, String highHanded, String lowHanded, String bloodOxygenValue, String fastingPlasmaGlucose, String postprandialBloodGlucose, String totalCholesterol, String triglyceride, String hdlc, String ldlc, Elder elder) {
         this.physician = physician;
         this.hospital = hospital;
-        this.hospitalName = hospitalName;
+        this.hospitalPhone = hospitalPhone;
         this.allergyDrugs = allergyDrugs;
         this.majorDiseases = majorDiseases;
         this.height = height;
@@ -95,12 +95,12 @@ public class Casehistory implements Serializable {
         this.hospital = hospital;
     }
 
-    public String getHospitalName() {
-        return hospitalName;
+    public String getHospitalPhone() {
+        return hospitalPhone;
     }
 
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
+    public void setHospitalPhone(String hospitalPhone) {
+        this.hospitalPhone = hospitalPhone;
     }
 
     public String getAllergyDrugs() {
@@ -225,7 +225,7 @@ public class Casehistory implements Serializable {
         if (chId != that.chId) return false;
         if (physician != null ? !physician.equals(that.physician) : that.physician != null) return false;
         if (hospital != null ? !hospital.equals(that.hospital) : that.hospital != null) return false;
-        if (hospitalName != null ? !hospitalName.equals(that.hospitalName) : that.hospitalName != null) return false;
+        if (hospitalPhone != null ? !hospitalPhone.equals(that.hospitalPhone) : that.hospitalPhone != null) return false;
         if (allergyDrugs != null ? !allergyDrugs.equals(that.allergyDrugs) : that.allergyDrugs != null) return false;
         if (majorDiseases != null ? !majorDiseases.equals(that.majorDiseases) : that.majorDiseases != null)
             return false;
@@ -253,7 +253,7 @@ public class Casehistory implements Serializable {
         int result = chId;
         result = 31 * result + (physician != null ? physician.hashCode() : 0);
         result = 31 * result + (hospital != null ? hospital.hashCode() : 0);
-        result = 31 * result + (hospitalName != null ? hospitalName.hashCode() : 0);
+        result = 31 * result + (hospitalPhone != null ? hospitalPhone.hashCode() : 0);
         result = 31 * result + (allergyDrugs != null ? allergyDrugs.hashCode() : 0);
         result = 31 * result + (majorDiseases != null ? majorDiseases.hashCode() : 0);
         result = 31 * result + (height != null ? height.hashCode() : 0);
