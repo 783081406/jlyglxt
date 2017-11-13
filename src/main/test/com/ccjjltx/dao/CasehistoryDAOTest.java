@@ -55,5 +55,25 @@ public class CasehistoryDAOTest {
         Assert.assertNull(list);
     }
 
+    /**
+     * 验证：当ename为null时候是否得到总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber1() {
+        int result = casehistoryDAO.getAllInformationNumber(null);
+        Assert.assertEquals(15, result);
+    }
+
+    /**
+     * 验证：当ename为正确值时候是否得到总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber2() {
+        int result = casehistoryDAO.getAllInformationNumber("张志新");
+        Assert.assertEquals(1, result);
+    }
+
 
 }
