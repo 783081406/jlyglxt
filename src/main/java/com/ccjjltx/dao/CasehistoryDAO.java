@@ -77,4 +77,15 @@ public class CasehistoryDAO {
         return (int) l;
     }
 
+    /**
+     * 根据主键得到实例化
+     *
+     * @param chId 主键
+     * @return 实例化
+     */
+    public Casehistory getSearchInformation(int chId) {
+        Session session = factory.getCurrentSession();
+        return (Casehistory) session.get(Casehistory.class, chId);
+    }
+
 }
