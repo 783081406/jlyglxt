@@ -140,7 +140,7 @@
 <!--病历》提交与取消按钮-->
 <div id="blt-buttons">
     <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="editbl()">修改</a>
-    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savebl()">保存</a>
+    <a id="savebl" href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savebl()">保存</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
        onclick="javascript:$('#bld').dialog('close')">取消</a>
 </div>
@@ -179,6 +179,8 @@
             //加载数据
             $("#blf").form('load', '<%=basePath %>chaction/getAllInformation2.action?chId=' + row.chId);
             $("#box").combobox({disabled: true});
+            //禁止save按钮
+            $("#savebl").linkbutton('disable');
             chId = row.chId;
         }
     }
@@ -207,6 +209,10 @@
     function editbl() {
         //设置可编辑
         $("#blf div input").attr("disabled", false);
+        //开启save按钮
+        $("#savebl").linkbutton('enable');
+        //提交的url
+        url = '<%=basePath %>chaction/updateInformation.action?chId=' + row.chId;
     }
 
     //保存
