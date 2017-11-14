@@ -32,8 +32,27 @@ public class CasehistoryAction extends ActionSupport {
     //保存json结果
     private JSONObject result;
     //////////////////提交过来的表中的字段/////////////////////////
-
+    //基本特征
     private String ename;
+    private String height;
+    private String weight;
+    private String physician;
+    private String hospital;
+    private String hospitalName;
+    private String allergyDrugs;
+    private String majorDiseases;
+    //血压血氧
+    private String highHanded;
+    private String lowHanded;
+    private String bloodOxygenValue;
+    //血糖信息
+    private String fastingPlasmaGlucose;
+    private String postprandialBoolGlucose;
+    //血脂信息
+    private String totalCholesterol;
+    private String triglyceride;
+    private String hdlc;
+    private String ldlc;
 
     //////////////////////////////////////////////////////////////
     public CasehistoryDAO getCasehistoryDAO() {
@@ -76,6 +95,134 @@ public class CasehistoryAction extends ActionSupport {
         this.ename = ename;
     }
 
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getPhysician() {
+        return physician;
+    }
+
+    public void setPhysician(String physician) {
+        this.physician = physician;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
+    }
+
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
+    }
+
+    public String getAllergyDrugs() {
+        return allergyDrugs;
+    }
+
+    public void setAllergyDrugs(String allergyDrugs) {
+        this.allergyDrugs = allergyDrugs;
+    }
+
+    public String getMajorDiseases() {
+        return majorDiseases;
+    }
+
+    public void setMajorDiseases(String majorDiseases) {
+        this.majorDiseases = majorDiseases;
+    }
+
+    public String getHighHanded() {
+        return highHanded;
+    }
+
+    public void setHighHanded(String highHanded) {
+        this.highHanded = highHanded;
+    }
+
+    public String getLowHanded() {
+        return lowHanded;
+    }
+
+    public void setLowHanded(String lowHanded) {
+        this.lowHanded = lowHanded;
+    }
+
+    public String getBloodOxygenValue() {
+        return bloodOxygenValue;
+    }
+
+    public void setBloodOxygenValue(String bloodOxygenValue) {
+        this.bloodOxygenValue = bloodOxygenValue;
+    }
+
+    public String getFastingPlasmaGlucose() {
+        return fastingPlasmaGlucose;
+    }
+
+    public void setFastingPlasmaGlucose(String fastingPlasmaGlucose) {
+        this.fastingPlasmaGlucose = fastingPlasmaGlucose;
+    }
+
+    public String getPostprandialBoolGlucose() {
+        return postprandialBoolGlucose;
+    }
+
+    public void setPostprandialBoolGlucose(String postprandialBoolGlucose) {
+        this.postprandialBoolGlucose = postprandialBoolGlucose;
+    }
+
+    public String getTotalCholesterol() {
+        return totalCholesterol;
+    }
+
+    public void setTotalCholesterol(String totalCholesterol) {
+        this.totalCholesterol = totalCholesterol;
+    }
+
+    public String getTriglyceride() {
+        return triglyceride;
+    }
+
+    public void setTriglyceride(String triglyceride) {
+        this.triglyceride = triglyceride;
+    }
+
+    public String getHdlc() {
+        return hdlc;
+    }
+
+    public void setHdlc(String hdlc) {
+        this.hdlc = hdlc;
+    }
+
+    public String getLdlc() {
+        return ldlc;
+    }
+
+    public void setLdlc(String ldlc) {
+        this.ldlc = ldlc;
+    }
+
     /**
      * 得到去不或者特定的（搜索框触发）的信息
      *
@@ -109,5 +256,13 @@ public class CasehistoryAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 根据所有的
+     *
+     * @return
+     */
+    public String getAllInformation2() {
+        return SUCCESS;
+    }
 
 }
