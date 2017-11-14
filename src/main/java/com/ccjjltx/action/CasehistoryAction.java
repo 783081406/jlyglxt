@@ -32,13 +32,14 @@ public class CasehistoryAction extends ActionSupport {
     //保存json结果
     private JSONObject result;
     //////////////////提交过来的表中的字段/////////////////////////
+    private int chId;
     //基本特征
     private String ename;
     private String height;
     private String weight;
     private String physician;
     private String hospital;
-    private String hospitalName;
+    private String hospitalPhone;
     private String allergyDrugs;
     private String majorDiseases;
     //血压血氧
@@ -87,6 +88,14 @@ public class CasehistoryAction extends ActionSupport {
         this.result = result;
     }
 
+    public int getChId() {
+        return chId;
+    }
+
+    public void setChId(int chId) {
+        this.chId = chId;
+    }
+
     public String getEname() {
         return ename;
     }
@@ -127,12 +136,12 @@ public class CasehistoryAction extends ActionSupport {
         this.hospital = hospital;
     }
 
-    public String getHospitalName() {
-        return hospitalName;
+    public String getHospitalPhone() {
+        return hospitalPhone;
     }
 
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
+    public void setHospitalPhone(String hospitalPhone) {
+        this.hospitalPhone = hospitalPhone;
     }
 
     public String getAllergyDrugs() {
@@ -257,11 +266,30 @@ public class CasehistoryAction extends ActionSupport {
     }
 
     /**
-     * 根据所有的
+     * 返回所有的数据
      *
-     * @return
+     * @return json数据
      */
     public String getAllInformation2() {
+        Casehistory ch = casehistoryDAO.getSearchInformation(getChId());
+        result = new JSONObject();
+        result.put("ename", ch.getElder().getEId());
+        result.put("height", ch.getHeight());
+        result.put("weight", ch.getWeight());
+        result.put("physician", ch.getPhysician());
+        result.put("hospital", ch.getHospital());
+        result.put("hospitalPhone", ch.getHospitalPhone());
+        result.put("allergyDrugs", ch.getAllergyDrugs());
+        result.put("majorDiseases", ch.getMajorDiseases());
+        result.put("highHanded", ch.getHighHanded());
+        result.put("lowHanded", ch.getLowHanded());
+        result.put("bloodOxygenValue", ch.getBloodOxygenValue());
+        result.put("fastingPlasmaGlucose", ch.getFastingPlasmaGlucose());
+        result.put("postprandialBoolGlucose", ch.getPostprandialBloodGlucose());
+        result.put("totalCholesterol", ch.getTotalCholesterol());
+        result.put("triglyceride", ch.getTriglyceride());
+        result.put("hdlc", ch.getHdlc());
+        result.put("ldlc", ch.getLdlc());
         return SUCCESS;
     }
 
