@@ -76,4 +76,13 @@ public class CasehistoryDAOTest {
     }
 
 
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchInformation() {
+        Casehistory casehistory = casehistoryDAO.getSearchInformation(1);
+        Assert.assertEquals(1, casehistory.getChId());
+    }
 }
