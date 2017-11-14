@@ -47,8 +47,9 @@
 <div id="toolbl">
     <div>
         <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="morebl()">更多</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="xdbl()">心电信息</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="jybl()">就医记录</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newbl()">添加</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editbl()">修改</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removebl()">删除</a>
     </div>
     <div>
@@ -59,8 +60,8 @@
     </div>
 </div>
 <!--病历》表单-->
-<div id="bld" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
-     buttons="#dlg-buttons">
+<div id="bld" class="easyui-dialog" style="width:400px;height:420px;padding:10px 20px" closed="true"
+     buttons="#blt-buttons">
     <form id="blf" method="post" novalidate>
         <div class="ftitle">基本特征</div>
         <div class="fitem">
@@ -77,67 +78,68 @@
         </div>
         <div class="fitem">
             <label>主治医师:</label>
-            <input name="physician" class="easyui-validatebox" required="required">
+            <input name="physician" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>医院:</label>
-            <input name="hospital" class="easyui-validatebox" required="required">
+            <input name="hospital" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>医院电话:</label>
-            <input name="hospitalName" class="easyui-validatebox" required="required">
+            <input name="hospitalPhone" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>过敏药物:</label>
-            <input name="allergyDrugs" class="easyui-validatebox" required="required">
+            <input name="allergyDrugs" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>主要疾病:</label>
-            <input name="majorDiseases" class="easyui-validatebox" required="required">
+            <input name="majorDiseases" class="easyui-validatebox">
         </div>
         <div class="ftitle">血压血氧</div>
         <div class="fitem">
             <label>高压:</label>
-            <input name="highHanded" class="easyui-validatebox" required="required">
+            <input name="highHanded" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>低压:</label>
-            <input name="lowHanded" class="easyui-validatebox" required="required">
+            <input name="lowHanded" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>血氧值:</label>
-            <input name="bloodOxygenValue" class="easyui-validatebox" required="required">
+            <input name="bloodOxygenValue" class="easyui-validatebox">
         </div>
         <div class="ftitle">血糖信息</div>
         <div class="fitem">
             <label>空腹血糖:</label>
-            <input name="fastingPlasmaGlucose" class="easyui-validatebox" required="required">
+            <input name="fastingPlasmaGlucose" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>餐后血糖:</label>
-            <input name="postprandialBoolGlucose" class="easyui-validatebox" required="required">
+            <input name="postprandialBoolGlucose" class="easyui-validatebox">
         </div>
         <div class="ftitle">血脂信息</div>
         <div class="fitem">
             <label>总胆固醇:</label>
-            <input name="totalCholesterol" class="easyui-validatebox" required="required">
+            <input name="totalCholesterol" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>甘油三酯:</label>
-            <input name="triglyceride" class="easyui-validatebox" required="required">
+            <input name="triglyceride" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>高密度脂蛋白胆固醇:</label>
-            <input name="hdlc" class="easyui-validatebox" required="required">
+            <input name="hdlc" class="easyui-validatebox">
         </div>
         <div class="fitem">
             <label>低密度脂蛋白胆固醇:</label>
-            <input name="ldlc" class="easyui-validatebox" required="required">
+            <input name="ldlc" class="easyui-validatebox">
         </div>
     </form>
 </div>
 <!--病历》提交与取消按钮-->
 <div id="blt-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="editbl()">修改</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savebl()">保存</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
        onclick="javascript:$('#bld').dialog('close')">取消</a>
@@ -145,6 +147,9 @@
 
 <!--自定义的CSS-->
 <script>
+    ///////////////变量////////////////////
+    var chId;
+    var url;
     ////////////////////////////////////////////////////////////////////
     //搜索功能
     obj = {
@@ -165,6 +170,26 @@
     /////////////////////////////病历////////////////////////////////////
     //更多
     function morebl() {
+        //得到那行的数据
+        var row = $('#blt').datagrid('getSelected');
+        if (row) {
+            $("#bld").dialog('open').dialog('setTitle', '病历详细');
+            //设置不可编辑
+            $("#blf div input").attr("disabled", "disabled");
+            //加载数据
+            $("#blf").form('load', '<%=basePath %>chaction/getAllInformation2.action?chId=' + row.chId);
+            $("#box").combobox({disabled: true});
+            chId = row.chId;
+        }
+    }
+
+    //心电信息
+    function xdbl() {
+
+    }
+
+    //就医记录
+    function jybl() {
 
     }
 
@@ -173,24 +198,25 @@
 
     }
 
-    //编辑
-    function editbl() {
-
-    }
-
     //删除
     function removebl() {
 
+    }
+
+    //修改
+    function editbl() {
+        //设置可编辑
+        $("#blf div input").attr("disabled", false);
     }
 
     //保存
     function savebl() {
 
     }
-    ////////////////////////////////////////////////////////////////////
+    ////////////////////////////心电信息////////////////////////////////////////
 
 
-    ////////////////////////////////////////////////////////////////////
+    /////////////////////////////就医记录///////////////////////////////////////
 </script>
 </body>
 </html>
