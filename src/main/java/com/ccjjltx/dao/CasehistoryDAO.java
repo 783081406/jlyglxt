@@ -98,4 +98,23 @@ public class CasehistoryDAO {
         session.update(ch);
     }
 
+    /**
+     * 根据Elder的主键eId得到数据库中是否已经有该名老人的病历
+     *
+     * @param eId Elder主键
+     * @return true表示已经存在，false表示不存在
+     */
+    public boolean isElder(int eId) {
+        Session session = factory.getCurrentSession();
+        //得到Elder实例化
+        Elder elder = elderDAO.getSearchElder(eId);
+        String hql = "from Casehistory casehistory where elder=:elder";
+        Query query = session.createQuery(hql).setParameter("elder", elder);
+        Casehistory casehistory = (Casehistory) query.uniqueResult();
+        if (casehistory == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
