@@ -28,12 +28,11 @@ public class Medicalrecord implements Serializable {
     }
 
     //有参构造器
-    public Medicalrecord(String mrpPlace, String medicalDoctor, String diagnosisResult, String advice, Casehistory casehistory) {
+    public Medicalrecord(String mrpPlace, String medicalDoctor, String diagnosisResult, String advice) {
         this.mrpPlace = mrpPlace;
         this.medicalDoctor = medicalDoctor;
         this.diagnosisResult = diagnosisResult;
         this.advice = advice;
-        this.casehistory = casehistory;
     }
 
     public int getMrId() {
