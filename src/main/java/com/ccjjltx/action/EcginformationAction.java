@@ -194,7 +194,29 @@ public class EcginformationAction extends ActionSupport {
         //执行更新操作
         ecginformationDAO.addInformation(ec);
         //返回Json信息
-        result=JsonMessage.returnMessage(true, "success");
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+    /**
+     * 更新信息
+     *
+     * @return JSON，成功或失败的信息提示
+     */
+    public String updateInformation() {
+        //得到心电信息的实例化
+        Ecginformation db_ec = ecginformationDAO.getSearchEinformation(getEcgId());
+        //更新信息
+        db_ec.setQrs(getQrs());
+        db_ec.setComment(getComment());
+        db_ec.setRr(getRr());
+        db_ec.setAnalysisResult(getAnalysisResult());
+        db_ec.setRhythm(getRhythm());
+        db_ec.setRdate(getRdate());
+        //执行更新操作
+        ecginformationDAO.updateInformation(db_ec);
+        //返回json提示信息
+        result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
 
