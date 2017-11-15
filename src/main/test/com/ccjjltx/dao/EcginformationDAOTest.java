@@ -75,4 +75,20 @@ public class EcginformationDAOTest {
         Assert.assertEquals(1, ec.getCasehistory().getChId());
     }
 
+    /**
+     * 验证：是否能执行更新操作
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        Ecginformation ec = ecginformationDAO.getSearchEinformation(1);
+        //更新qrs区间
+        ec.setQrs("1");
+        //执行更新操作
+        ecginformationDAO.updateInformation(ec);
+        Ecginformation ec2 = ecginformationDAO.getSearchEinformation(1);
+        Assert.assertEquals("1", ec2.getQrs());
+    }
+
 }
