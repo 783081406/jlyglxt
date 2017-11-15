@@ -111,10 +111,31 @@ public class CasehistoryDAO {
         String hql = "from Casehistory casehistory where elder=:elder";
         Query query = session.createQuery(hql).setParameter("elder", elder);
         Casehistory casehistory = (Casehistory) query.uniqueResult();
-        if (casehistory == null) {
+        if (casehistory == null) {//表示没有相关的病历
             return false;
         } else {
             return true;
+        }
+    }
+
+    /**
+     * 新增操作
+     *
+     * @param ch  Casehistory实例化
+     * @param eId Elder主键
+     * @return false表示插入失败，Elder已经存在，true表示插入成功
+     */
+    public boolean addInformation(Casehistory ch, int eId) {
+        Session session = factory.getCurrentSession();
+        //判断是否已经存在该名老人的病历了，有则插入失败
+        if (!isElder(eId)) {//表示没有存在相关的病历，插入失败
+            Elder elder = elderDAO.getSearchElder(eId);
+            ch.setElder(elder);
+            //执行增加操作
+            session.save(ch);
+            return true;
+        } else {//表示存在相关的病历，插入失败
+            return false;
         }
     }
 }
