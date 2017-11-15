@@ -454,7 +454,14 @@
 
     //修改
     function editjy() {
-
+        var row = $('#jyt').datagrid('getSelected');
+        if (row) {
+            $('#jyd').dialog('open').dialog('setTitle', '更新就医记录');
+            //加载点击那一行的数据
+            $('#jyf').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>mraction/updateInformation.action?mrId=' + row.mrId;
+        }
     }
 
     //提交
