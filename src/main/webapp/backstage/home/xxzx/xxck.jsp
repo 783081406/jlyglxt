@@ -187,7 +187,7 @@
         var row = $('#dg').datagrid('getSelected');
         if (row) {
             $('#morecheck').dialog('open').dialog('setTitle', '详细信息');
-            //加载form表单的数据
+            //加载table数据
             $('#moret').datagrid('load', '<%=basePath %>familyimaction/getAllInformation.action?eiId=' + row.eiId);
             eiId = row.eiId;
         }
