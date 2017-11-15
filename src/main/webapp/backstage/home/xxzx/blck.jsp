@@ -60,7 +60,7 @@
         </div>
     </div>
 </div>
-<!--病历》表单-->
+<!--病历》表单1-->
 <div id="bld" class="easyui-dialog" style="width:400px;height:420px;padding:10px 20px" closed="true"
      buttons="#blt-buttons">
     <form id="blf" method="post" novalidate>
@@ -138,14 +138,97 @@
         </div>
     </form>
 </div>
-<!--病历》提交与取消按钮-->
+<!--病历》提交与取消按钮1-->
 <div id="blt-buttons">
     <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="editbl()">修改</a>
     <a id="savebl" href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savebl()">保存</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
        onclick="javascript:$('#bld').dialog('close')">取消</a>
 </div>
-
+<!--病历》表单2-->
+<div id="bld2" class="easyui-dialog" style="width:400px;height:420px;padding:10px 20px" closed="true"
+     buttons="#blt-buttons2">
+    <form id="blf2" method="post" novalidate>
+        <div class="ftitle">基本特征</div>
+        <div class="fitem">
+            <label>姓名:</label>
+            <input id="box2" name="ename" required="required" style="width:173px;">
+        </div>
+        <div class="fitem">
+            <label>身高:</label>
+            <input name="height" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>体重:</label>
+            <input name="weight" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>主治医师:</label>
+            <input name="physician" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>医院:</label>
+            <input name="hospital" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>医院电话:</label>
+            <input name="hospitalPhone" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>过敏药物:</label>
+            <input name="allergyDrugs" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>主要疾病:</label>
+            <input name="majorDiseases" class="easyui-validatebox">
+        </div>
+        <div class="ftitle">血压血氧</div>
+        <div class="fitem">
+            <label>高压:</label>
+            <input name="highHanded" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>低压:</label>
+            <input name="lowHanded" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>血氧值:</label>
+            <input name="bloodOxygenValue" class="easyui-validatebox">
+        </div>
+        <div class="ftitle">血糖信息</div>
+        <div class="fitem">
+            <label>空腹血糖:</label>
+            <input name="fastingPlasmaGlucose" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>餐后血糖:</label>
+            <input name="postprandialBoolGlucose" class="easyui-validatebox">
+        </div>
+        <div class="ftitle">血脂信息</div>
+        <div class="fitem">
+            <label>总胆固醇:</label>
+            <input name="totalCholesterol" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>甘油三酯:</label>
+            <input name="triglyceride" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>高密度脂蛋白胆固醇:</label>
+            <input name="hdlc" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
+            <label>低密度脂蛋白胆固醇:</label>
+            <input name="ldlc" class="easyui-validatebox">
+        </div>
+    </form>
+</div>
+<!--病历》提交与取消按钮2-->
+<div id="blt-buttons2">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savebl2()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+       onclick="javascript:$('#bld2').dialog('close')">取消</a>
+</div>
 
 <!--//////////////////////////////////////////////////////////////////////////////////////-->
 <!--心电信息》table-->
@@ -288,7 +371,12 @@
             valueField: 'eId',
             textField: 'ename',
             url: '<%=basePath %>elderaction/getIdElderName.action'
-        })
+        });
+        $("#box2").combobox({
+            valueField: 'eId',
+            textField: 'ename',
+            url: '<%=basePath %>elderaction/getIdElderName.action'
+        });
     });
     /////////////////////////////病历////////////////////////////////////
     //更多
@@ -332,14 +420,13 @@
 
     //增加
     function newbl() {
-
+        $("#bld2").dialog('open').dialog('setTitle', '新增病历');
+        //清空表单，来显示空表单
+        $("#blf2").form('clear');
+        //提交数据处理的url
+        url = '<%=basePath %>chaction/saveInformation.action';
     }
-
-    //删除
-    function removebl() {
-
-    }
-
+    ////////////////////////////////////////////////////////////////////////
     //修改
     function editbl() {
         //设置可编辑
@@ -372,6 +459,35 @@
                 }
             }
         });
+    }
+
+    //保存
+    function savebl2() {
+        $('#blf2').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#bld2').dialog('close');		// 关闭window
+                    $('#blt').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
+
+    //删除
+    function removebl() {
+
     }
     ////////////////////////////心电信息////////////////////////////////////////
     //添加功能
