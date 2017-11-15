@@ -2,12 +2,15 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.CasehistoryDAO;
 import com.ccjjltx.dao.MedicalrecordDAO;
+import com.ccjjltx.domain.Medicalrecord;
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/8.
@@ -122,6 +125,31 @@ public class MedicalrecordAction extends ActionSupport {
 
     public void setAdvice(String advice) {
         this.advice = advice;
+    }
+
+    /**
+     * 得到全部的就医记录
+     *
+     * @return Json数据
+     */
+    public String getAllInformation() {
+        //得到所有关于该chId的就医记录
+        List<Medicalrecord> list = medicalrecordDAO.getAllInformation(getChId());
+        result = new JSONObject();
+        result.put("total", list.size());
+        //JsonArray对象
+        JSONArray jsonArray = new JSONArray();
+        for (Medicalrecord mc : list) {
+            JSONObject js = new JSONObject();
+            js.put("mrId", mc.getMrId());
+            js.put("mrpPlace", mc.getMrpPlace());
+            js.put("medicalDoctor", mc.getMedicalDoctor());
+            js.put("diagnosisResult", mc.getDiagnosisResult());
+            js.put("advice", mc.getAdvice());
+            jsonArray.add(js);
+        }
+        result.put("rows", jsonArray);
+        return SUCCESS;
     }
 
 
