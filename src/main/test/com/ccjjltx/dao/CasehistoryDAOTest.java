@@ -1,7 +1,6 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Casehistory;
-import com.ccjjltx.domain.Ecginformation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +24,6 @@ import java.util.List;
 public class CasehistoryDAOTest {
     @Resource(name = "casehistoryDAO")
     private CasehistoryDAO casehistoryDAO;
-    @Resource(name = "ecginformationDAO")
-    private EcginformationDAO ecginformationDAO;
-    @Resource(name = "medicalrecordDAO")
-    private MedicalrecordDAO medicalrecordDAO;
 
     /**
      * 验证：ename为null的时候是否返回总条数
@@ -36,9 +31,9 @@ public class CasehistoryDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation1() {
-        //当时数据库只有十五条数据
+        //当时数据库只有十六条数据
         List<Casehistory> list = casehistoryDAO.getAllInformation(0, 20, null);
-        Assert.assertEquals(15, list.size());
+        Assert.assertEquals(16, list.size());
     }
 
     /**
@@ -68,7 +63,8 @@ public class CasehistoryDAOTest {
     @Transactional
     public void testGetAllInformationNumber1() {
         int result = casehistoryDAO.getAllInformationNumber(null);
-        Assert.assertEquals(15, result);
+        int rr = casehistoryDAO.getAllInformation(0, 100, null).size();
+        Assert.assertEquals(rr, result);
     }
 
     /**
@@ -124,7 +120,7 @@ public class CasehistoryDAOTest {
     @Test
     @Transactional
     public void testIsElder2() {
-        boolean result = casehistoryDAO.isElder(21);
+        boolean result = casehistoryDAO.isElder(16);
         Assert.assertFalse(result);
     }
 
@@ -147,7 +143,7 @@ public class CasehistoryDAOTest {
     @Rollback
     public void testAddInformation2() {
         Casehistory ch = new Casehistory("1", "2", "3", "4", "5", "6", "7");
-        boolean result = casehistoryDAO.addInformation(ch, 21);
+        boolean result = casehistoryDAO.addInformation(ch, 16);
         Assert.assertTrue(result);
     }
 
@@ -162,7 +158,7 @@ public class CasehistoryDAOTest {
         //得到插入前总数量
         int result1 = casehistoryDAO.getAllInformationNumber(null);
         //执行插入
-        casehistoryDAO.addInformation(ch, 21);
+        casehistoryDAO.addInformation(ch, 16);
         int result2 = casehistoryDAO.getAllInformationNumber(null);
         //理论插入成功result1应该比result2大1
         Assert.assertEquals(result1 + 1, result2);
