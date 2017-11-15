@@ -1,7 +1,9 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Casehistory;
+import com.ccjjltx.domain.Ecginformation;
 import com.ccjjltx.domain.Elder;
+import com.ccjjltx.domain.Medicalrecord;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +27,10 @@ public class CasehistoryDAO {
     private SessionFactory factory;
     @Resource(name = "elderDAO")
     private ElderDAO elderDAO;
+    @Resource(name = "ecginformationDAO")
+    private EcginformationDAO ecginformationDAO;
+    @Resource(name = "medicalrecordDAO")
+    private MedicalrecordDAO medicalrecordDAO;
 
     /**
      * 得到全部或特定的信息
@@ -137,5 +143,26 @@ public class CasehistoryDAO {
         } else {//表示存在相关的病历，插入失败
             return false;
         }
+    }
+
+    /**
+     * 删除功能
+     *
+     * @param chId 主键
+     */
+    public void deleteInformation(int chId) {
+        Session session = factory.getCurrentSession();
+        //删除心电信息
+        List<Ecginformation> ecglist = ecginformationDAO.getAllInformation(chId);
+        for (Ecginformation ec : ecglist) {
+            ecginformationDAO.deleteInformation(ec.getEcgId());
+        }
+        //删除就医记录
+        List<Medicalrecord> mrlist = medicalrecordDAO.getAllInformation(chId);
+        for (Medicalrecord mr : mrlist) {
+            medicalrecordDAO.deleteInformation(mr.getMrId());
+        }
+        //最后在删除病历数据
+        session.delete(getSearchInformation(chId));
     }
 }
