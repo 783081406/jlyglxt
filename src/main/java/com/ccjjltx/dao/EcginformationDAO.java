@@ -62,4 +62,14 @@ public class EcginformationDAO {
         return (Ecginformation) session.get(Ecginformation.class, ecgId);
     }
 
+    /**
+     * 更新操作
+     *
+     * @param ec Ecginformation实例化
+     */
+    public void updateInformation(Ecginformation ec) {
+        Session session = factory.getCurrentSession();
+        session.update(ec);
+    }
+
 }
