@@ -325,7 +325,7 @@
         if (row) {
             $("#jytd").dialog('open').dialog('setTitle', '相关就医记录');
             //加载
-            $('#jyt').datagrid('load', '<%=basePath %>ecgiaction/getAllInformation.action?chId=' + row.chId);
+            $('#jyt').datagrid('load', '<%=basePath %>mraction/getAllInformation.action?chId=' + row.chId);
             chId = row.chId;
         }
     }
