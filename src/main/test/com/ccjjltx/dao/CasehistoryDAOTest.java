@@ -102,4 +102,24 @@ public class CasehistoryDAOTest {
         casehistoryDAO.updateInformation(ch);
         Assert.assertEquals("123123", casehistoryDAO.getSearchInformation(1).getHospital());
     }
+
+    /**
+     * 验证：当存在病历的Elder是否返回true
+     */
+    @Test
+    @Transactional
+    public void testIsElder1() {
+        boolean result = casehistoryDAO.isElder(1);
+        Assert.assertTrue(result);
+    }
+
+    /**
+     * 验证：当不存在病历的Elder是否返回false
+     */
+    @Test
+    @Transactional
+    public void testIsElder2() {
+        boolean result = casehistoryDAO.isElder(21);
+        Assert.assertFalse(result);
+    }
 }
