@@ -157,7 +157,7 @@
             <thead>
             <tr>
                 <th field="qrs" width="100">qrs区间</th>
-                <th field="comment" width="100">全科医生</th>
+                <th field="comment" width="100">全科医生批注</th>
                 <th field="rr" width="100">rr期间</th>
                 <th field="analysisResult" width="100">医生分析结果</th>
                 <th field="rhythm" width="100">心率</th>
@@ -185,7 +185,7 @@
             <input name="qrs" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
-            <label>全科医生:</label>
+            <label>全科医生批注:</label>
             <input name="comment" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
@@ -194,7 +194,7 @@
         </div>
         <div class="fitem">
             <label>医生分析结果:</label>
-            <input name="analysisResult" class="easyui-datebox" required="required">
+            <input name="analysisResult" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>心率:</label>
@@ -202,7 +202,7 @@
         </div>
         <div class="fitem">
             <label>诊断时间:</label>
-            <input name="rdate" class="easyui-validatebox" required="required">
+            <input name="rdate" class="easyui-datebox" required="required">
         </div>
     </form>
 </div>
@@ -256,7 +256,7 @@
     function xdbl() {
         var row = $('#blt').datagrid('getSelected');
         if (row) {
-            $("#xdtd").dialog('open').dialog('setTitle', '心电信息');
+            $("#xdtd").dialog('open').dialog('setTitle', '相关心电信息');
             //加载
             $('#xdt').datagrid('load', '<%=basePath %>ecgiaction/getAllInformation.action?chId=' + row.chId);
             chId = row.chId;
@@ -314,7 +314,11 @@
     ////////////////////////////心电信息////////////////////////////////////////
     //添加功能
     function newxd() {
-
+        $("#xdd").dialog('open').dialog('setTitle', '增加心电信息');
+        //清空表单，来显示空表单
+        $("#xdf").form('clear');
+        //提交数据处理的url
+        url = '<%=basePath %>ecgiaction/saveInformation.action?chId=' + chId;
     }
 
     //修改功能
@@ -324,7 +328,26 @@
 
     //提交
     function savexd() {
-
+        $('#xdf').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#xdd').dialog('close');		// 关闭window
+                    $('#xdt').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
     }
 
     //删除功能
