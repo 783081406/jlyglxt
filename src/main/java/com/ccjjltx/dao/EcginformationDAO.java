@@ -37,7 +37,17 @@ public class EcginformationDAO {
         //得到casehistory实例化
         Casehistory db_casehistory = casehistoryDAO.getSearchInformation(chId);
         String hql = "from Ecginformation ecginformation where casehistory=:casehistory";
-       Query query = session.createQuery(hql).setParameter("casehistory", db_casehistory);
+        Query query = session.createQuery(hql).setParameter("casehistory", db_casehistory);
         return (List<Ecginformation>) query.list();
+    }
+
+    /**
+     * 增加心电信息
+     *
+     * @param ec Ecginformation实例化
+     */
+    public void addInformation(Ecginformation ec) {
+        Session session = factory.getCurrentSession();
+        session.save(ec);
     }
 }
