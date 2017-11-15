@@ -72,4 +72,14 @@ public class MedicalrecordDAO {
         session.update(mc);
     }
 
+    /**
+     * 删除操作
+     *
+     * @param mrId 主键
+     */
+    public void deleteInformation(int mrId) {
+        Session session = factory.getCurrentSession();
+        //删除操作
+        session.delete(getSearchEinformation(mrId));
+    }
 }
