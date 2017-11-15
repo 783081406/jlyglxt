@@ -51,4 +51,15 @@ public class MedicalrecordDAO {
         session.save(mc);
     }
 
+    /**
+     * 根据主键得到实例化
+     *
+     * @param mrId 主键
+     * @return 实例化
+     */
+    public Medicalrecord getSearchEinformation(int mrId) {
+        Session session = factory.getCurrentSession();
+        return (Medicalrecord) session.get(Medicalrecord.class, mrId);
+    }
+
 }
