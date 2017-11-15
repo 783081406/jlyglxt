@@ -44,6 +44,7 @@
     </tr>
     </thead>
 </table>
+<!--病历》tool-->
 <div id="toolbl">
     <div>
         <a href="#" class="easyui-linkbutton" iconCls="icon-more" plain="true" onclick="morebl()">更多</a>
@@ -145,6 +146,72 @@
        onclick="javascript:$('#bld').dialog('close')">取消</a>
 </div>
 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////-->
+<!--心电信息》table-->
+<div id="xdtd" class="easyui-dialog" style="width:680px;height:270px;padding:10px 20px" closed="true">
+    <div class="ftitle">心电信息</div>
+    <div>
+        <table id="xdt" class="easyui-datagrid" style="width: 620px;height: auto;" title="心电信息" toolbar="#toolxd"
+               rownumbers="true" fitColumns="true" singleSelect="true">
+            <thead>
+            <tr>
+                <th field="qrs" width="100">qrs区间</th>
+                <th field="comment" width="100">全科医生</th>
+                <th field="rr" width="100">rr期间</th>
+                <th field="analysisResult" width="100">医生分析结果</th>
+                <th field="rhythm" width="100">心率</th>
+                <th field="rdate" width="200">诊断时间</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!--心电信息》tool-->
+<div id="toolxd">
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newxd()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editxd()">修改</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removexd()">删除</a>
+    </div>
+</div>
+<!--心电信息》form-->
+<div id="xdd" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true"
+     buttons="#xdt-buttons">
+    <div class="ftitle">心电信息</div>
+    <form id="xdf" method="post" novalidate>
+        <div class="fitem">
+            <label>qrs区间:</label>
+            <input name="qrs" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>全科医生:</label>
+            <input name="comment" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>rr期间:</label>
+            <input name="rr" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>医生分析结果:</label>
+            <input name="analysisResult" class="easyui-datebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>心率:</label>
+            <input name="rhythm" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>诊断时间:</label>
+            <input name="rdate" class="easyui-validatebox" required="required">
+        </div>
+    </form>
+</div>
+<!--心电信息》提交与取消按钮-->
+<div id="xdt-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savexd()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#xdd').dialog('close')">取消</a>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////-->
 <!--自定义的CSS-->
 <script>
     ///////////////变量////////////////////
@@ -187,7 +254,13 @@
 
     //心电信息
     function xdbl() {
-
+        var row = $('#blt').datagrid('getSelected');
+        if (row) {
+            $("#xdtd").dialog('open').dialog('setTitle', '心电信息');
+            //加载
+            $('#xdt').datagrid('load', '<%=basePath %>ecgiaction/getAllInformation.action?chId=' + row.chId);
+            chId = row.chId;
+        }
     }
 
     //就医记录
@@ -239,7 +312,25 @@
         });
     }
     ////////////////////////////心电信息////////////////////////////////////////
+    //添加功能
+    function newxd() {
 
+    }
+
+    //修改功能
+    function editxd() {
+
+    }
+
+    //提交
+    function savexd() {
+
+    }
+
+    //删除功能
+    function removexd() {
+
+    }
 
     /////////////////////////////就医记录///////////////////////////////////////
 </script>
