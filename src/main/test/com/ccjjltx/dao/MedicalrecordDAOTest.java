@@ -64,9 +64,28 @@ public class MedicalrecordDAOTest {
     @Transactional
     public void testGetSearchEinformation() {
         //得到实例化
-        Medicalrecord mc=medicalrecordDAO.getSearchEinformation(1);
+        Medicalrecord mc = medicalrecordDAO.getSearchEinformation(1);
         //第一条数据的chId为1
-        Assert.assertEquals(1,mc.getCasehistory().getChId());
+        Assert.assertEquals(1, mc.getCasehistory().getChId());
+    }
+
+    /**
+     * 验证：是否能更新
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        //得到一个实例化
+        Medicalrecord mc = medicalrecordDAO.getSearchEinformation(1);
+        //更新一条数据
+        mc.setAdvice("123");
+        //执行更新
+        medicalrecordDAO.updateInformation(mc);
+        //再次得到该实例化
+        Medicalrecord mc2 = medicalrecordDAO.getSearchEinformation(1);
+        //断言
+        Assert.assertEquals("123", mc2.getAdvice());
     }
 
 }
