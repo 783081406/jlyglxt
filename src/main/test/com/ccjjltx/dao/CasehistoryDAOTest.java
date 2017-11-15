@@ -1,6 +1,7 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Casehistory;
+import com.ccjjltx.domain.Ecginformation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,10 @@ import java.util.List;
 public class CasehistoryDAOTest {
     @Resource(name = "casehistoryDAO")
     private CasehistoryDAO casehistoryDAO;
+    @Resource(name = "ecginformationDAO")
+    private EcginformationDAO ecginformationDAO;
+    @Resource(name = "medicalrecordDAO")
+    private MedicalrecordDAO medicalrecordDAO;
 
     /**
      * 验证：ename为null的时候是否返回总条数
@@ -161,5 +166,21 @@ public class CasehistoryDAOTest {
         int result2 = casehistoryDAO.getAllInformationNumber(null);
         //理论插入成功result1应该比result2大1
         Assert.assertEquals(result1 + 1, result2);
+    }
+
+    /**
+     * 验证：是否能将病历删除
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testdeleteInformation1() {
+        //得到删除前的数据
+        int result1 = casehistoryDAO.getAllInformationNumber(null);
+        //执行删除功能
+        casehistoryDAO.deleteInformation(1);
+        //得到删除后的数据
+        int result2 = casehistoryDAO.getAllInformationNumber(null);
+        Assert.assertEquals(result1 - 1, result2);
     }
 }
