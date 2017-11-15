@@ -122,4 +122,44 @@ public class CasehistoryDAOTest {
         boolean result = casehistoryDAO.isElder(21);
         Assert.assertFalse(result);
     }
+
+    /**
+     * 验证：当Elder存在的时候是否返回false
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation1() {
+        boolean result = casehistoryDAO.addInformation(null, 1);
+        Assert.assertFalse(result);
+    }
+
+    /**
+     * 验证：当Elder不存在的时候是否返回true
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation2() {
+        Casehistory ch = new Casehistory("1", "2", "3", "4", "5", "6", "7");
+        boolean result = casehistoryDAO.addInformation(ch, 21);
+        Assert.assertTrue(result);
+    }
+
+    /**
+     * 验证：当Elder不存在的时候,是否插入成功
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation3() {
+        Casehistory ch = new Casehistory("1", "2", "3", "4", "5", "6", "7");
+        //得到插入前总数量
+        int result1 = casehistoryDAO.getAllInformationNumber(null);
+        //执行插入
+        casehistoryDAO.addInformation(ch, 21);
+        int result2 = casehistoryDAO.getAllInformationNumber(null);
+        //理论插入成功result1应该比result2大1
+        Assert.assertEquals(result1 + 1, result2);
+    }
 }
