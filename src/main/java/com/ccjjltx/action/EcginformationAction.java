@@ -39,7 +39,7 @@ public class EcginformationAction extends ActionSupport {
     private int rows;
     //保存json结果
     private JSONObject result;
-    ///////////////////提交过来的字/////////////////////
+    ///////////////////提交过来的字段数据/////////////////////
     private int chId;
     private int ecgId;
     private String qrs;
@@ -48,8 +48,8 @@ public class EcginformationAction extends ActionSupport {
     private String analysisResult;
     private String rhythm;
     private Date rdate;
-
     ////////////////////////////////////////////////////
+
     public EcginformationDAO getEcginformationDAO() {
         return ecginformationDAO;
     }
