@@ -62,4 +62,14 @@ public class MedicalrecordDAO {
         return (Medicalrecord) session.get(Medicalrecord.class, mrId);
     }
 
+    /**
+     * 更新操作
+     *
+     * @param mc 更新的实例化
+     */
+    public void updateInformation(Medicalrecord mc) {
+        Session session = factory.getCurrentSession();
+        session.update(mc);
+    }
+
 }
