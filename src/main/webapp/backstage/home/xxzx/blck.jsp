@@ -490,7 +490,25 @@
 
     //删除
     function removejy() {
-
+        var row = $('#jyt').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('警告', '是否确定删除本行数据?', function (r) {
+                //如果选择确定，执行if里面语句
+                if (r) {
+                    //post提交
+                    $.post('<%=basePath %>mraction/removeInformation.action', {mrId: row.mrId}, function (result) {
+                        if (result.success) {
+                            $('#jyt').datagrid('reload');	// 重新加载数据
+                        } else {
+                            $.messager.show({	// 显示错误的信息
+                                title: '错误提示',
+                                msg: result.msg
+                            });
+                        }
+                    }, 'json');
+                }
+            });
+        }
     }
 
 </script>
