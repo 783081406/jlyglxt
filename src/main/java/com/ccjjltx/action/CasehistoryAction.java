@@ -370,4 +370,14 @@ public class CasehistoryAction extends ActionSupport {
         }
     }
 
+    /**
+     * 删除功能
+     *
+     * @return 返回JSON数据，成功或失败的提示信息
+     */
+    public String removeInformation() {
+        casehistoryDAO.deleteInformation(getChId());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
