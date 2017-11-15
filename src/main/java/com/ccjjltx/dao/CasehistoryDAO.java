@@ -88,4 +88,14 @@ public class CasehistoryDAO {
         return (Casehistory) session.get(Casehistory.class, chId);
     }
 
+    /**
+     * 更新操作
+     *
+     * @param ch Casehistory实例化
+     */
+    public void updateInformation(Casehistory ch) {
+        Session session = factory.getCurrentSession();
+        session.update(ch);
+    }
+
 }
