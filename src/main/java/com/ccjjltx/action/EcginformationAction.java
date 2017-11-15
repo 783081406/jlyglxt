@@ -220,5 +220,16 @@ public class EcginformationAction extends ActionSupport {
         return SUCCESS;
     }
 
-
+    /**
+     * 删除功能
+     *
+     * @return Json，返回成功或失败的提示信息
+     */
+    public String removeInformation() {
+        //删除操作
+        ecginformationDAO.deleteInformation(getEcgId());
+        //返回删除成功的信息
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
