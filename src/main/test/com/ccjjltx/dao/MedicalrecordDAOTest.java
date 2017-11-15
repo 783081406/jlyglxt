@@ -1,8 +1,11 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Casehistory;
+import com.ccjjltx.domain.Medicalrecord;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,9 +32,28 @@ public class MedicalrecordDAOTest {
      */
     @Test
     @Transactional
-    public void getAllInformation() {
+    public void testGetAllInformation() {
         int result = medicalrecordDAO.getAllInformation(1).size();
         //测试的时候数据库chId为1的就医记录数据为2
         Assert.assertEquals(2, result);
+    }
+
+    /**
+     * 验证：是否能增加就医记录
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation() {
+        //得到chId为1的数据量
+        int result1 = medicalrecordDAO.getAllInformation(1).size();
+        Medicalrecord ec = new Medicalrecord("1", "1", "1", "1");
+        Casehistory ch = casehistoryDAO.getSearchInformation(1);
+        ec.setCasehistory(ch);
+        //插入数据操作
+        medicalrecordDAO.addInformation(ec);
+        //再次得到chId为1的数据量
+        int result2 = medicalrecordDAO.getAllInformation(1).size();
+        Assert.assertEquals(result1 + 1, result2);
     }
 }
