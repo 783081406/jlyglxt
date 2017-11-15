@@ -72,4 +72,14 @@ public class EcginformationDAO {
         session.update(ec);
     }
 
+    /**
+     * 删除操作
+     *
+     * @param ecgId 主键
+     */
+    public void deleteInformation(int ecgId) {
+        Session session = factory.getCurrentSession();
+        //删除操作
+        session.delete(getSearchEinformation(ecgId));
+    }
 }
