@@ -182,7 +182,7 @@ public class EcginformationAction extends ActionSupport {
     }
 
     /**
-     * 新增心电信息
+     * 增加心电信息
      *
      * @return JSON，成功或者失败的提示信息
      */
@@ -191,7 +191,7 @@ public class EcginformationAction extends ActionSupport {
         //得到病历的实例化
         Casehistory casehistory = casehistoryDAO.getSearchInformation(getChId());
         ec.setCasehistory(casehistory);
-        //执行更新操作
+        //执行插入操作
         ecginformationDAO.addInformation(ec);
         //返回Json信息
         result = JsonMessage.returnMessage(true, "success");
