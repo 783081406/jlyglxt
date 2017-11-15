@@ -2,7 +2,9 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.CasehistoryDAO;
 import com.ccjjltx.dao.MedicalrecordDAO;
+import com.ccjjltx.domain.Casehistory;
 import com.ccjjltx.domain.Medicalrecord;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -149,6 +151,23 @@ public class MedicalrecordAction extends ActionSupport {
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
+        return SUCCESS;
+    }
+
+    /**
+     * 增加就医记录
+     *
+     * @return Json，成功或者失败提示信息
+     */
+    public String saveInformation() {
+        Medicalrecord mc = new Medicalrecord(getMrpPlace(), getMedicalDoctor(), getDiagnosisResult(), getAdvice());
+        //得到病历的实例化
+        Casehistory ch = casehistoryDAO.getSearchInformation(getChId());
+        mc.setCasehistory(ch);
+        //执行插入操作
+        medicalrecordDAO.addInformation(mc);
+        //返回Json信息
+        result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
 
