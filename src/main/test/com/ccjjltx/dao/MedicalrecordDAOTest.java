@@ -88,4 +88,20 @@ public class MedicalrecordDAOTest {
         Assert.assertEquals("123", mc2.getAdvice());
     }
 
+    /**
+     * 验证：是否能执行删除功能
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        //得到所有chId为1的数据量
+        int result1 = medicalrecordDAO.getAllInformation(1).size();
+        //删除mrId为1的数据，其中，该条数据的chId为1
+        medicalrecordDAO.deleteInformation(1);
+        //再次得到chId为1
+        int result2 = medicalrecordDAO.getAllInformation(1).size();
+        Assert.assertEquals(result1 - 1, result2);
+    }
+
 }
