@@ -4,6 +4,7 @@ import com.ccjjltx.domain.Casehistory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,5 +85,21 @@ public class CasehistoryDAOTest {
     public void testGetSearchInformation() {
         Casehistory casehistory = casehistoryDAO.getSearchInformation(1);
         Assert.assertEquals(1, casehistory.getChId());
+    }
+
+    /**
+     * 验证：是否能更新
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        //得到一个实例化
+        Casehistory ch = casehistoryDAO.getSearchInformation(1);
+        //修改一个变量
+        ch.setHospital("123123");
+        //执行更新操作
+        casehistoryDAO.updateInformation(ch);
+        Assert.assertEquals("123123", casehistoryDAO.getSearchInformation(1).getHospital());
     }
 }
