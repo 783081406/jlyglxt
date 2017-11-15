@@ -240,7 +240,7 @@
     </div>
 </div>
 <!--就医记录》form-->
-<div id="jyd" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true"
+<div id="jyd" class="easyui-dialog" style="width:360px;height:290px;padding:10px 20px" closed="true"
      buttons="#jyt-buttons">
     <div class="ftitle">就医记录</div>
     <form id="jyf" method="post" novalidate>
@@ -445,7 +445,11 @@
     /////////////////////////////就医记录///////////////////////////////////////
     //添加
     function newjy() {
-
+        $("#jyd").dialog('open').dialog('setTitle', '增加就医记录');
+        //清空表单，来显示空表单
+        $("#jyf").form('clear');
+        //提交数据处理的url
+        url = '<%=basePath %>mraction/saveInformation.action?chId=' + chId;
     }
 
     //修改
@@ -455,7 +459,26 @@
 
     //提交
     function savejy() {
-
+        $('#jyf').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#jyd').dialog('close');		// 关闭window
+                    $('#jyt').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
     }
 
     //删除
