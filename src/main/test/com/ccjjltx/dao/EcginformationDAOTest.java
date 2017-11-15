@@ -91,4 +91,20 @@ public class EcginformationDAOTest {
         Assert.assertEquals("1", ec2.getQrs());
     }
 
+    /**
+     * 验证：是否能执行删除操作
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        //得到chId为1的数据条数
+        int result1 = ecginformationDAO.getAllInformation(1).size();
+        //其中ecgId为1的数据，chId也为1
+        ecginformationDAO.deleteInformation(1);
+        //再次得到chId为1的数据条数
+        int result2 = ecginformationDAO.getAllInformation(1).size();
+        Assert.assertEquals(result1 - 1, result2);
+    }
+
 }
