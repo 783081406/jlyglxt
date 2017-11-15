@@ -171,5 +171,25 @@ public class MedicalrecordAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 更新操作
+     *
+     * @return Json，成功或者失败数据
+     */
+    public String updateInformation() {
+        //得到就医记录的实例化
+        Medicalrecord mc = medicalrecordDAO.getSearchEinformation(getMrId());
+        //更新信息
+        mc.setMrpPlace(getMrpPlace());
+        mc.setMedicalDoctor(getMedicalDoctor());
+        mc.setDiagnosisResult(getDiagnosisResult());
+        mc.setAdvice(getAdvice());
+        //执行更新操作
+        medicalrecordDAO.updateInformation(mc);
+        //返回json提示信息
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 
 }
