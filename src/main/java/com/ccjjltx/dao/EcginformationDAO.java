@@ -50,4 +50,16 @@ public class EcginformationDAO {
         Session session = factory.getCurrentSession();
         session.save(ec);
     }
+
+    /**
+     * 根据主键得到实例化
+     *
+     * @param ecgId Ecginformation主键
+     * @return 实例化
+     */
+    public Ecginformation getSearchEinformation(int ecgId) {
+        Session session = factory.getCurrentSession();
+        return (Ecginformation) session.get(Ecginformation.class, ecgId);
+    }
+
 }
