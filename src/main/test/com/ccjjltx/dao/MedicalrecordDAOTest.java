@@ -56,4 +56,17 @@ public class MedicalrecordDAOTest {
         int result2 = medicalrecordDAO.getAllInformation(1).size();
         Assert.assertEquals(result1 + 1, result2);
     }
+
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchEinformation() {
+        //得到实例化
+        Medicalrecord mc=medicalrecordDAO.getSearchEinformation(1);
+        //第一条数据的chId为1
+        Assert.assertEquals(1,mc.getCasehistory().getChId());
+    }
+
 }
