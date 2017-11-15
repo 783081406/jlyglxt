@@ -225,7 +225,6 @@
 
     //修改功能（细表格）
     function editm() {
-        ////////
         var row = $('#moret').datagrid('getSelected');
         if (row) {
             $('#mdlg').dialog('open').dialog('setTitle', '更新信息');
