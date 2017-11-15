@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.CasehistoryDAO;
 import com.ccjjltx.domain.Casehistory;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -273,6 +274,7 @@ public class CasehistoryAction extends ActionSupport {
     public String getAllInformation2() {
         Casehistory ch = casehistoryDAO.getSearchInformation(getChId());
         result = new JSONObject();
+        result.put("chId", ch.getChId());
         result.put("ename", ch.getElder().getEId());
         result.put("height", ch.getHeight());
         result.put("weight", ch.getWeight());
@@ -292,5 +294,40 @@ public class CasehistoryAction extends ActionSupport {
         result.put("ldlc", ch.getLdlc());
         return SUCCESS;
     }
+
+    /**
+     * 更新信息
+     *
+     * @return SUCCESS或者ERROR
+     */
+    public String updateInformation() {
+        //得到实例化
+        Casehistory db_ch = casehistoryDAO.getSearchInformation(getChId());
+        //基础特征
+        db_ch.setHeight(getHeight());
+        db_ch.setWeight(getWeight());
+        db_ch.setPhysician(getPhysician());
+        db_ch.setHospital(getHospital());
+        db_ch.setHospitalPhone(getHospitalPhone());
+        db_ch.setAllergyDrugs(getAllergyDrugs());
+        db_ch.setMajorDiseases(getMajorDiseases());
+        //血氧血压
+        db_ch.setHighHanded(getHighHanded());
+        db_ch.setLowHanded(getLowHanded());
+        db_ch.setBloodOxygenValue(getBloodOxygenValue());
+        //血糖信息
+        db_ch.setFastingPlasmaGlucose(getFastingPlasmaGlucose());
+        db_ch.setPostprandialBloodGlucose(getPostprandialBoolGlucose());
+        //血脂信息
+        db_ch.setTotalCholesterol(getTotalCholesterol());
+        db_ch.setTriglyceride(getTriglyceride());
+        db_ch.setHdlc(getHdlc());
+        db_ch.setLdlc(getLdlc());
+        //执行更新操作
+        casehistoryDAO.updateInformation(db_ch);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 
 }
