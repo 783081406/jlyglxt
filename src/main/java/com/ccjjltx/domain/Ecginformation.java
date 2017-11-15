@@ -32,14 +32,13 @@ public class Ecginformation implements Serializable {
     }
 
     //有参构造函数
-    public Ecginformation(String qrs, String comment, String rr, String analysisResult, String rhythm, Date rdate, Casehistory casehistory) {
+    public Ecginformation(String qrs, String comment, String rr, String analysisResult, String rhythm, Date rdate) {
         this.qrs = qrs;
         this.comment = comment;
         this.rr = rr;
         this.analysisResult = analysisResult;
         this.rhythm = rhythm;
         this.rdate = rdate;
-        this.casehistory = casehistory;
     }
 
     public int getEcgId() {
