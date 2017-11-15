@@ -211,7 +211,63 @@
     <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savexd()">保存</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#xdd').dialog('close')">取消</a>
 </div>
-<!--//////////////////////////////////////////////////////////////////////////////////////-->
+
+
+<!--///////////////////////////////////////////////////////////////////////////////////////-->
+<!--就医记录》table-->
+<div id="jytd" class="easyui-dialog" style="width:680px;height:270px;padding:10px 20px" closed="true">
+    <div class="ftitle">就医记录</div>
+    <div>
+        <table id="jyt" class="easyui-datagrid" style="width: 620px;height: auto;" title="就医记录" toolbar="#tooljy"
+               rownumbers="true" fitColumns="true" singleSelect="true">
+            <thead>
+            <tr>
+                <th field="mrpPlace" width="200">就医地点</th>
+                <th field="medicalDoctor" width="100">就医医师</th>
+                <th field="diagnosisResult" width="200">诊断结果</th>
+                <th field="advice" width="300">医嘱</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!--就医记录》tool-->
+<div id="tooljy">
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newjy()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editjy()">修改</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removejy()">删除</a>
+    </div>
+</div>
+<!--就医记录》form-->
+<div id="jyd" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true"
+     buttons="#jyt-buttons">
+    <div class="ftitle">就医记录</div>
+    <form id="jyf" method="post" novalidate>
+        <div class="fitem">
+            <label>就医地点:</label>
+            <input name="mrpPlace" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>就医医师:</label>
+            <input name="medicalDoctor" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>诊断结果:</label>
+            <input name="diagnosisResult" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>医嘱:</label>
+            <input name="advice" class="easyui-validatebox" required="required">
+        </div>
+    </form>
+</div>
+<!--就医记录》提交与取消按钮-->
+<div id="jyt-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="savejy()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#jyd').dialog('close')">取消</a>
+</div>
+
 <!--自定义的CSS-->
 <script>
     ///////////////变量////////////////////
@@ -265,7 +321,13 @@
 
     //就医记录
     function jybl() {
-
+        var row = $('#blt').datagrid('getSelected');
+        if (row) {
+            $("#jytd").dialog('open').dialog('setTitle', '相关就医记录');
+            //加载
+            $('#jyt').datagrid('load', '<%=basePath %>ecgiaction/getAllInformation.action?chId=' + row.chId);
+            chId = row.chId;
+        }
     }
 
     //增加
@@ -381,6 +443,26 @@
     }
 
     /////////////////////////////就医记录///////////////////////////////////////
+    //添加
+    function newjy() {
+
+    }
+
+    //修改
+    function editjy() {
+
+    }
+
+    //提交
+    function savejy() {
+
+    }
+
+    //删除
+    function removejy() {
+
+    }
+
 </script>
 </body>
 </html>
