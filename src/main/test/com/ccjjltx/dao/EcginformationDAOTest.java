@@ -65,4 +65,14 @@ public class EcginformationDAOTest {
         }
     }
 
+    /**
+     * 验证：是否能根据主键Ecginformation实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchEinformation() {
+        Ecginformation ec = ecginformationDAO.getSearchEinformation(1);
+        Assert.assertEquals(1, ec.getCasehistory().getChId());
+    }
+
 }
