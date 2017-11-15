@@ -191,5 +191,18 @@ public class MedicalrecordAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 删除功能
+     *
+     * @return JSON，返回成功或失败的提示信息
+     */
+    public String removeInformation() {
+        //删除操作
+        medicalrecordDAO.deleteInformation(getMrId());
+        //返回删除成功的信息
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 
 }
