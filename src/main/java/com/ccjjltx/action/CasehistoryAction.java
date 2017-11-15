@@ -329,5 +329,45 @@ public class CasehistoryAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 增加病历
+     *
+     * @return JSON成功或失败提示信息
+     */
+    public String saveInformation() {
+        int eId = 0;
+        try {
+            //根据选择框得到的数据一定是可以转换成数字的
+            eId = Integer.parseInt(getEname());
+        } catch (NumberFormatException e) {
+            result = JsonMessage.returnMessage(false, "姓名错误");
+            return ERROR;
+        }
+        Casehistory ch = new Casehistory();
+        ch.setHeight(getHeight());
+        ch.setWeight((getWeight()));
+        ch.setPhysician(getPhysician());
+        ch.setHospital(getHospital());
+        ch.setHospitalPhone(getHospitalPhone());
+        ch.setAllergyDrugs(getAllergyDrugs());
+        ch.setMajorDiseases(getMajorDiseases());
+        ch.setHighHanded(getHighHanded());
+        ch.setLowHanded(getLowHanded());
+        ch.setBloodOxygenValue(getBloodOxygenValue());
+        ch.setFastingPlasmaGlucose(getFastingPlasmaGlucose());
+        ch.setPostprandialBloodGlucose(getPostprandialBoolGlucose());
+        ch.setTotalCholesterol(getTotalCholesterol());
+        ch.setTriglyceride(getTriglyceride());
+        ch.setHdlc(getHdlc());
+        ch.setLdlc(getLdlc());
+        boolean cr = casehistoryDAO.addInformation(ch, eId);
+        if (!cr) {
+            result = JsonMessage.returnMessage(false, "已经存在该名用户的病历");
+            return ERROR;
+        } else {
+            result = JsonMessage.returnMessage(true, "success");
+            return SUCCESS;
+        }
+    }
 
 }
