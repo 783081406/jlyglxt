@@ -321,9 +321,16 @@
         url = '<%=basePath %>ecgiaction/saveInformation.action?chId=' + chId;
     }
 
-    //修改功能
+    //修改
     function editxd() {
-
+        var row = $('#xdt').datagrid('getSelected');
+        if (row) {
+            $('#xdd').dialog('open').dialog('setTitle', '更新心电信息');
+            //加载点击那一行的数据
+            $('#xdf').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>ecgiaction/updateInformation.action?ecgId=' + row.ecgId;
+        }
     }
 
     //提交
