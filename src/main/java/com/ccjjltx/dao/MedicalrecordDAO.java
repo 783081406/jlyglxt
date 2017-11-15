@@ -41,5 +41,14 @@ public class MedicalrecordDAO {
         return (List<Medicalrecord>) query.list();
     }
 
+    /**
+     * 增加就医记录
+     *
+     * @param mc Medicalrecord实例化
+     */
+    public void addInformation(Medicalrecord mc) {
+        Session session = factory.getCurrentSession();
+        session.save(mc);
+    }
 
 }
