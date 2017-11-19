@@ -19,16 +19,18 @@ public class Billboards implements Serializable {
     private String bpath;
     private String btitle;
     private String bcontent;
+    private Byte isSelect;
 
     //无参构造函数
     public Billboards() {
     }
 
     //有参构造函数
-    public Billboards(String bpath, String btitle, String bcontent) {
+    public Billboards(String bpath, String btitle, String bcontent, Byte isSelect) {
         this.bpath = bpath;
         this.btitle = btitle;
         this.bcontent = bcontent;
+        this.isSelect = isSelect;
     }
 
     public int getBid() {
@@ -63,6 +65,14 @@ public class Billboards implements Serializable {
         this.bcontent = bcontent;
     }
 
+    public Byte getIsSelect() {
+        return isSelect;
+    }
+
+    public void setIsSelect(Byte isSelect) {
+        this.isSelect = isSelect;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,6 +84,7 @@ public class Billboards implements Serializable {
         if (bpath != null ? !bpath.equals(that.bpath) : that.bpath != null) return false;
         if (btitle != null ? !btitle.equals(that.btitle) : that.btitle != null) return false;
         if (bcontent != null ? !bcontent.equals(that.bcontent) : that.bcontent != null) return false;
+        if (isSelect != null ? !isSelect.equals(that.isSelect) : that.isSelect != null) return false;
 
         return true;
     }
@@ -84,6 +95,7 @@ public class Billboards implements Serializable {
         result = 31 * result + (bpath != null ? bpath.hashCode() : 0);
         result = 31 * result + (btitle != null ? btitle.hashCode() : 0);
         result = 31 * result + (bcontent != null ? bcontent.hashCode() : 0);
+        result = 31 * result + (isSelect != null ? isSelect.hashCode() : 0);
         return result;
     }
 }
