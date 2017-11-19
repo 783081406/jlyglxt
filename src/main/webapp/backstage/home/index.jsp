@@ -26,6 +26,7 @@
                 {
                     "menuid": "1", "icon": "icon-sys", "menuname": "前端功能",
                     "menus": [
+                        {"menuid": "11", "menuname": "宣传栏", "icon": "icon-attach", "url": "qdgn/xcl.jsp"},
                         {"menuid": "12", "menuname": "服务项目", "icon": "icon-page", "url": "qdgn/fwxm.jsp"},
                         {"menuid": "13", "menuname": "美好风采", "icon": "icon-class", "url": "qdgn/mhfc.jsp"},
                         {"menuid": "14", "menuname": "新闻动态", "icon": "icon-role", "url": "qdgn/xwdt.jsp"},
