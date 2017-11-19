@@ -46,9 +46,9 @@
     </table>
     <column id="19" parent="8" name="bid">
       <Position>1</Position>
-      <Comment>主键</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="20" parent="8" name="bpath">
       <Position>2</Position>
@@ -65,540 +65,551 @@
       <Comment>内容</Comment>
       <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="23" parent="9" name="chId">
+    <column id="23" parent="8" name="isSelect">
+      <Position>5</Position>
+      <Comment>是否选中</Comment>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="24" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>bid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="25" parent="9" name="chId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="24" parent="9" name="physician">
+    <column id="26" parent="9" name="physician">
       <Position>2</Position>
       <Comment>主治医师</Comment>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="25" parent="9" name="hospital">
+    <column id="27" parent="9" name="hospital">
       <Position>3</Position>
       <Comment>医院</Comment>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="26" parent="9" name="hospitalPhone">
+    <column id="28" parent="9" name="hospitalPhone">
       <Position>4</Position>
       <Comment>医院电话</Comment>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="27" parent="9" name="allergyDrugs">
+    <column id="29" parent="9" name="allergyDrugs">
       <Position>5</Position>
       <Comment>过敏药物</Comment>
       <DataType>varchar(60)|0</DataType>
     </column>
-    <column id="28" parent="9" name="majorDiseases">
+    <column id="30" parent="9" name="majorDiseases">
       <Position>6</Position>
       <Comment>主要疾病</Comment>
       <DataType>varchar(60)|0</DataType>
     </column>
-    <column id="29" parent="9" name="height">
+    <column id="31" parent="9" name="height">
       <Position>7</Position>
       <Comment>身高</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="30" parent="9" name="weight">
+    <column id="32" parent="9" name="weight">
       <Position>8</Position>
       <Comment>体重</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="31" parent="9" name="highHanded">
+    <column id="33" parent="9" name="highHanded">
       <Position>9</Position>
       <Comment>高压正常值是90--140</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="32" parent="9" name="lowHanded">
+    <column id="34" parent="9" name="lowHanded">
       <Position>10</Position>
       <Comment>低压正常值是60--90</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="33" parent="9" name="bloodOxygenValue">
+    <column id="35" parent="9" name="bloodOxygenValue">
       <Position>11</Position>
       <Comment>血氧值(应该在95%以上 低于90%就很低了)</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="34" parent="9" name="fastingPlasmaGlucose">
+    <column id="36" parent="9" name="fastingPlasmaGlucose">
       <Position>12</Position>
       <Comment>空腹血糖(空腹血糖＜6.0为正常。≥6.0-＜7.0为空腹血糖过高。≥7.0为糖尿病)</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="35" parent="9" name="postprandialBloodGlucose">
+    <column id="37" parent="9" name="postprandialBloodGlucose">
       <Position>13</Position>
       <Comment>餐后血糖(＜7.8为正常，≥11.1为糖尿病)</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="36" parent="9" name="totalCholesterol">
+    <column id="38" parent="9" name="totalCholesterol">
       <Position>14</Position>
       <Comment>总胆固醇(3-5.2mmol/L左右)</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="37" parent="9" name="triglyceride">
+    <column id="39" parent="9" name="triglyceride">
       <Position>15</Position>
       <Comment>甘油三酯(&lt;1.70mmol/L)</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="38" parent="9" name="hdlc">
+    <column id="40" parent="9" name="hdlc">
       <Position>16</Position>
       <Comment>高密度脂蛋白胆固醇(男性:1.16-1.42mmol/L、女性:1.29-1.55mmol/L)</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="39" parent="9" name="ldlc">
+    <column id="41" parent="9" name="ldlc">
       <Position>17</Position>
       <Comment>低密度脂蛋白胆固醇(105-130mg/dl)</Comment>
       <DataType>varchar(11)|0</DataType>
     </column>
-    <column id="40" parent="9" name="eId">
+    <column id="42" parent="9" name="eId">
       <Position>18</Position>
       <Comment>外键:老人总表</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="41" parent="9" name="FK_eId2">
+    <index id="43" parent="9" name="FK_eId2">
       <ColNames>eId</ColNames>
     </index>
-    <key id="42" parent="9" name="PRIMARY">
+    <key id="44" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>chId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="43" parent="9" name="FK_eId2">
+    <foreign-key id="45" parent="9" name="FK_eId2">
       <ColNames>eId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>elder</RefTableName>
       <RefColNames>eId</RefColNames>
     </foreign-key>
-    <column id="44" parent="10" name="ecgId">
+    <column id="46" parent="10" name="ecgId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="45" parent="10" name="qrs">
+    <column id="47" parent="10" name="qrs">
       <Position>2</Position>
       <Comment>qrs区间(正常成为0.06～0.10s)</Comment>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="46" parent="10" name="comment">
+    <column id="48" parent="10" name="comment">
       <Position>3</Position>
       <Comment>全科医生批注</Comment>
       <DataType>varchar(60)|0</DataType>
     </column>
-    <column id="47" parent="10" name="rr">
+    <column id="49" parent="10" name="rr">
       <Position>4</Position>
       <Comment>rr期间(心脏搏动周期，正常在60-100次/分)</Comment>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="48" parent="10" name="analysisResult">
+    <column id="50" parent="10" name="analysisResult">
       <Position>5</Position>
       <Comment>医生分析结果</Comment>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="49" parent="10" name="rhythm">
+    <column id="51" parent="10" name="rhythm">
       <Position>6</Position>
       <Comment>心率</Comment>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="50" parent="10" name="rdate">
+    <column id="52" parent="10" name="rdate">
       <Position>7</Position>
       <Comment>诊断时间(成人正常心率为60～100次/分钟)</Comment>
       <DataType>date|0</DataType>
     </column>
-    <column id="51" parent="10" name="chId">
+    <column id="53" parent="10" name="chId">
       <Position>8</Position>
       <Comment>外键:病历</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="52" parent="10" name="FK_chId">
+    <index id="54" parent="10" name="FK_chId">
       <ColNames>chId</ColNames>
     </index>
-    <key id="53" parent="10" name="PRIMARY">
+    <key id="55" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ecgId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="54" parent="10" name="FK_chId">
+    <foreign-key id="56" parent="10" name="FK_chId">
       <ColNames>chId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>casehistory</RefTableName>
       <RefColNames>chId</RefColNames>
     </foreign-key>
-    <column id="55" parent="11" name="pid">
+    <column id="57" parent="11" name="pid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="56" parent="11" name="name">
+    <column id="58" parent="11" name="name">
       <Position>2</Position>
       <Comment>员工姓名</Comment>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="11" name="idCard">
+    <column id="59" parent="11" name="idCard">
       <Position>3</Position>
       <Comment>身份证号</Comment>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="11" name="sex">
+    <column id="60" parent="11" name="sex">
       <Position>4</Position>
       <Comment>性别</Comment>
       <DataType>varchar(5)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="11" name="address">
+    <column id="61" parent="11" name="address">
       <Position>5</Position>
       <Comment>家庭住址</Comment>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="60" parent="11" name="pType">
+    <column id="62" parent="11" name="pType">
       <Position>6</Position>
       <Comment>人员类型</Comment>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="61" parent="11" name="hiredate">
+    <column id="63" parent="11" name="hiredate">
       <Position>7</Position>
       <Comment>入职时间</Comment>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="62" parent="11" name="education">
+    <column id="64" parent="11" name="education">
       <Position>8</Position>
       <Comment>学历</Comment>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="11" name="birthday">
+    <column id="65" parent="11" name="birthday">
       <Position>9</Position>
       <Comment>出生日期</Comment>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="64" parent="11" name="uid">
+    <column id="66" parent="11" name="uid">
       <Position>10</Position>
       <Comment>user表外键关联</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="65" parent="11" name="fk_uid">
+    <index id="67" parent="11" name="fk_uid">
       <ColNames>uid</ColNames>
     </index>
-    <key id="66" parent="11" name="PRIMARY">
+    <key id="68" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>pid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="67" parent="11" name="fk_uid">
+    <foreign-key id="69" parent="11" name="fk_uid">
       <ColNames>uid</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="68" parent="12" name="eId">
+    <column id="70" parent="12" name="eId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="69" parent="12" name="ename">
+    <column id="71" parent="12" name="ename">
       <Position>2</Position>
       <Comment>名字</Comment>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="70" parent="12" name="isIn">
+    <column id="72" parent="12" name="isIn">
       <Position>3</Position>
       <Comment>是否还在住院</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="71" parent="12" name="PRIMARY">
+    <key id="73" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>eId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="72" parent="13" name="eiId">
+    <column id="74" parent="13" name="eiId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="73" parent="13" name="idcard">
+    <column id="75" parent="13" name="idcard">
       <Position>2</Position>
       <Comment>身份证号码</Comment>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="74" parent="13" name="phone">
+    <column id="76" parent="13" name="phone">
       <Position>3</Position>
       <Comment>手机号</Comment>
       <DataType>varchar(13)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="75" parent="13" name="sex">
+    <column id="77" parent="13" name="sex">
       <Position>4</Position>
       <Comment>性别</Comment>
       <DataType>varchar(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="13" name="birthDate">
+    <column id="78" parent="13" name="birthDate">
       <Position>5</Position>
       <Comment>出生日期</Comment>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="13" name="homeAddress">
+    <column id="79" parent="13" name="homeAddress">
       <Position>6</Position>
       <Comment>家庭住址</Comment>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="78" parent="13" name="originAddress">
+    <column id="80" parent="13" name="originAddress">
       <Position>7</Position>
       <Comment>户籍住址</Comment>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="79" parent="13" name="eId">
+    <column id="81" parent="13" name="eId">
       <Position>8</Position>
       <Comment>外键:老人总表</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="80" parent="13" name="FK_eId">
+    <index id="82" parent="13" name="FK_eId">
       <ColNames>eId</ColNames>
     </index>
-    <key id="81" parent="13" name="PRIMARY">
+    <key id="83" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>eiId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="82" parent="13" name="FK_eId">
+    <foreign-key id="84" parent="13" name="FK_eId">
       <ColNames>eId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>elder</RefTableName>
       <RefColNames>eId</RefColNames>
     </foreign-key>
-    <column id="83" parent="14" name="fId">
+    <column id="85" parent="14" name="fId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="84" parent="14" name="familyName">
+    <column id="86" parent="14" name="familyName">
       <Position>2</Position>
       <Comment>家属名字</Comment>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="85" parent="14" name="phone">
+    <column id="87" parent="14" name="phone">
       <Position>3</Position>
       <Comment>联系电话</Comment>
       <DataType>varchar(13)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="86" parent="14" name="relationship">
+    <column id="88" parent="14" name="relationship">
       <Position>4</Position>
       <Comment>与老人关系</Comment>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="87" parent="14" name="faddress">
+    <column id="89" parent="14" name="faddress">
       <Position>5</Position>
       <Comment>地址</Comment>
       <DataType>varchar(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="88" parent="14" name="eiId">
+    <column id="90" parent="14" name="eiId">
       <Position>6</Position>
       <Comment>外键:老人详细表</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="89" parent="14" name="FK24B01328CA083EB3">
+    <index id="91" parent="14" name="FK24B01328CA083EB3">
       <ColNames>eiId</ColNames>
     </index>
-    <key id="90" parent="14" name="PRIMARY">
+    <key id="92" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>fId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="91" parent="14" name="FK24B01328CA083EB3">
+    <foreign-key id="93" parent="14" name="FK24B01328CA083EB3">
       <ColNames>eiId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>elderlyinformation</RefTableName>
       <RefColNames>eiId</RefColNames>
     </foreign-key>
-    <foreign-key id="92" parent="14" name="FK_eiId">
+    <foreign-key id="94" parent="14" name="FK_eiId">
       <ColNames>eiId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>elderlyinformation</RefTableName>
       <RefColNames>eId</RefColNames>
     </foreign-key>
-    <column id="93" parent="15" name="mrId">
+    <column id="95" parent="15" name="mrId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="94" parent="15" name="mrpPlace">
+    <column id="96" parent="15" name="mrpPlace">
       <Position>2</Position>
       <Comment>就医地点</Comment>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="95" parent="15" name="medicalDoctor">
+    <column id="97" parent="15" name="medicalDoctor">
       <Position>3</Position>
       <Comment>就医医师</Comment>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="96" parent="15" name="diagnosisResult">
+    <column id="98" parent="15" name="diagnosisResult">
       <Position>4</Position>
       <Comment>诊断结果</Comment>
       <DataType>varchar(60)|0</DataType>
     </column>
-    <column id="97" parent="15" name="advice">
+    <column id="99" parent="15" name="advice">
       <Position>5</Position>
       <Comment>医嘱</Comment>
       <DataType>varchar(60)|0</DataType>
     </column>
-    <column id="98" parent="15" name="chId">
+    <column id="100" parent="15" name="chId">
       <Position>6</Position>
       <Comment>外键:病历</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="99" parent="15" name="FK_chId2">
+    <index id="101" parent="15" name="FK_chId2">
       <ColNames>chId</ColNames>
     </index>
-    <key id="100" parent="15" name="PRIMARY">
+    <key id="102" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>mrId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="101" parent="15" name="FK_chId2">
+    <foreign-key id="103" parent="15" name="FK_chId2">
       <ColNames>chId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>casehistory</RefTableName>
       <RefColNames>chId</RefColNames>
     </foreign-key>
-    <column id="102" parent="16" name="rcId">
+    <column id="104" parent="16" name="rcId">
       <Position>1</Position>
       <Comment>id号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="103" parent="16" name="rType">
+    <column id="105" parent="16" name="rType">
       <Position>2</Position>
       <Comment>房间类型:标准/中等/豪华</Comment>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="104" parent="16" name="rCost">
+    <column id="106" parent="16" name="rCost">
       <Position>3</Position>
       <Comment>价格</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="105" parent="16" name="PRIMARY">
+    <key id="107" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>rcId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="106" parent="17" name="rId">
+    <column id="108" parent="17" name="rId">
       <Position>1</Position>
       <Comment>id号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="107" parent="17" name="floor">
+    <column id="109" parent="17" name="floor">
       <Position>2</Position>
       <Comment>楼号</Comment>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="108" parent="17" name="roomNumber">
+    <column id="110" parent="17" name="roomNumber">
       <Position>3</Position>
       <Comment>房间号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="109" parent="17" name="rcId">
+    <column id="111" parent="17" name="rcId">
       <Position>4</Position>
       <Comment>外键roomCost</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="110" parent="17" name="eId">
+    <column id="112" parent="17" name="eId">
       <Position>5</Position>
       <Comment>外键:老人信息总表</Comment>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="111" parent="17" name="FK_eId3">
+    <index id="113" parent="17" name="FK_eId3">
       <ColNames>eId</ColNames>
     </index>
-    <index id="112" parent="17" name="FK_rcId">
+    <index id="114" parent="17" name="FK_rcId">
       <ColNames>rcId</ColNames>
     </index>
-    <key id="113" parent="17" name="PRIMARY">
+    <key id="115" parent="17" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>rId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="114" parent="17" name="FK_rcId">
+    <foreign-key id="116" parent="17" name="FK_rcId">
       <ColNames>rcId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>roomcost</RefTableName>
       <RefColNames>rcId</RefColNames>
     </foreign-key>
-    <foreign-key id="115" parent="17" name="FK_eId3">
+    <foreign-key id="117" parent="17" name="FK_eId3">
       <ColNames>eId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>elder</RefTableName>
       <RefColNames>eId</RefColNames>
     </foreign-key>
-    <column id="116" parent="18" name="id">
+    <column id="118" parent="18" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="117" parent="18" name="userName">
+    <column id="119" parent="18" name="userName">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="118" parent="18" name="password">
+    <column id="120" parent="18" name="password">
       <Position>3</Position>
       <Comment>密码</Comment>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="119" parent="18" name="uType">
+    <column id="121" parent="18" name="uType">
       <Position>4</Position>
       <Comment>类型:1为管理员2为工作人员</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="120" parent="18" name="userName">
+    <index id="122" parent="18" name="userName">
       <ColNames>userName</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="121" parent="18" name="PRIMARY">
+    <key id="123" parent="18" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="122" parent="18" name="userName">
+    <key id="124" parent="18" name="userName">
       <ColNames>userName</ColNames>
       <UnderlyingIndexName>userName</UnderlyingIndexName>
     </key>
