@@ -57,7 +57,7 @@ public class BillboardsDAOTest {
         //得到倒序的第一条数据
         //测试时，该条数据的isSelect是1;
         List<Billboards> list = billboardsDAO.getAllInformation(0, 1);
-        int bisSelect=2;
+        int bisSelect = 2;
         for (Billboards bb : list) {
             bisSelect = bb.getIsSelect();
         }
@@ -65,11 +65,22 @@ public class BillboardsDAOTest {
         billboardsDAO.reelectInformation();
         //再次数据，查看是否为0;
         List<Billboards> list2 = billboardsDAO.getAllInformation(0, 1);
-        int bisSelect2=2;
+        int bisSelect2 = 2;
         for (Billboards bb : list2) {
             bisSelect2 = bb.getIsSelect();
         }
         Assert.assertEquals(bisSelect - 1, bisSelect2);
+    }
+
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchInformation() {
+        //得到实例化
+        Billboards bb = billboardsDAO.getSearchInformation(1);
+        Assert.assertEquals(1, bb.getBid());
     }
 
 }
