@@ -30,8 +30,8 @@
 <table id="dg" style="width:1150px;height:540px"></table>
 <div id="toolbar">
     <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="reelect()">重选</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="submitb()">提交</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="reelect()">重选</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="submitb()">提交</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newb()">添加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeb()">删除</a>
     </div>
@@ -68,6 +68,37 @@
             alert(myArray);
         });
     });
+
+    ////////////////////工具栏//////////////////////
+    var url;
+    //重选
+    function reelect() {
+        $.post('<%=basePath %>billboardsAction/reelectInformation.action', {}, function (result) {
+            if (result.success) {
+                $('#dg').datagrid('reload');	// 重新加载数据
+            } else {
+                $.messager.show({	// 显示错误的信息
+                    title: '错误提示',
+                    msg: result.msg
+                });
+            }
+        }, 'json');
+    }
+
+    //提交
+    function submitb() {
+
+    }
+
+    //添加
+    function newb() {
+
+    }
+
+    //删除
+    function removeb() {
+
+    }
 </script>
 </body>
 </html>
