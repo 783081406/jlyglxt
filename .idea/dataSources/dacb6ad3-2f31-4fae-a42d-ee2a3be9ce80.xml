@@ -68,7 +68,7 @@
     <column id="23" parent="8" name="isSelect">
       <Position>5</Position>
       <Comment>是否选中</Comment>
-      <DataType>tinyint(1)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
     <key id="24" parent="8" name="PRIMARY">
