@@ -34,6 +34,7 @@ public class BillboardsAction extends ActionSupport {
     private String btitle;
     private String bcontent;
     private int isSelect;
+    private int[] bids;
     ////////////////////上传//////////////////////////////////
 
     // 直接在struts.xml文件中配置的属性
@@ -112,6 +113,14 @@ public class BillboardsAction extends ActionSupport {
         this.isSelect = isSelect;
     }
 
+    public int[] getBids() {
+        return bids;
+    }
+
+    public void setBids(int[] bids) {
+        this.bids = bids;
+    }
+
     public String getSavePath() {
         return savePath;
     }
@@ -158,6 +167,17 @@ public class BillboardsAction extends ActionSupport {
     public String reelectInformation() {
         //执行重选功能
         billboardsDAO.reelectInformation();
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+    /**
+     * 提交功能，选择了要轮播的图片之后提交过来处理的方法
+     *
+     * @return json，成功或失败的
+     */
+    public String selectInformation() {
+        billboardsDAO.updateIsSelect(getBids());
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
