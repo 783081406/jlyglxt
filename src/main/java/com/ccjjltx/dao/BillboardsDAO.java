@@ -110,4 +110,14 @@ public class BillboardsDAO {
         Session session = factory.getCurrentSession();
         session.save(bb);
     }
+
+    /**
+     * 更新数据
+     *
+     * @param bb Billboards修改的实例化
+     */
+    public void updateInformation(Billboards bb) {
+        Session session = factory.getCurrentSession();
+        session.update(bb);
+    }
 }
