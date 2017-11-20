@@ -34,6 +34,7 @@
     <!--前端功能>>宣传栏-->
     <package name="billboardsAction" namespace="/billboardsAction" extends="struts-default,json-default">
         <action name="*" class="billboardsAction" method="{1}">
+            <param name="savePath">E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards</param>
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
