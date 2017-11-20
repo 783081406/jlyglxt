@@ -68,4 +68,15 @@ public class BillboardsDAO {
             i++;
         }
     }
+
+    /**
+     * 根据billboards主键得到实例化
+     *
+     * @param bid 主键的值
+     * @return 实例化
+     */
+    public Billboards getSearchInformation(int bid) {
+        Session session = factory.getCurrentSession();
+        return (Billboards) session.get(Billboards.class, bid);
+    }
 }
