@@ -83,4 +83,21 @@ public class BillboardsDAOTest {
         Assert.assertEquals(1, bb.getBid());
     }
 
+    /**
+     * 验证：是否能根据主键修改isSelect的值
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateIsSelect() {
+        //测试该方法时，数据库的bid为1的数据，isSelect为0
+        int result = billboardsDAO.getSearchInformation(1).getIsSelect();
+        int[] data = new int[]{1};
+        //执行更新方法
+        billboardsDAO.updateIsSelect(data);
+        //进过上面的更新操作之后，isSelect为1
+        int result2 = billboardsDAO.getSearchInformation(1).getIsSelect();
+        Assert.assertEquals(result, result2 - 1);
+    }
+
 }
