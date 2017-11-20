@@ -1,13 +1,16 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Billboards;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/20.
@@ -43,4 +46,30 @@ public class BillboardsDAOTest {
         int result = billboardsDAO.getAllInformationNumber();
         Assert.assertEquals(12, result);
     }
+
+    /**
+     * 验证：是否所有的值都改为0
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testReelectInformation() {
+        //得到倒序的第一条数据
+        //测试时，该条数据的isSelect是1;
+        List<Billboards> list = billboardsDAO.getAllInformation(0, 1);
+        int bisSelect=2;
+        for (Billboards bb : list) {
+            bisSelect = bb.getIsSelect();
+        }
+        //执行重选
+        billboardsDAO.reelectInformation();
+        //再次数据，查看是否为0;
+        List<Billboards> list2 = billboardsDAO.getAllInformation(0, 1);
+        int bisSelect2=2;
+        for (Billboards bb : list2) {
+            bisSelect2 = bb.getIsSelect();
+        }
+        Assert.assertEquals(bisSelect - 1, bisSelect2);
+    }
+
 }
