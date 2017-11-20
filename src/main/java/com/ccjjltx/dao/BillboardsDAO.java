@@ -100,4 +100,14 @@ public class BillboardsDAO {
             i++;
         }
     }
+
+    /**
+     * 增加新数据
+     *
+     * @param bb Billboards类的实例化
+     */
+    public void addInformation(Billboards bb) {
+        Session session = factory.getCurrentSession();
+        session.save(bb);
+    }
 }
