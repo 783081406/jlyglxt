@@ -1,8 +1,11 @@
 package com.ccjjltx.dao;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -18,4 +21,15 @@ import javax.annotation.Resource;
 public class BillboardsDAOTest {
     @Resource(name = "billboardsDAO")
     private BillboardsDAO billboardsDAO;
+
+    /**
+     * 验证：是否能返回所有的数据
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformation() {
+        //测试时候数据库的数据为10条
+        int result = billboardsDAO.getAllInformation(0, 10).size();
+        Assert.assertEquals(10, result);
+    }
 }
