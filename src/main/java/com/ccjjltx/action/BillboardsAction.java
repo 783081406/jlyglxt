@@ -245,4 +245,22 @@ public class BillboardsAction extends ActionSupport {
         }
         return SUCCESS;
     }
+
+    /**
+     * 更新数据
+     *
+     * @return Json，返回成功或失败的数据记录
+     */
+    public String updateInformation() {
+        //根据提交过来的bid得到实例化
+        Billboards bb = billboardsDAO.getSearchInformation(getBid());
+        //更新数据
+        bb.setBtitle(getBtitle());
+        bb.setBcontent(getBcontent());
+        //更新数据
+        billboardsDAO.updateInformation(bb);
+        //返回json成功信息
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
