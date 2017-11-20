@@ -61,7 +61,7 @@ public class BillboardsDAO {
         for (Billboards bb : list) {
             bb.setIsSelect(0);
             session.update(bb);
-            if (i % 20 == 0) {
+            if (i % 10 == 0) {
                 session.flush();
                 session.clear();
             }
@@ -78,5 +78,26 @@ public class BillboardsDAO {
     public Billboards getSearchInformation(int bid) {
         Session session = factory.getCurrentSession();
         return (Billboards) session.get(Billboards.class, bid);
+    }
+
+    /**
+     * 批量更新isSelect的值
+     *
+     * @param bids 需要修改的isSelect的值
+     */
+    public void updateIsSelect(int[] bids) {
+        Session session = factory.getCurrentSession();
+        Billboards bb;
+        int i = 0;
+        for (int bid : bids) {
+            bb = getSearchInformation(bid);
+            bb.setIsSelect(1);
+            session.update(bb);
+            if (i % 10 == 0) {
+                session.flush();
+                session.clear();
+            }
+            i++;
+        }
     }
 }
