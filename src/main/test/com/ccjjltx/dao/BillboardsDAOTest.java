@@ -116,4 +116,21 @@ public class BillboardsDAOTest {
         Assert.assertEquals(result1 + 1, result2);
     }
 
+    /**
+     * 验证：是否能更新
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        //得到一个实例化
+        Billboards bb = billboardsDAO.getSearchInformation(1);
+        //更新content数据
+        bb.setBcontent("1234");
+        //更新操作
+        billboardsDAO.updateInformation(bb);
+        //再次得到实例化,并且对比
+        Assert.assertEquals("1234", billboardsDAO.getSearchInformation(1).getBcontent());
+    }
+
 }
