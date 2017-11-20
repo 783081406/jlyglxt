@@ -3,6 +3,7 @@ package com.ccjjltx.action;
 import com.ccjjltx.dao.BillboardsDAO;
 import com.ccjjltx.domain.Billboards;
 import com.ccjjltx.utils.JsonMessage;
+import com.ccjjltx.utils.MyFile;
 import com.ccjjltx.utils.ResourcePath;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
@@ -11,6 +12,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -36,7 +41,12 @@ public class BillboardsAction extends ActionSupport {
     private int isSelect;
     private int[] bids;
     ////////////////////上传//////////////////////////////////
-
+    // 封装上传文件域的属性
+    private File upload;
+    // 封装上传文件类型的属性
+    private String uploadContentType;
+    // 封装上传文件名的属性
+    private String uploadFileName;
     // 直接在struts.xml文件中配置的属性
     private String savePath;
 
@@ -121,6 +131,30 @@ public class BillboardsAction extends ActionSupport {
         this.bids = bids;
     }
 
+    public File getUpload() {
+        return upload;
+    }
+
+    public void setUpload(File upload) {
+        this.upload = upload;
+    }
+
+    public String getUploadContentType() {
+        return uploadContentType;
+    }
+
+    public void setUploadContentType(String uploadContentType) {
+        this.uploadContentType = uploadContentType;
+    }
+
+    public String getUploadFileName() {
+        return uploadFileName;
+    }
+
+    public void setUploadFileName(String uploadFileName) {
+        this.uploadFileName = uploadFileName;
+    }
+
     public String getSavePath() {
         return savePath;
     }
@@ -179,6 +213,36 @@ public class BillboardsAction extends ActionSupport {
     public String selectInformation() {
         billboardsDAO.updateIsSelect(getBids());
         result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+    /**
+     * 增加新数据
+     *
+     * @return JSON成功或失败的数据
+     */
+    public String saveInformation() {
+        try {
+            //保存图片操作
+            FileOutputStream fos = new FileOutputStream(getSavePath() + "\\" + getUploadFileName());
+            FileInputStream fis = new FileInputStream(getUpload());
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = fis.read(buffer)) > 0) {
+                fos.write(buffer, 0, len);
+            }
+            fos.close();
+            //使用文件复制
+            MyFile.copyFile(getSavePath() + "\\" + getUploadFileName(), "E:\\pcCode\\ideaCode\\jlyglxt\\target\\jlyglxt\\reception\\img\\billboards" + "\\" + getUploadFileName());
+            //实例化类Billboards
+            Billboards billboards = new Billboards(getUploadFileName(), getBtitle(), getBcontent());
+            //执行增加操作
+            billboardsDAO.addInformation(billboards);
+            //返回json数据
+            result = JsonMessage.returnMessage(true, "success");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return SUCCESS;
     }
 }
