@@ -37,4 +37,17 @@ public class BillboardsDAO {
         return (List<Billboards>) query.list();
     }
 
+    /**
+     * 得到总数
+     *
+     * @return 整数
+     */
+    public int getAllInformationNumber() {
+        Session session = factory.getCurrentSession();
+        //得到总条数
+        String hql = "select count(*) from Billboards billboards";
+        Query query = session.createQuery(hql);
+        long l = (long) query.uniqueResult();
+        return (int) l;
+    }
 }
