@@ -133,4 +133,18 @@ public class BillboardsDAOTest {
         Assert.assertEquals("1234", billboardsDAO.getSearchInformation(1).getBcontent());
     }
 
+    /**
+     * 验证：是否能删除数据
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testRemoveInformation() {
+        //得到总条数
+        int result1 = billboardsDAO.getAllInformationNumber();
+        //执行删除操作
+        billboardsDAO.removeInformation(1);
+        int result2 = billboardsDAO.getAllInformationNumber();
+        Assert.assertEquals(result1 - 1, result2);
+    }
 }
