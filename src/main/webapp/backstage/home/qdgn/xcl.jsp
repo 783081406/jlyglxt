@@ -33,6 +33,7 @@
         <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="reelect()">重选</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="submitb()">提交</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newb()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editb()">修改</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeb()">删除</a>
     </div>
 </div>
@@ -59,14 +60,6 @@
             selectOnCheck: true,
             checkOnSelect: true
         });
-        $('#ButonGetCheck').click(function () {
-            var checkedItems = $('#dg').datagrid('getChecked');
-            var myArray = new Array();
-            $.each(checkedItems, function (index, item) {
-                myArray[index] = item.bid;
-            });
-            alert(myArray);
-        });
     });
 
     ////////////////////工具栏//////////////////////
@@ -87,11 +80,31 @@
 
     //提交
     function submitb() {
-
+        //得到所有选中的数据
+        var checkedItems = $('#dg').datagrid('getChecked');
+        //定义一个数组，用来存取数据
+        var ids = [];
+        $.each(checkedItems, function (index, item) {
+            ids.push({name: 'bids', value: item.bid});
+        });
+        $.post('<%=basePath %>billboardsAction/selectInformation.action', ids, function (result) {
+            if (result.success) {
+                $('#dg').datagrid('reload');	// 重新加载数据
+            } else {
+                $.messager.show({	// 显示错误的信息
+                    title: '错误提示',
+                    msg: result.msg
+                });
+            }
+        }, 'json');
     }
 
     //添加
     function newb() {
+
+    }
+
+    function editb() {
 
     }
 
