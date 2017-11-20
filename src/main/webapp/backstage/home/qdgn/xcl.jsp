@@ -184,7 +184,41 @@
         });
     }
 
+    //修改
+    function editb() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg2').dialog('open').dialog('setTitle', '更新数据');
+            //加载点击那一行的数据
+            $('#fm2').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>billboardsAction/updateInformation.action?bid=' + row.bid;
+        }
+    }
 
+    //提交功能
+    function saveb2() {
+        $('#fm2').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#dlg2').dialog('close');		// 关闭window
+                    $('#dg').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
 
     //删除
     function removeb() {
