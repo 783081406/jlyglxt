@@ -100,4 +100,20 @@ public class BillboardsDAOTest {
         Assert.assertEquals(result, result2 - 1);
     }
 
+    /**
+     * 验证：是否能新增
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation() {
+        //未插入前的数据量
+        int result1 = billboardsDAO.getAllInformationNumber();
+        Billboards bb = new Billboards("1.jpg", "134", "1234");
+        //执行插入数据操作
+        billboardsDAO.addInformation(bb);
+        int result2 = billboardsDAO.getAllInformationNumber();
+        Assert.assertEquals(result1 + 1, result2);
+    }
+
 }
