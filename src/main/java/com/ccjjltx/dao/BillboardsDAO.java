@@ -50,4 +50,22 @@ public class BillboardsDAO {
         long l = (long) query.uniqueResult();
         return (int) l;
     }
+
+    /**
+     * 重选，批量更新，将所有isSelect都改为Ox00;
+     */
+    public void reelectInformation() {
+        Session session = factory.getCurrentSession();
+        List<Billboards> list = getAllInformation(0, getAllInformationNumber());
+        int i = 0;
+        for (Billboards bb : list) {
+            bb.setIsSelect(0);
+            session.update(bb);
+            if (i % 20 == 0) {
+                session.flush();
+                session.clear();
+            }
+            i++;
+        }
+    }
 }
