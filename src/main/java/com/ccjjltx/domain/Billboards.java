@@ -19,14 +19,14 @@ public class Billboards implements Serializable {
     private String bpath;
     private String btitle;
     private String bcontent;
-    private Byte isSelect;
+    private int isSelect;
 
     //无参构造函数
     public Billboards() {
     }
 
     //有参构造函数
-    public Billboards(String bpath, String btitle, String bcontent, Byte isSelect) {
+    public Billboards(String bpath, String btitle, String bcontent, int isSelect) {
         this.bpath = bpath;
         this.btitle = btitle;
         this.bcontent = bcontent;
@@ -65,11 +65,11 @@ public class Billboards implements Serializable {
         this.bcontent = bcontent;
     }
 
-    public Byte getIsSelect() {
+    public int getIsSelect() {
         return isSelect;
     }
 
-    public void setIsSelect(Byte isSelect) {
+    public void setIsSelect(int isSelect) {
         this.isSelect = isSelect;
     }
 
@@ -81,12 +81,10 @@ public class Billboards implements Serializable {
         Billboards that = (Billboards) o;
 
         if (bid != that.bid) return false;
+        if (isSelect != that.isSelect) return false;
         if (bpath != null ? !bpath.equals(that.bpath) : that.bpath != null) return false;
         if (btitle != null ? !btitle.equals(that.btitle) : that.btitle != null) return false;
-        if (bcontent != null ? !bcontent.equals(that.bcontent) : that.bcontent != null) return false;
-        if (isSelect != null ? !isSelect.equals(that.isSelect) : that.isSelect != null) return false;
-
-        return true;
+        return bcontent != null ? bcontent.equals(that.bcontent) : that.bcontent == null;
     }
 
     @Override
@@ -95,7 +93,7 @@ public class Billboards implements Serializable {
         result = 31 * result + (bpath != null ? bpath.hashCode() : 0);
         result = 31 * result + (btitle != null ? btitle.hashCode() : 0);
         result = 31 * result + (bcontent != null ? bcontent.hashCode() : 0);
-        result = 31 * result + (isSelect != null ? isSelect.hashCode() : 0);
+        result = 31 * result + isSelect;
         return result;
     }
 }
