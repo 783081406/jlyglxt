@@ -120,4 +120,14 @@ public class BillboardsDAO {
         Session session = factory.getCurrentSession();
         session.update(bb);
     }
+
+    /**
+     * 删除数据
+     *
+     * @param bid Billboards的主键
+     */
+    public void removeInformation(int bid) {
+        Session session = factory.getCurrentSession();
+        session.delete(getSearchInformation(bid));
+    }
 }
