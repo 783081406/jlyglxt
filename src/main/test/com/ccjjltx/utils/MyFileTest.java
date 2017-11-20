@@ -17,4 +17,13 @@ public class MyFileTest {
     public void testCopyFile() {
         MyFile.copyFile("E:\\123\\4.jpg", "E:\\123\\456\\4.jpg");
     }
+
+    /**
+     * 验证：是否具有删除功能
+     */
+    @Test
+    public void testDeleteFile() {
+        MyFile.deleteFile("F:\\4.jpg");
+    }
+
 }
