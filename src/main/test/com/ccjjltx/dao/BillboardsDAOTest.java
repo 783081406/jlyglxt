@@ -32,4 +32,15 @@ public class BillboardsDAOTest {
         int result = billboardsDAO.getAllInformation(0, 10).size();
         Assert.assertEquals(10, result);
     }
+
+    /**
+     * 验证：测试是否能得到总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber() {
+        //测试的术后数据库的数据为12条
+        int result = billboardsDAO.getAllInformationNumber();
+        Assert.assertEquals(12, result);
+    }
 }
