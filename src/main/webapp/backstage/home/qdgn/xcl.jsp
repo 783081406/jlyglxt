@@ -1,5 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
+  前端功能->宣传栏
   User: ccjjltx
   Date: 2017/11/19
   Time: 14:00
@@ -26,20 +27,47 @@
     <script type="text/javascript" src="../../../easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-<table id="dg" title="宣传栏记录" class="easyui-datagrid" style="width:940px;height:600px" url="content.json"
-       pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
-    <thead>
-    <tr>
-        <th width="300" data-options="field:'bpath',align:'center',formatter:imgFormatter">图片</th>
-        <th field="btitle" width="150">标题</th>
-        <th field="bcontent" width="300">内容</th>
-    </tr>
-    </thead>
-</table>
+<table id="dg" style="width:1150px;height:540px"></table>
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="reelect()">重选</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="submitb()">提交</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newb()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeb()">删除</a>
+    </div>
+</div>
 <script>
     function imgFormatter(value, row, index) {
         return "<img width='320px' height='100px' src='" + row.bpath + "'/>";
     }
+    $(function () {
+        $('#dg').datagrid({
+            title: '宣传栏记录',
+            url: '<%=basePath %>billboardsAction/getAllInformation.action',
+            toolbar: '#toolbar',
+            fitColumns: "true",
+            rownumbers: true,
+            pagination: true,
+            nowrap: false,
+            columns: [[
+                {field: 'ck', checkbox: true, align: 'center', width: 80},
+                {field: 'bpath', title: '图片', align: 'center', formatter: imgFormatter, width: 300},
+                {field: 'btitle', title: '标题', align: 'center', width: 150},
+                {field: 'bcontent', title: '内容', align: 'center', width: 300}
+            ]],
+            singleSelect: false,
+            selectOnCheck: true,
+            checkOnSelect: true
+        });
+        $('#ButonGetCheck').click(function () {
+            var checkedItems = $('#dg').datagrid('getChecked');
+            var myArray = new Array();
+            $.each(checkedItems, function (index, item) {
+                myArray[index] = item.bid;
+            });
+            alert(myArray);
+        });
+    });
 </script>
 </body>
 </html>
