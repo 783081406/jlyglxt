@@ -26,11 +26,10 @@ public class Billboards implements Serializable {
     }
 
     //有参构造函数
-    public Billboards(String bpath, String btitle, String bcontent, int isSelect) {
+    public Billboards(String bpath, String btitle, String bcontent) {
         this.bpath = bpath;
         this.btitle = btitle;
         this.bcontent = bcontent;
-        this.isSelect = isSelect;
     }
 
     public int getBid() {
