@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.BillboardsDAO;
 import com.ccjjltx.domain.Billboards;
+import com.ccjjltx.utils.JsonMessage;
 import com.ccjjltx.utils.ResourcePath;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
@@ -32,7 +33,7 @@ public class BillboardsAction extends ActionSupport {
     private String bpath;
     private String btitle;
     private String bcontent;
-    private Byte isSelect;
+    private int isSelect;
     ////////////////////上传//////////////////////////////////
 
     // 直接在struts.xml文件中配置的属性
@@ -103,11 +104,11 @@ public class BillboardsAction extends ActionSupport {
         this.bcontent = bcontent;
     }
 
-    public Byte getIsSelect() {
+    public int getIsSelect() {
         return isSelect;
     }
 
-    public void setIsSelect(Byte isSelect) {
+    public void setIsSelect(int isSelect) {
         this.isSelect = isSelect;
     }
 
@@ -142,12 +143,22 @@ public class BillboardsAction extends ActionSupport {
             js.put("btitle", bb.getBtitle());
             js.put("bcontent", bb.getBcontent());
             js.put("bcontent", bb.getBcontent());
-            js.put("checked", bb.getIsSelect() == 0x00 ? false : true);
+            js.put("checked", bb.getIsSelect() == 0 ? false : true);
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
         return SUCCESS;
     }
 
-
+    /**
+     * 重选功能
+     *
+     * @return 成功或失败的提示信息
+     */
+    public String reelectInformation() {
+        //执行重选功能
+        billboardsDAO.reelectInformation();
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
