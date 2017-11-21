@@ -263,4 +263,24 @@ public class BillboardsAction extends ActionSupport {
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
+
+    /**
+     * 删除数据
+     *
+     * @return 成功或失败的json数据
+     */
+    public String removeInformation() {
+        //得到数据图片名
+        String imgName = billboardsDAO.getSearchInformation(getBid()).getBpath();
+        String imgPath1 = getSavePath() + "\\" + imgName;
+        String imgPath2 = "E:\\pcCode\\ideaCode\\jlyglxt\\target\\jlyglxt\\reception\\img\\billboards" + "\\" + imgName;
+        //执行本地删除图片
+        MyFile.deleteFile(imgPath1);
+        MyFile.deleteFile(imgPath2);
+        //执行删除数据库数据
+        billboardsDAO.removeInformation(getBid());
+        //返回json数据
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
