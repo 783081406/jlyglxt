@@ -259,4 +259,21 @@ public class ServiceitemsAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 删除数据
+     *
+     * @return 成功或失败的json数据
+     */
+    public String removeInformation() {
+        String imgName = serviceitemsDAO.getSearchInformation(getSid()).getSpath();
+        String imgPath1 = getSavePath() + "\\" + imgName;
+        String imgPath2 = "E:\\pcCode\\ideaCode\\jlyglxt\\target\\jlyglxt\\reception\\img\\service" + "\\" + imgName;
+        //执行本地删除图片
+        MyFile.deleteFile(imgPath1);
+        MyFile.deleteFile(imgPath2);
+        //执行删除数据库数据
+        serviceitemsDAO.removeInformation(getSid());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
