@@ -4,7 +4,6 @@ import com.ccjjltx.dao.BillboardsDAO;
 import com.ccjjltx.domain.Billboards;
 import com.ccjjltx.utils.JsonMessage;
 import com.ccjjltx.utils.MyFile;
-import com.ccjjltx.utils.ResourcePath;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
