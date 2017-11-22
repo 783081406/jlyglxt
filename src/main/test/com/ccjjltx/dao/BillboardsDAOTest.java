@@ -42,7 +42,7 @@ public class BillboardsDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber() {
-        //测试的术后数据库的数据为12条
+        //测试的时候数据库的数据为12条
         int result = billboardsDAO.getAllInformationNumber();
         Assert.assertEquals(12, result);
     }
