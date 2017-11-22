@@ -1,16 +1,12 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -137,7 +133,7 @@ public class UserDAOTest {
     //标明此方法需使用事务
     @Transactional
     //标明使用完此方法后事务回滚
-    @Rollback(true)
+    @Rollback
     public void testAddUser3() {
         int result = userDAO.addUser("ccj15", "ccj15", 2);
         Assert.assertEquals(3, result);
@@ -150,7 +146,7 @@ public class UserDAOTest {
     //标明此方法需使用事务
     @Transactional
     //标明使用完此方法后事务回滚
-    @Rollback(true)
+    @Rollback
     public void testUpdateUser1() {
         User user = new User();
         user.setId(100);
@@ -159,7 +155,7 @@ public class UserDAOTest {
         user.setUType(2);
         //预期应该是插入失败，返回false
         boolean result = userDAO.updateUser(user);
-        //Assert.assertFalse(result);
+        Assert.assertFalse(result);
     }
 
     /**
@@ -169,16 +165,14 @@ public class UserDAOTest {
     //标明此方法需使用事务
     @Transactional
     //标明使用完此方法后事务回滚
-    @Rollback(true)
+    @Rollback
     public void testUpdateUser2() {
         User user = new User();
-        user.setId(15);
         user.setUserName("ccj1515");
         user.setPassword("ccj1515");
         user.setUType(2);
         //预期应该是插入成功返回true
-        boolean result = userDAO.updateUser(user);
-        Assert.assertTrue(result);
+        userDAO.updateUser(user);
     }
 
     /**
@@ -186,7 +180,7 @@ public class UserDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testDeleteUser() {
         //应该返回true
         boolean result = userDAO.deleteUser(15);
