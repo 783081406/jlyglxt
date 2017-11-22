@@ -1,6 +1,5 @@
 package com.ccjjltx.dao;
 
-import com.ccjjltx.action.EinformationAction;
 import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.domain.User;
 import org.hibernate.Query;
