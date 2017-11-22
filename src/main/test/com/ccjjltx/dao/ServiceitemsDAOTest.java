@@ -79,8 +79,24 @@ public class ServiceitemsDAOTest {
     @Transactional
     public void testGetSearchInformation() {
         //得到实例化
-        Serviceitems si=serviceitemsDAO.getSearchInformation(1);
-        Assert.assertEquals(1,si.getSid());
+        Serviceitems si = serviceitemsDAO.getSearchInformation(1);
+        Assert.assertEquals(1, si.getSid());
     }
 
+    /**
+     * 验证：是否能根据主键修改isSelect的值
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateIsSelect() {
+        //测试该方法时，数据库的sid为1的数据，isSelected为0,
+        int result1 = serviceitemsDAO.getSearchInformation(1).getIsSelect();
+        int[] data = new int[]{1};
+        //执行更新方法
+        serviceitemsDAO.updateIsSelect(data);
+        //执行上面更新操作之后，isSelect为1
+        int result2 = serviceitemsDAO.getSearchInformation(1).getIsSelect();
+        Assert.assertEquals(result1 + 1, result2);
+    }
 }
