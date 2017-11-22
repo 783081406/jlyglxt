@@ -229,7 +229,7 @@
 
 <!--footer-->
 <div class="footer"
-     style="background-color: #00933f;font-size: 15px;color:#ffffff;padding-top: 40px;padding-bottom: 20px">
+     style="background-color: #00933f;font-size: 15px;color:#ffffff;padding: 40px 40px 20px 40px;">
     <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
         <hr align="left" width="250px"/>
         xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
