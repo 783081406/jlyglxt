@@ -77,6 +77,26 @@
         }, 'json');
     }
 
+    //提交
+    function submits() {
+        //得到所有选中的数据
+        var checkedItems = $('#dg').datagrid('getChecked');
+        //定义一个数组，用来存取数据
+        var ids = [];
+        $.each(checkedItems, function (index, item) {
+            ids.push({name: 'sids', value: item.sid});
+        });
+        $.post('<%=basePath %>serviceiaction/selectInformation.action', ids, function (result) {
+            if (result.success) {
+                $('#dg').datagrid('reload');	// 重新加载数据
+            } else {
+                $.messager.show({	// 显示错误的信息
+                    title: '错误提示',
+                    msg: result.msg
+                });
+            }
+        }, 'json');
+    }
 </script>
 </body>
 </html>
