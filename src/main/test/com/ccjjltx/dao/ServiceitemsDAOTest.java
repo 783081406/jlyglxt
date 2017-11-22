@@ -33,7 +33,16 @@ public class ServiceitemsDAOTest {
         Assert.assertEquals(12, result);
     }
 
-
+    /**
+     * 验证是否能返回得到的总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber() {
+        //测试的时候数据库的数据为12条
+        int result = serviceitemsDAO.getAllInformationNumber();
+        Assert.assertEquals(12, result);
+    }
 
 
 
