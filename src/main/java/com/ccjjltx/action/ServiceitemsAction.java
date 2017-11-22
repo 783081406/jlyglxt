@@ -199,4 +199,16 @@ public class ServiceitemsAction extends ActionSupport {
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
+
+    /**
+     * 提交功能，选择了展示的数据的方法
+     *
+     * @return json，成功或失败的
+     */
+    public String selectInformation() {
+        serviceitemsDAO.updateIsSelect(getSids());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 }
