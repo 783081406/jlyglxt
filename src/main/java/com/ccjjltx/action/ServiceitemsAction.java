@@ -1,12 +1,16 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.ServiceitemsDAO;
+import com.ccjjltx.domain.Serviceitems;
+import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/22.
@@ -18,7 +22,7 @@ import java.io.File;
 @Controller
 @Scope("prototype")
 
-public class ServiceitemsAction {
+public class ServiceitemsAction extends ActionSupport {
     @Resource(name = "serviceitemsDAO")
     private ServiceitemsDAO serviceitemsDAO;
     private int page;
@@ -151,5 +155,35 @@ public class ServiceitemsAction {
 
     public void setSavePath(String savePath) {
         this.savePath = savePath;
+    }
+
+    /**
+     * 得到总数据
+     *
+     * @return 返回Json数据
+     */
+    public String getAllInformation() {
+        //得到起始的行数
+        int offset = (getPage() - 1) * getRows();
+        //得到所有的数据
+        List<Serviceitems> list = serviceitemsDAO.getAllInformation(offset, getRows());
+        //总条数
+        int total = serviceitemsDAO.getAllInformationNumber();
+        //设置result信息
+        result = new JSONObject();
+        result.put("total", total);
+        JSONArray jsonArray = new JSONArray();
+        String tempPath = "../../../reception/img/service";
+        for (Serviceitems si : list) {
+            JSONObject js = new JSONObject();
+            js.put("sid", si.getSid());
+            js.put("spath", tempPath + "/" + si.getSpath());
+            js.put("stitle", si.getStitle());
+            js.put("scontent", si.getScontent());
+            js.put("checked", si.getIsSelect() == 0 ? false : true);
+            jsonArray.add(js);
+        }
+        result.put("rows", jsonArray);
+        return SUCCESS;
     }
 }
