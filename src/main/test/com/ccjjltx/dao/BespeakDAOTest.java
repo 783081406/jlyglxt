@@ -54,4 +54,15 @@ public class BespeakDAOTest {
         int result = bespeakDAO.getAllUnhandleInformation(0, 20).size();
         Assert.assertEquals(12, result);
     }
+
+    /**
+     * 验证：是否能得到正确未处理数据的条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllUnhandleInformationNumber() {
+        int result = bespeakDAO.getAllUnhandleInformation(0, 100).size();
+        int result2 = bespeakDAO.getAllUnhandleInformationNumber();
+        Assert.assertEquals(result, result2);
+    }
 }
