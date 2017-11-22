@@ -67,4 +67,16 @@ public class ServiceitemsDAO {
         }
     }
 
+    /**
+     * 根据主键得到实例化
+     *
+     * @param sid 主键的值
+     * @return 实例化
+     */
+    public Serviceitems getSearchInformation(int sid) {
+        Session session = factory.getCurrentSession();
+        return (Serviceitems) session.get(Serviceitems.class, sid);
+    }
+
+
 }
