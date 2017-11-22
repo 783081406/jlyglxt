@@ -7,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -120,45 +122,28 @@
     <ol class="carousel-indicators">
         <li data-target="#circleContent" data-slide-to="0" class="active">
         </li>
-        <li data-target="#circleContent" data-slide-to="1">
-        </li>
-        <li data-target="#circleContent" data-slide-to="2">
-        </li>
+        <c:forEach var="x" begin="1" end="${lbSize}">
+            <li data-target="#circleContent" data-slide-to="${x}">
+            </li>
+        </c:forEach>
+
     </ol>
     <div class="carousel-inner">
-        <div class="item active">
-            <img alt="" src="img/1.jpg"/>
-            <div class="carousel-caption">
-                <h4>
-                    棒球
-                </h4>
-                <p>
-                    棒球运动是一种以棒打球为主要特点，集体性、对抗性很强的球类运动项目，在美国、日本尤为盛行。
-                </p>
+        <s:iterator value="listBillboards" var="bb" status="bbb">
+            <div class="item <s:if test="#bbb.first">
+                active
+            </s:if>">
+                <img alt="" src='img/billboards/<s:property value="#bb.bpath"/>'/>
+                <div class="carousel-caption">
+                    <h4>
+                        <s:property value="#bb.btitle"/>
+                    </h4>
+                    <p>
+                        <s:property value="#bb.bcontent"/>
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img alt="" src="img/2.jpg"/>
-            <div class="carousel-caption">
-                <h4>
-                    冲浪
-                </h4>
-                <p>
-                    冲浪是以海浪为动力，利用自身的高超技巧和平衡能力，搏击海浪的一项运动。运动员站立在冲浪板上，或利用腹板、跪板、充气的橡皮垫、划艇、皮艇等驾驭海浪的一项水上运动。
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img alt="" src="img/3.jpg"/>
-            <div class="carousel-caption">
-                <h4>
-                    自行车
-                </h4>
-                <p>
-                    以自行车为工具比赛骑行速度的体育运动。1896年第一届奥林匹克运动会上被列为正式比赛项目。环法赛为最著名的世界自行车锦标赛。
-                </p>
-            </div>
-        </div>
+        </s:iterator>
     </div>
 </div>
 <!--内容-->
