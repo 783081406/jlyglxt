@@ -99,4 +99,20 @@ public class ServiceitemsDAOTest {
         int result2 = serviceitemsDAO.getSearchInformation(1).getIsSelect();
         Assert.assertEquals(result1 + 1, result2);
     }
+
+    /**
+     * 验证：是否能新增
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation() {
+        //为插入前的数据量
+        int result1 = serviceitemsDAO.getAllInformationNumber();
+        Serviceitems si = new Serviceitems("f1.jpg", "1234", "1234");
+        //执行插入数据操作
+        serviceitemsDAO.addInformation(si);
+        int result2 = serviceitemsDAO.getAllInformationNumber();
+        Assert.assertEquals(result1 + 1, result2);
+    }
 }
