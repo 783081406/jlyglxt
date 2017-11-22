@@ -129,4 +129,18 @@ public class ServiceitemsDAOTest {
         serviceitemsDAO.updateInformation(si);
         Assert.assertEquals("1234", serviceitemsDAO.getSearchInformation(1).getScontent());
     }
+
+    /**
+     * 验证：是否能删除数据
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testRemoveInformation() {
+        int result1 = serviceitemsDAO.getAllInformationNumber();
+        //执行删除
+        serviceitemsDAO.removeInformation(1);
+        int result2 = serviceitemsDAO.getAllInformationNumber();
+        Assert.assertEquals(result1 - 1, result2);
+    }
 }
