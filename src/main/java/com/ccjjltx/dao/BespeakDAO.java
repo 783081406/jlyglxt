@@ -86,4 +86,14 @@ public class BespeakDAO {
         Session session = factory.getCurrentSession();
         return (Bespeak) session.get(Bespeak.class, bid);
     }
+
+    /**
+     * 修改为已处理
+     *
+     * @param si 需要修改的实例化
+     */
+    public void handleInformation(Bespeak si) {
+        Session session = factory.getCurrentSession();
+        session.update(si);
+    }
 }
