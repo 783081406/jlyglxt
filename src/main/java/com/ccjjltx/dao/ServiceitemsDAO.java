@@ -37,7 +37,17 @@ public class ServiceitemsDAO {
         return (List<Serviceitems>) query.list();
     }
 
-
+    /**
+     * 得到总数
+     *
+     * @return 整数
+     */
+    public int getAllInformationNumber() {
+        Session session = factory.getCurrentSession();
+        String hql = "select count(*) from Serviceitems serviceitems";
+        long l = (long) session.createQuery(hql).uniqueResult();
+        return (int) l;
+    }
 
 
 }
