@@ -129,5 +129,15 @@ public class ServiceitemsDAO {
         session.delete(getSearchInformation(sid));
     }
 
-
+    /**
+     * 得到选中的值返回给前端
+     *
+     * @return List集合
+     */
+    public List<Serviceitems> getSelectInformation() {
+        Session session = factory.getCurrentSession();
+        String hql = "from Serviceitems serviceitems where isSelect=1 order by sid desc";
+        Query query = session.createQuery(hql);
+        return (List<Serviceitems>) query.list();
+    }
 }
