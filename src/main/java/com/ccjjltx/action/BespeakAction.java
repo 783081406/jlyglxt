@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.BespeakDAO;
 import com.ccjjltx.domain.Bespeak;
+import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -123,11 +124,12 @@ public class BespeakAction extends ActionSupport {
             JSONObject js = new JSONObject();
             js.put("bid", bs.getBid());
             js.put("name", bs.getName());
+            js.put("phone", bs.getPhone());
             js.put("ename", bs.getEname());
             js.put("eage", bs.getEage());
             js.put("handleUser", bs.getHandleUser());
-            js.put("submitDate", bs.getSubmitDate());
-            js.put("handleDate", bs.getHandleDate());
+            js.put("submitDate", MyDateFormat.format(bs.getSubmitDate()));
+            js.put("handleDate", MyDateFormat.format(bs.getHandleDate()));
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
