@@ -1,13 +1,16 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.BespeakDAO;
+import com.ccjjltx.domain.Bespeak;
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/22.
@@ -104,4 +107,30 @@ public class BespeakAction extends ActionSupport {
         this.eage = eage;
     }
 
+    /**
+     * 得到所有已处理的数据
+     *
+     * @return list数据
+     */
+    public String getAllHandleInformation() {
+        int offset = (getPage() - 1) * getRows();
+        List<Bespeak> list = bespeakDAO.getAllHandleInformation(offset, getRows());
+        int total = bespeakDAO.getAllHandleInformationNumber();
+        result = new JSONObject();
+        result.put("total", total);
+        JSONArray jsonArray = new JSONArray();
+        for (Bespeak bs : list) {
+            JSONObject js = new JSONObject();
+            js.put("bid", bs.getBid());
+            js.put("name", bs.getName());
+            js.put("ename", bs.getEname());
+            js.put("eage", bs.getEage());
+            js.put("handleUser", bs.getHandleUser());
+            js.put("submitDate", bs.getSubmitDate());
+            js.put("handleDate", bs.getHandleDate());
+            jsonArray.add(js);
+        }
+        result.put("rows", jsonArray);
+        return SUCCESS;
+    }
 }
