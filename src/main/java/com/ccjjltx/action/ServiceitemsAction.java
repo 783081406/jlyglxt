@@ -243,4 +243,20 @@ public class ServiceitemsAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 更新数据
+     *
+     * @return Json，返回成功或失败的数据记录
+     */
+    public String updateInformation() {
+        Serviceitems si = serviceitemsDAO.getSearchInformation(getSid());
+        //更新数据
+        si.setStitle(getStitle());
+        si.setScontent(getScontent());
+        //更新数据
+        serviceitemsDAO.updateInformation(si);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 }
