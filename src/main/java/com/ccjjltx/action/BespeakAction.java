@@ -2,7 +2,9 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.BespeakDAO;
 import com.ccjjltx.domain.Bespeak;
+import com.ccjjltx.utils.JsonMessage;
 import com.ccjjltx.utils.MyDateFormat;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -161,4 +163,24 @@ public class BespeakAction extends ActionSupport {
         result.put("rows", jsonArray);
         return SUCCESS;
     }
+
+    /**
+     * 提交过来的处理信息
+     *
+     * @return Json，成功或失败的信息
+     */
+    public String handleInformation() {
+        //得到实例化
+        Bespeak bs = bespeakDAO.getSearchInformation(getBid());
+        //修改状态
+        bs.setIshandle(1);
+        //添加处理人与时间
+        bs.setHandleUser((String) ActionContext.getContext().getSession().get("userName"));
+        bs.setHandleDate(new Date());
+        //更新
+        bespeakDAO.handleInformation(bs);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 }
