@@ -216,7 +216,7 @@
         });
     }
     //删除
-    function removeb() {
+    function removes() {
         //得到那一行的数据，如果没选为空，不能进入if语句里面
         var row = $('#dg').datagrid('getSelected');
         if (row) {
