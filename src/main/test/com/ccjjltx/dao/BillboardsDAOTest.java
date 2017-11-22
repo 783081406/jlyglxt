@@ -147,4 +147,16 @@ public class BillboardsDAOTest {
         int result2 = billboardsDAO.getAllInformationNumber();
         Assert.assertEquals(result1 - 1, result2);
     }
+
+    /**
+     * 验证：是否得到所有selected的值
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testGetSelectInformation() {
+        //得到数据的条数，测试该方法时，数据库的数据为3
+        int result = billboardsDAO.getSelectInformation().size();
+        Assert.assertEquals(3, result);
+    }
 }
