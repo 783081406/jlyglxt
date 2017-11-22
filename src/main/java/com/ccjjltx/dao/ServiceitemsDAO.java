@@ -78,5 +78,26 @@ public class ServiceitemsDAO {
         return (Serviceitems) session.get(Serviceitems.class, sid);
     }
 
+    /**
+     * 批量更新isSelect的值
+     *
+     * @param sids 需要修改的isSelect的值
+     */
+    public void updateIsSelect(int[] sids) {
+        Session session = factory.getCurrentSession();
+        Serviceitems si;
+        int i = 0;
+        for (int sid : sids) {
+            si = getSearchInformation(sid);
+            si.setIsSelect(1);
+            session.update(si);
+            if (i % 8 == 0) {
+                session.flush();
+                session.clear();
+            }
+            i++;
+        }
+
+    }
 
 }
