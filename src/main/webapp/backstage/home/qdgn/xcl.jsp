@@ -98,7 +98,7 @@
             title: '宣传栏记录',
             url: '<%=basePath %>billboardsAction/getAllInformation.action',
             toolbar: '#toolbar',
-            fitColumns: "true",
+            fitColumns: true,
             rownumbers: true,
             pagination: true,
             nowrap: false,
