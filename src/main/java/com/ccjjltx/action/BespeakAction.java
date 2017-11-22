@@ -135,4 +135,30 @@ public class BespeakAction extends ActionSupport {
         result.put("rows", jsonArray);
         return SUCCESS;
     }
+
+    /**
+     * 得到所有未处理的数据
+     *
+     * @return list数据
+     */
+    public String getAllUnhandleInformation() {
+        int offset = (getPage() - 1) * getRows();
+        List<Bespeak> list = bespeakDAO.getAllUnhandleInformation(offset, getRows());
+        int total = bespeakDAO.getAllUnhandleInformationNumber();
+        result = new JSONObject();
+        result.put("total", total);
+        JSONArray jsonArray = new JSONArray();
+        for (Bespeak bs : list) {
+            JSONObject js = new JSONObject();
+            js.put("bid", bs.getBid());
+            js.put("name", bs.getName());
+            js.put("phone", bs.getPhone());
+            js.put("ename", bs.getEname());
+            js.put("eage", bs.getEage());
+            js.put("submitDate", MyDateFormat.format(bs.getSubmitDate()));
+            jsonArray.add(js);
+        }
+        result.put("rows", jsonArray);
+        return SUCCESS;
+    }
 }
