@@ -184,7 +184,6 @@ public class BillboardsAction extends ActionSupport {
             js.put("bpath", tempPath + "/" + bb.getBpath());
             js.put("btitle", bb.getBtitle());
             js.put("bcontent", bb.getBcontent());
-            js.put("bcontent", bb.getBcontent());
             js.put("checked", bb.getIsSelect() == 0 ? false : true);
             jsonArray.add(js);
         }
