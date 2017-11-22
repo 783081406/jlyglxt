@@ -109,4 +109,15 @@ public class ServiceitemsDAO {
         session.save(si);
     }
 
+    /**
+     * 更新数据
+     *
+     * @param si Serviceitems修改的实例化
+     */
+    public void updateInformation(Serviceitems si) {
+        Session session = factory.getCurrentSession();
+        session.update(si);
+    }
+
+
 }
