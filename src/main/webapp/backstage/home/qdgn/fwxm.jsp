@@ -60,6 +60,23 @@
             checkOnSelect: true
         });
     });
+
+    ////////////////////工具栏//////////////////////
+    var url;
+    //重选
+    function reelect() {
+        $.post('<%=basePath %>serviceiaction/reelectInformation.action', {}, function (result) {
+            if (result.success) {
+                $('#dg').datagrid('reload');	// 重新加载数据
+            } else {
+                $.messager.show({	// 显示错误的信息
+                    title: '错误提示',
+                    msg: result.msg
+                });
+            }
+        }, 'json');
+    }
+
 </script>
 </body>
 </html>
