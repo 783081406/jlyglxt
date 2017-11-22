@@ -49,4 +49,18 @@ public class BespeakDAO {
         long l = (long) query.uniqueResult();
         return (int) l;
     }
+
+    /**
+     * 得到全部未处理的信息
+     *
+     * @param offset 起始行数
+     * @param rows   返回行数
+     * @return List集合数据
+     */
+    public List<Bespeak> getAllUnhandleInformation(int offset, int rows) {
+        Session session = factory.getCurrentSession();
+        String hql = "from Bespeak bespeak where ishandle=0 order by submitDate desc";
+        Query query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
+        return (List<Bespeak>) query.list();
+    }
 }
