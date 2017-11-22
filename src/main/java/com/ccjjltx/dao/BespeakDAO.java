@@ -36,4 +36,17 @@ public class BespeakDAO {
         Query query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
         return (List<Bespeak>) query.list();
     }
+
+    /**
+     * 得到全部已经处理的信息的总量
+     *
+     * @return 整数
+     */
+    public int getAllHandleInformationNumber() {
+        Session session = factory.getCurrentSession();
+        String hql = "select count(*) from Bespeak bespeak where ishandle=1";
+        Query query = session.createQuery(hql);
+        long l = (long) query.uniqueResult();
+        return (int) l;
+    }
 }
