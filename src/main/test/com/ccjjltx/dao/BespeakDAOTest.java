@@ -32,4 +32,15 @@ public class BespeakDAOTest {
         int result = bespeakDAO.getAllHandleInformation(0, 20).size();
         Assert.assertEquals(11, result);
     }
+
+    /**
+     * 验证：是否能得到正确已处理数据的条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllHandleInformationNumber() {
+        int result = bespeakDAO.getAllHandleInformation(0, 100).size();
+        int result2 = bespeakDAO.getAllHandleInformationNumber();
+        Assert.assertEquals(result, result2);
+    }
 }
