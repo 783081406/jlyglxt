@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Bespeak;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,5 +65,15 @@ public class BespeakDAOTest {
         int result = bespeakDAO.getAllUnhandleInformation(0, 100).size();
         int result2 = bespeakDAO.getAllUnhandleInformationNumber();
         Assert.assertEquals(result, result2);
+    }
+
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchInformation() {
+        Bespeak bs = bespeakDAO.getSearchInformation(1);
+        Assert.assertEquals(1, bs.getBid());
     }
 }
