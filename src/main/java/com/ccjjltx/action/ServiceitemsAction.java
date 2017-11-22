@@ -3,6 +3,7 @@ package com.ccjjltx.action;
 import com.ccjjltx.dao.ServiceitemsDAO;
 import com.ccjjltx.domain.Serviceitems;
 import com.ccjjltx.utils.JsonMessage;
+import com.ccjjltx.utils.MyFile;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -208,6 +212,34 @@ public class ServiceitemsAction extends ActionSupport {
     public String selectInformation() {
         serviceitemsDAO.updateIsSelect(getSids());
         result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+    /**
+     * 增加新数据
+     *
+     * @return JSON成功或失败的数据
+     */
+    public String saveInformation() {
+        try {
+            //保存图片操作
+            FileOutputStream fos = new FileOutputStream(getSavePath() + "\\" + getUploadFileName());
+            FileInputStream fis = new FileInputStream(getUpload());
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = fis.read(buffer)) > 0) {
+                fos.write(buffer, 0, len);
+            }
+            fos.close();
+            //使用文件复制
+            MyFile.copyFile(getSavePath() + "\\" + getUploadFileName(), "E:\\pcCode\\ideaCode\\jlyglxt\\target\\jlyglxt\\reception\\img\\service" + "\\" + getUploadFileName());
+            //实例化Serviceitems
+            Serviceitems si = new Serviceitems(getUploadFileName(), getStitle(), getScontent());
+            serviceitemsDAO.addInformation(si);
+            result = JsonMessage.returnMessage(true, "success");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return SUCCESS;
     }
 
