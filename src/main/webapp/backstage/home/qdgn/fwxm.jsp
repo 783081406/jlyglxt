@@ -35,7 +35,56 @@
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removes()">删除</a>
     </div>
 </div>
-
+<!--添加的window-->
+<div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
+     buttons="#dlg-buttons">
+    <div class="ftitle">新数据</div>
+    <form id="fm" method="post" enctype="multipart/form-data">
+        <div class="fitem">
+            <label>图片:</label>
+            <input class="easyui-filebox" id="upload" name="upload"
+                   data-options="prompt:'请选择图片...',buttonText:'浏览'"
+                   accept="image/gif,image/jpeg,image/png" required="required"/>
+        </div>
+        <div class="fitem">
+            <label>标题:</label>
+            <input name="stitle" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>内容:</label>
+            <input style="height: 90px" name="scontent" class="easyui-textbox" data-options="multiline:true"
+                   required="required">
+        </div>
+    </form>
+</div>
+<!--提交与取消按钮-->
+<div id="dlg-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saves()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+       onclick="javascript:$('#dlg').dialog('close')">取消</a>
+</div>
+<!--修改的window-->
+<div id="dlg2" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
+     buttons="#dlg-buttons2">
+    <div class="ftitle">修改数据</div>
+    <form id="fm2" method="post">
+        <div class="fitem">
+            <label>标题:</label>
+            <input name="stitle" class="easyui-validatebox" required="required">
+        </div>
+        <div class="fitem">
+            <label>内容:</label>
+            <input style="height: 90px" name="scontent" class="easyui-textbox" data-options="multiline:true"
+                   required="required">
+        </div>
+    </form>
+</div>
+<!--提交与取消按钮-->
+<div id="dlg-buttons2">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveb2()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+       onclick="javascript:$('#dlg2').dialog('close')">取消</a>
+</div>
 <script>
     function imgFormatter(value, row, index) {
         return "<img width='87px' height='87px' src='" + row.spath + "'/>";
@@ -96,6 +145,98 @@
                 });
             }
         }, 'json');
+    }
+
+    //添加
+    function news() {
+        $('#dlg').dialog('open').dialog('setTitle', '新数据');
+        //清空表单，来显示空表单
+        $('#fm').form('clear');
+        //提交数据处理的URL
+        url = '<%=basePath %>serviceiaction/saveInformation.action';
+    }
+
+    //提交功能
+    function saves() {
+        $('#fm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#dlg').dialog('close');		// 关闭window
+                    $('#dg').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
+
+    //修改
+    function edits() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg2').dialog('open').dialog('setTitle', '更新数据');
+            //加载点击那一行的数据
+            $('#fm2').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>serviceiaction/updateInformation.action?sid=' + row.sid;
+        }
+    }
+
+    //提交功能
+    function saveb2() {
+        $('#fm2').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#dlg2').dialog('close');		// 关闭window
+                    $('#dg').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
+    //删除
+    function removeb() {
+        //得到那一行的数据，如果没选为空，不能进入if语句里面
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('警告', '是否确定删除本行数据?', function (r) {
+                //如果选择确定，执行if里面语句
+                if (r) {
+                    //post提交
+                    $.post('<%=basePath %>serviceiaction/removeInformation.action', {sid: row.sid}, function (result) {
+                        if (result.success) {
+                            $('#dg').datagrid('reload');	// 重新加载数据
+                        } else {
+                            $.messager.show({	// 显示错误的信息
+                                title: '错误提示',
+                                msg: result.msg
+                            });
+                        }
+                    }, 'json');
+                }
+            });
+        }
     }
 </script>
 </body>
