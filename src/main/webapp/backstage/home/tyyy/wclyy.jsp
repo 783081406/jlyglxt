@@ -29,7 +29,7 @@
 <body>
 <table id="dg" title="已处理信息" class="easyui-datagrid" style="width:980px;height:340px"
        url="<%=basePath %>bespeakaction/getAllUnhandleInformation.action" pagination="true" rownumbers="true"
-       fitColumns="true" singleSelect="true">
+       toolbar="#toolbar" fitColumns="true" singleSelect="true">
     <thead>
     <tr>
         <th field="name" width="100">姓名</th>
@@ -40,6 +40,34 @@
     </tr>
     </thead>
 </table>
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="handle()">处理</a>
+    </div>
+</div>
+<script>
+    function handle() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('警告', '是否确定处理本行数据?', function (r) {
+                //如果选择确定，执行if里面语句
+                if (r) {
+                    //post提交
+                    $.post('<%=basePath %>bespeakaction/handleInformation.action', {bid: row.bid}, function (result) {
+                        if (result.success) {
+                            $('#dg').datagrid('reload');	// 重新加载数据
+                        } else {
+                            $.messager.show({	// 显示错误的信息
+                                title: '错误提示',
+                                msg: result.msg
+                            });
+                        }
+                    }, 'json');
+                }
+            });
+        }
+    }
+</script>
 </body>
 </html>
 
