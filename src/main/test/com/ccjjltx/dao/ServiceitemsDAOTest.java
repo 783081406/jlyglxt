@@ -143,4 +143,16 @@ public class ServiceitemsDAOTest {
         int result2 = serviceitemsDAO.getAllInformationNumber();
         Assert.assertEquals(result1 - 1, result2);
     }
+
+    /**
+     * 验证：是否得到所有selected的值
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testGetSelectInformation() {
+        //测试该数据时，数据库的数据为1的条数为4
+        int result = serviceitemsDAO.getSelectInformation().size();
+        Assert.assertEquals(4, result);
+    }
 }
