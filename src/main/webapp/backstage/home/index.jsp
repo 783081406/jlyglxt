@@ -47,8 +47,8 @@
                 }, {
                     "menuid": "3", "icon": "icon-sys", "menuname": "体验预约",
                     "menus": [
-                        {"menuid": "31", "menuname": "未处理预约", "icon": "icon-page", "url": "tjyy/wclyy.jsp"},
-                        {"menuid": "32", "menuname": "已处理预约", "icon": "icon-class", "url": "tjyy/yclyy.jsp"}
+                        {"menuid": "31", "menuname": "未处理预约", "icon": "icon-page", "url": "tyyy/wclyy.jsp"},
+                        {"menuid": "32", "menuname": "已处理预约", "icon": "icon-class", "url": "tyyy/yclyy.jsp"}
                     ]
                 }, {
                     "menuid": "4", "icon": "icon-sys", "menuname": "员工中心",
