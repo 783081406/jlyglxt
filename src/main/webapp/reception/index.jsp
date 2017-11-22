@@ -154,42 +154,17 @@
     </div>
     <div>
         <div class="row">
-            <div class="col-md-3"><img src="./img/service/f1.jpg" class="img-thumbnail">
-                <div style="margin-left: 25px">
-                    <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
-                        <p>
-                            <small>1234567891<br/>23456789</small>
-                        </p>
-                    </em></h3>
+            <s:iterator value="listServiceitems" var="si">
+                <div class="col-md-3"><img src='./img/service/<s:property value="#si.spath"/>' class="img-thumbnail">
+                    <div style="margin-left: 25px">
+                        <h3 style="color:#01a73d"><strong><s:property value="#si.stitle"/></strong><br/>
+                            <p style="padding-top: 10px">
+                                <small><s:property value="#si.scontent"/></small>
+                            </p>
+                        </h3>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3"><img src="./img/service/f2.jpg" class="img-thumbnail">
-                <div style="margin-left: 25px">
-                    <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
-                        <p>
-                            <small>1234567891<br/>23456789</small>
-                        </p>
-                    </em></h3>
-                </div>
-            </div>
-            <div class="col-md-3"><img src="./img/service/f3.jpg" class="img-thumbnail">
-                <div style="margin-left: 25px">
-                    <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
-                        <p>
-                            <small>1234567891<br/>23456789</small>
-                        </p>
-                    </em></h3>
-                </div>
-            </div>
-            <div class="col-md-3"><img src="./img/service/f4.jpg" class="img-thumbnail">
-                <div style="margin-left: 25px">
-                    <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
-                        <p>
-                            <small>1234567891<br/>23456789</small>
-                        </p>
-                    </em></h3>
-                </div>
-            </div>
+            </s:iterator>
         </div>
     </div>
 
@@ -217,8 +192,8 @@
     <div class="box1">
         <div class="left1"></div>
         <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
-            <strong>&nbsp;&nbsp;体检预约&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">xijianyuyue</p></div>
+            <strong>&nbsp;&nbsp;体验预约&nbsp;&nbsp;</strong></p>
+            <p style="font-size: 25px;color: gainsboro">tiyanyuyue</p></div>
         <div class="right1"></div>
     </div>
     <div>
