@@ -51,6 +51,19 @@
         </action>
     </package>
 
+    <!--前端功能>>宣传栏-->
+    <package name="serviceiaction" namespace="/serviceiaction" extends="struts-default,json-default">
+        <action name="*" class="serviceitemsAction" method="{1}">
+            <param name="savePath">E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service</param>
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
     <!--信息中心>>信息查看>>老人信息信息-->
     <package name="elderlyimaction" namespace="/elderlyimaction" extends="struts-default,json-default">
         <action name="*" class="elderlyimAction" method="{1}">
