@@ -49,5 +49,22 @@ public class ServiceitemsDAO {
         return (int) l;
     }
 
+    /**
+     * 重选，批量更新，将所有isSelect都改为0
+     */
+    public void reelectInformation() {
+        Session session = factory.getCurrentSession();
+        List<Serviceitems> list = getAllInformation(0, getAllInformationNumber());
+        int i = 0;
+        for (Serviceitems si : list) {
+            si.setIsSelect(0);
+            session.update(si);
+            if (i % 10 == 0) {
+                session.flush();
+                session.clear();
+            }
+            i++;
+        }
+    }
 
 }
