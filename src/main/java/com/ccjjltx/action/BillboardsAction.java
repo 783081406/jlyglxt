@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/20.
- * 到宣传栏数据增删查改
+ * 对宣传栏数据增删查改
  *
  * @author ccj
  * @version 1.0
