@@ -7,6 +7,13 @@
     <!--Struts2中Action对象的创建交给spring完成-->
     <constant name="struts.objectFactory" value="spring"/>
 
+    <!--前端》》home首页-->
+    <package name="reception" namespace="/reception" extends="struts-default">
+        <action name="index" class="rhome" method="abc">
+            <result name="success">/reception/index.jsp</result>
+        </action>
+    </package>
+
     <!--后台登录页面-->
     <package name="backstage" namespace="/backstage" extends="struts-default,json-default">
         <action name="index" class="loginAction" method="checkForntLogin">
