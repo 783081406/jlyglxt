@@ -1,7 +1,9 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.BillboardsDAO;
+import com.ccjjltx.dao.ServiceitemsDAO;
 import com.ccjjltx.domain.Billboards;
+import com.ccjjltx.domain.Serviceitems;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -22,8 +24,12 @@ import java.util.List;
 public class Rhome extends ActionSupport {
     @Resource(name = "billboardsDAO")
     private BillboardsDAO billboardsDAO;
+    @Resource(name = "serviceitemsDAO")
+    private ServiceitemsDAO serviceitemsDAO;
+
     private List<Billboards> listBillboards = new ArrayList<>();
     private int lbSize;
+    private List<Serviceitems> listServiceitems = new ArrayList<>();
 
     public BillboardsDAO getBillboardsDAO() {
         return billboardsDAO;
@@ -31,6 +37,14 @@ public class Rhome extends ActionSupport {
 
     public void setBillboardsDAO(BillboardsDAO billboardsDAO) {
         this.billboardsDAO = billboardsDAO;
+    }
+
+    public ServiceitemsDAO getServiceitemsDAO() {
+        return serviceitemsDAO;
+    }
+
+    public void setServiceitemsDAO(ServiceitemsDAO serviceitemsDAO) {
+        this.serviceitemsDAO = serviceitemsDAO;
     }
 
     public List<Billboards> getListBillboards() {
@@ -49,10 +63,19 @@ public class Rhome extends ActionSupport {
         this.lbSize = lbSize;
     }
 
+    public List<Serviceitems> getListServiceitems() {
+        return listServiceitems;
+    }
+
+    public void setListServiceitems(List<Serviceitems> listServiceitems) {
+        this.listServiceitems = listServiceitems;
+    }
+
     public String abc() {
         List<Billboards> lb = billboardsDAO.getSelectInformation();
         setListBillboards(lb);
-        setLbSize(lb.size()-1);
+        setLbSize(lb.size() - 1);
+        setListServiceitems(serviceitemsDAO.getSelectInformation());
         return SUCCESS;
     }
 }
