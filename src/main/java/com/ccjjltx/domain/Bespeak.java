@@ -2,7 +2,7 @@ package com.ccjjltx.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by ccjjltx on 2017/11/22.
