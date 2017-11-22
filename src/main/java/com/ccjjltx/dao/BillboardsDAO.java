@@ -130,4 +130,16 @@ public class BillboardsDAO {
         Session session = factory.getCurrentSession();
         session.delete(getSearchInformation(bid));
     }
+
+    /**
+     * 得到选中的值返回给前端
+     *
+     * @return List集合
+     */
+    public List<Billboards> getSelectInformation() {
+        Session session = factory.getCurrentSession();
+        String hql = "from Billboards billboards where isSelect=1 order by bid desc ";
+        Query query = session.createQuery(hql);
+        return (List<Billboards>) query.list();
+    }
 }
