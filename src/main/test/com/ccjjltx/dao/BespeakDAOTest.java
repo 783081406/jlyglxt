@@ -4,11 +4,13 @@ import com.ccjjltx.domain.Bespeak;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Created by ccjjltx on 2017/11/22.
@@ -75,5 +77,22 @@ public class BespeakDAOTest {
     public void testGetSearchInformation() {
         Bespeak bs = bespeakDAO.getSearchInformation(1);
         Assert.assertEquals(1, bs.getBid());
+    }
+
+    /**
+     * 验证：是否能修改状态同时添加处理人与处理时间
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testHandleInformation() {
+        Bespeak bs = bespeakDAO.getSearchInformation(1);
+        //修改为处理状态
+        bs.setIshandle(1);
+        //添加处理人
+        bs.setHandleUser("ccj");
+        //添加处理时间
+        bs.setHandleDate(new Date());
+        bespeakDAO.handleInformation(bs);
     }
 }
