@@ -9,10 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,7 +154,7 @@
     </div>
     <div>
         <div class="row">
-            <div class="col-md-3"><img src="./img/timg.png" class="img-thumbnail"><br/>
+            <div class="col-md-3"><img src="./img/service/f1.jpg" class="img-thumbnail">
                 <div style="margin-left: 25px">
                     <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
                         <p>
@@ -167,7 +163,7 @@
                     </em></h3>
                 </div>
             </div>
-            <div class="col-md-3"><img src="./img/timg.png" class="img-thumbnail"><br/>
+            <div class="col-md-3"><img src="./img/service/f2.jpg" class="img-thumbnail">
                 <div style="margin-left: 25px">
                     <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
                         <p>
@@ -176,7 +172,7 @@
                     </em></h3>
                 </div>
             </div>
-            <div class="col-md-3"><img src="./img/timg.png" class="img-thumbnail"><br/>
+            <div class="col-md-3"><img src="./img/service/f3.jpg" class="img-thumbnail">
                 <div style="margin-left: 25px">
                     <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
                         <p>
@@ -185,7 +181,7 @@
                     </em></h3>
                 </div>
             </div>
-            <div class="col-md-3"><img src="./img/timg.png" class="img-thumbnail"><br/>
+            <div class="col-md-3"><img src="./img/service/f4.jpg" class="img-thumbnail">
                 <div style="margin-left: 25px">
                     <h3 style="color:#01a73d"><strong>1234</strong><br/><em style="padding-top: 10px">
                         <p>
