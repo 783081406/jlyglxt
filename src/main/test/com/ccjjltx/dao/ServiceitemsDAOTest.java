@@ -72,5 +72,15 @@ public class ServiceitemsDAOTest {
         Assert.assertEquals(sisSelect - 1, sisSelect2);
     }
 
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchInformation() {
+        //得到实例化
+        Serviceitems si=serviceitemsDAO.getSearchInformation(1);
+        Assert.assertEquals(1,si.getSid());
+    }
 
 }
