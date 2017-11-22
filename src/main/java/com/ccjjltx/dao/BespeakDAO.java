@@ -75,4 +75,15 @@ public class BespeakDAO {
         long l = (long) session.createQuery(hql).uniqueResult();
         return (int) l;
     }
+
+    /**
+     * 根据主键得到实例化
+     *
+     * @param bid 主键
+     * @return 实例化
+     */
+    public Bespeak getSearchInformation(int bid) {
+        Session session = factory.getCurrentSession();
+        return (Bespeak) session.get(Bespeak.class, bid);
+    }
 }
