@@ -196,6 +196,19 @@
             <version>8.5.8</version>
             <scope>provided</scope>
         </dependency>
+
+        <!--jslt标签库-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>jlyglxt</finalName>
