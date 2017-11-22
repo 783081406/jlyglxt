@@ -119,5 +119,15 @@ public class ServiceitemsDAO {
         session.update(si);
     }
 
+    /**
+     * 删除数据
+     *
+     * @param sid 主键
+     */
+    public void removeInformation(int sid) {
+        Session session = factory.getCurrentSession();
+        session.delete(getSearchInformation(sid));
+    }
+
 
 }
