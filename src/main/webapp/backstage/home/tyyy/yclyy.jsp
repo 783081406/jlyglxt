@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../../../easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-<table id="dg" title="已处理信息" class="easyui-datagrid" style="width:980px;height:400px"
+<table id="dg" title="已处理信息" class="easyui-datagrid" style="width:980px;height:340px"
        url="<%=basePath %>bespeakaction/getAllHandleInformation.action" pagination="true" rownumbers="true"
        fitColumns="true" singleSelect="true">
     <thead>
