@@ -115,4 +115,18 @@ public class ServiceitemsDAOTest {
         int result2 = serviceitemsDAO.getAllInformationNumber();
         Assert.assertEquals(result1 + 1, result2);
     }
+
+    /**
+     * 验证：是否能更新
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        //得到一个实例化
+        Serviceitems si = serviceitemsDAO.getSearchInformation(1);
+        si.setScontent("1234");
+        serviceitemsDAO.updateInformation(si);
+        Assert.assertEquals("1234", serviceitemsDAO.getSearchInformation(1).getScontent());
+    }
 }
