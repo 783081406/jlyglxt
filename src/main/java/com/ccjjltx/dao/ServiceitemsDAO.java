@@ -97,7 +97,16 @@ public class ServiceitemsDAO {
             }
             i++;
         }
+    }
 
+    /**
+     * 添加数据
+     *
+     * @param si Serviceitems类的实例化
+     */
+    public void addInformation(Serviceitems si) {
+        Session session = factory.getCurrentSession();
+        session.save(si);
     }
 
 }
