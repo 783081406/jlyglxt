@@ -51,10 +51,22 @@
         </action>
     </package>
 
-    <!--前端功能>>宣传栏-->
+    <!--前端功能>>服务项目-->
     <package name="serviceiaction" namespace="/serviceiaction" extends="struts-default,json-default">
         <action name="*" class="serviceitemsAction" method="{1}">
             <param name="savePath">E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service</param>
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--前端功能>>服务项目-->
+    <package name="interlocutionaction" namespace="/interlocutionaction" extends="struts-default,json-default">
+        <action name="*" class="interlocutionAction" method="{1}">
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
