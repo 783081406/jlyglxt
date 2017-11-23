@@ -70,4 +70,21 @@ public class InterlocutionDAOTest {
         int result = interlocutionDAO.getSearchInformation(1).getQaid();
         Assert.assertEquals(1, result);
     }
+
+    /**
+     * 验证：是否能根据主键修改isSelect的值
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateIsSelect() {
+        //测试该方法时，数据库的qaid为1的数据，isSelect的值为0
+        int result = interlocutionDAO.getSearchInformation(1).getQaid();
+        int[] data = new int[]{1};
+        //执行更新方法
+        interlocutionDAO.updateIsSelect(data);
+        //再次得到数据
+        int result2 = interlocutionDAO.getSearchInformation(1).getQaid();
+        Assert.assertEquals(result, result2);
+    }
 }
