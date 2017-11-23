@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.InterlocutionDAO;
 import com.ccjjltx.domain.Interlocution;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -129,4 +130,18 @@ public class InterlocutionAction extends ActionSupport {
         result.put("rows", jsonArray);
         return SUCCESS;
     }
+
+    /**
+     * 重选功能
+     *
+     * @return 成功或失败的提示信息
+     */
+    public String reelectInformation() {
+        //执行重选功能
+        interlocutionDAO.reelectInformation();
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
+
 }
