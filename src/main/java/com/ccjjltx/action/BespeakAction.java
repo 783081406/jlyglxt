@@ -183,4 +183,15 @@ public class BespeakAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 新增
+     *
+     * @return 前台首页
+     */
+    public String saveInformation() {
+        Bespeak bespeak = new Bespeak(getName(), getPhone(), getEname(), getEage(), new Date());
+        bespeakDAO.saveInformation(bespeak);
+        return "reception";
+    }
+
 }
