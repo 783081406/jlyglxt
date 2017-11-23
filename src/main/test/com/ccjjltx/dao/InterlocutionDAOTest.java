@@ -61,4 +61,13 @@ public class InterlocutionDAOTest {
         Assert.assertEquals(result - 1, result2);
     }
 
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchInformation() {
+        int result = interlocutionDAO.getSearchInformation(1).getQaid();
+        Assert.assertEquals(1, result);
+    }
 }
