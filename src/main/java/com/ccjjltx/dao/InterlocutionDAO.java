@@ -77,5 +77,26 @@ public class InterlocutionDAO {
         Session session = factory.getCurrentSession();
         return (Interlocution) session.get(Interlocution.class, paid);
     }
+
+    /**
+     * 批量更新isSelect的值
+     *
+     * @param qaids 被选中qaid值
+     */
+    public void updateIsSelect(int[] qaids) {
+        Session session = factory.getCurrentSession();
+        Interlocution il;
+        int i = 0;
+        for (int qaid : qaids) {
+            il = getSearchInformation(qaid);
+            il.setIsSelect(1);
+            session.update(il);
+            if (i % 8 == 0) {
+                session.flush();
+                session.clear();
+            }
+            i++;
+        }
+    }
 }
 
