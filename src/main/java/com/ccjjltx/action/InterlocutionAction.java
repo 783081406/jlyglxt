@@ -166,5 +166,21 @@ public class InterlocutionAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 更新数据
+     *
+     * @return Json成功或失败的信息
+     */
+    public String updateInformation() {
+        //根据提交过来的主键得到实例化
+        Interlocution il = interlocutionDAO.getSearchInformation(getQaid());
+        //更新数据
+        il.setQuestion(getQuestion());
+        il.setAnswer(getAnswer());
+        //更新数据
+        interlocutionDAO.updateInformation(il);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 
 }
