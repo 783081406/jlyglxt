@@ -118,4 +118,19 @@ public class InterlocutionDAOTest {
         interlocutionDAO.updateInformation(il);
         Assert.assertEquals("123", interlocutionDAO.getSearchInformation(1).getQuestion());
     }
+
+    /**
+     * 验证：是否删除数据
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testRemoveInformation() {
+        //未删除之前数据量
+        int result = interlocutionDAO.getAllInformationNumber();
+        interlocutionDAO.removeInformation(1);
+        //删除之后的数据量
+        int result2 = interlocutionDAO.getAllInformationNumber();
+        Assert.assertEquals(result - 1, result2);
+    }
 }
