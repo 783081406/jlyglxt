@@ -71,11 +71,20 @@ public class Rhome extends ActionSupport {
         this.listServiceitems = listServiceitems;
     }
 
-    public String abc() {
+    public String index() {
         List<Billboards> lb = billboardsDAO.getSelectInformation();
         setListBillboards(lb);
         setLbSize(lb.size() - 1);
         setListServiceitems(serviceitemsDAO.getSelectInformation());
         return SUCCESS;
     }
+
+    public String environment() {
+        List<Billboards> lb = billboardsDAO.getSelectInformation();
+        setListBillboards(lb);
+        setLbSize(lb.size() - 1);
+        return SUCCESS;
+    }
+
+
 }
