@@ -154,5 +154,17 @@ public class InterlocutionAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 增加新数据
+     *
+     * @return Json成功或失败的信息
+     */
+    public String saveInformation() {
+        Interlocution il = new Interlocution(getQuestion(), getAnswer());
+        interlocutionDAO.addInformation(il);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 
 }
