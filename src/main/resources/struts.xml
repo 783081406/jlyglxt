@@ -9,8 +9,8 @@
 
     <!--前端》》home首页-->
     <package name="reception" namespace="/reception" extends="struts-default">
-        <action name="index" class="rhome" method="abc">
-            <result name="success">/reception/index.jsp</result>
+        <action name="*" class="rhome" method="{1}">
+            <result name="success">/reception/{1}.jsp</result>
         </action>
     </package>
 
