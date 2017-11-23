@@ -3,6 +3,7 @@ package com.ccjjltx.dao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,22 @@ public class InterlocutionDAOTest {
         int result = interlocutionDAO.getAllInformation(0, 30).size();
         int result2 = interlocutionDAO.getAllInformationNumber();
         Assert.assertEquals(result, result2);
+    }
+
+    /**
+     * 验证：是否可以批量更新
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testreelectInformation() {
+        //测试该方法时，数据库最后一条数据的isSelect为1
+        int result = interlocutionDAO.getAllInformation(0, 1).get(0).getIsSelect();
+        //执行批量更新
+        interlocutionDAO.reelectInformation();
+        //再次得到该数据
+        int result2 = interlocutionDAO.getAllInformation(0, 1).get(0).getIsSelect();
+        Assert.assertEquals(result - 1, result2);
     }
 
 }
