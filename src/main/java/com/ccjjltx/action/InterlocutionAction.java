@@ -143,5 +143,16 @@ public class InterlocutionAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 提交功能，选择要展示的数据
+     *
+     * @return Json，成功或失败的信息
+     */
+    public String selectInformation() {
+        interlocutionDAO.updateIsSelect(getQaids());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
+
 
 }
