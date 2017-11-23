@@ -133,4 +133,15 @@ public class InterlocutionDAOTest {
         int result2 = interlocutionDAO.getAllInformationNumber();
         Assert.assertEquals(result - 1, result2);
     }
+
+    /**
+     * 验证：是否能得到所有选中的数据
+     */
+    @Test
+    @Transactional
+    public void testGetSelectInformation() {
+        //测试该方法时，数据库数据选中的量为8
+        int result = interlocutionDAO.getSelectInformation().size();
+        Assert.assertEquals(8, result);
+    }
 }
