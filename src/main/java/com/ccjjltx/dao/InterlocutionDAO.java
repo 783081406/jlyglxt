@@ -66,5 +66,16 @@ public class InterlocutionDAO {
             i++;
         }
     }
+
+    /**
+     * 根据主键得到实例化
+     *
+     * @param paid 主键
+     * @return 实例化
+     */
+    public Interlocution getSearchInformation(int paid) {
+        Session session = factory.getCurrentSession();
+        return (Interlocution) session.get(Interlocution.class, paid);
+    }
 }
 
