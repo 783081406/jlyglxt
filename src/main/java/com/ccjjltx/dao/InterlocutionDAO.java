@@ -128,5 +128,18 @@ public class InterlocutionDAO {
         Session session = factory.getCurrentSession();
         session.delete(getSearchInformation(qaid));
     }
+
+    /**
+     * 得到所有选中的值返回前端
+     *
+     * @return List集合
+     */
+    public List<Interlocution> getSelectInformation() {
+        Session session = factory.getCurrentSession();
+        String hql = "from Interlocution interlocution where isSelect=1 order by qaid desc ";
+        Query query = session.createQuery(hql);
+        return (List<Interlocution>) query.list();
+    }
+
 }
 
