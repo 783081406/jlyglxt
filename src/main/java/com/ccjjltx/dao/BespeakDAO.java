@@ -96,4 +96,14 @@ public class BespeakDAO {
         Session session = factory.getCurrentSession();
         session.update(si);
     }
+
+    /**
+     * 新增
+     *
+     * @param si 实例化
+     */
+    public void saveInformation(Bespeak si) {
+        Session session = factory.getCurrentSession();
+        session.save(si);
+    }
 }
