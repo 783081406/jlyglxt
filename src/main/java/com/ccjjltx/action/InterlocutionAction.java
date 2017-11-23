@@ -1,11 +1,15 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.InterlocutionDAO;
+import com.ccjjltx.domain.Interlocution;
+import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/23.
@@ -16,7 +20,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @Scope("prototype")
-public class InterlocutionAction {
+public class InterlocutionAction extends ActionSupport {
     @Resource(name = "interlocutionDAO")
     private InterlocutionDAO interlocutionDAO;
     private int page;
@@ -100,5 +104,29 @@ public class InterlocutionAction {
 
     public void setQaids(int[] qaids) {
         this.qaids = qaids;
+    }
+
+    /**
+     * 得到所有的信息数据
+     *
+     * @return list集合
+     */
+    public String getAllInformation() {
+        int offset = (getPage() - 1) * getRows();
+        List<Interlocution> list = interlocutionDAO.getAllInformation(offset, getRows());
+        int total = interlocutionDAO.getAllInformationNumber();
+        result = new JSONObject();
+        result.put("total", total);
+        JSONArray jsonArray = new JSONArray();
+        for (Interlocution il : list) {
+            JSONObject js = new JSONObject();
+            js.put("qaid", il.getQaid());
+            js.put("question", il.getQuestion());
+            js.put("answer", il.getAnswer());
+            js.put("checked", il.getIsSelect() == 0 ? false : true);
+            jsonArray.add(js);
+        }
+        result.put("rows", jsonArray);
+        return SUCCESS;
     }
 }
