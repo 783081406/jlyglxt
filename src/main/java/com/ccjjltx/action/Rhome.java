@@ -1,8 +1,10 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.BillboardsDAO;
+import com.ccjjltx.dao.InterlocutionDAO;
 import com.ccjjltx.dao.ServiceitemsDAO;
 import com.ccjjltx.domain.Billboards;
+import com.ccjjltx.domain.Interlocution;
 import com.ccjjltx.domain.Serviceitems;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.context.annotation.Scope;
@@ -26,10 +28,13 @@ public class Rhome extends ActionSupport {
     private BillboardsDAO billboardsDAO;
     @Resource(name = "serviceitemsDAO")
     private ServiceitemsDAO serviceitemsDAO;
+    @Resource(name = "interlocutionDAO")
+    private InterlocutionDAO interlocutionDAO;
 
     private List<Billboards> listBillboards = new ArrayList<>();
     private int lbSize;
     private List<Serviceitems> listServiceitems = new ArrayList<>();
+    private List<Interlocution> listInterlocution = new ArrayList<>();
 
     public BillboardsDAO getBillboardsDAO() {
         return billboardsDAO;
@@ -45,6 +50,14 @@ public class Rhome extends ActionSupport {
 
     public void setServiceitemsDAO(ServiceitemsDAO serviceitemsDAO) {
         this.serviceitemsDAO = serviceitemsDAO;
+    }
+
+    public InterlocutionDAO getInterlocutionDAO() {
+        return interlocutionDAO;
+    }
+
+    public void setInterlocutionDAO(InterlocutionDAO interlocutionDAO) {
+        this.interlocutionDAO = interlocutionDAO;
     }
 
     public List<Billboards> getListBillboards() {
@@ -69,6 +82,14 @@ public class Rhome extends ActionSupport {
 
     public void setListServiceitems(List<Serviceitems> listServiceitems) {
         this.listServiceitems = listServiceitems;
+    }
+
+    public List<Interlocution> getListInterlocution() {
+        return listInterlocution;
+    }
+
+    public void setListInterlocution(List<Interlocution> listInterlocution) {
+        this.listInterlocution = listInterlocution;
     }
 
     /**
@@ -105,6 +126,7 @@ public class Rhome extends ActionSupport {
         List<Billboards> lb = billboardsDAO.getSelectInformation();
         setListBillboards(lb);
         setLbSize(lb.size() - 1);
+        setListInterlocution(interlocutionDAO.getSelectInformation());
         return SUCCESS;
     }
 
