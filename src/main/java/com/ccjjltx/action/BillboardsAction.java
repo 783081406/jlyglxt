@@ -265,7 +265,7 @@ public class BillboardsAction extends ActionSupport {
     /**
      * 删除数据
      *
-     * @return 成功或失败的json数据
+     * @return 成功或失败的json信息
      */
     public String removeInformation() {
         //得到数据图片名
