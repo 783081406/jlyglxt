@@ -71,6 +71,11 @@ public class Rhome extends ActionSupport {
         this.listServiceitems = listServiceitems;
     }
 
+    /**
+     * 首页
+     *
+     * @return index逻辑视图
+     */
     public String index() {
         List<Billboards> lb = billboardsDAO.getSelectInformation();
         setListBillboards(lb);
@@ -79,6 +84,11 @@ public class Rhome extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 环境概括
+     *
+     * @return environment逻辑视图
+     */
     public String environment() {
         List<Billboards> lb = billboardsDAO.getSelectInformation();
         setListBillboards(lb);
@@ -86,5 +96,16 @@ public class Rhome extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 问题与回答
+     *
+     * @return qa逻辑视图
+     */
+    public String qa() {
+        List<Billboards> lb = billboardsDAO.getSelectInformation();
+        setListBillboards(lb);
+        setLbSize(lb.size() - 1);
+        return SUCCESS;
+    }
 
 }
