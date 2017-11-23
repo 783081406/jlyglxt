@@ -219,5 +219,12 @@
         xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
     <div>C<sup>c</sup>敬老院养老集团有限公司 粤ICP备123456号</div>
 </div>
+<!--自定义javascript-->
+<script>
+    //幻灯片功能
+    $(document).ready(function () {
+        $('#circleContent').carousel({interval: 3000});//每隔5秒自动轮播
+    });
+</script>
 </body>
 </html>
