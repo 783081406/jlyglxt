@@ -206,7 +206,7 @@ public class BillboardsAction extends ActionSupport {
     /**
      * 提交功能，选择了要轮播的图片之后提交过来处理的方法
      *
-     * @return json，成功或失败的
+     * @return json，成功或失败的信息
      */
     public String selectInformation() {
         billboardsDAO.updateIsSelect(getBids());
