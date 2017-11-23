@@ -48,5 +48,23 @@ public class InterlocutionDAO {
         long l = (long) session.createQuery(hql).uniqueResult();
         return (int) l;
     }
+
+    /**
+     * 重选，批量更新，见所有isSelect都改为0
+     */
+    public void reelectInformation() {
+        Session session = factory.getCurrentSession();
+        List<Interlocution> list = getAllInformation(0, getAllInformationNumber());
+        int i = 0;
+        for (Interlocution il : list) {
+            il.setIsSelect(0);
+            session.update(il);
+            if (i % 10 == 0) {
+                session.flush();
+                session.clear();
+            }
+            i++;
+        }
+    }
 }
 
