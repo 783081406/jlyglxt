@@ -95,4 +95,18 @@ public class BespeakDAOTest {
         bs.setHandleDate(new Date());
         bespeakDAO.handleInformation(bs);
     }
+
+    /**
+     * 验证：是否能新增
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testSaveInformation() {
+        int result = bespeakDAO.getAllUnhandleInformationNumber();
+        Bespeak bs = new Bespeak("123", "1234", "1234", 12, new Date());
+        bespeakDAO.saveInformation(bs);
+        int result2 = bespeakDAO.getAllUnhandleInformationNumber();
+        Assert.assertEquals(result + 1, result2);
+    }
 }
