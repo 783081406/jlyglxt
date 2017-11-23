@@ -9,11 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<html>
-    <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,17 +180,44 @@
         <div class="right1"></div>
     </div>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3"><img src='./img/environment/img001.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">小憩之地 饱含自然意蕴</p></div>
+        <div class="col-md-3"><img src='./img/environment/img002.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">绿树掩映的园林式院落</p></div>
+        <div class="col-md-3"><img src='./img/environment/img003.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">绿树环抱的亭台楼阁</p></div>
+        <div class="col-md-3"><img src='./img/environment/img004.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">爷孙共享天伦之乐</p></div>
     </div>
+    <br/><br/><br/>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3"><img src='./img/environment/img005.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">干净舒适的老人房间</p></div>
+        <div class="col-md-3"><img src='./img/environment/img006.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">明亮舒适的老人房间</p></div>
+        <div class="col-md-3"><img src='./img/environment/img007.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">棋牌麻将应有尽有</p></div>
+        <div class="col-md-3"><img src='./img/environment/img008.jpg' class="img-thumbnail"><br/>
+            <p class="text-center">静谧绿园中，相扶相拌温存永久</p></div>
     </div>
+</div>
+<br/><br/><br/>
+<!--footer-->
+<div class="footer"
+     style="background-color: #00933f;font-size: 15px;color:#ffffff;padding: 40px 40px 20px 40px;">
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div>C<sup>c</sup>敬老院养老集团有限公司 粤ICP备123456号</div>
 </div>
 </body>
 </html>
