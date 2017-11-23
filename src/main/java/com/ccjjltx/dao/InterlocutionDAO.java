@@ -118,5 +118,15 @@ public class InterlocutionDAO {
         Session session = factory.getCurrentSession();
         session.update(il);
     }
+
+    /**
+     * 删除数据
+     *
+     * @param qaid 主键
+     */
+    public void removeInformation(int qaid) {
+        Session session = factory.getCurrentSession();
+        session.delete(getSearchInformation(qaid));
+    }
 }
 
