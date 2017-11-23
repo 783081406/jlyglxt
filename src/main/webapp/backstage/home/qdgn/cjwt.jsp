@@ -37,7 +37,29 @@
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeb()">删除</a>
     </div>
 </div>
-
+<!--添加的window-->
+<div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
+     buttons="#dlg-buttons">
+    <div class="ftitle">新数据</div>
+    <form id="fm" method="post" novalidate>
+        <div class="fitem">
+            <label>问题:</label>
+            <input style="height: 90px" name="question" class="easyui-textbox" data-options="multiline:true"
+                   required="required">
+        </div>
+        <div class="fitem">
+            <label>回答:</label>
+            <input style="height: 90px" name="answer" class="easyui-textbox" data-options="multiline:true"
+                   required="required">
+        </div>
+    </form>
+</div>
+<!--提交与取消按钮-->
+<div id="dlg-buttons">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveb()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+       onclick="javascript:$('#dlg').dialog('close')">取消</a>
+</div>
 
 <script>
     $(function () {
@@ -94,6 +116,40 @@
             }
         }, 'json');
     }
+
+    //添加
+    function newb() {
+        $('#dlg').dialog('open').dialog('setTitle', '新数据');
+        //清空表单，来显示空表单
+        $('#fm').form('clear');
+        //提交数据处理的URL
+        url = '<%=basePath %>interlocutionaction/saveInformation.action';
+    }
+
+    //提交功能
+    function saveb() {
+        $('#fm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#dlg').dialog('close');		// 关闭window
+                    $('#dg').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
+
 </script>
 </body>
 </html>
