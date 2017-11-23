@@ -52,7 +52,7 @@
             columns: [[
                 {field: 'ck', checkbox: true, align: 'center', width: 80},
                 {field: 'question', title: '问题', align: 'center', width: 220},
-                {field: 'answear', title: '回答', align: 'center', width: 300}
+                {field: 'answer', title: '回答', align: 'center', width: 300}
             ]],
             singleSelect: false,
             selectOnCheck: true,
