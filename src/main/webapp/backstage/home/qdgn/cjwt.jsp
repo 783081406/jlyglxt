@@ -40,7 +40,7 @@
 <!--添加的window-->
 <div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
-    <div class="ftitle">新数据</div>
+    <div class="ftitle">数据</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>问题:</label>
@@ -124,6 +124,18 @@
         $('#fm').form('clear');
         //提交数据处理的URL
         url = '<%=basePath %>interlocutionaction/saveInformation.action';
+    }
+
+    //修改
+    function editb() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg').dialog('open').dialog('setTitle', '更新数据');
+            //加载点击那一行的数据
+            $('#fm').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>interlocutionaction/updateInformation.action?qaid=' + row.qaid;
+        }
     }
 
     //提交功能
