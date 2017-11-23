@@ -33,4 +33,15 @@ public class InterlocutionDAOTest {
         Assert.assertEquals(16, result);
     }
 
+    /**
+     * 验证：是否得到总条数
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformationNumber() {
+        int result = interlocutionDAO.getAllInformation(0, 30).size();
+        int result2 = interlocutionDAO.getAllInformationNumber();
+        Assert.assertEquals(result, result2);
+    }
+
 }
