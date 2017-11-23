@@ -98,5 +98,15 @@ public class InterlocutionDAO {
             i++;
         }
     }
+
+    /**
+     * 增加新数据
+     *
+     * @param il Interlocution类的实例化
+     */
+    public void addInformation(Interlocution il) {
+        Session session = factory.getCurrentSession();
+        session.save(il);
+    }
 }
 
