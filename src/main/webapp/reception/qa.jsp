@@ -147,64 +147,70 @@
     </div>
 </div>
 <!--内容-->
-<div class="container" style="position: relative;">
-    <!--环境介绍-->
-    <div class="box1">
-        <div class="left1"></div>
-        <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
-            <strong>&nbsp;&nbsp;环境介绍&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">huanjingjieshao</p></div>
-        <div class="right1"></div>
-    </div>
-    <div>
-        <div class="row">
-            <div class="col-md-6"><h2>敬老院介绍</h2>
-                <hr align="left" width="200px" style="height:5px;background-color: #ed6c00"/>
-                <p style="font-size: 15px">
-                    地理位置得天独厚，生活医疗配套齐全。C<sup>c</sup>敬老院位于广州从化中心城区，依山而建，
-                    园林景观，动静皆宜。本院占地面积48000平方米，绿化面积达八成，信步院内小道，犹如置于郊野林中，
-                    可自由的享受与大自然相融的乐趣，非常适合长者居住。</p><br/>
-                <p style="font-size: 17px">
-                    C<sup>c</sup>敬老院在广州打造的第一所社区嵌入式精品养老服务机构，
-                    2015年正式运营。提供生活照料、康复护理、紧急救援、短期托养、居家服务、医疗保健、精神慰藉等综合性养老服务。
-                </p><br/>
-                <p style="font-size: 15px">
-                    自开业以来，得了到社会各界的高度关注和认可。
-                </p><br/>
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-4"
+             style="background-color: #91d945;padding-top: 50px;padding-right:22px;padding-bottom: 50px">
+            <div class="row">
+                <div class="col-md-12"><span style="color: #ffffff;font-size: 18px;">老年活动</span>
+                    <hr style="height:5px;background-color: #ffffff"/>
+                </div>
             </div>
-            <div class="col-md-6"><img src='./img/environment/1.jpg' class="img-thumbnail"></div>
+            <div class="row">
+                <div class="col-md-6"><img src='./img/qa/a01.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">舒筋活络</span></p></div>
+                <div class="col-md-6"><img src='./img/qa/a02.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">报刊阅读</span></p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><img src='./img/qa/a03.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">一手好字</span></p></div>
+                <div class="col-md-6"><img src='./img/qa/a04.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">早上空气清新</span></p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><img src='./img/qa/a05.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">拉一曲二胡</span></p></div>
+                <div class="col-md-6"><img src='./img/qa/a06.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">踢毽子灵活肢体</span></p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><img src='./img/qa/a07.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">晨练中的老人</span></p></div>
+                <div class="col-md-6"><img src='./img/qa/a08.jpg' class="img-thumbnail"/><br/>
+                    <p class="text-center"><span style="color: #ffffff; ">练练手力</span></p></div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <img src='./img/qa/b1.jpg' class="img-thumbnail"/><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img src='./img/qa/b2.jpg' class="img-thumbnail"/>
+            <br/><br/>
+            <p>1.我现正轮候社会福利署资助长者院舍，我有没有资格申请入住东莞樟木头真情护老院？申请手续如何？若真情院接受了我的申请，我在社会福利署轮候册上会否被除名？</p>
+            <p><img src='./img/qa/wd.jpg' class="img-thumbnail"/>简单说是不会的。倘如你入住真情院，是不会影响你轮候社会福利署资助院舍。他日当你轮候到而又符合新院舍的入住要求，可以从我院直接搬到新院舍。
+                要申请入住真情院，手续非常简单，你只需要填写一份入住申请表，并在入住前提交一份身体健康检查报告及完成我们为你进行的评估，确认申请手续之后，就可安排入住。</p><br/><br/>
+            <p>2.我现正轮候社会福利署资助长者院舍，我有没有资格申请入住东莞樟木头真情护老院？申请手续如何？若真情院接受了我的申请，我在社会福利署轮候册上会否被除名？</p>
+            <p><img src='./img/qa/wd.jpg' class="img-thumbnail"/>简单说是不会的。倘如你入住真情院，是不会影响你轮候社会福利署资助院舍。他日当你轮候到而又符合新院舍的入住要求，可以从我院直接搬到新院舍。
+                要申请入住真情院，手续非常简单，你只需要填写一份入住申请表，并在入住前提交一份身体健康检查报告及完成我们为你进行的评估，确认申请手续之后，就可安排入住。</p><br/><br/>
+            <p>3.我现正轮候社会福利署资助长者院舍，我有没有资格申请入住东莞樟木头真情护老院？申请手续如何？若真情院接受了我的申请，我在社会福利署轮候册上会否被除名？</p>
+            <p><img src='./img/qa/wd.jpg' class="img-thumbnail"/>简单说是不会的。倘如你入住真情院，是不会影响你轮候社会福利署资助院舍。他日当你轮候到而又符合新院舍的入住要求，可以从我院直接搬到新院舍。
+                要申请入住真情院，手续非常简单，你只需要填写一份入住申请表，并在入住前提交一份身体健康检查报告及完成我们为你进行的评估，确认申请手续之后，就可安排入住。</p><br/><br/>
+            <p>4.我现正轮候社会福利署资助长者院舍，我有没有资格申请入住东莞樟木头真情护老院？申请手续如何？若真情院接受了我的申请，我在社会福利署轮候册上会否被除名？</p>
+            <p><img src='./img/qa/wd.jpg' class="img-thumbnail"/>简单说是不会的。倘如你入住真情院，是不会影响你轮候社会福利署资助院舍。他日当你轮候到而又符合新院舍的入住要求，可以从我院直接搬到新院舍。
+                要申请入住真情院，手续非常简单，你只需要填写一份入住申请表，并在入住前提交一份身体健康检查报告及完成我们为你进行的评估，确认申请手续之后，就可安排入住。</p><br/><br/>
+            <p>5.我现正轮候社会福利署资助长者院舍，我有没有资格申请入住东莞樟木头真情护老院？申请手续如何？若真情院接受了我的申请，我在社会福利署轮候册上会否被除名？</p>
+            <p><img src='./img/qa/wd.jpg' class="img-thumbnail"/>简单说是不会的。倘如你入住真情院，是不会影响你轮候社会福利署资助院舍。他日当你轮候到而又符合新院舍的入住要求，可以从我院直接搬到新院舍。
+                要申请入住真情院，手续非常简单，你只需要填写一份入住申请表，并在入住前提交一份身体健康检查报告及完成我们为你进行的评估，确认申请手续之后，就可安排入住。</p><br/><br/>
+            <p>6.我现正轮候社会福利署资助长者院舍，我有没有资格申请入住东莞樟木头真情护老院？申请手续如何？若真情院接受了我的申请，我在社会福利署轮候册上会否被除名？</p>
+            <p><img src='./img/qa/wd.jpg' class="img-thumbnail"/>简单说是不会的。倘如你入住真情院，是不会影响你轮候社会福利署资助院舍。他日当你轮候到而又符合新院舍的入住要求，可以从我院直接搬到新院舍。
+                要申请入住真情院，手续非常简单，你只需要填写一份入住申请表，并在入住前提交一份身体健康检查报告及完成我们为你进行的评估，确认申请手续之后，就可安排入住。</p><br/><br/>
+            <p>7.我现正轮候社会福利署资助长者院舍，我有没有资格申请入住东莞樟木头真情护老院？申请手续如何？若真情院接受了我的申请，我在社会福利署轮候册上会否被除名？</p>
+            <p><img src='./img/qa/wd.jpg' class="img-thumbnail"/>简单说是不会的。倘如你入住真情院，是不会影响你轮候社会福利署资助院舍。他日当你轮候到而又符合新院舍的入住要求，可以从我院直接搬到新院舍。
+                要申请入住真情院，手续非常简单，你只需要填写一份入住申请表，并在入住前提交一份身体健康检查报告及完成我们为你进行的评估，确认申请手续之后，就可安排入住。</p><br/><br/>
         </div>
     </div>
-    <!--项目服务-->
-    <div class="box1">
-        <div class="left1"></div>
-        <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
-            <strong>&nbsp;&nbsp;环境设施&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">huanjingsheshi</p></div>
-        <div class="right1"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-3"><img src='./img/environment/img001.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">小憩之地 饱含自然意蕴</p></div>
-        <div class="col-md-3"><img src='./img/environment/img002.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">绿树掩映的园林式院落</p></div>
-        <div class="col-md-3"><img src='./img/environment/img003.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">绿树环抱的亭台楼阁</p></div>
-        <div class="col-md-3"><img src='./img/environment/img004.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">爷孙共享天伦之乐</p></div>
-    </div>
-    <br/><br/><br/>
-    <div class="row">
-        <div class="col-md-3"><img src='./img/environment/img005.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">干净舒适的老人房间</p></div>
-        <div class="col-md-3"><img src='./img/environment/img006.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">明亮舒适的老人房间</p></div>
-        <div class="col-md-3"><img src='./img/environment/img007.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">棋牌麻将应有尽有</p></div>
-        <div class="col-md-3"><img src='./img/environment/img008.jpg' class="img-thumbnail"><br/>
-            <p class="text-center">静谧绿园中，相扶相拌温存永久</p></div>
-    </div>
 </div>
+
 <br/><br/><br/>
 <!--footer-->
 <div class="footer"
