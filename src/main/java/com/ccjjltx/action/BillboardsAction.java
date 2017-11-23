@@ -217,7 +217,7 @@ public class BillboardsAction extends ActionSupport {
     /**
      * 增加新数据
      *
-     * @return JSON成功或失败的数据
+     * @return JSON成功或失败的信息
      */
     public String saveInformation() {
         try {
