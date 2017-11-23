@@ -9,6 +9,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,30 +201,31 @@
         <div class="right1"></div>
     </div>
     <div>
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" action="<%=basePath %>bespeakaction/saveInformation.action" method="post"
+              role="form">
             <div class="form-group">
-                <label for="firstname" class="col-sm-2 control-label">姓名：</label>
+                <label for="name" class="col-sm-2 control-label">姓名：</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="firstname" placeholder="请输入姓名">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
                 </div>
-                <label for="lastname" class="col-sm-2 control-label">手机号：</label>
+                <label for="phone" class="col-sm-2 control-label">手机号：</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="lastname" placeholder="请输入手机号">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号">
                 </div>
             </div>
             <div class="form-group">
                 <label for="ename" class="col-sm-2 control-label">家长姓名：</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="ename" placeholder="请输入家长姓名">
+                    <input type="text" class="form-control" id="ename" name="ename" placeholder="请输入家长姓名">
                 </div>
-                <label for="age" class="col-sm-2 control-label">家长年龄：</label>
+                <label for="eage" class="col-sm-2 control-label">家长年龄：</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="age" placeholder="请输入家长年龄">
+                    <input type="text" class="form-control" id="eage" name="eage" placeholder="请输入家长年龄">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                    <button type="submit" class="btn btn-default btn-lg btn-primary">提交</button>
+                    <input type="submit" class="btn btn-default btn-lg btn-primary"/>
                 </div>
             </div>
         </form>
