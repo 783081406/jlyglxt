@@ -183,4 +183,14 @@ public class InterlocutionAction extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 删除数据
+     *
+     * @return 成功或失败的json信息
+     */
+    public String removeInformation() {
+        interlocutionDAO.removeInformation(getQaid());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
