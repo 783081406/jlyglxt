@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Interlocution;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -87,4 +88,22 @@ public class InterlocutionDAOTest {
         int result2 = interlocutionDAO.getSearchInformation(1).getQaid();
         Assert.assertEquals(result, result2);
     }
+
+    /**
+     * 验证：是否能新增数据
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation() {
+        //未插入前数据量
+        int result = interlocutionDAO.getAllInformationNumber();
+        Interlocution il = new Interlocution("1234", "123");
+        //执行插入
+        interlocutionDAO.addInformation(il);
+        //执行插入之后再次得到数据量
+        int result2 = interlocutionDAO.getAllInformationNumber();
+        Assert.assertEquals(result+1, result2);
+    }
+
 }
