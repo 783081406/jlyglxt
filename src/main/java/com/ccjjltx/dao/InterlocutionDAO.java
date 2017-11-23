@@ -108,5 +108,15 @@ public class InterlocutionDAO {
         Session session = factory.getCurrentSession();
         session.save(il);
     }
+
+    /**
+     * 更新数据
+     *
+     * @param il 需要修改的数据的实例化
+     */
+    public void updateInformation(Interlocution il) {
+        Session session = factory.getCurrentSession();
+        session.update(il);
+    }
 }
 
