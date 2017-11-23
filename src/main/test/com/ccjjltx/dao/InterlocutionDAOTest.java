@@ -103,7 +103,19 @@ public class InterlocutionDAOTest {
         interlocutionDAO.addInformation(il);
         //执行插入之后再次得到数据量
         int result2 = interlocutionDAO.getAllInformationNumber();
-        Assert.assertEquals(result+1, result2);
+        Assert.assertEquals(result + 1, result2);
     }
 
+    /**
+     * 验证：是否能更新数据
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        Interlocution il = interlocutionDAO.getSearchInformation(1);
+        il.setQuestion("123");
+        interlocutionDAO.updateInformation(il);
+        Assert.assertEquals("123", interlocutionDAO.getSearchInformation(1).getQuestion());
+    }
 }
