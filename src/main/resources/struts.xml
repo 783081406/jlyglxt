@@ -139,6 +139,7 @@
     <!--体验预约-->
     <package name="bespeakaction" namespace="/bespeakaction" extends="struts-default,json-default">
         <action name="*" class="bespeakAction" method="{1}">
+            <result name="reception">/reception/index.jsp</result>
             <result name="success" type="json">
                 <param name="root">result</param>
             </result>
