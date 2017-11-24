@@ -1,12 +1,14 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.NursingfeeDAO;
+import com.ccjjltx.domain.Nursingfee;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/25.
@@ -65,5 +67,26 @@ public class NursingfeeAction extends ActionSupport {
 
     public void setNcost3(int ncost3) {
         this.ncost3 = ncost3;
+    }
+
+    /**
+     * 得到所有的信息
+     *
+     * @return Json数据
+     */
+    public String getAllInformation() {
+        result = new JSONObject();
+        //得到所有信息
+        List<Nursingfee> list = nursingfeeDAO.getAllInformation();
+        //得到第一条信息
+        Nursingfee nf1 = list.get(0);
+        result.put("ncost1", nf1.getNcost());
+        //得到第二条信息
+        Nursingfee nf2 = list.get(1);
+        result.put("ncost2", nf2.getNcost());
+        //得到第三条信息
+        Nursingfee nf3 = list.get(2);
+        result.put("ncost3", nf3.getNcost());
+        return SUCCESS;
     }
 }
