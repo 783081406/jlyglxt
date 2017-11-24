@@ -64,7 +64,19 @@
         </action>
     </package>
 
-    <!--前端功能>>服务项目-->
+    <!--前端功能>>入住费用-->
+    <package name="roomcostaction" namespace="/roomcostaction" extends="struts-default,json-default">
+        <action name="*" class="roomcostAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
+    <!--前端功能>>常见问题-->
     <package name="interlocutionaction" namespace="/interlocutionaction" extends="struts-default,json-default">
         <action name="*" class="interlocutionAction" method="{1}">
             <result name="success" type="json">
