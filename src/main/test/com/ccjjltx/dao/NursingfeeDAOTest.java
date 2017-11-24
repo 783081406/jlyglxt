@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Nursingfee;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,14 @@ public class NursingfeeDAOTest {
         Assert.assertEquals(3, result);
     }
 
-
+    /**
+     * 验证：根据根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchInformation() {
+        Nursingfee nf = nursingfeeDAO.getSearchInformation(1);
+        Assert.assertEquals(1, nf.getNid());
+    }
 
 }
