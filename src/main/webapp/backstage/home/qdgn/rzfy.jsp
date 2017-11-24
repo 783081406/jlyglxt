@@ -80,18 +80,18 @@
         <div class="ftitle">护理费用</div>
         <form id="fm3" method="post" novalidate>
             <div class="fitem">
-                <label>初级:</label>
-                <input name="rtype1" class="easyui-validatebox">
+                <label>初级护理:</label>
+                <input name="ncost1" class="easyui-validatebox">
             </div>
             <br/><br/>
             <div class="fitem">
-                <label>中级:</label>
-                <input name="rtype2" class="easyui-validatebox">
+                <label>中级护理:</label>
+                <input name="ncost2" class="easyui-validatebox">
             </div>
             <br/><br/>
             <div class="fitem">
-                <label>高级:</label>
-                <input name="rtype3" class="easyui-validatebox">
+                <label>高级护理:</label>
+                <input name="ncost3" class="easyui-validatebox">
             </div>
         </form>
     </div>
@@ -154,18 +154,18 @@
     <div class="ftitle">修改信息</div>
     <form id="fm31" method="post" novalidate>
         <div class="fitem">
-            <label>初级:</label>
-            <input name="rtype1" class="easyui-validatebox">
+            <label>初级护理:</label>
+            <input name="ncost1" class="easyui-validatebox">
         </div>
         <br/><br/>
         <div class="fitem">
-            <label>中级:</label>
-            <input name="rtype2" class="easyui-validatebox">
+            <label>中级护理:</label>
+            <input name="ncost2" class="easyui-validatebox">
         </div>
         <br/><br/>
         <div class="fitem">
-            <label>高级:</label>
-            <input name="rtype2" class="easyui-validatebox">
+            <label>高级护理:</label>
+            <input name="ncost3" class="easyui-validatebox">
         </div>
     </form>
 </div>
@@ -184,6 +184,9 @@
         //伙食费的加载数据
         $("#fm2").form('load', '<%=basePath %>boardwagesaction/getAllInformation.action');
         $("#fm2 div input").attr("disabled", "disabled");
+        //伙食费的加载数据
+        $("#fm3").form('load', '<%=basePath %>nursingfeeaction/getAllInformation.action');
+        $("#fm3 div input").attr("disabled", "disabled");
     });
     var url;
     //入住费用
