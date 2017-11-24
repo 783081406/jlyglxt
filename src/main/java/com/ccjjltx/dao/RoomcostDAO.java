@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/10/30.
@@ -66,6 +67,18 @@ public class RoomcostDAO {
     public void updateRoomcost(Roomcost roomcost) {
         Session session = factory.getCurrentSession();
         session.update(roomcost);
+    }
+
+    /**
+     * 得到所有的信息
+     *
+     * @return list集合
+     */
+    public List<Roomcost> getAllInformation() {
+        Session session = factory.getCurrentSession();
+        String sql = "from Roomcost roomcost";
+        Query query = session.createQuery(sql);
+        return (List<Roomcost>) query.list();
     }
 
 }
