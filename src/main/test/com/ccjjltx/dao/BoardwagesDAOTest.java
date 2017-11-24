@@ -21,4 +21,16 @@ import javax.annotation.Resource;
 public class BoardwagesDAOTest {
     @Resource(name = "boardwagesDAO")
     private BoardwagesDAO boardwagesDAO;
+
+    /**
+     * 验证：是否返回所有的数据
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformation() {
+        //测试该方法时，数据库的数据为1条
+        int result = boardwagesDAO.getAllInformation().size();
+        Assert.assertEquals(1, result);
+    }
+
 }
