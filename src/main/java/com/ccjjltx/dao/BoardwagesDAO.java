@@ -43,4 +43,14 @@ public class BoardwagesDAO {
         return (Boardwages) session.get(Boardwages.class, bwid);
     }
 
+    /**
+     * 更新方法
+     *
+     * @param bw 需要更新的实例化
+     */
+    public void updateInformation(Boardwages bw) {
+        Session session = factory.getCurrentSession();
+        session.update(bw);
+    }
+
 }
