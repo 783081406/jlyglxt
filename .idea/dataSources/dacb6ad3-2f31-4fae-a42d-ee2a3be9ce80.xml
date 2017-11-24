@@ -625,165 +625,161 @@
       <Comment>类型</Comment>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <column id="130" parent="19" name="minimum">
-      <Position>3</Position>
-      <Comment>最低价</Comment>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="131" parent="19" name="highest">
-      <Position>4</Position>
-      <Comment>最高价</Comment>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <key id="132" parent="19" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>nid</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="133" parent="20" name="rcId">
-      <Position>1</Position>
-      <Comment>id号</Comment>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="134" parent="20" name="rType">
-      <Position>2</Position>
-      <Comment>房间类型:标准/中等/豪华</Comment>
-      <DataType>varchar(20)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="135" parent="20" name="rCost">
+    <column id="130" parent="19" name="ncost">
       <Position>3</Position>
       <Comment>价格</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="136" parent="20" name="PRIMARY">
+    <key id="131" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>rcId</ColNames>
+      <ColNames>nid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="137" parent="21" name="rId">
+    <column id="132" parent="20" name="rcId">
       <Position>1</Position>
       <Comment>id号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="138" parent="21" name="floor">
+    <column id="133" parent="20" name="rType">
+      <Position>2</Position>
+      <Comment>房间类型:标准/中等/豪华</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="134" parent="20" name="rCost">
+      <Position>3</Position>
+      <Comment>价格</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="135" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>rcId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="136" parent="21" name="rId">
+      <Position>1</Position>
+      <Comment>id号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="137" parent="21" name="floor">
       <Position>2</Position>
       <Comment>楼号</Comment>
       <DataType>varchar(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="139" parent="21" name="roomNumber">
+    <column id="138" parent="21" name="roomNumber">
       <Position>3</Position>
       <Comment>房间号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="140" parent="21" name="rcId">
+    <column id="139" parent="21" name="rcId">
       <Position>4</Position>
       <Comment>外键roomCost</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="141" parent="21" name="eId">
+    <column id="140" parent="21" name="eId">
       <Position>5</Position>
       <Comment>外键:老人信息总表</Comment>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="142" parent="21" name="FK_eId3">
+    <index id="141" parent="21" name="FK_eId3">
       <ColNames>eId</ColNames>
     </index>
-    <index id="143" parent="21" name="FK_rcId">
+    <index id="142" parent="21" name="FK_rcId">
       <ColNames>rcId</ColNames>
     </index>
-    <key id="144" parent="21" name="PRIMARY">
+    <key id="143" parent="21" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>rId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="145" parent="21" name="FK_rcId">
+    <foreign-key id="144" parent="21" name="FK_rcId">
       <ColNames>rcId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>roomcost</RefTableName>
       <RefColNames>rcId</RefColNames>
     </foreign-key>
-    <foreign-key id="146" parent="21" name="FK_eId3">
+    <foreign-key id="145" parent="21" name="FK_eId3">
       <ColNames>eId</ColNames>
       <RefSchemaName>jlyglxt</RefSchemaName>
       <RefTableName>elder</RefTableName>
       <RefColNames>eId</RefColNames>
     </foreign-key>
-    <column id="147" parent="22" name="sid">
+    <column id="146" parent="22" name="sid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="148" parent="22" name="spath">
+    <column id="147" parent="22" name="spath">
       <Position>2</Position>
       <Comment>路径以及名字</Comment>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="149" parent="22" name="stitle">
+    <column id="148" parent="22" name="stitle">
       <Position>3</Position>
       <Comment>标题</Comment>
       <DataType>varchar(150)|0</DataType>
     </column>
-    <column id="150" parent="22" name="scontent">
+    <column id="149" parent="22" name="scontent">
       <Position>4</Position>
       <Comment>内容</Comment>
       <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="151" parent="22" name="isSelect">
+    <column id="150" parent="22" name="isSelect">
       <Position>5</Position>
       <Comment>是否被选中</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="152" parent="22" name="PRIMARY">
+    <key id="151" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="153" parent="23" name="id">
+    <column id="152" parent="23" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="154" parent="23" name="userName">
+    <column id="153" parent="23" name="userName">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="155" parent="23" name="password">
+    <column id="154" parent="23" name="password">
       <Position>3</Position>
       <Comment>密码</Comment>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="156" parent="23" name="uType">
+    <column id="155" parent="23" name="uType">
       <Position>4</Position>
       <Comment>类型:1为管理员2为工作人员</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="157" parent="23" name="userName">
+    <index id="156" parent="23" name="userName">
       <ColNames>userName</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="158" parent="23" name="PRIMARY">
+    <key id="157" parent="23" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="159" parent="23" name="userName">
+    <key id="158" parent="23" name="userName">
       <ColNames>userName</ColNames>
       <UnderlyingIndexName>userName</UnderlyingIndexName>
     </key>
