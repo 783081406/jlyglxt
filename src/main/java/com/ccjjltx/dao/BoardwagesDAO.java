@@ -32,5 +32,15 @@ public class BoardwagesDAO {
         return (List<Boardwages>) query.list();
     }
 
+    /**
+     * 根据主键得到实例化
+     *
+     * @param bwid 主键
+     * @return 实例化
+     */
+    public Boardwages getSearchInformation(int bwid) {
+        Session session = factory.getCurrentSession();
+        return (Boardwages) session.get(Boardwages.class, bwid);
+    }
 
 }
