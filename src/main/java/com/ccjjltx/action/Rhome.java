@@ -137,4 +137,10 @@ public class Rhome extends ActionSupport {
         return SUCCESS;
     }
 
+    public String cost() {
+        List<Billboards> lb = billboardsDAO.getSelectInformation();
+        setListBillboards(lb);
+        setLbSize(lb.size() - 1);
+        return SUCCESS;
+    }
 }
