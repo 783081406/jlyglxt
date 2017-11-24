@@ -25,8 +25,8 @@ public class BoardwagesAction extends ActionSupport {
     private BoardwagesDAO boardwagesDAO;
     private JSONObject result;
     ///////////////提交过来的数据////////////
-    int highest;
-    int minimum;
+    private int highest;
+    private int minimum;
 
     ////////////////////////////////////////
     public BoardwagesDAO getBoardwagesDAO() {
