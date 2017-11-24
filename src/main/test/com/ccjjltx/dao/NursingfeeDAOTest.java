@@ -1,8 +1,11 @@
 package com.ccjjltx.dao;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -15,4 +18,18 @@ import javax.annotation.Resource;
 public class NursingfeeDAOTest {
     @Resource(name = "nursingfeeDAO")
     private NursingfeeDAO nursingfeeDAO;
+
+    /**
+     * 验证：是否能得到所有的数据
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformation() {
+        //测试该方法时候，数据库的数据为3条
+        int result = nursingfeeDAO.getAllInformation().size();
+        Assert.assertEquals(3, result);
+    }
+
+
+
 }
