@@ -34,4 +34,16 @@ public class NursingfeeDAO {
         Query query = session.createQuery(hql);
         return (List<Nursingfee>) query.list();
     }
+
+    /**
+     * 根据主键得到实例化
+     *
+     * @param nid 主键
+     * @return 实例化
+     */
+    public Nursingfee getSearchInformation(int nid) {
+        Session session = factory.getCurrentSession();
+        return (Nursingfee) session.get(Nursingfee.class, nid);
+    }
+
 }
