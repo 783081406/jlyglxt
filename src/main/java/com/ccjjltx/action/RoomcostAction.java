@@ -1,11 +1,14 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.RoomcostDAO;
+import com.ccjjltx.domain.Roomcost;
+import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/24.
@@ -16,7 +19,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @Scope("prototype")
-public class RoomcostAction {
+public class RoomcostAction extends ActionSupport {
     @Resource(name = "roomcostDAO")
     private RoomcostDAO roomcostDAO;
     private JSONObject result;
@@ -24,6 +27,7 @@ public class RoomcostAction {
     private int rtype1;
     private int rtype2;
     private int rtype3;
+
     ///////////////////////////////////////
     public RoomcostDAO getRoomcostDAO() {
         return roomcostDAO;
@@ -63,5 +67,26 @@ public class RoomcostAction {
 
     public void setRtype3(int rtype3) {
         this.rtype3 = rtype3;
+    }
+
+    /**
+     * 得到所有的数据
+     *
+     * @return Json数据
+     */
+    public String getAllInformation() {
+        result = new JSONObject();
+        //得到所有的信息，共三条
+        List<Roomcost> list = roomcostDAO.getAllInformation();
+        //第一条数据
+        Roomcost rc1 = list.get(0);
+        result.put("rtype1", rc1.getRCost());
+        //第二条数据
+        Roomcost rc2 = list.get(1);
+        result.put("rtype2", rc2.getRCost());
+        //第三条数据
+        Roomcost rc3 = list.get(2);
+        result.put("rtype3", rc3.getRCost());
+        return SUCCESS;
     }
 }
