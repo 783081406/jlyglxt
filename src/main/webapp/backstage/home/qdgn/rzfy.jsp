@@ -60,12 +60,12 @@
         <form id="fm2" method="post" novalidate>
             <div class="fitem">
                 <label>最低:</label>
-                <input name="rtype1" class="easyui-validatebox">
+                <input name="minimum" class="easyui-validatebox">
             </div>
             <br/><br/>
             <div class="fitem">
                 <label>最高:</label>
-                <input name="rtype2" class="easyui-validatebox">
+                <input name="highest" class="easyui-validatebox">
             </div>
         </form>
     </div>
@@ -134,12 +134,12 @@
     <form id="fm21" method="post" novalidate>
         <div class="fitem">
             <label>最低:</label>
-            <input name="rtype1" class="easyui-validatebox">
+            <input name="minimum" class="easyui-validatebox">
         </div>
         <br/><br/>
         <div class="fitem">
             <label>最高:</label>
-            <input name="rtype2" class="easyui-validatebox">
+            <input name="highest" class="easyui-validatebox">
         </div>
     </form>
 </div>
@@ -181,6 +181,9 @@
         //入住费用的加载数据
         $("#fm1").form('load', '<%=basePath %>roomcostaction/getAllInformation.action');
         $("#fm1 div input").attr("disabled", "disabled");
+        //伙食费的加载数据
+        $("#fm2").form('load', '<%=basePath %>boardwagesaction/getAllInformation.action');
+        $("#fm2 div input").attr("disabled", "disabled");
     });
     var url;
     //入住费用
