@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.NursingfeeDAO;
 import com.ccjjltx.domain.Nursingfee;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
@@ -87,6 +88,28 @@ public class NursingfeeAction extends ActionSupport {
         //得到第三条信息
         Nursingfee nf3 = list.get(2);
         result.put("ncost3", nf3.getNcost());
+        return SUCCESS;
+    }
+
+    /**
+     * 更新方法
+     *
+     * @return Json成功或失败信息
+     */
+    public String updateInformation() {
+        //得到"初级护理"数据
+        Nursingfee nf1 = nursingfeeDAO.getSearchInformation(1);
+        nf1.setNcost(getNcost1());
+        nursingfeeDAO.updateInformation(nf1);
+        //得到"中级护理"数据
+        Nursingfee nf2 = nursingfeeDAO.getSearchInformation(2);
+        nf2.setNcost(getNcost2());
+        nursingfeeDAO.updateInformation(nf2);
+        //得到"高级护理"数据
+        Nursingfee nf3 = nursingfeeDAO.getSearchInformation(3);
+        nf3.setNcost(getNcost3());
+        nursingfeeDAO.updateInformation(nf3);
+        result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
 }
