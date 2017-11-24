@@ -17,18 +17,16 @@ public class Nursingfee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int nid;
     private String ntype;
-    private int minimum;
-    private int highest;
+    private int ncost;
 
     //无参构造函数
     public Nursingfee() {
     }
 
     //有参构造函数
-    public Nursingfee(String ntype, int minimum, int highest) {
+    public Nursingfee(String ntype, int ncost) {
         this.ntype = ntype;
-        this.minimum = minimum;
-        this.highest = highest;
+        this.ncost = ncost;
     }
 
     public int getNid() {
@@ -47,20 +45,12 @@ public class Nursingfee implements Serializable {
         this.ntype = ntype;
     }
 
-    public int getMinimum() {
-        return minimum;
+    public int getNcost() {
+        return ncost;
     }
 
-    public void setMinimum(int minimum) {
-        this.minimum = minimum;
-    }
-
-    public int getHighest() {
-        return highest;
-    }
-
-    public void setHighest(int highest) {
-        this.highest = highest;
+    public void setNcost(int ncost) {
+        this.ncost = ncost;
     }
 
     @Override
@@ -71,8 +61,7 @@ public class Nursingfee implements Serializable {
         Nursingfee that = (Nursingfee) o;
 
         if (nid != that.nid) return false;
-        if (minimum != that.minimum) return false;
-        if (highest != that.highest) return false;
+        if (ncost != that.ncost) return false;
         return ntype != null ? ntype.equals(that.ntype) : that.ntype == null;
     }
 
@@ -80,8 +69,7 @@ public class Nursingfee implements Serializable {
     public int hashCode() {
         int result = nid;
         result = 31 * result + (ntype != null ? ntype.hashCode() : 0);
-        result = 31 * result + minimum;
-        result = 31 * result + highest;
+        result = 31 * result + ncost;
         return result;
     }
 }
