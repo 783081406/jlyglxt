@@ -60,7 +60,7 @@ public class RoomcostDAOTest {
     @Test
     @Transactional
     //新增，防止数据冗余，回滚
-    @Rollback(true)
+    @Rollback
     public void testAddRoomcost() {
         roomcostDAO.addRoomcost("ccj", 1200);
     }
@@ -70,7 +70,7 @@ public class RoomcostDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateRoomcost() {
         Roomcost roomcost = roomcostDAO.getSearchRoomcost(1);
         roomcost.setRCost(3600);
