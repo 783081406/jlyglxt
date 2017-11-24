@@ -174,6 +174,12 @@
 </div>
 <!--javascript-->
 <script>
+    //加载完html之后自动加载的数据javascript
+    $(function () {
+        //入住费用的加载数据
+        $("#fm1").form('load', '<%=basePath %>roomcostaction/getAllInformation.action');
+        $("#fm1 div input").attr("disabled", "disabled");
+    });
     var url;
     //入住费用
     function edit1() {
