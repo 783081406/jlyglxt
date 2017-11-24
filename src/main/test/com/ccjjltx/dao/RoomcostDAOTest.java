@@ -76,4 +76,44 @@ public class RoomcostDAOTest {
         roomcost.setRCost(3600);
         roomcostDAO.updateRoomcost(roomcost);
     }
+
+    /**
+     * 验证：是否得到三条数据
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformation1() {
+        int result = roomcostDAO.getAllInformation().size();
+        Assert.assertEquals(3, result);
+    }
+
+    /**
+     * 验证：得到的第一条数据主键是否是1
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformation2() {
+        Roomcost rc1 = roomcostDAO.getAllInformation().get(0);
+        Assert.assertEquals(1, rc1.getRcId());
+    }
+
+    /**
+     * 验证：得到的第二条数据主键是否是2
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformation3() {
+        Roomcost rc2 = roomcostDAO.getAllInformation().get(1);
+        Assert.assertEquals(2, rc2.getRcId());
+    }
+
+    /**
+     * 验证：得到的第三条数据主键是否是3
+     */
+    @Test
+    @Transactional
+    public void testGetAllInformation4() {
+        Roomcost rc3 = roomcostDAO.getAllInformation().get(2);
+        Assert.assertEquals(3, rc3.getRcId());
+    }
 }
