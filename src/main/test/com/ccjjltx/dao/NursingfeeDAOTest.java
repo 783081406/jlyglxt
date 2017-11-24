@@ -4,6 +4,7 @@ import com.ccjjltx.domain.Nursingfee;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,4 +42,21 @@ public class NursingfeeDAOTest {
         Assert.assertEquals(1, nf.getNid());
     }
 
+    /**
+     * 验证：是否能更新
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        //得到一个实例化
+        Nursingfee nf = nursingfeeDAO.getSearchInformation(1);
+        //修改数据
+        nf.setNtype("1234");
+        //更新数据
+        nursingfeeDAO.updateInformation(nf);
+        //再次得到
+        Nursingfee nf1 = nursingfeeDAO.getSearchInformation(1);
+        Assert.assertEquals("1234", nf1.getNtype());
+    }
 }
