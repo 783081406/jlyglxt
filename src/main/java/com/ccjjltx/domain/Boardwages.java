@@ -16,8 +16,8 @@ public class Boardwages implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bwid;
-    private Integer highest;
-    private Integer minimum;
+    private int highest;
+    private int minimum;
 
     //无参构造函数
     public Boardwages() {
@@ -37,19 +37,19 @@ public class Boardwages implements Serializable {
         this.bwid = bwid;
     }
 
-    public Integer getHighest() {
+    public int getHighest() {
         return highest;
     }
 
-    public void setHighest(Integer highest) {
+    public void setHighest(int highest) {
         this.highest = highest;
     }
 
-    public Integer getMinimum() {
+    public int getMinimum() {
         return minimum;
     }
 
-    public void setMinimum(Integer minimum) {
+    public void setMinimum(int minimum) {
         this.minimum = minimum;
     }
 
@@ -61,17 +61,15 @@ public class Boardwages implements Serializable {
         Boardwages that = (Boardwages) o;
 
         if (bwid != that.bwid) return false;
-        if (highest != null ? !highest.equals(that.highest) : that.highest != null) return false;
-        if (minimum != null ? !minimum.equals(that.minimum) : that.minimum != null) return false;
-
-        return true;
+        if (highest != that.highest) return false;
+        return minimum == that.minimum;
     }
 
     @Override
     public int hashCode() {
         int result = bwid;
-        result = 31 * result + (highest != null ? highest.hashCode() : 0);
-        result = 31 * result + (minimum != null ? minimum.hashCode() : 0);
+        result = 31 * result + highest;
+        result = 31 * result + minimum;
         return result;
     }
 }
