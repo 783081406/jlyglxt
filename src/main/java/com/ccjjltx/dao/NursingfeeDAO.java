@@ -46,4 +46,13 @@ public class NursingfeeDAO {
         return (Nursingfee) session.get(Nursingfee.class, nid);
     }
 
+    /**
+     * 更新数据
+     *
+     * @param nf 需要更新的实例化
+     */
+    public void updateInformation(Nursingfee nf) {
+        Session session = factory.getCurrentSession();
+        session.update(nf);
+    }
 }
