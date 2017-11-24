@@ -223,11 +223,37 @@
 
     //伙食费
     function edit2() {
-
+        //open div1
+        $("#dlg2").dialog('open').dialog('setTitle', '伙食费');
+        //清空表单，来显示空表单
+        $("#fm21").form('load', '<%=basePath %>boardwagesaction/getAllInformation.action');
+        url = '<%=basePath %>boardwagesaction/updateInformation.action';
     }
     //提交
     function save2() {
-
+        $('#fm21').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#dlg2').dialog('close');		// 关闭window
+                    //清除数据
+                    $('#fm2').form('clear');
+                    //重新加载
+                    $("#fm2").form('load', '<%=basePath %>boardwagesaction/getAllInformation.action');
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
     }
 
     //护理费
