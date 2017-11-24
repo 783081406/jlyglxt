@@ -123,30 +123,31 @@
             欢迎老人，家属来院参观！周边地区长者参观入住，我们专车免费负责接送<br/>
         </div>
     </div>
-    <br/><br/><br/>
-    <!--footer-->
-    <div class="footer"
-         style="background-color: #00933f;font-size: 15px;color:#ffffff;padding: 40px 40px 20px 40px;">
-        <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
-            <hr align="left" width="250px"/>
-            xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
-        <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
-            <hr align="left" width="250px"/>
-            xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
-        <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
-            <hr align="left" width="250px"/>
-            xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
-        <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
-            <hr align="left" width="250px"/>
-            xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
-        <div>C<sup>c</sup>敬老院养老集团有限公司 粤ICP备123456号</div>
-    </div>
-    <!--自定义javascript-->
-    <script>
-        //幻灯片功能
-        $(document).ready(function () {
-            $('#circleContent').carousel({interval: 3000});//每隔5秒自动轮播
-        });
-    </script>
+</div>
+<br/><br/><br/>
+<!--footer-->
+<div class="footer"
+     style="background-color: #00933f;font-size: 15px;color:#ffffff;padding: 40px 40px 20px 40px;">
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div style="float:left; width:25%; height:200px;"><h2>XXXXXX</h2>
+        <hr align="left" width="250px"/>
+        xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/>xxxxxxxxxxxx<br/></div>
+    <div>C<sup>c</sup>敬老院养老集团有限公司 粤ICP备123456号</div>
+</div>
+<!--自定义javascript-->
+<script>
+    //幻灯片功能
+    $(document).ready(function () {
+        $('#circleContent').carousel({interval: 3000});//每隔5秒自动轮播
+    });
+</script>
 </body>
 </html>
