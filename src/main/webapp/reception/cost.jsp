@@ -106,7 +106,7 @@
 </div>
 <div class="container" style="margin-top: 50px;">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p>关于我们</p>
             <p>Cc敬老院在广州打造的第一所社区嵌入式精品养老服务机构， 2015年正式运营。提供生活照料、康复护理、紧急救援、
                 短期托养、居家服务、医疗保健、精神慰藉等综合性养老服务。</p>
@@ -115,11 +115,11 @@
                 地铁：A1站、A2站
                 公交线路：69路、130路、184路、190路、226路、高峰快线39路、250路、14路、206路、229路、239路、264路、270路、37路、93路、468路</p>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <img src='./img/cost/c1.jpg' class="img-thumbnail"/><br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <img src='./img/cost/c2.jpg' class="img-thumbnail"/><br/><br/>
-            <img src='./img/cost/c2.jpg' class="img-thumbnail"/>
+            <img src='./img/cost/c3.jpg' class="img-thumbnail"/>
             <br/>
             <table class="table table-bordered" id="costtable">
                 <caption>入住费用</caption>
