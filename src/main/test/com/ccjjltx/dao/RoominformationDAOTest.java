@@ -192,7 +192,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testAddInformation1() {
         int result = roominformationDAO.addInformation("东", 101, null, 0, 0);
         Assert.assertEquals(1, result);
@@ -203,7 +203,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testAddInformation2() {
         int result = roominformationDAO.addInformation("ccj", 101, "ccj", 900, 2);
         Assert.assertEquals(2, result);
@@ -215,7 +215,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testAddInformation3() {
         int result = roominformationDAO.addInformation("ccj", 101, "ccj", 900, 15);
         Assert.assertEquals(3, result);
@@ -227,7 +227,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testAddInformation4() {
         int result = roominformationDAO.addInformation("ccj", 101, "标准", 1000, 15);
         Assert.assertEquals(3, result);
@@ -248,7 +248,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateInformation1() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         int result = roominformationDAO.updateInformation(ri, 2);
@@ -260,7 +260,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateInformation2() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         int result = roominformationDAO.updateInformation(ri, 0);
@@ -272,7 +272,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateInformation3() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         int result = roominformationDAO.updateInformation(ri, 1);
@@ -284,12 +284,11 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateInformation4() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         Roomcost r = ri.getRoomcost();
         r.setRCost(810);
-        int result = roominformationDAO.updateInformation(ri, 1);
         Roomcost r2 = roomcostDAO.getSearchRoomcost(1);
         Assert.assertEquals(810, r2.getRCost());
     }
@@ -299,7 +298,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateInformation5() {
         Roominformation ri = roominformationDAO.getSearchRoominformation(1);
         ri.setFloor("西");
@@ -313,7 +312,7 @@ public class RoominformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testDeleteInformation() {
         roominformationDAO.deleteInformation(1);
     }
