@@ -52,6 +52,7 @@
         <a href="javascript:void(0)" class="icon-edit" onclick="edit1()"></a>
     </div>
 </div>
+<!--伙食费-->
 <div style="float:left; width:260px; height:300px; margin-right:50px">
     <div id="p2" class="easyui-panel" title="伙食费" style="width:260px; height:300px;padding:10px;"
          data-options="iconCls:'icon-save',closable:true,tools:'#tt2'">
@@ -72,6 +73,7 @@
         <a href="javascript:void(0)" class="icon-edit" onclick="edit2()"></a>
     </div>
 </div>
+<!--护理费-->
 <div style="float:left; width:260px; height:300px; margin-right:50px">
     <div id="p3" class="easyui-panel" title="护理费" style="width:260px; height:300px;padding:10px;"
          data-options="iconCls:'icon-save',closable:true,tools:'#tt3'">
@@ -89,7 +91,7 @@
             <br/><br/>
             <div class="fitem">
                 <label>高级:</label>
-                <input name="rtype2" class="easyui-validatebox">
+                <input name="rtype3" class="easyui-validatebox">
             </div>
         </form>
     </div>
@@ -116,7 +118,7 @@
         <br/><br/>
         <div class="fitem">
             <label>高级:</label>
-            <input name="rtype2" class="easyui-validatebox">
+            <input name="rtype3" class="easyui-validatebox">
         </div>
     </form>
 </div>
@@ -183,11 +185,37 @@
     var url;
     //入住费用
     function edit1() {
-
+        //open div1
+        $("#dlg1").dialog('open').dialog('setTitle', '入住费用');
+        //清空表单，来显示空表单
+        $("#fm11").form('load', '<%=basePath %>roomcostaction/getAllInformation.action');
+        url = '<%=basePath %>roomcostaction/updateInformation.action';
     }
     //提交
     function save1() {
-
+        $('#fm11').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#dlg1').dialog('close');		// 关闭window
+                    //清除数据
+                    $('#fm1').form('clear');
+                    //重新加载
+                    $("#fm1").form('load', '<%=basePath %>roomcostaction/getAllInformation.action');
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
     }
 
     //伙食费
