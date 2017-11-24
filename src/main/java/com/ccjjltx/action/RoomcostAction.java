@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.RoomcostDAO;
 import com.ccjjltx.domain.Roomcost;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
@@ -87,6 +88,30 @@ public class RoomcostAction extends ActionSupport {
         //第三条数据
         Roomcost rc3 = list.get(2);
         result.put("rtype3", rc3.getRCost());
+        return SUCCESS;
+    }
+
+    /**
+     * 更新信息
+     *
+     * @return Json成功或失败信息
+     */
+    public String updateInformation() {
+        //得到"标准"的实例化
+        Roomcost rc1 = roomcostDAO.getSearchRoomcost(1);
+        //设置"标准"的数据
+        rc1.setRCost(getRtype1());
+        //执行更新操作
+        roomcostDAO.updateRoomcost(rc1);
+        //得到"中等"的实例化
+        Roomcost rc2 = roomcostDAO.getSearchRoomcost(2);
+        rc2.setRCost(getRtype2());
+        roomcostDAO.updateRoomcost(rc2);
+        //得到"中等"的实例化
+        Roomcost rc3 = roomcostDAO.getSearchRoomcost(3);
+        rc3.setRCost(getRtype3());
+        roomcostDAO.updateRoomcost(rc3);
+        result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
 }
