@@ -22,8 +22,10 @@ public class NursingfeeAction extends ActionSupport {
     private NursingfeeDAO nursingfeeDAO;
     private JSONObject result;
     ///////////////提交过来的数据////////////
-    int highest;
-    int minimum;
+    private int ncost1;
+    private int ncost2;
+    private int ncost3;
+
     ////////////////////////////////////////
     public NursingfeeDAO getNursingfeeDAO() {
         return nursingfeeDAO;
@@ -41,19 +43,27 @@ public class NursingfeeAction extends ActionSupport {
         this.result = result;
     }
 
-    public int getHighest() {
-        return highest;
+    public int getNcost1() {
+        return ncost1;
     }
 
-    public void setHighest(int highest) {
-        this.highest = highest;
+    public void setNcost1(int ncost1) {
+        this.ncost1 = ncost1;
     }
 
-    public int getMinimum() {
-        return minimum;
+    public int getNcost2() {
+        return ncost2;
     }
 
-    public void setMinimum(int minimum) {
-        this.minimum = minimum;
+    public void setNcost2(int ncost2) {
+        this.ncost2 = ncost2;
+    }
+
+    public int getNcost3() {
+        return ncost3;
+    }
+
+    public void setNcost3(int ncost3) {
+        this.ncost3 = ncost3;
     }
 }
