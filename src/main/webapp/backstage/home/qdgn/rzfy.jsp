@@ -170,7 +170,7 @@
     </form>
 </div>
 <div id="dlg-buttons3">
-    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save2()">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save3()">保存</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-cancel"
        onclick="javascript:$('#dlg3').dialog('close')">取消</a>
 </div>
