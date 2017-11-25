@@ -183,16 +183,16 @@
         <div class="right1"></div>
     </div>
     <div id="mhfc" style="width:auto;height:200px;margin:60px auto;position:relative;">
-        <img src="img/mm1.jpg" class="pic1"/>
-        <img src="img/mm2.jpg" class="pic2"/>
-        <img src="img/mm3.jpg" class="pic3"/>
-        <img src="img/mm4.jpg" class="pic4"/>
-        <img src="img/mm5.jpg" class="pic5"/>
-        <img src="img/mm6.jpg" class="pic6"/>
-        <img src="img/mm7.jpg" class="pic7"/>
-        <img src="img/mm8.jpg" class="pic8"/>
-        <img src="img/mm9.jpg" class="pic9"/>
-        <img src="img/mm10.jpg" class="pic10"/>
+        <img src="./img/qa/a01.jpg" class="pic1"/>
+        <img src="./img/qa/a02.jpg" class="pic2"/>
+        <img src="./img/qa/a03.jpg" class="pic3"/>
+        <img src="./img/qa/a04.jpg" class="pic4"/>
+        <img src="./img/qa/a05.jpg" class="pic5"/>
+        <img src="./img/qa/a06.jpg" class="pic6"/>
+        <img src="./img/qa/a07.jpg" class="pic7"/>
+        <img src="./img/qa/a08.jpg" class="pic8"/>
+        <img src="./img/qa/a01.jpg" class="pic9"/>
+        <img src="./img/qa/a02.jpg" class="pic10"/>
     </div>
     <!--体检预约-->
     <div class="box1">
