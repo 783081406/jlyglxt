@@ -28,11 +28,8 @@
                     "menus": [
                         {"menuid": "11", "menuname": "宣传栏", "icon": "icon-attach", "url": "qdgn/xcl.jsp"},
                         {"menuid": "12", "menuname": "服务项目", "icon": "icon-page", "url": "qdgn/fwxm.jsp"},
-                        {"menuid": "13", "menuname": "美好风采", "icon": "icon-class", "url": "qdgn/mhfc.jsp"},
-                        {"menuid": "14", "menuname": "新闻动态", "icon": "icon-role", "url": "qdgn/xwdt.jsp"},
                         {"menuid": "15", "menuname": "入住费用", "icon": "icon-set", "url": "qdgn/rzfy.jsp"},
                         {"menuid": "16", "menuname": "常见问题", "icon": "icon-log", "url": "qdgn/cjwt.jsp"},
-                        {"menuid": "17", "menuname": "联系我们", "icon": "icon-nav", "url": "qdgn/lxwm.jsp"}
                     ]
                 },
                 {
