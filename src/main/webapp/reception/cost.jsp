@@ -131,20 +131,20 @@
                     <td>合计(元/人/月)</td>
                 </tr>
                 <tr>
-                    <td>标准：900</td>
-                    <td rowspan="4">550-750</td>
-                    <td>初级护理：550-570</td>
-                    <td>2000-2700</td>
+                    <td>标准：${roomcost1}</td>
+                    <td rowspan="3">${minimum}-${highest}</td>
+                    <td>初级护理：${nursingfee1}</td>
+                    <td>${ctotal11}-${ctotal12}</td>
                 </tr>
                 <tr>
-                    <td>中等:1000</td>
-                    <td>初级护理：850-1050</td>
-                    <td>2000-2700</td>
+                    <td>中等：${roomcost2}</td>
+                    <td>中级护理：${nursingfee2}</td>
+                    <td>${ctotal21}-${ctotal22}</td>
                 </tr>
                 <tr>
-                    <td>豪华:1200</td>
-                    <td>初级护理：1550-1750</td>
-                    <td>3000-3700</td>
+                    <td>豪华：${roomcost3}</td>
+                    <td>高级护理：${nursingfee3}</td>
+                    <td>${ctotal31}-${ctotal32}</td>
                 </tr>
                 <tr class="active">
                     <td>房间配置</td>
