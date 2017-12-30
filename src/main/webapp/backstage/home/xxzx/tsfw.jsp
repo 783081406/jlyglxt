@@ -103,6 +103,40 @@
             url: '<%=basePath %>elderaction/getIdElderName.action'
         })
     });
+    ///////////////////////////////////////////////
+    var url;
+    function newss() {
+        $('#dlg').dialog('open').dialog('setTitle', '新房间信息');
+        //清空表单，来显示空表单
+        $('#fm').form('clear');
+        //提交数据处理的URL
+        url = '<%=basePath %>sserviceaction/addInformation.action';
+    }
+
+    //提交功能
+    function savess() {
+        $('#fm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                //验证数据是否必填项完整
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                //返回的是json数据，这里解析出来
+                var result = eval('(' + result + ')');
+                if (result.success) {//如果返回成功信息
+                    $('#dlg').dialog('close');		// 关闭window
+                    $('#dg').datagrid('reload');	//重新加载数据
+                } else {//返回是失败信息
+                    $.messager.show({//弹出提示框来说明插入失败以及返回的信息
+                        title: '错误提示',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
+
 </script>
 </body>
 </html>
