@@ -3,6 +3,7 @@ package com.ccjjltx.action;
 import com.ccjjltx.dao.EaeDAO;
 import com.ccjjltx.domain.Eae;
 import com.ccjjltx.utils.JsonMessage;
+import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -112,8 +113,8 @@ public class EaeAction extends ActionSupport {
             JSONObject js = new JSONObject();
             js.put("eaeid", eae.getEaeid());
             js.put("ename", eae.getElder().getEname());
-            js.put("stime", eae.getStime());
-            js.put("etime", eae.getEtime());
+            js.put("stime", MyDateFormat.format(eae.getStime()));
+            js.put("etime", MyDateFormat.format(eae.getEtime()));
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
@@ -144,5 +145,31 @@ public class EaeAction extends ActionSupport {
         }
     }
 
+    /**
+     * 更新信息
+     *
+     * @return json数据
+     */
+    public String updateInformation() {
+        //根据主键得到信息
+        Eae eae = eaeDAO.getSearchEae(getEaeid());
+        //更新数据
+        eae.setStime(getStime());
+        eae.setEtime(getEtime());
+        //更新操作
+        eaeDAO.updateInformation(eae);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 
+    /**
+     * 删除功能
+     *
+     * @return 返回成功
+     */
+    public String removeInformation() {
+        eaeDAO.deleteInformation(getEaeid());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
