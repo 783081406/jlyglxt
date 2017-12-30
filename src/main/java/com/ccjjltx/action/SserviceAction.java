@@ -2,6 +2,7 @@ package com.ccjjltx.action;
 
 import com.ccjjltx.dao.SserviceDAO;
 import com.ccjjltx.domain.Sservice;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -123,5 +124,29 @@ public class SserviceAction extends ActionSupport {
         }
         result.put("rows", jsonArray);
         return SUCCESS;
+    }
+
+    /**
+     * 用于增加特别服务信息
+     *
+     * @return json, 成功或者失败的提示信息
+     */
+    public String addInformation() {
+        int eId = -1;
+        try {
+            eId = Integer.parseInt(getEname());
+        } catch (NumberFormatException e) {
+            result = JsonMessage.returnMessage(false, "请输入有效姓名");
+            return ERROR;
+        }
+        Sservice sservice = new Sservice(getStype(), getStime(), getRemark());
+        int thisRusult = sserviceDAO.addInformation(sservice, eId);
+        if (thisRusult == 1) {
+            result = JsonMessage.returnMessage(false, "该名老人的数据已经存在");
+            return ERROR;
+        } else {
+            result = JsonMessage.returnMessage(true, "success");
+            return SUCCESS;
+        }
     }
 }
