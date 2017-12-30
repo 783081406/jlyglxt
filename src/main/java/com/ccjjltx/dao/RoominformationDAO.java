@@ -271,6 +271,10 @@ public class RoominformationDAO {
         }
     }
 
+    /**
+     * 删除数据
+     * @param rId 主键
+     */
     public void deleteInformation(int rId) {
         Session session = factory.getCurrentSession();
         //根据rId得到Roominformation
