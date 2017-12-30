@@ -87,15 +87,17 @@ public class SserviceDAO {
      * @param sservice Sservice实例类
      * @return 1表示该名老人已经有特殊服务了，2表示插入成功
      */
-    public int addInformation(Sservice sservice,int eId) {
-        //得到eId对应的用户信息
-        Elder db_elder = elderDAO.getSearchElder(eId);
-        //首先是否该名老人已经在特殊服务有记录了
-        int isExist=getAllInformationNumber(db_elder.getEname());
-        if(isExist>0){
-
+    public int addInformation(Sservice sservice, int eId) {
+        Session session = factory.getCurrentSession();
+        //首先判断是否该名老人已经在特殊服务有记录了
+        if (isExist(eId)) {//表示是
+            return 1;
+        } else {//表示否
+            Elder db_elder = elderDAO.getSearchElder(eId);
+            sservice.setElder(db_elder);
+            session.save(sservice);
+            return 2;
         }
-        return 2;
     }
 
     /**
