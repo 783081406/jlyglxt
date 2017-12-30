@@ -1,14 +1,17 @@
 package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Eae;
+import com.ccjjltx.utils.MyDateFormat;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -87,5 +90,53 @@ public class EaeDAOTest {
         Assert.assertEquals(0, result);
     }
 
+    /**
+     * 验证：当用户存在表数据时，是否true
+     */
+    @Test
+    @Transactional
+    public void testIsExist1() {
+        Assert.assertTrue(eaeDAO.isExist(1));
+    }
 
+    /**
+     * 验证：当用户不存在表数据时，是否false
+     */
+    @Test
+    @Transactional
+    public void testIsExist2() {
+        Assert.assertFalse(eaeDAO.isExist(21));
+    }
+
+    /**
+     * 验证：增加信息（存在的数据，返回1）
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation1() {
+        try {
+            Eae eae = new Eae(MyDateFormat.parse("2017-12-31"), null);
+            int result = eaeDAO.addInformation(eae, 1);
+            Assert.assertEquals(1, result);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 验证：增加信息（不存在的数据，返回2）
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation2() {
+        try {
+            Eae eae = new Eae(MyDateFormat.parse("2017-12-31"), null);
+            int result = eaeDAO.addInformation(eae, 21);
+            Assert.assertEquals(2, result);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 }
