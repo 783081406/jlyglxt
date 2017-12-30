@@ -120,5 +120,24 @@ public class SserviceDAO {
         }
     }
 
+    /**
+     * 更新信息
+     *
+     * @param sservice 实例化
+     */
+    public void updateInformation(Sservice sservice) {
+        Session session = factory.getCurrentSession();
+        session.update(sservice);
+    }
 
+    /**
+     * 根据主键得到实例化
+     *
+     * @param ssid 主键
+     * @return 实例化
+     */
+    public Sservice getSearchSservice(int ssid) {
+        Session session = factory.getCurrentSession();
+        return (Sservice) session.get(Sservice.class, ssid);
+    }
 }
