@@ -87,4 +87,22 @@ public class SserviceDAOTest {
         Assert.assertEquals(0, result);
     }
 
+
+    /**
+     * 验证：当用户存在表数据时，是否true
+     */
+    @Test
+    @Transactional
+    public void testIsExist1(){
+        Assert.assertTrue(sserviceDAO.isExist(1));
+    }
+
+    /**
+     * 验证：当用户不存在表数据时，是否false
+     */
+    @Test
+    @Transactional
+    public void testIsExist2(){
+        Assert.assertFalse(sserviceDAO.isExist(21));
+    }
 }
