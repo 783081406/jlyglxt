@@ -105,7 +105,7 @@ public class SserviceDAO {
      * 主要用于：新增
      *
      * @param eId 老人缩略表中的eId主键
-     * @return true表示已经入住了，false表示还没入住
+     * @return true表示已经存在数据，false表示还没存在数据
      */
     public boolean isExist(int eId) {
         Session session = factory.getCurrentSession();
