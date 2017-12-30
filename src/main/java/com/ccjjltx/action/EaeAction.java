@@ -1,11 +1,15 @@
 package com.ccjjltx.action;
 
 import com.ccjjltx.dao.EaeDAO;
+import com.ccjjltx.domain.Eae;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/12/31.
@@ -91,6 +95,54 @@ public class EaeAction extends ActionSupport {
         this.ename = ename;
     }
 
+    /**
+     * 得到全部或特定(搜索框触发)的特殊服务数据
+     *
+     * @return 只返回SUCCESS
+     */
+    public String getAllInformation() {
+        int offset = (getPage() - 1) * getRows();
+        List<Eae> list = eaeDAO.getAllInformation(offset, getRows(), getEname());
+        //得到总条数
+        int total = eaeDAO.getAllInformationNumber(getEname());
+        result = new JSONObject();
+        result.put("total", total);
+        JSONArray jsonArray = new JSONArray();
+        for (Eae eae : list) {
+            JSONObject js = new JSONObject();
+            js.put("eaeid", eae.getEaeid());
+            js.put("ename", eae.getElder().getEname());
+            js.put("stime", eae.getStime());
+            js.put("etime", eae.getEtime());
+            jsonArray.add(js);
+        }
+        result.put("rows", jsonArray);
+        return SUCCESS;
+    }
+
+    /**
+     * 用于增加出入院信息
+     *
+     * @return json, 成功或者失败的提示信息
+     */
+    public String addInformation() {
+        int eId = -1;
+        try {
+            eId = Integer.parseInt(getEname());
+        } catch (NumberFormatException e) {
+            result = JsonMessage.returnMessage(false, "请输入有效姓名");
+            return ERROR;
+        }
+        Eae eae = new Eae(getStime(), getEtime());
+        int thisRusult = eaeDAO.addInformation(eae, eId);
+        if (thisRusult != 1) {
+            result = JsonMessage.returnMessage(true, "success");
+            return SUCCESS;
+        } else {
+            result = JsonMessage.returnMessage(false, "该名老人的数据已经存在");
+            return ERROR;
+        }
+    }
 
 
 }
