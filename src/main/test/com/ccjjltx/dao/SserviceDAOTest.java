@@ -148,12 +148,26 @@ public class SserviceDAOTest {
     }
 
     /**
-     * 根据主键得到实例化
+     * 验证：是否能根据主键得到实例化
      */
     @Test
     @Transactional
     public void testGetSearchSservice() {
         Sservice sservice = sserviceDAO.getSearchSservice(1);
         Assert.assertEquals(1, sservice.getElder().getEId());
+    }
+
+    /**
+     * 验证：是否能删除数据
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        int count1 = sserviceDAO.getAllInformationNumber(null);
+        //删除数据
+        sserviceDAO.deleteInformation(1);
+        int count2 = sserviceDAO.getAllInformationNumber(null);
+        Assert.assertEquals(count2, count1 - 1);
     }
 }
