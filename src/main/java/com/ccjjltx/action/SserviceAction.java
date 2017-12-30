@@ -176,4 +176,15 @@ public class SserviceAction extends ActionSupport {
         result = JsonMessage.returnMessage(true, "success");
         return SUCCESS;
     }
+
+    /**
+     * 删除功能
+     *
+     * @return 返回成功
+     */
+    public String removeInformation() {
+        sserviceDAO.deleteInformation(getSsid());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
+    }
 }
