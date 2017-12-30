@@ -30,6 +30,7 @@ public class SserviceAction extends ActionSupport {
     private JSONObject result;
 
     ////////////提交过来的数据///////////
+    private int ssid;
     private String stype;//类型
     private String stime;//频率
     private String remark;//备注
@@ -66,6 +67,14 @@ public class SserviceAction extends ActionSupport {
 
     public void setResult(JSONObject result) {
         this.result = result;
+    }
+
+    public int getSsid() {
+        return ssid;
+    }
+
+    public void setSsid(int ssid) {
+        this.ssid = ssid;
     }
 
     public String getStype() {
@@ -148,5 +157,23 @@ public class SserviceAction extends ActionSupport {
             result = JsonMessage.returnMessage(true, "success");
             return SUCCESS;
         }
+    }
+
+    /**
+     * 更新信息
+     *
+     * @return json数据
+     */
+    public String updateInformation() {
+        //根据主键得到信息
+        Sservice sservice = sserviceDAO.getSearchSservice(getSsid());
+        //更新数据
+        sservice.setStype(getStype());
+        sservice.setStime(getStime());
+        sservice.setRemark(getRemark());
+        //更新操作
+        sserviceDAO.updateInformation(sservice);
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
     }
 }
