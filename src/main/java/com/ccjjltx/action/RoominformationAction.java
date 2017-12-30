@@ -174,6 +174,8 @@ public class RoominformationAction extends ActionSupport {
             eId = Integer.parseInt(getEname());
         } catch (NumberFormatException e) {
             eId = 0;
+            result = JsonMessage.returnMessage(false, "请输入有效姓名");
+            return ERROR;
         }
         int thisRusult = roominformationDAO.addInformation(getFloor(), getRoomNumber(), getRType(), getRCost(), eId);
         switch (thisRusult) {
