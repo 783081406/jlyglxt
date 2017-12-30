@@ -31,6 +31,7 @@ public class EaeAction extends ActionSupport {
     private Date stime;//开始时间
     private Date etime;//结束时间
     private String ename;//名字
+    private String isIn;//是否在住
 
     public EaeDAO getEaeDAO() {
         return eaeDAO;
@@ -96,6 +97,14 @@ public class EaeAction extends ActionSupport {
         this.ename = ename;
     }
 
+    public String getIsIn() {
+        return isIn;
+    }
+
+    public void setIsIn(String isIn) {
+        this.isIn = isIn;
+    }
+
     /**
      * 得到全部或特定(搜索框触发)的特殊服务数据
      *
@@ -115,6 +124,7 @@ public class EaeAction extends ActionSupport {
             js.put("ename", eae.getElder().getEname());
             js.put("stime", MyDateFormat.format(eae.getStime()));
             js.put("etime", MyDateFormat.format(eae.getEtime()));
+            js.put("isIn", eae.getElder().getIsIn() == 1 ? "在住" : "离院");
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
