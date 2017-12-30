@@ -149,4 +149,24 @@ public class EaeDAOTest {
         Eae eae = eaeDAO.getSearchEae(1);
         Assert.assertEquals(1, eae.getElder().getEId());
     }
+
+    /**
+     * 验证：是否能更新信息
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        try {
+            Eae eae = eaeDAO.getSearchEae(1);
+            //重新更新字段信息
+            eae.setStime(MyDateFormat.parse("2017-11-11"));
+            //更新
+            eaeDAO.updateInformation(eae);
+            //重新获取数据，比较更新的字段
+            Assert.assertEquals("2017-11-11", MyDateFormat.format(eaeDAO.getSearchEae(1).getStime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 }
