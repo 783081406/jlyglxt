@@ -25,6 +25,11 @@ public class Eae implements Serializable {
     public Eae() {
     }
 
+    public Eae(Date stime, Date etime) {
+        this.stime = stime;
+        this.etime = etime;
+    }
+
     public int getEaeid() {
         return eaeid;
     }
