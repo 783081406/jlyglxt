@@ -140,4 +140,14 @@ public class SserviceDAO {
         Session session = factory.getCurrentSession();
         return (Sservice) session.get(Sservice.class, ssid);
     }
+
+    /**
+     *删除数据
+     * @param ssid 主键
+     */
+    public void deleteInformation(int ssid) {
+        Session session = factory.getCurrentSession();
+        session.delete(getSearchSservice(ssid));
+    }
+
 }
