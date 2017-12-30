@@ -22,18 +22,17 @@ public class Sservice implements Serializable {
     @OneToOne(targetEntity = Elder.class)
     //映射外键名字
     @JoinColumn(name = "eId")
-    private int eId;
+    private Elder eId;
 
     //无参构造函数
     public Sservice() {
     }
 
     //有参构造函数
-    public Sservice(String stype, String stime, String remark, int eId) {
+    public Sservice(String stype, String stime, String remark) {
         this.stype = stype;
         this.stime = stime;
         this.remark = remark;
-        this.eId = eId;
     }
 
     public int getSsid() {
@@ -68,11 +67,11 @@ public class Sservice implements Serializable {
         this.remark = remark;
     }
 
-    public int geteId() {
+    public Elder geteId() {
         return eId;
     }
 
-    public void seteId(int eId) {
+    public void seteId(Elder eId) {
         this.eId = eId;
     }
 
