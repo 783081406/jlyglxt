@@ -184,6 +184,18 @@
         </action>
     </package>
 
+    <!--信息中心>>特殊服务-->
+    <package name="sserviceaction" namespace="/sserviceaction" extends="struts-default,json-default">
+        <action name="*" class="sserviceAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+    </package>
+
     <!--体验预约-->
     <package name="bespeakaction" namespace="/bespeakaction" extends="struts-default,json-default">
         <action name="*" class="bespeakAction" method="{1}">
