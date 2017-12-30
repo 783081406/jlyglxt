@@ -169,4 +169,18 @@ public class EaeDAOTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 验证：是否能删除数据
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        int count1 = eaeDAO.getAllInformationNumber(null);
+        //删除数据
+        eaeDAO.deleteInformation(1);
+        int count2 = eaeDAO.getAllInformationNumber(null);
+        Assert.assertEquals(count2, count1 - 1);
+    }
 }
