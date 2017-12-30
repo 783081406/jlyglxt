@@ -37,7 +37,7 @@ public class SserviceDAO {
     public List<Sservice> getAllInformation(int offset, int rows, String ename) {
         Session session = factory.getCurrentSession();
         //总查询语句
-        String hql = "from Sservice Sservice";
+        String hql = "from Sservice sservice";
         Query query;
         if (ename != null) {//搜索框带过来的数据
             Elder elder;
@@ -110,7 +110,7 @@ public class SserviceDAO {
     public boolean isExist(int eId) {
         Session session = factory.getCurrentSession();
         Elder db_elder = elderDAO.getSearchElder(eId);
-        String hql = "from Sservice Sservice where elder=:elder";
+        String hql = "from Sservice sservice where elder=:elder";
         Query query = session.createQuery(hql).setParameter("elder", db_elder);
         Sservice ri = (Sservice) query.uniqueResult();
         if (ri != null) {
