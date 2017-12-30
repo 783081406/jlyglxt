@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/12/31.
+ * 对出入院的相关操作
  *
  * @author ccj
  * @version 1.0
