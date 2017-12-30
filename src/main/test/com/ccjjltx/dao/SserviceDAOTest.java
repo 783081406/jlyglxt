@@ -120,6 +120,18 @@ public class SserviceDAOTest {
     }
 
     /**
+     * 验证：增加信息（不存在的数据，返回2）
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation2() {
+        Sservice sservice = new Sservice("cc", "cc", "cc");
+        int result = sserviceDAO.addInformation(sservice, 21);
+        Assert.assertEquals(2, result);
+    }
+
+    /**
      * 验证：是否能更新信息
      */
     @Test
@@ -133,18 +145,6 @@ public class SserviceDAOTest {
         sserviceDAO.updateInformation(sservice);
         //重新获取数据，比较更新的字段
         Assert.assertEquals("123", sserviceDAO.getSearchSservice(1).getRemark());
-    }
-
-    /**
-     * 验证：增加信息（不存在的数据，返回2）
-     */
-    @Test
-    @Transactional
-    @Rollback
-    public void testAddInformation2() {
-        Sservice sservice = new Sservice("cc", "cc", "cc");
-        int result = sserviceDAO.addInformation(sservice, 21);
-        Assert.assertEquals(2, result);
     }
 
     /**
