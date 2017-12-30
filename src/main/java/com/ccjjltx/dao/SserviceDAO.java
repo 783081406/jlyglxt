@@ -81,4 +81,42 @@ public class SserviceDAO {
         return (int) l;
     }
 
+    /**
+     * 增加新特殊服务信息
+     *
+     * @param sservice Sservice实例类
+     * @return 1表示该名老人已经有特殊服务了，2表示插入成功
+     */
+    public int addInformation(Sservice sservice,int eId) {
+        //得到eId对应的用户信息
+        Elder db_elder = elderDAO.getSearchElder(eId);
+        //首先是否该名老人已经在特殊服务有记录了
+        int isExist=getAllInformationNumber(db_elder.getEname());
+        if(isExist>0){
+
+        }
+        return 2;
+    }
+
+    /**
+     * 根据老人的eid得到是否该老人已经存在在表的数据中
+     * 主要用于：新增
+     *
+     * @param eId 老人缩略表中的eId主键
+     * @return true表示已经入住了，false表示还没入住
+     */
+    public boolean isExist(int eId) {
+        Session session = factory.getCurrentSession();
+        Elder db_elder = elderDAO.getSearchElder(eId);
+        String hql = "from Sservice Sservice where elder=:elder";
+        Query query = session.createQuery(hql).setParameter("elder", db_elder);
+        Sservice ri = (Sservice) query.uniqueResult();
+        if (ri != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
