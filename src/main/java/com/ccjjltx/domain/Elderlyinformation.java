@@ -12,6 +12,7 @@ import java.util.Date;
  * @version 1.0
  */
 @Entity
+@Table
 public class Elderlyinformation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
