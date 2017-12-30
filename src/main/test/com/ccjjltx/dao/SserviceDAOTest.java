@@ -120,6 +120,22 @@ public class SserviceDAOTest {
     }
 
     /**
+     * 验证：是否能更新信息
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation() {
+        Sservice sservice = sserviceDAO.getSearchSservice(1);
+        //重新更新字段信息
+        sservice.setRemark("123");
+        //更新
+        sserviceDAO.updateInformation(sservice);
+        //重新获取数据，比较更新的字段
+        Assert.assertEquals("123", sserviceDAO.getSearchSservice(1).getRemark());
+    }
+
+    /**
      * 验证：增加信息（不存在的数据，返回2）
      */
     @Test
@@ -129,5 +145,15 @@ public class SserviceDAOTest {
         Sservice sservice = new Sservice("cc", "cc", "cc");
         int result = sserviceDAO.addInformation(sservice, 21);
         Assert.assertEquals(2, result);
+    }
+
+    /**
+     * 根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchSservice() {
+        Sservice sservice = sserviceDAO.getSearchSservice(1);
+        Assert.assertEquals(1, sservice.getElder().getEId());
     }
 }
