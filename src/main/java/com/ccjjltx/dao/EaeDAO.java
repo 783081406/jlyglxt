@@ -81,4 +81,42 @@ public class EaeDAO {
         return (int) l;
     }
 
+    /**
+     * 增加出入院信息
+     *
+     * @param eae Eae实例化
+     * @return 1表示该名老人已经有特殊服务了，2表示插入成功
+     */
+    public int addInformation(Eae eae, int eId) {
+        Session session = factory.getCurrentSession();
+        //首先判断是否该名老人已经在表中有记录了
+        if (!isExist(eId)) {//不存在
+            Elder elder = elderDAO.getSearchElder(eId);
+            eae.setElder(elder);
+            session.save(eae);
+            return 2;
+        } else {//存在
+            return 1;
+        }
+    }
+
+    /**
+     * 根据老人的eid得到是否该老人已经存在该表的数据中
+     * 主要用于：新增
+     *
+     * @param eId 老人缩略表中的eId主键
+     * @return true表示已经存在数据，false表示还没存在数据
+     */
+    public boolean isExist(int eId) {
+        Session session = factory.getCurrentSession();
+        Elder db_elder = elderDAO.getSearchElder(eId);
+        String hql = "from Eae eae where elder=:elder";
+        Query query = session.createQuery(hql).setParameter("elder", db_elder);
+        Eae ri = (Eae) query.uniqueResult();
+        if (ri != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
