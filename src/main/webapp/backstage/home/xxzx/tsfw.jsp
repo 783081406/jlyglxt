@@ -59,8 +59,8 @@
     <div class="ftitle">添加信息</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
-            <label>姓名:</label>
-            <input name="ename" class="easyui-validatebox" required="required">
+            <label>名字:</label>
+            <input id="box" name="ename" style="width:173px;">
         </div>
         <div class="fitem">
             <label>类型:</label>
@@ -72,7 +72,7 @@
         </div>
         <div class="fitem">
             <label>备注:</label>
-            <input name="remark" class="easyui-validatebox" required="required">
+            <input name="remark" class="easyui-validatebox">
         </div>
     </form>
 </div>
@@ -111,6 +111,18 @@
         $('#fm').form('clear');
         //提交数据处理的URL
         url = '<%=basePath %>sserviceaction/addInformation.action';
+    }
+
+    //修改
+    function editss() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg').dialog('open').dialog('setTitle', '编辑信息');
+            //加载点击那一行的数据
+            $('#fm').form('load', row);
+            //提交数据处理的URL
+            url = '<%=basePath %>sserviceaction/updateInformation.action?ssid=' + row.ssid;
+        }
     }
 
     //提交功能
