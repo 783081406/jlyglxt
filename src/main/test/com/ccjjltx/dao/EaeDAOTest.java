@@ -139,4 +139,14 @@ public class EaeDAOTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    public void testGetSearchEae() {
+        Eae eae = eaeDAO.getSearchEae(1);
+        Assert.assertEquals(1, eae.getElder().getEId());
+    }
 }
