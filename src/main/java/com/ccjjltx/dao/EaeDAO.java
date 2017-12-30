@@ -130,4 +130,16 @@ public class EaeDAO {
         Session session = factory.getCurrentSession();
         return (Eae) session.get(Eae.class, eaeid);
     }
+
+    /**
+     * 更新信息
+     *
+     * @param eae Eae实例化
+     */
+    public void updateInformation(Eae eae) {
+        Session session = factory.getCurrentSession();
+        session.update(eae);
+    }
+
+
 }
