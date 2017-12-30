@@ -119,4 +119,15 @@ public class EaeDAO {
             return false;
         }
     }
+
+    /**
+     * 根据主键得到实例化
+     *
+     * @param eaeid 主键
+     * @return 实例化
+     */
+    public Eae getSearchEae(int eaeid) {
+        Session session = factory.getCurrentSession();
+        return (Eae) session.get(Eae.class, eaeid);
+    }
 }
