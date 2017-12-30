@@ -141,5 +141,13 @@ public class EaeDAO {
         session.update(eae);
     }
 
-
+    /**
+     * 删除数据
+     *
+     * @param eaeid 主键
+     */
+    public void deleteInformation(int eaeid) {
+        Session session = factory.getCurrentSession();
+        session.delete(getSearchEae(eaeid));
+    }
 }
