@@ -4,6 +4,7 @@ import com.ccjjltx.domain.Sservice;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -93,7 +94,7 @@ public class SserviceDAOTest {
      */
     @Test
     @Transactional
-    public void testIsExist1(){
+    public void testIsExist1() {
         Assert.assertTrue(sserviceDAO.isExist(1));
     }
 
@@ -102,7 +103,31 @@ public class SserviceDAOTest {
      */
     @Test
     @Transactional
-    public void testIsExist2(){
+    public void testIsExist2() {
         Assert.assertFalse(sserviceDAO.isExist(21));
+    }
+
+    /**
+     * 验证：增加信息（存在的数据，返回1）
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation1() {
+        Sservice sservice = new Sservice("cc", "cc", "cc");
+        int result = sserviceDAO.addInformation(sservice, 1);
+        Assert.assertEquals(1, result);
+    }
+
+    /**
+     * 验证：增加信息（不存在的数据，返回2）
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testAddInformation2() {
+        Sservice sservice = new Sservice("cc", "cc", "cc");
+        int result = sserviceDAO.addInformation(sservice, 21);
+        Assert.assertEquals(2, result);
     }
 }
