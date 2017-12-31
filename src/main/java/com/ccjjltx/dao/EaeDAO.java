@@ -87,12 +87,14 @@ public class EaeDAO {
      * @param eae Eae实例化
      * @return 1表示该名老人已经有特殊服务了，2表示插入成功
      */
-    public int addInformation(Eae eae, int eId) {
+    public int addInformation(Eae eae, int eId, int isIn) {
         Session session = factory.getCurrentSession();
         //首先判断是否该名老人已经在表中有记录了
         if (!isExist(eId)) {//不存在
             Elder elder = elderDAO.getSearchElder(eId);
             eae.setElder(elder);
+            elder.setIsIn(isIn);
+            elderDAO.updateInformation(elder);
             session.save(eae);
             return 2;
         } else {//存在
