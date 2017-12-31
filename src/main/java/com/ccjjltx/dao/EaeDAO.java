@@ -140,6 +140,7 @@ public class EaeDAO {
      */
     public void updateInformation(Eae eae) {
         Session session = factory.getCurrentSession();
+        elderDAO.updateInformation(eae.getElder());
         session.update(eae);
     }
 
