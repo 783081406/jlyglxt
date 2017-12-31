@@ -7,6 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <!DOCTYPE html>
 <head lang="en" id="Head1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -56,18 +60,6 @@
             ]
         };
 
-        //设置修改密码窗口
-        function openPwd() {
-            $('#w').window({
-                title: '修改密码',
-                width: 300,
-                modal: true,
-                shadow: true,
-                closed: true,
-                height: 160,
-                resizable: false
-            });
-        }
         //设置登录窗口
         function openPwd() {
             $('#w').window({
@@ -84,7 +76,6 @@
         function closePwd() {
             $('#w').window('close');
         }
-
 
         //修改密码
         function serverLogin() {
@@ -105,11 +96,11 @@
                 return false;
             }
 
-            $.post('/ajax/editpassword.ashx?newpass=' + $newpass.val(), function (msg) {
-                msgShow('系统提示', '恭喜，密码修改成功！<br>您的新密码为：' + msg, 'info');
+            $.post('<%=basePath %>useraction/updatePassword.action?newpass=' + $newpass.val(), function (msg) {
+                msgShow('系统提示', '恭喜，密码修改成功！', 'info');
                 $newpass.val('');
                 $rePass.val('');
-                close();
+                closePwd();
             })
 
         }
@@ -134,7 +125,7 @@
                 $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
 
                     if (r) {
-                        location.href = '/ajax/loginout.ashx';
+                        location.href = '<%=basePath %>/backstage/index.action';
                     }
                 });
             })
@@ -151,8 +142,8 @@
 <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
         background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体"><span style="float:right; padding-right:20px;"
-                                                                            class="head">欢迎 管理员 <a href="#"
-                                                                                                   id="editpass">修改密码</a> <a
+                                                                            class="head">欢迎 ${userName} <a href="#"
+                                                                                                           id="editpass">修改密码</a> <a
         href="#" id="loginOut">安全退出</a></span> <span style="padding-left:10px; font-size: 16px; "><img
         src="images/blocks.gif" width="20" height="20" align="absmiddle"/>C<sup>c</sup>敬老院管理系统</span></div>
 <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
