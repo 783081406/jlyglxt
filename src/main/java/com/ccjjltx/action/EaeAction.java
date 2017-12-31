@@ -127,7 +127,7 @@ public class EaeAction extends ActionSupport {
             js.put("eaeid", eae.getEaeid());
             js.put("ename", eae.getElder().getEname());
             js.put("stime", MyDateFormat.format(eae.getStime()));
-            js.put("etime", eae.getEtime() == null ? null : MyDateFormat.format(eae.getStime()));
+            js.put("etime", eae.getEtime() == null ? null : MyDateFormat.format(eae.getEtime()));
             js.put("isIn", eae.getElder().getIsIn() == 1 ? "在住" : "离院");
             jsonArray.add(js);
         }
@@ -170,6 +170,8 @@ public class EaeAction extends ActionSupport {
         //更新数据
         eae.setStime(getStime());
         eae.setEtime(getEtime());
+        eae.getElder().setIsIn(getIsIn());
+
         //更新操作
         eaeDAO.updateInformation(eae);
         result = JsonMessage.returnMessage(true, "success");
