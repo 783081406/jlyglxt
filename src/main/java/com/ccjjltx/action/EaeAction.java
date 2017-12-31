@@ -7,6 +7,8 @@ import com.ccjjltx.utils.MyDateFormat;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -19,6 +21,8 @@ import java.util.List;
  * @author ccj
  * @version 1.0
  */
+@Controller
+@Scope("prototype")
 public class EaeAction extends ActionSupport {
     @Resource(name = "eaeDAO")
     private EaeDAO eaeDAO;
