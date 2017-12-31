@@ -3,6 +3,7 @@ package com.ccjjltx.action;
 import com.ccjjltx.dao.UserDAO;
 import com.ccjjltx.domain.User;
 import com.ccjjltx.utils.JsonMessage;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -40,6 +41,8 @@ public class UserAction extends ActionSupport {
     private int id;
     //保存json结果
     private JSONObject result;
+    //新密码
+    private String newpass;
 
     public UserDAO getUserDAO() {
         return userDAO;
@@ -103,6 +106,14 @@ public class UserAction extends ActionSupport {
 
     public void setResult(JSONObject result) {
         this.result = result;
+    }
+
+    public String getNewpass() {
+        return newpass;
+    }
+
+    public void setNewpass(String newpass) {
+        this.newpass = newpass;
     }
 
     /**
@@ -197,5 +208,19 @@ public class UserAction extends ActionSupport {
             result = JsonMessage.returnMessage(false, "删除失败");
             return ERROR;
         }
+    }
+
+    /**
+     * 更新密码
+     *
+     * @return json数据
+     */
+    public String updatePassword() {
+        User user = userDAO.searchUser((String) ActionContext.getContext().getSession().get("userName"));
+        user.setPassword(getNewpass());
+        //更新
+        userDAO.updateUser(user);
+        result = JsonMessage.returnMessage(true, "success");
+        return null;
     }
 }
