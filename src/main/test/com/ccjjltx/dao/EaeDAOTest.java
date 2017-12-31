@@ -117,7 +117,7 @@ public class EaeDAOTest {
     public void testAddInformation1() {
         try {
             Eae eae = new Eae(MyDateFormat.parse("2017-12-31"), null);
-            int result = eaeDAO.addInformation(eae, 1);
+            int result = eaeDAO.addInformation(eae, 1, 1);
             Assert.assertEquals(1, result);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -133,7 +133,7 @@ public class EaeDAOTest {
     public void testAddInformation2() {
         try {
             Eae eae = new Eae(MyDateFormat.parse("2017-12-31"), null);
-            int result = eaeDAO.addInformation(eae, 21);
+            int result = eaeDAO.addInformation(eae, 21, 1);
             Assert.assertEquals(2, result);
         } catch (ParseException e) {
             e.printStackTrace();
