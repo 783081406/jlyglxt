@@ -35,7 +35,7 @@ public class EaeAction extends ActionSupport {
     private Date stime;//开始时间
     private Date etime;//结束时间
     private String ename;//名字
-    private String isIn;//是否在住
+    private int isIn;//是否在住
 
     public EaeDAO getEaeDAO() {
         return eaeDAO;
@@ -101,11 +101,11 @@ public class EaeAction extends ActionSupport {
         this.ename = ename;
     }
 
-    public String getIsIn() {
+    public int getIsIn() {
         return isIn;
     }
 
-    public void setIsIn(String isIn) {
+    public void setIsIn(int isIn) {
         this.isIn = isIn;
     }
 
@@ -149,7 +149,7 @@ public class EaeAction extends ActionSupport {
             return ERROR;
         }
         Eae eae = new Eae(getStime(), getEtime());
-        int thisRusult = eaeDAO.addInformation(eae, eId);
+        int thisRusult = eaeDAO.addInformation(eae, eId ,getIsIn());
         if (thisRusult != 1) {
             result = JsonMessage.returnMessage(true, "success");
             return SUCCESS;
