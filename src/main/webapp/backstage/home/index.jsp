@@ -125,7 +125,7 @@
                 $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
 
                     if (r) {
-                        location.href = '<%=basePath %>/backstage/index.action';
+                        location.href = '<%=basePath %>backstage/index.action';
                     }
                 });
             })
