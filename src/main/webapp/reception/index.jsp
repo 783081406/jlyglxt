@@ -155,7 +155,7 @@
         <div class="left1"></div>
         <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
             <strong>&nbsp;&nbsp;服务项目&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">fuwuxiangmu</p></div>
+            <p style="font-size: 25px;color: gainsboro">Service Items</p></div>
         <div class="right1"></div>
     </div>
     <div>
@@ -179,7 +179,7 @@
         <div class="left1"></div>
         <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
             <strong>&nbsp;&nbsp;美好风采&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">meihaofencai</p></div>
+            <p style="font-size: 25px;color: gainsboro">Beautiful style</p></div>
         <div class="right1"></div>
     </div>
     <div id="mhfc" style="width:auto;height:200px;margin:60px auto;position:relative;">
@@ -199,7 +199,7 @@
         <div class="left1"></div>
         <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
             <strong>&nbsp;&nbsp;体验预约&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">tiyanyuyue</p></div>
+            <p style="font-size: 25px;color: gainsboro">Experience Order</p></div>
         <div class="right1"></div>
     </div>
     <div>
