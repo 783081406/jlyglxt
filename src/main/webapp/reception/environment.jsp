@@ -155,7 +155,7 @@
         <div class="left1"></div>
         <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
             <strong>&nbsp;&nbsp;环境介绍&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">huanjingjieshao</p></div>
+            <p style="font-size: 25px;color: gainsboro">Introduce</p></div>
         <div class="right1"></div>
     </div>
     <div>
@@ -182,7 +182,7 @@
         <div class="left1"></div>
         <div class="content1"><p style="font-size: 35px;margin-bottom: 25px">
             <strong>&nbsp;&nbsp;环境设施&nbsp;&nbsp;</strong></p>
-            <p style="font-size: 25px;color: gainsboro">huanjingsheshi</p></div>
+            <p style="font-size: 25px;color: gainsboro">Facilities</p></div>
         <div class="right1"></div>
     </div>
     <div class="row">
