@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>常见问题</title>
+    <title>联系我们</title>
     <meta charset="utf-8"/>
     <meta name="description" content="前端->联系我们"/>
     <meta name="author" content="陈彩君"/>
