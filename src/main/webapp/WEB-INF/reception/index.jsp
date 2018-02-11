@@ -62,35 +62,10 @@
         </div>
     </div>
 </nav>
-<!--宣传栏-->
-<div class="carousel slide" id="circleContent">
-    <ol class="carousel-indicators">
-        <li data-target="#circleContent" data-slide-to="0" class="active">
-        </li>
-        <c:forEach var="x" begin="1" end="${lbSize}">
-            <li data-target="#circleContent" data-slide-to="${x}">
-            </li>
-        </c:forEach>
-    </ol>
 
-    <div class="carousel-inner">
-        <s:iterator value="listBillboards" var="bb" status="bbb">
-            <div class="item <s:if test="#bbb.first">
-                active
-            </s:if>">
-                <img alt="" src='<%=basePath %>reception/img/billboards/<s:property value="#bb.bpath"/>'/>
-                <div class="carousel-caption">
-                    <h4>
-                        <s:property value="#bb.btitle"/>
-                    </h4>
-                    <p>
-                        <s:property value="#bb.bcontent"/>
-                    </p>
-                </div>
-            </div>
-        </s:iterator>
-    </div>
-</div>
+<!--宣传栏-->
+<%@include file="common/billboards.jsp"%>
+
 <!--内容-->
 <div class="container" style="position: relative;">
     <!--项目服务-->
