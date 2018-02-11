@@ -6,7 +6,7 @@
   Time: 16:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -19,9 +19,9 @@
     <meta name="description" content="敬老院管理系统后台登录界面">
     <meta name="author" content="陈彩君">
     <!-- CSS -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/supersized.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<%=basePath %>backstage/css/reset.css">
+    <link rel="stylesheet" href="<%=basePath %>backstage/css/supersized.css">
+    <link rel="stylesheet" href="<%=basePath %>backstage/css/style.css">
 </head>
 <body oncontextmenu="return false">
 <div class="page-container">
@@ -53,9 +53,9 @@
 </div>
 
 <!-- Javascript -->
-<script src="../jquery/jquery.min.js" type="text/javascript"></script>
-<script src="js/supersized.3.2.7.min.js"></script>
-<script src="js/supersized-init.js"></script>
+<script src="<%=basePath %>jquery/jquery.min.js" type="text/javascript"></script>
+<script src="<%=basePath %>backstage/js/supersized.3.2.7.min.js"></script>
+<script src="<%=basePath %>backstage/js/supersized-init.js"></script>
 <script>
     $(".btn").click(function () {
         is_hide();

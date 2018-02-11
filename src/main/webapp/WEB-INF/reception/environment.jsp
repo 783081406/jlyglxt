@@ -21,10 +21,10 @@
     <meta name="description" content="前端->环境设施"/>
     <meta name="author" content="陈彩君"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./css/img.css"/>
-    <script type="text/javascript" src="../jquery/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<%=basePath %>bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="<%=basePath %>reception/css/img.css"/>
+    <script type="text/javascript" src="<%=basePath %>jquery/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="<%=basePath %>bootstrap/js/bootstrap.min.js"></script>
     <style>
         .box1 {
             position: relative;
