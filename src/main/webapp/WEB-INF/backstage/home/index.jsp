@@ -34,7 +34,7 @@
                         {"menuid": "11", "menuname": "宣传栏", "icon": "icon-attach", "url": "home/qdgn/xcl.jsp"},
                         {"menuid": "12", "menuname": "服务项目", "icon": "icon-page", "url": "home/qdgn/fwxm.jsp"},
                         {"menuid": "15", "menuname": "入住费用", "icon": "icon-set", "url": "home/qdgn/rzfy.jsp"},
-                        {"menuid": "16", "menuname": "常见问题", "icon": "icon-log", "url": "home/cjwt.jsp"}
+                        {"menuid": "16", "menuname": "常见问题", "icon": "icon-log", "url": "home/qdgn/cjwt.jsp"}
                     ]
                 },
                 {
