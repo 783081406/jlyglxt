@@ -36,3 +36,11 @@
         </s:iterator>
     </div>
 </div>
+
+<!--宣传栏javascript-->
+<script>
+    //幻灯片功能
+    $(document).ready(function () {
+        $('#circleContent').carousel({interval: 3000});//每隔5秒自动轮播
+    });
+</script>
