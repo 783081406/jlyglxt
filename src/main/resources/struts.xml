@@ -32,9 +32,13 @@
     <package name="home" namespace="/home" extends="struts-default">
         <action name="index" class="homeAction" method="checkValidity">
             <!--合法进入表示成功-->
-            <result name="success" type="redirect">/WEB-INF/backstage/home/index.jsp</result>
+            <result name="success">/WEB-INF/backstage/home/index.jsp</result>
             <!--非合法进入表示失败-->
-            <result name="error" type="redirect">/WEB-INF/backstage/index.jsp</result>
+            <!--<result name="error">/WEB-INF/backstage/index.jsp</result>-->
+            <result name="error" type="redirectAction">
+                <param name="namespace">/backstage</param>
+                <param name="actionName">index</param>
+            </result>
         </action>
     </package>
 
