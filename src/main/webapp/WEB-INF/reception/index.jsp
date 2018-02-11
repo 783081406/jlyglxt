@@ -156,12 +156,5 @@
 <!--footer-->
 <%@include file="common/footer.jsp" %>
 
-<!--自定义javascript-->
-<script>
-    //幻灯片功能
-    $(document).ready(function () {
-        $('#circleContent').carousel({interval: 3000});//每隔5秒自动轮播
-    });
-</script>
 </body>
 </html>
