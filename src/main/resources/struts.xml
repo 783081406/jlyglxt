@@ -33,6 +33,13 @@
             <result name="success">/WEB-INF/backstage/home/index.jsp</result>
             <result name="error">/WEB-INF/backstage/index.jsp</result>
         </action>
+        <!-- 退出 -->
+        <action name="signOut" class="loginAction" method="signOut">
+            <result name="success" type="redirectAction">
+                <param name="actionName">index</param>
+            </result>
+        </action>
+
     </package>
 
     <!--后台首页-->
