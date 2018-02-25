@@ -4,6 +4,7 @@ import com.ccjjltx.dao.EinformationDAO;
 import com.ccjjltx.dao.UserDAO;
 import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.domain.User;
+import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONObject;
@@ -11,8 +12,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ccjjltx on 2017/10/11.
@@ -29,7 +28,7 @@ public class LoginAction extends ActionSupport {
     //登录的密码
     private String password;
     //验证的结果信息如果错误将会返回给首页
-    private String result;
+    private JSONObject result;
     //得到UserDAO类
     @Resource(name = "userDAO")
     private UserDAO userDAO;
@@ -53,11 +52,11 @@ public class LoginAction extends ActionSupport {
         this.password = password;
     }
 
-    public String getResult() {
+    public JSONObject getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(JSONObject result) {
         this.result = result;
     }
 
@@ -71,13 +70,14 @@ public class LoginAction extends ActionSupport {
             int iResult = userDAO.checkUser(getUserName(), getPassword());
             switch (iResult) {
                 case 1:
-                    setError("用户名错误！");
+                    result = JsonMessage.returnMessage2(false, "用户名错误！");
                     return ERROR;
                 case 2:
-                    setError("密码错误！");
+                    result = JsonMessage.returnMessage2(false, "密码错误！");
                     return ERROR;
                 default:
                     setSession();
+                    result = JsonMessage.returnMessage2(true, "success");
                     return SUCCESS;
             }
         }
@@ -85,15 +85,17 @@ public class LoginAction extends ActionSupport {
     }
 
     /**
-     * 设置错误信息
+     * 判断时候可以跳转到后台首页
      *
-     * @param message 错误信息
+     * @return Success或Error
      */
-    public void setError(String message) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("message", message);
-        JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
-        result = json.toString();//给result赋值，传递给页面
+    public String signIn() {
+        String tempUserName = (String) ActionContext.getContext().getSession().get("userName");
+        if (tempUserName != null) {
+            return SUCCESS;
+        } else {
+            return ERROR;
+        }
     }
 
     //验证通过的时候设置Session
