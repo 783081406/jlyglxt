@@ -23,8 +23,15 @@
             <result name="error" type="json">
                 <param name="root">result</param>
             </result>
-            <!--用户名密码正确，进入后台首页-->
+            <!--用户名密码正确，返回json，进入后台首页-->
+            <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+        </action>
+        <!--登录-->
+        <action name="signIn" class="loginAction" method="signIn">
             <result name="success">/WEB-INF/backstage/home/index.jsp</result>
+            <result name="error">/WEB-INF/backstage/index.jsp</result>
         </action>
     </package>
 
