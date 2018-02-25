@@ -32,4 +32,18 @@ public class JsonMessage {
         }
         return js;
     }
+
+    /**
+     * 封装json
+     *
+     * @param code 状态码
+     * @param msg  反馈的信息
+     * @return json
+     */
+    public static JSONObject returnMessage2(boolean code, String msg) {
+        JSONObject js = new JSONObject();
+        js.put("code", code);
+        js.put("msg", msg);
+        return js;
+    }
 }
