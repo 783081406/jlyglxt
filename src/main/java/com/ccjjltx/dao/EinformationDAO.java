@@ -174,4 +174,17 @@ public class EinformationDAO {
         Session session = factory.getCurrentSession();
         return (Einformation) session.get(Einformation.class, pid);
     }
+
+    /**
+     * 根据User实例化得到Einformation实例化
+     *
+     * @param user User实例化
+     * @return Einformation实例化
+     */
+    public Einformation getSearchEinformation(User user) {
+        Session session = factory.getCurrentSession();
+        String hql = "from Einformation einformation where einformation.user=:user";
+        Query query = session.createQuery(hql).setParameter("user", user);
+        return (Einformation) query.uniqueResult();
+    }
 }
