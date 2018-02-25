@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -52,12 +53,15 @@
                         {"menuid": "31", "menuname": "未处理预约", "icon": "icon-page", "url": "home/tyyy/wclyy.jsp"},
                         {"menuid": "32", "menuname": "已处理预约", "icon": "icon-class", "url": "home/tyyy/yclyy.jsp"}
                     ]
-                }, {
+                }
+                <s:if test="#session.uType==1">
+                , {
                     "menuid": "4", "icon": "icon-sys", "menuname": "员工中心",
                     "menus": [{"menuid": "41", "menuname": "员工信息", "icon": "icon-page", "url": "home/ygzx/ygxx.jsp"},
                         {"menuid": "43", "menuname": "账户列表", "icon": "icon-nav", "url": "home/ygzx/zhlb.jsp"}
                     ]
                 }
+                </s:if>
             ]
         };
 
@@ -141,7 +145,7 @@
 <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
         background: url(<%=basePath %>backstage/home/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
-    <span style="float:right; padding-right:20px;" class="head">欢迎 ${userName} <a href="#" id="editpass">修改密码</a>
+    <span style="float:right; padding-right:20px;" class="head">欢迎 ${sessionScope.name} <a href="#" id="editpass">修改密码</a>
         <a href="#" id="loginOut">安全退出</a></span>
     <span style="padding-left:10px; font-size: 16px; ">
         <img src="<%=basePath %>backstage/home/images/blocks.gif" width="20" height="20"
