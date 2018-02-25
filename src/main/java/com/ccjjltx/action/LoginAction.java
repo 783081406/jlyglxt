@@ -85,7 +85,8 @@ public class LoginAction extends ActionSupport {
     }
 
     /**
-     * 判断时候可以跳转到后台首页
+     * 判断是否可以跳转到后台首页
+     * 登录
      *
      * @return Success或Error
      */
@@ -98,8 +99,18 @@ public class LoginAction extends ActionSupport {
         }
     }
 
+    /**
+     * 退出
+     *
+     * @return Success
+     */
+    public String signOut() {
+        removeSession();//删除Session
+        return SUCCESS;
+    }
+
     //验证通过的时候设置Session
-    public void setSession() {
+    private void setSession() {
         ActionContext.getContext().getSession().put("userName", getUserName());//账号
         User db_user = userDAO.searchUser(getUserName());
         ActionContext.getContext().getSession().put("uType", db_user.getUType());//类型
@@ -108,7 +119,7 @@ public class LoginAction extends ActionSupport {
     }
 
     //退出登录删除Session
-    public void removeSession() {
+    private void removeSession() {
         ActionContext.getContext().getSession().remove("userName");
         ActionContext.getContext().getSession().remove("uType");
         ActionContext.getContext().getSession().remove("name");
