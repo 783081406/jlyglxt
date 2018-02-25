@@ -36,7 +36,7 @@
                    oncontextmenu="return false"
                    onpaste="return false"/>
         </div>
-        <button id="submit" type="submit">登 录</button>
+        <button id="submit" type="button" onclick="submitccj()">登 录</button>
     </form>
     <div class="connect">
         <p>If we can only encounter each other rather than stay with each other,then I wish we had never
@@ -44,6 +44,8 @@
         <p style="margin-top:20px;">如果只是遇见，不能停留，不如不遇见。</p>
     </div>
 </div>
+
+
 <div class="alert" style="display:none">
     <h2>消息</h2>
     <div class="alert_con">
@@ -57,13 +59,16 @@
 <script src="<%=basePath %>backstage/js/supersized.3.2.7.min.js"></script>
 <script src="<%=basePath %>backstage/js/supersized-init.js"></script>
 <script>
+    var u;
+    var p;
+
     $(".btn").click(function () {
         is_hide();
     });
-    var u = $("input[name=username]");
-    var p = $("input[name=password]");
 
-    $("#submit").live('mouseover', function () {
+    function submitccj() {
+        u = $("input[name=username]");
+        p = $("input[name=password]");
         if (u.val() == '' || p.val() == '') {
             $("#ts").html("用户名或密码不能为空~");
             is_show();
@@ -76,20 +81,24 @@
                 return false;
             }
         }
-        //////ajax////////
+        //////ajax提交////////
         $.ajax({
             type: "post",
             url: "<%=basePath %>backstage/index.action",
             data: $("input").serialize(),
             dataType: "json",
-            success: function (data) {
-                var json = eval("(" + data + ")");
-                $("#ts").html(json.message);
-                is_show();
+            success: function (date) {
+                if (date.code == false) {
+                    $("#ts").html(date.msg);
+                    is_show();
+                } else {
+                    window.location.href = '<%=basePath %>backstage/signIn';
+                }
                 return false;
             }
         });
-    });
+    }
+
 
     window.onload = function () {
         $(".connect p").eq(0).animate({"left": "0%"}, 600);
