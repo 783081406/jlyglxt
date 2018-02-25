@@ -1,6 +1,8 @@
 package com.ccjjltx.action;
 
+import com.ccjjltx.dao.EinformationDAO;
 import com.ccjjltx.dao.UserDAO;
+import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.domain.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -31,6 +33,9 @@ public class LoginAction extends ActionSupport {
     //得到UserDAO类
     @Resource(name = "userDAO")
     private UserDAO userDAO;
+    //EinformationDAO
+    @Resource(name = "einformationDAO")
+    private EinformationDAO einformationDAO;
 
     public String getUserName() {
         return userName;
@@ -93,11 +98,17 @@ public class LoginAction extends ActionSupport {
 
     //验证通过的时候设置Session
     public void setSession() {
-        ActionContext.getContext().getSession().put("userName", getUserName());
+        ActionContext.getContext().getSession().put("userName", getUserName());//账号
+        User db_user = userDAO.searchUser(getUserName());
+        ActionContext.getContext().getSession().put("uType", db_user.getUType());//类型
+        Einformation einformation = einformationDAO.getSearchEinformation(db_user);
+        ActionContext.getContext().getSession().put("name", einformation.getName());//名字
     }
 
     //退出登录删除Session
     public void removeSession() {
         ActionContext.getContext().getSession().remove("userName");
+        ActionContext.getContext().getSession().remove("uType");
+        ActionContext.getContext().getSession().remove("name");
     }
 }
