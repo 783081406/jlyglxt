@@ -42,6 +42,7 @@ public class ElderlyimAction extends ActionSupport {
     private String idcard;
     private String phone;
     private Date birthDate;
+    private String habit;
     private String homeAddress;
     private String originAddress;
     //////////////////////////////////////////////////////////////
@@ -134,6 +135,14 @@ public class ElderlyimAction extends ActionSupport {
         this.homeAddress = homeAddress;
     }
 
+    public String getHabit() {
+        return habit;
+    }
+
+    public void setHabit(String habit) {
+        this.habit = habit;
+    }
+
     public String getOriginAddress() {
         return originAddress;
     }
@@ -167,6 +176,7 @@ public class ElderlyimAction extends ActionSupport {
             js.put("phone", ei.getPhone());
             js.put("birthDate", MyDateFormat.format(ei.getBirthDate()));
             js.put("homeAddress", ei.getHomeAddress());
+            js.put("habit", ei.getHabit());
             js.put("originAddress", ei.getOriginAddress());
             jsonArray.add(js);
         }
@@ -183,6 +193,7 @@ public class ElderlyimAction extends ActionSupport {
         //将得到的数据实例化
         Elder e = new Elder(getEname(), 1);
         Elderlyinformation ei = new Elderlyinformation(getIdcard(), getPhone(), getSex(), getBirthDate(), getHomeAddress(), getOriginAddress());
+        ei.setHabit(getHabit());
         //保存数据操作
         elderlyinformationDAO.addInformation(ei, e);
         result = JsonMessage.returnMessage(true, "success");
@@ -202,6 +213,7 @@ public class ElderlyimAction extends ActionSupport {
         db_ei.setIdcard(getIdcard());
         db_ei.setPhone(getPhone());
         db_ei.setBirthDate(getBirthDate());
+        db_ei.setHabit(getHabit());
         db_ei.setHomeAddress(getHomeAddress());
         db_ei.setOriginAddress(getOriginAddress());
         elderlyinformationDAO.updateInformation(db_ei);

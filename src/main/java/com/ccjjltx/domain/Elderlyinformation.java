@@ -21,6 +21,7 @@ public class Elderlyinformation implements Serializable {
     private String phone;
     private String sex;
     private Date birthDate;
+    private String habit;
     private String homeAddress;
     private String originAddress;
     //定义关联实体类Elder
@@ -81,6 +82,14 @@ public class Elderlyinformation implements Serializable {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getHabit() {
+        return habit;
+    }
+
+    public void setHabit(String habit) {
+        this.habit = habit;
     }
 
     public String getHomeAddress() {

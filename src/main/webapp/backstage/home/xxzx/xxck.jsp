@@ -37,6 +37,7 @@
         <th field="idcard" width="200">身份证号</th>
         <th field="phone" width="150">手机号</th>
         <th field="birthDate" width="150">出生日期</th>
+        <th field="habit" width="150">饮食习惯</th>
         <th field="homeAddress" width="400">家庭住址</th>
         <th field="originAddress" width="400">户籍住址</th>
     </tr>
@@ -113,12 +114,16 @@
             <input name="birthDate" class="easyui-datebox" required="required">
         </div>
         <div class="fitem">
+            <label>饮食习惯:</label>
+            <input name="habit" class="easyui-validatebox">
+        </div>
+        <div class="fitem">
             <label>家庭住址:</label>
             <input name="homeAddress" class="easyui-validatebox" required="required">
         </div>
         <div class="fitem">
             <label>户籍住址:</label>
-            <input name="originAddress" class="easyui-validatebox" required="required">
+            <input name="originAddress" class="easyui-validatebox">
         </div>
     </form>
 </div>
