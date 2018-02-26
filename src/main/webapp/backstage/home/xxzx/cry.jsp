@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../../../easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-<table id="dg" title="特殊服务列表" class="easyui-datagrid" style="width:800px;height:400px"
+<table id="dg" title="出入院列表" class="easyui-datagrid" style="width:800px;height:400px"
        url="<%=basePath %>eaeaction/getAllInformation.action"
        toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
@@ -56,7 +56,7 @@
 <!--添加的window-->
 <div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
-    <div class="ftitle">添加信息</div>
+    <div class="ftitle">信息</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>姓名:</label>
@@ -108,7 +108,7 @@
     ///////////////////////////////////////////////
     var url;
     function newe() {
-        $('#dlg').dialog('open').dialog('setTitle', '新房间信息');
+        $('#dlg').dialog('open').dialog('setTitle', '新信息');
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
@@ -119,7 +119,7 @@
     function edite() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
-            $('#dlg').dialog('open').dialog('setTitle', '编辑信息');
+            $('#dlg').dialog('open').dialog('setTitle', '修改信息');
             //加载点击那一行的数据
             $('#fm').form('load', row);
             //提交数据处理的URL

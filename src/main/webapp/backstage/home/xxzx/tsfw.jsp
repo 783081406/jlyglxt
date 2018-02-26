@@ -56,7 +56,7 @@
 <!--添加的window-->
 <div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px" closed="true"
      buttons="#dlg-buttons">
-    <div class="ftitle">添加信息</div>
+    <div class="ftitle">信息</div>
     <form id="fm" method="post" novalidate>
         <div class="fitem">
             <label>名字:</label>
@@ -106,7 +106,7 @@
     ///////////////////////////////////////////////
     var url;
     function newss() {
-        $('#dlg').dialog('open').dialog('setTitle', '新房间信息');
+        $('#dlg').dialog('open').dialog('setTitle', '新信息');
         //清空表单，来显示空表单
         $('#fm').form('clear');
         //提交数据处理的URL
