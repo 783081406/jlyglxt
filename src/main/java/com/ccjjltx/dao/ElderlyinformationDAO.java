@@ -2,7 +2,6 @@ package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Elder;
 import com.ccjjltx.domain.Elderlyinformation;
-import com.ccjjltx.domain.Familyinformation;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,11 +47,11 @@ public class ElderlyinformationDAO {
             if (db_elder == null) {
                 return null;
             } else {
-                hql += " where elder=:elder";
+                hql += " where elderlyinformation.elder=:elder and elderlyinformation.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", db_elder);
             }
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+" where elderlyinformation.elder.isIn!=2");
         }
         return (List<Elderlyinformation>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
@@ -73,11 +72,11 @@ public class ElderlyinformationDAO {
                 return 0;
             } else {
                 //表示非空
-                hql += " where elder=:elder";
+                hql += " where elderlyinformation.elder=:elder and elderlyinformation.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", db_elder);
             }
         } else {
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+"  where elderlyinformation.elder.isIn!=2");
         }
         long l = (long) query.uniqueResult();
         return (int) l;
@@ -95,18 +94,15 @@ public class ElderlyinformationDAO {
     }
 
     /**
-     * 增加老人信息
+     * 增加出入院信息
      *
      * @param ei Elderlyinformation实例化
      * @param e  Elder实例化
      */
     public void addInformation(Elderlyinformation ei, Elder e) {
         Session session = factory.getCurrentSession();
-        //先新Elder信息
-        elderDAO.addInformation(e);
-        //设置Elder
-        ei.setElder(e);
-        //最后再保存Elderlyinformation信息
+        elderDAO.addInformation(e);//先新Elder信息
+        ei.setElder(e);//设置Elder
         session.save(ei);
     }
 
