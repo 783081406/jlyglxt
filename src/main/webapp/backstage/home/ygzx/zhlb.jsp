@@ -66,9 +66,9 @@
         </div>
         <div class="fitem">
             <label>类型:</label>
-            <select name="uType" class="easyui-combobox" style="width:100px;" required="required">
-                <option value="管理员">管理员</option>
-                <option value="普通">普通</option>
+            <select name="uType" class="easyui-combobox" style="width:173px;" required="required">
+                <option value="1">管理员</option>
+                <option value="2">普通</option>
             </select>
         </div>
     </form>
