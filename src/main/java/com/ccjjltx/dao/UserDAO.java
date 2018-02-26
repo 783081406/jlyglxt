@@ -1,5 +1,6 @@
 package com.ccjjltx.dao;
 
+import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.domain.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -23,6 +24,9 @@ import java.util.List;
 public class UserDAO {
     @Resource(name = "sessionFactory")
     private SessionFactory factory;
+    @Resource(name = "einformationDAO")
+    private EinformationDAO einformationDAO;
+
 
     /**
      * 验证用户名密码正确与否
@@ -156,12 +160,14 @@ public class UserDAO {
      * @return 删除成功得到true，失败返回false
      */
     public boolean deleteUser(int id) {
-        //得到session
         Session session = factory.getCurrentSession();
-        //根据id得到User
-        User db_user = (User) session.get(User.class, id);
+        User db_user = (User) session.get(User.class, id);//根据id得到User
         boolean result = true;
         try {
+            //先得到员工信息
+            Einformation db_ef=einformationDAO.getSearchEinformation(db_user);
+            //删除Einformation表中的信息
+            einformationDAO.deleteInformation(db_ef.getPid());
             //删除操作
             session.delete(db_user);
         } catch (HibernateException e) {
