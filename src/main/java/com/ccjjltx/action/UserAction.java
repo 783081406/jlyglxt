@@ -137,7 +137,7 @@ public class UserAction extends ActionSupport {
             js.put("id", user.getId());
             js.put("userName", user.getUserName());
             js.put("password", user.getPassword());
-            js.put("uType", user.getUType());
+            js.put("uType", user.getUType()==1?"管理员":"普通");
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);

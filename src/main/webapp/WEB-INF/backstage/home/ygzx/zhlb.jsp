@@ -65,7 +65,10 @@
         </div>
         <div class="fitem">
             <label>类型:</label>
-            <input name="uType" class="easyui-validatebox" required="required">
+            <select name="uType" class="easyui-combobox" style="width:100px;" required="required">
+                <option value="管理员">管理员</option>
+                <option value="普通">普通</option>
+            </select>
         </div>
     </form>
 </div>
@@ -92,7 +95,8 @@
     function newUser() {
         $('#dlg').dialog('open').dialog('setTitle', '新账户');
         //清空表单，来显示空表单
-        $('#fm').form('clear');
+        //$('#fm').form('clear');
+
         //提交数据处理的URL
         url = '<%=basePath %>useraction/saveUser.action';
     }
