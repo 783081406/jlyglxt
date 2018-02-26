@@ -46,11 +46,11 @@ public class SserviceDAO {
             if (elder == null) {
                 return null;
             } else {
-                hql += " where elder=:elder";
+                hql += " where sservice.elder=:elder and sservice.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", elder);
             }
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+" where sservice.elder.isIn!=2");
         }
         return (List<Sservice>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
@@ -71,11 +71,11 @@ public class SserviceDAO {
             if (db_elder == null) {//如果为空表示没有此数据，返回0
                 return 0;
             } else {//表示非空
-                hql += " where elder=:elder";
+                hql += " where sservice.elder=:elder and sservice.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", db_elder);
             }
         } else {
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+"  where sservice.elder.isIn!=2");
         }
         long l = (long) query.uniqueResult();
         return (int) l;
