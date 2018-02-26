@@ -51,10 +51,10 @@ public class CasehistoryDAO {
             if (elder == null) {
                 return null;
             }
-            hql += " where elder=:elder";
+            hql += " where casehistory.elder=:elder and casehistory.elder.isIn!=2";
             query = session.createQuery(hql).setParameter("elder", elder);
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+" where casehistory.elder.isIn!=2");
         }
         return (List<Casehistory>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
@@ -74,10 +74,10 @@ public class CasehistoryDAO {
             if (elder == null) {
                 return 0;
             }
-            hql += " where elder=:elder";
+            hql += " where casehistory.elder=:elder and casehistory.elder.isIn!=2";
             query = session.createQuery(hql).setParameter("elder", elder);
         } else {
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+"  where casehistory.elder.isIn!=2");
         }
         long l = (long) query.uniqueResult();
         return (int) l;
