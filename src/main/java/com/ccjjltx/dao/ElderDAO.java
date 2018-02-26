@@ -30,7 +30,7 @@ public class ElderDAO {
      */
     public List<Elder> getAllElder() {
         Session session = factory.getCurrentSession();
-        String hql = "from Elder elder";
+        String hql = "from Elder elder where isIn!=2";
         Query query = session.createQuery(hql);
         return (List<Elder>) query.list();
     }
