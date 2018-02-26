@@ -1,5 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
+  服务项目
   User: ccjjltx
   Date: 2017/10/16
   Time: 23:51
@@ -16,13 +17,12 @@
     <meta charset="utf-8"/>
     <meta name="description" content="前端功能->服务项目"/>
     <meta name="author" content="陈彩君"/>
-    <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css"/>
-    <!--自定义css-->
-    <link rel="stylesheet" type="text/css" href="../css/mycss.css"/>
-    <script type="text/javascript" src="../../../easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../../../easyui/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=basePath %>easyui/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=basePath %>easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=basePath %>backstage/home/css/mycss.css"/><!--自定义css-->
+    <script type="text/javascript" src="<%=basePath %>easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=basePath %>easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="<%=basePath %>easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
 <table id="dg" style="width:980px;height:540px"></table>

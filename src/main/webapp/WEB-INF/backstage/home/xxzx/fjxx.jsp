@@ -18,13 +18,12 @@
     <meta charset="utf-8"/>
     <meta name="description" content="信息中心->房间信息"/>
     <meta name="author" content="陈彩君"/>
-    <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css"/>
-    <!--自定义css-->
-    <link rel="stylesheet" type="text/css" href="../css/mycss.css"/>
-    <script type="text/javascript" src="../../../easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../../../easyui/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=basePath %>easyui/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=basePath %>easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=basePath %>backstage/home/css/mycss.css"/><!--自定义css-->
+    <script type="text/javascript" src="<%=basePath %>easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=basePath %>easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="<%=basePath %>easyui/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
 <table id="dg" title="房间信息列表" class="easyui-datagrid" style="width:700px;height:400px"
