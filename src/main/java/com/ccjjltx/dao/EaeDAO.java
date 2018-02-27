@@ -41,14 +41,16 @@ public class EaeDAO {
         Query query;
         Elder elder;
         if (ename != null) {//搜索框带过来的数据
-            elder = elderDAO.getSearchElder(ename);
+/*            elder = elderDAO.getSearchElder(ename);
             //如果为空的话表示没有数据直接返回null
             if (elder == null) {
                 return null;
             } else {
                 hql += " where elder=:elder";
                 query = session.createQuery(hql).setParameter("elder", elder);
-            }
+            }*/
+            hql += " where elder.ename like :ename";
+            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {//并非通过搜索框提交过来的
             query = session.createQuery(hql);
         }
@@ -66,14 +68,16 @@ public class EaeDAO {
         String hql = "select count(*) from Eae eae";
         Query query;
         if (ename != null) {
-            Elder elder = null;
+/*            Elder elder = null;
             elder = elderDAO.getSearchElder(ename);
             if (elder == null) {//如果为空表示没有此数据，返回0
                 return 0;
             } else {//非空
                 hql += " where elder=:elder";
                 query = session.createQuery(hql).setParameter("elder", elder);
-            }
+            }*/
+            hql += " where eae.elder.ename like :ename";
+            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {
             query = session.createQuery(hql);
         }
