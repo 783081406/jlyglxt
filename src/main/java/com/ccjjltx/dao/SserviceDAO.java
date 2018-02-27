@@ -40,7 +40,7 @@ public class SserviceDAO {
         String hql = "from Sservice sservice";
         Query query;
         if (ename != null) {//搜索框带过来的数据
-            Elder elder;
+           /* Elder elder;
             elder = elderDAO.getSearchElder(ename);
             //如果为空的话表示没有数据直接返回null
             if (elder == null) {
@@ -48,9 +48,11 @@ public class SserviceDAO {
             } else {
                 hql += " where sservice.elder=:elder and sservice.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", elder);
-            }
+            }*/
+            hql += " where sservice.elder.ename like :ename and sservice.elder.isIn!=2";
+            query = session.createQuery(hql).setParameter("ename", "%" + ename + "%");
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql+" where sservice.elder.isIn!=2");
+            query = session.createQuery(hql + " where sservice.elder.isIn!=2");
         }
         return (List<Sservice>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
@@ -66,16 +68,18 @@ public class SserviceDAO {
         String hql = "select count(*) from Sservice sservice";
         Query query;
         if (ename != null) {
-            Elder db_elder;
+/*            Elder db_elder;
             db_elder = elderDAO.getSearchElder(ename);
             if (db_elder == null) {//如果为空表示没有此数据，返回0
                 return 0;
             } else {//表示非空
                 hql += " where sservice.elder=:elder and sservice.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", db_elder);
-            }
+            }*/
+            hql += " where sservice.elder.ename like :ename and sservice.elder.isIn!=2";
+            query = session.createQuery(hql).setParameter("ename", "%" + ename + "%");
         } else {
-            query = session.createQuery(hql+"  where sservice.elder.isIn!=2");
+            query = session.createQuery(hql + "  where sservice.elder.isIn!=2");
         }
         long l = (long) query.uniqueResult();
         return (int) l;
@@ -142,7 +146,8 @@ public class SserviceDAO {
     }
 
     /**
-     *删除数据
+     * 删除数据
+     *
      * @param ssid 主键
      */
     public void deleteInformation(int ssid) {
