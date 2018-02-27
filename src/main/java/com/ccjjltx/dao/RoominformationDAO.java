@@ -59,14 +59,17 @@ public class RoominformationDAO {
         Elder db_elder;
         //搜索引擎有提交数据过来触发
         if (ename != null) {
-            db_elder = elderDAO.getSearchElder(ename);
+/*            db_elder = elderDAO.getSearchElder(ename);
             if (db_elder == null) {
                 return null;
             } else {
                 hql += " where elder=:elder" + hqlSuffix;
                 query = session.createQuery(hql).setParameter("elder", db_elder).setFirstResult(offset).setMaxResults(rows);
                 return (List<Roominformation>) query.list();
-            }
+            }*/
+            hql += " where roominformation.elder.ename like :ename" + hqlSuffix;
+            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%").setFirstResult(offset).setMaxResults(rows);
+            return (List<Roominformation>) query.list();
         } else {
             hql += hqlSuffix;
             query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
@@ -87,13 +90,15 @@ public class RoominformationDAO {
         Query query;
         Elder db_elder;
         if (ename != null) {
-            db_elder = elderDAO.getSearchElder(ename);
+/*            db_elder = elderDAO.getSearchElder(ename);
             if (db_elder == null) {
                 return 0;
             } else {
                 hql += " where elder=:elder";
                 query = session.createQuery(hql).setParameter("elder", db_elder);
-            }
+            }*/
+            hql += " where roominformation.elder.ename like :ename" ;
+            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {
             query = session.createQuery(hql);
         }
