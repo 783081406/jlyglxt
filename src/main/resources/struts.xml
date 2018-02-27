@@ -202,7 +202,7 @@
         </action>
     </package>
 
-    <!--信息中心>>特殊服务-->
+    <!--信息中心>>特別服务-->
     <package name="sserviceaction" namespace="/sserviceaction" extends="struts-default,json-default">
         <action name="*" class="sserviceAction" method="{1}">
             <result name="success" type="json">
