@@ -46,13 +46,15 @@ public class CasehistoryDAO {
         String hql = "from Casehistory casehistory";
         Query query;
         if (ename != null) {//如果是通过搜索框提交过来的就会带一个ename
-            Elder elder = elderDAO.getSearchElder(ename);
+/*            Elder elder = elderDAO.getSearchElder(ename);
             //如果为空的话表示没有数据直接返回null
             if (elder == null) {
                 return null;
             }
             hql += " where casehistory.elder=:elder and casehistory.elder.isIn!=2";
-            query = session.createQuery(hql).setParameter("elder", elder);
+            query = session.createQuery(hql).setParameter("elder", elder);*/
+            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2";
+            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {//并非通过搜索框提交过来的
             query = session.createQuery(hql+" where casehistory.elder.isIn!=2");
         }
@@ -70,12 +72,14 @@ public class CasehistoryDAO {
         String hql = "select count(*) from Casehistory casehistory";
         Query query;
         if (ename != null) {
-            Elder elder = elderDAO.getSearchElder(ename);
+/*            Elder elder = elderDAO.getSearchElder(ename);
             if (elder == null) {
                 return 0;
             }
             hql += " where casehistory.elder=:elder and casehistory.elder.isIn!=2";
-            query = session.createQuery(hql).setParameter("elder", elder);
+            query = session.createQuery(hql).setParameter("elder", elder);*/
+            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2";
+            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {
             query = session.createQuery(hql+"  where casehistory.elder.isIn!=2");
         }
