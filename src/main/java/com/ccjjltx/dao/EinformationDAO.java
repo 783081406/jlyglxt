@@ -42,9 +42,8 @@ public class EinformationDAO {
         Query query;
         User db_user;
         //搜索引擎有提交数据过来触发
-        if (name != null && userName != null) {
-            //表示同时有name和userName
-            db_user = userDAO.searchUser(userName);
+        if (name != null && userName != null) {//表示同时有name和userName
+/*            db_user = userDAO.searchUser(userName);
             if (db_user == null) {
                 //如果用户账户错误直接返回null
                 return null;
@@ -52,7 +51,9 @@ public class EinformationDAO {
                 //搜索框的两个值都有开启精确查询查询
                 hql += " where einformation.name=:name and einformation.user=:user and einformation.name!='管理员'";
                 query = session.createQuery(hql).setParameter("name", name).setParameter("user", db_user);
-            }
+            }*/
+            hql += " where einformation.name like :name and einformation.user.userName like :userName and einformation.name!='管理员'";
+            query = session.createQuery(hql).setParameter("name", "%" + name + "%").setParameter("userName", "%" + userName + "%");
         } else {
             //进入该判断表示搜索框只填入一个或者什么都没填
             if (name != null) {
@@ -61,7 +62,7 @@ public class EinformationDAO {
                 query = session.createQuery(hql).setParameter("name", "%" + name + "%");
             } else if (userName != null) {
                 //搜索框的userName值不为null，开启精确查询
-                db_user = userDAO.searchUser(userName);
+/*                db_user = userDAO.searchUser(userName);
                 if (db_user == null) {
                     //如果没有该用户账户直接返回0
                     return null;
@@ -69,10 +70,12 @@ public class EinformationDAO {
                     //查询不为空开启精确查询
                     hql += " where einformation.user=:user and einformation.name!='管理员'";
                     query = session.createQuery(hql).setParameter("user", db_user);
-                }
+                }*/
+                hql += " where einformation.user.userName like :userName and einformation.name!='管理员'";
+                query = session.createQuery(hql).setParameter("userName", "%" + userName + "%");
             } else {
                 //搜索框什么都没有输入
-                query = session.createQuery(hql +" where einformation.name!='管理员'");
+                query = session.createQuery(hql + " where einformation.name!='管理员'");
             }
         }
         query = query.setFirstResult(offset).setMaxResults(rows);
@@ -93,7 +96,7 @@ public class EinformationDAO {
         User db_user;
         Query query;
         if (name != null && userName != null) {
-            //通过UserDAO查询得到是否有该User账户
+           /* //通过UserDAO查询得到是否有该User账户
             db_user = userDAO.searchUser(userName);
             if (db_user == null) {
                 //如果没有该用户账户直接返回0
@@ -102,7 +105,9 @@ public class EinformationDAO {
                 //如果有该用户账户使用and进行精准查询
                 hql += " where einformation.name=:name and einformation.user=:user and einformation.name!='管理员'";
                 query = session.createQuery(hql).setParameter("name", name).setParameter("user", db_user);
-            }
+            }*/
+            hql += " where einformation.name like :name and einformation.user.userName like :userName and einformation.name!='管理员'";
+            query = session.createQuery(hql).setParameter("name", "%" + name + "%").setParameter("userName", "%" + userName + "%");
         } else {
             //只有name或usrName或什么值都没有的情况下
             if (name != null) {
@@ -110,7 +115,7 @@ public class EinformationDAO {
                 hql += " where name like :name and einformation.name!='管理员'";
                 query = session.createQuery(hql).setParameter("name", "%" + name + "%");
             } else if (userName != null) {
-                //搜索框的userName值不为null，开启精确查询
+                /*//搜索框的userName值不为null，开启精确查询
                 db_user = userDAO.searchUser(userName);
                 if (db_user == null) {
                     //如果没有该用户账户直接返回0
@@ -119,10 +124,12 @@ public class EinformationDAO {
                     //查询不为空开启精确查询
                     hql += " where einformation.user=:user and einformation.name!='管理员'";
                     query = session.createQuery(hql).setParameter("user", db_user);
-                }
+                }*/
+                hql += " where einformation.user.userName like :userName and einformation.name!='管理员'";
+                query = session.createQuery(hql).setParameter("userName", "%" + userName + "%");
             } else {
                 //搜索框什么都没有输入
-                query = session.createQuery(hql +" where einformation.name!='管理员'");
+                query = session.createQuery(hql + " where einformation.name!='管理员'");
             }
         }
         long l = (long) query.uniqueResult();
