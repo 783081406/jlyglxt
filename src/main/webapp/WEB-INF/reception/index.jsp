@@ -146,7 +146,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                    <input type="submit" class="btn btn-default btn-lg btn-primary"/>
+                    <input type="submit" class="btn btn-default btn-lg btn-primary" value="提交预约"/>
                 </div>
             </div>
         </form>
