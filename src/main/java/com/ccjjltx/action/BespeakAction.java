@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/22.
- * 体检预约相关功能
+ * 体验预约相关功能
  *
  * @author ccj
  * @version 1.0
