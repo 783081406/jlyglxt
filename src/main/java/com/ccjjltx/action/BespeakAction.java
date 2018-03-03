@@ -38,14 +38,6 @@ public class BespeakAction extends ActionSupport {
     private Integer eage;
 
     //////////////////////////////////////////////////////////
-    public BespeakDAO getBespeakDAO() {
-        return bespeakDAO;
-    }
-
-    public void setBespeakDAO(BespeakDAO bespeakDAO) {
-        this.bespeakDAO = bespeakDAO;
-    }
-
     public int getPage() {
         return page;
     }
