@@ -223,7 +223,7 @@ public class CasehistoryAction extends ActionSupport {
     }
 
     /**
-     * 得到去不或者特定的（搜索框触发）的信息
+     * 得到全部或者特定的（搜索框触发）的信息
      *
      * @return 只返回SUCCESS
      */
