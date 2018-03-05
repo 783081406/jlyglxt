@@ -27,14 +27,9 @@ import java.util.List;
 public class ElderlyimAction extends ActionSupport {
     @Resource(name = "elderlyinformationDAO")
     private ElderlyinformationDAO elderlyinformationDAO;
-    //得到页数（第几页）
-    //最原始首次得到是默认是1，表示第一页
-    private int page;
-    //得到行数（每行显示的行数）
-    //最原始首次得到默认是10，表示10行显示
-    private int rows;
-    //保存json结果
-    private JSONObject result;
+    private int page;//得到页数（第几页）  最原始首次得到是默认是1，表示第一页
+    private int rows;//得到行数（每行显示的行数）  最原始首次得到默认是10，表示10行显示
+    private JSONObject result;//保存json结果
     ///////////////////提交过来的表中的字段///////////////////////
     private int eiId;
     private String ename;
@@ -46,14 +41,6 @@ public class ElderlyimAction extends ActionSupport {
     private String homeAddress;
     private String originAddress;
     //////////////////////////////////////////////////////////////
-
-    public ElderlyinformationDAO getElderlyinformationDAO() {
-        return elderlyinformationDAO;
-    }
-
-    public void setElderlyinformationDAO(ElderlyinformationDAO elderlyinformationDAO) {
-        this.elderlyinformationDAO = elderlyinformationDAO;
-    }
 
     public int getPage() {
         return page;
