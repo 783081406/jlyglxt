@@ -28,15 +28,7 @@ public class NursingfeeAction extends ActionSupport {
     private int ncost1;
     private int ncost2;
     private int ncost3;
-
     ////////////////////////////////////////
-    public NursingfeeDAO getNursingfeeDAO() {
-        return nursingfeeDAO;
-    }
-
-    public void setNursingfeeDAO(NursingfeeDAO nursingfeeDAO) {
-        this.nursingfeeDAO = nursingfeeDAO;
-    }
 
     public JSONObject getResult() {
         return result;
