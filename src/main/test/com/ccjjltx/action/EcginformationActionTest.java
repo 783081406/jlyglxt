@@ -16,6 +16,7 @@ import java.text.ParseException;
 
 /**
  * Created by ccjjltx on 2018/3/5.
+ * 测试EcginformationAction方法（心电信息增删改查）
  *
  * @author ccj
  * @version 1.0
@@ -93,6 +94,6 @@ public class EcginformationActionTest extends StrutsSpringJUnit4TestCase<Ecginfo
     @Rollback
     public void testRemoveInformation() {
         ecginformationAction.setEcgId(1);
-        Assert.assertEquals("success",ecginformationAction.removeInformation());
+        Assert.assertEquals("success", ecginformationAction.removeInformation());
     }
 }
