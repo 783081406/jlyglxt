@@ -30,7 +30,7 @@ public class ElderDAO {
      */
     public List<Elder> getAllElder() {
         Session session = factory.getCurrentSession();
-        String hql = "from Elder elder where isIn!=2";
+        String hql = "from Elder elder where isIn!=2 order by id desc";
         Query query = session.createQuery(hql);
         return (List<Elder>) query.list();
     }
@@ -74,7 +74,8 @@ public class ElderDAO {
      *
      * @param e Elder实例化
      */
-    public void updateInformation(Elder e) {
+    public void
+    updateInformation(Elder e) {
         Session session = factory.getCurrentSession();
         //更新操作
         session.update(e);
