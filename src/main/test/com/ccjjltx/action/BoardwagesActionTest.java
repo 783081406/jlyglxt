@@ -40,7 +40,7 @@ public class BoardwagesActionTest extends StrutsSpringJUnit4TestCase<BoardwagesA
     }
 
     /**
-     * describe：得到所有的信息
+     * describe： 更新方法
      */
     @Test
     @Transactional
