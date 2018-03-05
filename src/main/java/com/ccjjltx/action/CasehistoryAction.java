@@ -223,7 +223,7 @@ public class CasehistoryAction extends ActionSupport {
     }
 
     /**
-     * 得到全部或者特定的（搜索框触发）的信息
+     * 得到全部或特定的（搜索框触发）人的部分信息
      *
      * @return 只返回SUCCESS
      */
@@ -256,7 +256,7 @@ public class CasehistoryAction extends ActionSupport {
     }
 
     /**
-     * 返回所有的数据
+     * 返回单人所有的数据
      *
      * @return json数据
      */
