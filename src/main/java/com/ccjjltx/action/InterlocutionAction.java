@@ -31,18 +31,8 @@ public class InterlocutionAction extends ActionSupport {
     private int qaid;
     private String question;
     private String answer;
-    private int isSelect;
     private int[] qaids;
-
     ///////////////////////////////////////////////////////////
-    public InterlocutionDAO getInterlocutionDAO() {
-        return interlocutionDAO;
-    }
-
-    public void setInterlocutionDAO(InterlocutionDAO interlocutionDAO) {
-        this.interlocutionDAO = interlocutionDAO;
-    }
-
     public int getPage() {
         return page;
     }
@@ -89,14 +79,6 @@ public class InterlocutionAction extends ActionSupport {
 
     public void setAnswer(String answer) {
         this.answer = answer;
-    }
-
-    public int getIsSelect() {
-        return isSelect;
-    }
-
-    public void setIsSelect(int isSelect) {
-        this.isSelect = isSelect;
     }
 
     public int[] getQaids() {
