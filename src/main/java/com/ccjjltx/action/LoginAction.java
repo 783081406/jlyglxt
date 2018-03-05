@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 
 /**
  * Created by ccjjltx on 2017/10/11.
- * 登录
+ * 登录/退出
  *
  * @author ccj
  * @version 1.0
