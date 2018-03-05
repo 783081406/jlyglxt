@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/24.
- * 对Boardwages相关操作
+ * 对Boardwages相关操作（伙食费用）
  *
  * @author ccj
  * @version 1.0
@@ -27,15 +27,7 @@ public class BoardwagesAction extends ActionSupport {
     ///////////////提交过来的数据////////////
     private int highest;
     private int minimum;
-
     ////////////////////////////////////////
-    public BoardwagesDAO getBoardwagesDAO() {
-        return boardwagesDAO;
-    }
-
-    public void setBoardwagesDAO(BoardwagesDAO boardwagesDAO) {
-        this.boardwagesDAO = boardwagesDAO;
-    }
 
     public JSONObject getResult() {
         return result;
