@@ -39,21 +39,6 @@
                 <param name="actionName">index</param>
             </result>
         </action>
-
-    </package>
-
-    <!--后台首页-->
-    <package name="home" namespace="/home" extends="struts-default">
-        <action name="index" class="homeAction" method="checkValidity">
-            <!--合法进入表示成功-->
-            <result name="success">/WEB-INF/backstage/home/index.jsp</result>
-            <!--非合法进入表示失败-->
-            <!--<result name="error">/WEB-INF/backstage/index.jsp</result>-->
-            <result name="error" type="redirectAction">
-                <param name="namespace">/backstage</param>
-                <param name="actionName">index</param>
-            </result>
-        </action>
     </package>
 
     <!--前端功能>>宣传栏-->
