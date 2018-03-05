@@ -23,18 +23,16 @@ import javax.annotation.Resource;
 @Controller
 @Scope("prototype")
 public class LoginAction extends ActionSupport {
-    //登录的用户名
-    private String userName;
-    //登录的密码
-    private String password;
-    //验证的结果信息如果错误将会返回给首页
-    private JSONObject result;
-    //得到UserDAO类
     @Resource(name = "userDAO")
     private UserDAO userDAO;
-    //EinformationDAO
     @Resource(name = "einformationDAO")
     private EinformationDAO einformationDAO;
+    private JSONObject result;//验证的结果信息如果错误将会返回给首页
+
+    ///////////////////////////////////////////////////////////////////
+    private String userName;//登录的用户名
+    private String password;//登录的密码
+    //////////////////////////////////////////////////////////////////
 
     public String getUserName() {
         return userName;
