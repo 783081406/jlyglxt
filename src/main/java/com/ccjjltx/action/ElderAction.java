@@ -33,14 +33,6 @@ public class ElderAction extends ActionSupport {
         this.result = result;
     }
 
-    public ElderDAO getElderDAO() {
-        return elderDAO;
-    }
-
-    public void setElderDAO(ElderDAO elderDAO) {
-        this.elderDAO = elderDAO;
-    }
-
     /**
      * 下拉框选择用户帐户使用
      * 场景：信息中心->房间信息
