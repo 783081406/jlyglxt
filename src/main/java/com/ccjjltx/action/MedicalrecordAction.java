@@ -39,23 +39,7 @@ public class MedicalrecordAction extends ActionSupport {
     private String medicalDoctor;
     private String diagnosisResult;
     private String advice;
-
     ////////////////////////////////////////////////////
-    public MedicalrecordDAO getMedicalrecordDAO() {
-        return medicalrecordDAO;
-    }
-
-    public void setMedicalrecordDAO(MedicalrecordDAO medicalrecordDAO) {
-        this.medicalrecordDAO = medicalrecordDAO;
-    }
-
-    public CasehistoryDAO getCasehistoryDAO() {
-        return casehistoryDAO;
-    }
-
-    public void setCasehistoryDAO(CasehistoryDAO casehistoryDAO) {
-        this.casehistoryDAO = casehistoryDAO;
-    }
 
     public int getPage() {
         return page;
