@@ -24,14 +24,10 @@ import java.util.List;
 public class CasehistoryAction extends ActionSupport {
     @Resource(name = "casehistoryDAO")
     private CasehistoryDAO casehistoryDAO;
-    //得到页数（第几页）
-    //最原始首次得到是默认是1，表示第一页
-    private int page;
-    //得到行数（每行显示的行数）
-    //最原始首次得到默认是10，表示10行显示
-    private int rows;
-    //保存json结果
-    private JSONObject result;
+    private int page;//得到页数（第几页） 最原始首次得到是默认是1，表示第一页
+    private int rows;//得到行数（每行显示的行数） 最原始首次得到默认是10，表示10行显示
+
+    private JSONObject result;//保存json结果
     //////////////////提交过来的表中的字段/////////////////////////
     private int chId;
     //基本特征
@@ -57,13 +53,6 @@ public class CasehistoryAction extends ActionSupport {
     private String ldlc;
 
     //////////////////////////////////////////////////////////////
-    public CasehistoryDAO getCasehistoryDAO() {
-        return casehistoryDAO;
-    }
-
-    public void setCasehistoryDAO(CasehistoryDAO casehistoryDAO) {
-        this.casehistoryDAO = casehistoryDAO;
-    }
 
     public int getPage() {
         return page;
