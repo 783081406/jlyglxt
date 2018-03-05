@@ -30,8 +30,6 @@ public class EcginformationAction extends ActionSupport {
     private EcginformationDAO ecginformationDAO;
     @Resource(name = "casehistoryDAO")
     private CasehistoryDAO casehistoryDAO;
-    private int page;//得到页数（第几页）  最原始首次得到是默认是1，表示第一页
-    private int rows;//最原始首次得到默认是10，表示10行显示  得到行数（每行显示的行数）
     private JSONObject result; //保存json结果
     ///////////////////提交过来的字段数据/////////////////////
     private int chId;
@@ -43,22 +41,6 @@ public class EcginformationAction extends ActionSupport {
     private String rhythm;
     private Date rdate;
     ////////////////////////////////////////////////////
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
     public JSONObject getResult() {
         return result;
     }
