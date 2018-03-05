@@ -41,6 +41,7 @@ public class EcginformationActionTest extends StrutsSpringJUnit4TestCase<Ecginfo
         ecginformationAction.setChId(1);
         ecginformationAction.setResult(null);
         Assert.assertEquals("success", ecginformationAction.getAllInformation());
+        Assert.assertNotNull(ecginformationAction.getResult());
     }
 
     /**
@@ -52,12 +53,12 @@ public class EcginformationActionTest extends StrutsSpringJUnit4TestCase<Ecginfo
     public void testSaveInformation() {
         try {
             ecginformationAction.setChId(1);
-            ecginformationAction.setQrs("12");
-            ecginformationAction.setComment("123");
-            ecginformationAction.setRr("123");
-            ecginformationAction.setAnalysisResult("134");
-            ecginformationAction.setRhythm("123");
-            ecginformationAction.setRdate(MyDateFormat.parse("2017-12-12"));
+            ecginformationAction.setQrs("234");
+            ecginformationAction.setComment("34");
+            ecginformationAction.setRr("34");
+            ecginformationAction.setAnalysisResult("234");
+            ecginformationAction.setRhythm("234");
+            ecginformationAction.setRdate(MyDateFormat.parse("2017-20-12"));
             ecginformationAction.setResult(null);
             Assert.assertEquals("success", ecginformationAction.saveInformation());
             Assert.assertEquals(true, ecginformationAction.getResult().get("success"));
