@@ -35,6 +35,7 @@ public class NursingfeeActionTest extends StrutsSpringJUnit4TestCase<NursingfeeA
      */
     @Test
     @Transactional
+    @Rollback
     public void testGetAllInformation() {
         Assert.assertEquals("success", nursingfeeAction.getAllInformation());
     }
