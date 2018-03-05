@@ -34,10 +34,8 @@ public class BillboardsAction extends ActionSupport {
     private JSONObject result;
     //////////////////提交过来billboards表中的数据//////////
     private int bid;
-    private String bpath;
     private String btitle;
     private String bcontent;
-    private int isSelect;
     private int[] bids;
     ////////////////////上传//////////////////////////////////
     // 封装上传文件域的属性
@@ -81,14 +79,6 @@ public class BillboardsAction extends ActionSupport {
         this.bid = bid;
     }
 
-    public String getBpath() {
-        return bpath;
-    }
-
-    public void setBpath(String bpath) {
-        this.bpath = bpath;
-    }
-
     public String getBtitle() {
         return btitle;
     }
@@ -103,14 +93,6 @@ public class BillboardsAction extends ActionSupport {
 
     public void setBcontent(String bcontent) {
         this.bcontent = bcontent;
-    }
-
-    public int getIsSelect() {
-        return isSelect;
-    }
-
-    public void setIsSelect(int isSelect) {
-        this.isSelect = isSelect;
     }
 
     public int[] getBids() {
