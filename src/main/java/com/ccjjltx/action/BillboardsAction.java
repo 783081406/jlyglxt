@@ -48,16 +48,7 @@ public class BillboardsAction extends ActionSupport {
     private String uploadFileName;
     // 直接在struts.xml文件中配置的属性
     private String savePath;
-
     /////////////////////////////////////////////////////
-    public BillboardsDAO getBillboardsDAO() {
-        return billboardsDAO;
-    }
-
-    public void setBillboardsDAO(BillboardsDAO billboardsDAO) {
-        this.billboardsDAO = billboardsDAO;
-    }
-
     public int getPage() {
         return page;
     }
