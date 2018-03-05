@@ -38,23 +38,6 @@ public class FamilyinformationAction extends ActionSupport {
     private String faddress;
     private String phone;
     /////////////////////////////////////////////////
-
-    public FamilyinformationDAO getFamilyinformationDAO() {
-        return familyinformationDAO;
-    }
-
-    public void setFamilyinformationDAO(FamilyinformationDAO familyinformationDAO) {
-        this.familyinformationDAO = familyinformationDAO;
-    }
-
-    public ElderlyinformationDAO getElderlyinformationDAO() {
-        return elderlyinformationDAO;
-    }
-
-    public void setElderlyinformationDAO(ElderlyinformationDAO elderlyinformationDAO) {
-        this.elderlyinformationDAO = elderlyinformationDAO;
-    }
-
     public JSONObject getResult() {
         return result;
     }
@@ -161,7 +144,6 @@ public class FamilyinformationAction extends ActionSupport {
         //更新信息
         db_fi.setFamilyName(getFamilyName());
         db_fi.setRelationship(getRelationship());
-        db_fi.setFaddress(getFaddress());
         db_fi.setFaddress(getFaddress());
         db_fi.setPhone(getPhone());
         //更新操作
