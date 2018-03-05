@@ -29,8 +29,6 @@ public class MedicalrecordAction extends ActionSupport {
     @Resource(name = "casehistoryDAO")
     private CasehistoryDAO casehistoryDAO;
 
-    private int page;
-    private int rows;
     private JSONObject result;
     ///////////////////提交过来的字段数据/////////////////////
     private int chId;
@@ -39,24 +37,8 @@ public class MedicalrecordAction extends ActionSupport {
     private String medicalDoctor;
     private String diagnosisResult;
     private String advice;
+
     ////////////////////////////////////////////////////
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
     public JSONObject getResult() {
         return result;
     }
