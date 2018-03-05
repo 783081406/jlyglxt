@@ -37,14 +37,6 @@ public class EaeAction extends ActionSupport {
     private String ename;//名字
     private int isIn;//是否在住
 
-    public EaeDAO getEaeDAO() {
-        return eaeDAO;
-    }
-
-    public void setEaeDAO(EaeDAO eaeDAO) {
-        this.eaeDAO = eaeDAO;
-    }
-
     public int getPage() {
         return page;
     }
