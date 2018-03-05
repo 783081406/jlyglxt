@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/11/21.
- * 前端首页
+ * 前端页面汇总
  *
  * @author ccj
  * @version 1.0
@@ -58,54 +58,6 @@ public class Rhome extends ActionSupport {
     private int ctotal22;
     private int ctotal31;
     private int ctotal32;
-
-    public BillboardsDAO getBillboardsDAO() {
-        return billboardsDAO;
-    }
-
-    public void setBillboardsDAO(BillboardsDAO billboardsDAO) {
-        this.billboardsDAO = billboardsDAO;
-    }
-
-    public ServiceitemsDAO getServiceitemsDAO() {
-        return serviceitemsDAO;
-    }
-
-    public void setServiceitemsDAO(ServiceitemsDAO serviceitemsDAO) {
-        this.serviceitemsDAO = serviceitemsDAO;
-    }
-
-    public InterlocutionDAO getInterlocutionDAO() {
-        return interlocutionDAO;
-    }
-
-    public void setInterlocutionDAO(InterlocutionDAO interlocutionDAO) {
-        this.interlocutionDAO = interlocutionDAO;
-    }
-
-    public RoomcostDAO getRoomcostDAO() {
-        return roomcostDAO;
-    }
-
-    public void setRoomcostDAO(RoomcostDAO roomcostDAO) {
-        this.roomcostDAO = roomcostDAO;
-    }
-
-    public BoardwagesDAO getBoardwagesDAO() {
-        return boardwagesDAO;
-    }
-
-    public void setBoardwagesDAO(BoardwagesDAO boardwagesDAO) {
-        this.boardwagesDAO = boardwagesDAO;
-    }
-
-    public NursingfeeDAO getNursingfeeDAO() {
-        return nursingfeeDAO;
-    }
-
-    public void setNursingfeeDAO(NursingfeeDAO nursingfeeDAO) {
-        this.nursingfeeDAO = nursingfeeDAO;
-    }
 
     public List<Billboards> getListBillboards() {
         return listBillboards;
@@ -252,7 +204,7 @@ public class Rhome extends ActionSupport {
     }
 
     /**
-     * 入住费用
+     * 首页
      *
      * @return index逻辑视图
      */
