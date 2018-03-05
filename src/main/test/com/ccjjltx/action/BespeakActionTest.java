@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -22,7 +21,6 @@ import javax.annotation.Resource;
  * @version 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
 @ContextConfiguration(locations = "classpath:beans.xml")
 public class BespeakActionTest extends StrutsSpringJUnit4TestCase<BespeakAction> {
     @Resource(name = "bespeakAction")
