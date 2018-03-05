@@ -15,6 +15,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Scope("prototype")
 public class HomeAction extends ActionSupport {
+    /**
+     * 验证合法性
+     *
+     * @return 不同的跳转地址
+     */
     public String checkValidity() {
         //验证合法性，是否是经过登录页面登录进来的还是非法进入的
         //如果不为空表示判断过了，可以进入
