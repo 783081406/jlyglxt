@@ -53,7 +53,7 @@ public class CasehistoryDAO {
             }
             hql += " where casehistory.elder=:elder and casehistory.elder.isIn!=2";
             query = session.createQuery(hql).setParameter("elder", elder);*/
-            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2";
+            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2 order by chId desc";
             query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {//并非通过搜索框提交过来的
             query = session.createQuery(hql+" where casehistory.elder.isIn!=2");
@@ -78,7 +78,7 @@ public class CasehistoryDAO {
             }
             hql += " where casehistory.elder=:elder and casehistory.elder.isIn!=2";
             query = session.createQuery(hql).setParameter("elder", elder);*/
-            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2";
+            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2 order by chId desc";
             query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {
             query = session.createQuery(hql+"  where casehistory.elder.isIn!=2");
