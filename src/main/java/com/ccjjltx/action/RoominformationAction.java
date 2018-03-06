@@ -3,14 +3,12 @@ package com.ccjjltx.action;
 import com.ccjjltx.dao.RoominformationDAO;
 import com.ccjjltx.domain.Elder;
 import com.ccjjltx.domain.Roominformation;
-import com.ccjjltx.domain.Roomcost;
 import com.ccjjltx.utils.JsonMessage;
 import com.opensymphony.xwork2.ActionSupport;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
