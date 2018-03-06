@@ -136,7 +136,7 @@ public class UserAction extends ActionSupport {
         int queryResult = userDAO.addUser(getUserName(), getPassword(), getUType());
         switch (queryResult) {
             case 1:
-                result = JsonMessage.returnMessage(false, "类型只能填入1或2");
+                result = JsonMessage.returnMessage(false, "类型错误");
                 return ERROR;
             case 2:
                 result = JsonMessage.returnMessage(false, "数据库中已经存在相同的用户名了");
@@ -185,8 +185,7 @@ public class UserAction extends ActionSupport {
             //如果成功执行删除语句执行以下语句
             result = JsonMessage.returnMessage(true, "success");
             return SUCCESS;
-        } else {
-            //执行删除语句失败执行以下方法
+        } else {//执行删除语句失败执行以下方法
             result = JsonMessage.returnMessage(false, "删除失败");
             return ERROR;
         }
@@ -203,6 +202,6 @@ public class UserAction extends ActionSupport {
         //更新
         userDAO.updateUser(user);
         result = JsonMessage.returnMessage(true, "success");
-        return null;
+        return SUCCESS;
     }
 }
