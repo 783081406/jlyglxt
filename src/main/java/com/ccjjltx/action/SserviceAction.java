@@ -36,15 +36,6 @@ public class SserviceAction extends ActionSupport {
     private String remark;//备注
     private String ename;//名字
     ////////////////////////////////////
-
-    public SserviceDAO getSserviceDAO() {
-        return sserviceDAO;
-    }
-
-    public void setSserviceDAO(SserviceDAO sserviceDAO) {
-        this.sserviceDAO = sserviceDAO;
-    }
-
     public int getPage() {
         return page;
     }
