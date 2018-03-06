@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by ccjjltx on 2017/12/30.
- * 特殊服务的增删除改查
+ * 特別服务的增删除改查
  *
  * @author ccj
  * @version 1.0
