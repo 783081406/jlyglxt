@@ -166,8 +166,10 @@ public class UserDAO {
         try {
             //先得到员工信息
             Einformation db_ef=einformationDAO.getSearchEinformation(db_user);
-            //删除Einformation表中的信息
-            einformationDAO.deleteInformation(db_ef.getPid());
+            if(db_ef!=null){
+                //删除Einformation表中的信息
+                einformationDAO.deleteInformation(db_ef.getPid());
+            }
             //删除操作
             session.delete(db_user);
         } catch (HibernateException e) {
