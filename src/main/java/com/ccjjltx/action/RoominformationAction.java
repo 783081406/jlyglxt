@@ -27,14 +27,9 @@ import java.util.List;
 public class RoominformationAction extends ActionSupport {
     @Resource(name = "roominformationDAO")
     private RoominformationDAO roominformationDAO;
-    //得到页数（第几页）
-    //最原始首次得到是默认是1，表示第一页
-    private int page;
-    //得到行数（每行显示的行数）
-    //最原始首次得到默认是10，表示10行显示
-    private int rows;
-    //保存json结果
-    private JSONObject result;
+    private int page;//得到页数（第几页）  最原始首次得到是默认是1，表示第一页
+    private int rows;//得到行数（每行显示的行数）   最原始首次得到默认是10，表示10行显示
+    private JSONObject result;//保存json结果
 
     /////////////提交过来的Roominformation表中的字段////////////////
     private int rId;
@@ -44,15 +39,6 @@ public class RoominformationAction extends ActionSupport {
     private int rCost;
     private String ename;
     ////////////////////////////////////////////////////////////
-
-    public RoominformationDAO getRoominformationDAO() {
-        return roominformationDAO;
-    }
-
-    public void setRoominformationDAO(RoominformationDAO roominformationDAO) {
-        this.roominformationDAO = roominformationDAO;
-    }
-
     public int getPage() {
         return page;
     }
