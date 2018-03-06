@@ -101,7 +101,7 @@ public class SserviceAction extends ActionSupport {
     }
 
     /**
-     * 得到全部或特定(搜索框触发)的特殊服务数据
+     * 得到全部或特定(搜索框触发)的特别服务的数据
      *
      * @return 只返回SUCCESS
      */
