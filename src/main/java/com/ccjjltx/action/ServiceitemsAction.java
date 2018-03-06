@@ -49,14 +49,7 @@ public class ServiceitemsAction extends ActionSupport {
     private String uploadFileName;
     // 直接在struts.xml文件中配置的属性
     private String savePath;
-
-    public ServiceitemsDAO getServiceitemsDAO() {
-        return serviceitemsDAO;
-    }
-
-    public void setServiceitemsDAO(ServiceitemsDAO serviceitemsDAO) {
-        this.serviceitemsDAO = serviceitemsDAO;
-    }
+    /////////////////////////////////////
 
     public int getPage() {
         return page;
