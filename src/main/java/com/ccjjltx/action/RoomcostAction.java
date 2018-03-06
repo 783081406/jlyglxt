@@ -89,18 +89,16 @@ public class RoomcostAction extends ActionSupport {
      * @return Json成功或失败信息
      */
     public String updateInformation() {
-        //得到"标准"的实例化
-        Roomcost rc1 = roomcostDAO.getSearchRoomcost(1);
-        //设置"标准"的数据
-        rc1.setRCost(getRtype1());
-        //执行更新操作
-        roomcostDAO.updateRoomcost(rc1);
-        //得到"中等"的实例化
-        Roomcost rc2 = roomcostDAO.getSearchRoomcost(2);
+        //--------标准----------
+        Roomcost rc1 = roomcostDAO.getSearchRoomcost(1);//得到"标准"的实例化
+        rc1.setRCost(getRtype1());//设置"标准"的数据
+        roomcostDAO.updateRoomcost(rc1);//执行更新操作
+        //--------中等----------
+        Roomcost rc2 = roomcostDAO.getSearchRoomcost(2);//得到"中等"的实例化
         rc2.setRCost(getRtype2());
         roomcostDAO.updateRoomcost(rc2);
-        //得到"中等"的实例化
-        Roomcost rc3 = roomcostDAO.getSearchRoomcost(3);
+        //--------高级----------
+        Roomcost rc3 = roomcostDAO.getSearchRoomcost(3);//得到"高级"的实例化
         rc3.setRCost(getRtype3());
         roomcostDAO.updateRoomcost(rc3);
         result = JsonMessage.returnMessage(true, "success");
