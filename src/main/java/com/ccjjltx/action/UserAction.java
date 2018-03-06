@@ -25,32 +25,14 @@ import java.util.List;
 public class UserAction extends ActionSupport {
     @Resource(name = "userDAO")
     private UserDAO userDAO;
-    //得到页数（第几页）
-    //最原始首次得到是默认是1，表示第一页
-    private int page;
-    //得到行数（每行显示的行数）
-    //最原始首次得到默认是10，表示10行显示
-    private int rows;
-    //得到的用户名
-    private String userName;
-    //得到的密码
-    private String password;
-    //得到的类型
-    private int uType;
-    //得到的id号
-    private int id;
-    //保存json结果
-    private JSONObject result;
-    //新密码
-    private String newpass;
-
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
+    private int page;//得到页数（第几页）   最原始首次得到是默认是1，表示第一页
+    private int rows;//得到行数（每行显示的行数）   最原始首次得到默认是10，表示10行显示
+    private String userName;//得到的用户名
+    private String password;//得到的密码
+    private int uType;//得到的类型
+    private int id;//得到的id号
+    private JSONObject result;//保存json结果
+    private String newpass;//新密码
 
     public int getPage() {
         return page;
