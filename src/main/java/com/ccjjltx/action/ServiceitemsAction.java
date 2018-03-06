@@ -26,7 +26,6 @@ import java.util.List;
  */
 @Controller
 @Scope("prototype")
-
 public class ServiceitemsAction extends ActionSupport {
     @Resource(name = "serviceitemsDAO")
     private ServiceitemsDAO serviceitemsDAO;
@@ -35,20 +34,14 @@ public class ServiceitemsAction extends ActionSupport {
     private JSONObject result;
     //////////////////提交过来Serviceitems表中的数据//////////
     private int sid;
-    private String spath;
     private String stitle;
     private String scontent;
-    private int isSelect;
     private int[] sids;
     /////////////////上传////////////////////
-    // 封装上传文件域的属性
-    private File upload;
-    // 封装上传文件类型的属性
-    private String uploadContentType;
-    // 封装上传文件名的属性
-    private String uploadFileName;
-    // 直接在struts.xml文件中配置的属性
-    private String savePath;
+    private File upload;// 封装上传文件域的属性
+//    private String uploadContentType;// 封装上传文件类型的属性
+    private String uploadFileName;// 封装上传文件名的属性
+    private String savePath;// 直接在struts.xml文件中配置的属性
     /////////////////////////////////////
 
     public int getPage() {
@@ -83,14 +76,6 @@ public class ServiceitemsAction extends ActionSupport {
         this.sid = sid;
     }
 
-    public String getSpath() {
-        return spath;
-    }
-
-    public void setSpath(String spath) {
-        this.spath = spath;
-    }
-
     public String getStitle() {
         return stitle;
     }
@@ -105,14 +90,6 @@ public class ServiceitemsAction extends ActionSupport {
 
     public void setScontent(String scontent) {
         this.scontent = scontent;
-    }
-
-    public int getIsSelect() {
-        return isSelect;
-    }
-
-    public void setIsSelect(int isSelect) {
-        this.isSelect = isSelect;
     }
 
     public int[] getSids() {
@@ -131,13 +108,13 @@ public class ServiceitemsAction extends ActionSupport {
         this.upload = upload;
     }
 
-    public String getUploadContentType() {
+/*    public String getUploadContentType() {
         return uploadContentType;
-    }
+    }*/
 
-    public void setUploadContentType(String uploadContentType) {
+/*    public void setUploadContentType(String uploadContentType) {
         this.uploadContentType = uploadContentType;
-    }
+    }*/
 
     public String getUploadFileName() {
         return uploadFileName;
