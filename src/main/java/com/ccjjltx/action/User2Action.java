@@ -33,14 +33,6 @@ public class User2Action extends ActionSupport {
         this.result = result;
     }
 
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
-
     /**
      * 下拉框选择用户账户使用
      * 场景：员工中心->员工信息
