@@ -30,14 +30,6 @@ public class RoomcostAction extends ActionSupport {
     private int rtype3;
 
     ///////////////////////////////////////
-    public RoomcostDAO getRoomcostDAO() {
-        return roomcostDAO;
-    }
-
-    public void setRoomcostDAO(RoomcostDAO roomcostDAO) {
-        this.roomcostDAO = roomcostDAO;
-    }
-
     public JSONObject getResult() {
         return result;
     }
