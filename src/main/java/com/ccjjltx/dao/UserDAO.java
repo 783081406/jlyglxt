@@ -62,10 +62,10 @@ public class UserDAO {
         Query query;
         //如果搜索引擎触发，则userName不为空
         if (userName != null) {
-            hql += " where user.userName like :userName";
+            hql += " where user.userName like :userName order by id desc";
             query = session.createQuery(hql).setParameter("userName", "%" + userName + "%");
         } else {
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+" order by id desc");
         }
         query = query.setFirstResult(offset).setMaxResults(rows);
         return (List<User>) query.list();
@@ -78,7 +78,7 @@ public class UserDAO {
      */
     public List<User> getAllUser() {
         Session session = factory.getCurrentSession();
-        String hql = "from User user";
+        String hql = "from User user order by id desc";
         Query query = session.createQuery(hql);
         return (List<User>) query.list();
     }
