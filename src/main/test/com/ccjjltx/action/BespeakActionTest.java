@@ -38,11 +38,11 @@ public class BespeakActionTest extends StrutsSpringJUnit4TestCase<BespeakAction>
     @Transactional
     public void testGetAllHandleInformation() {
         bespeakAction.setPage(1);
-        bespeakAction.setRows(10);
+        bespeakAction.setRows(5);
         bespeakAction.setResult(null);
         Assert.assertEquals("success", bespeakAction.getAllHandleInformation());
         //断言JSON返回数据
-        Assert.assertEquals(10, ((JSONArray) bespeakAction.getResult().get("rows")).size());
+        Assert.assertEquals(5, ((JSONArray) bespeakAction.getResult().get("rows")).size());
     }
 
     /**
@@ -52,10 +52,10 @@ public class BespeakActionTest extends StrutsSpringJUnit4TestCase<BespeakAction>
     @Transactional
     public void testGetAllUnhandleInformation() {
         bespeakAction.setPage(1);
-        bespeakAction.setRows(10);
+        bespeakAction.setRows(5);
         Assert.assertEquals("success", bespeakAction.getAllUnhandleInformation());
         //断言JSON返回数据
-        Assert.assertEquals(10, ((JSONArray) bespeakAction.getResult().get("rows")).size());
+        Assert.assertEquals(5, ((JSONArray) bespeakAction.getResult().get("rows")).size());
     }
 
     /**
@@ -66,10 +66,10 @@ public class BespeakActionTest extends StrutsSpringJUnit4TestCase<BespeakAction>
     @Rollback
     public void testHandleInformation() {
         try {
-            request.setParameter("bid", "12");
-            bespeakAction.setBid(12);
+            request.setParameter("bid", "24");
+            bespeakAction.setBid(24);
             String result = executeAction("/bespeakaction/handleInformation.action");
-            Assert.assertEquals(12, bespeakAction.getBid());
+            Assert.assertEquals(24, bespeakAction.getBid());
             Assert.assertEquals(16, result.length());//16  //{"success":true}
         } catch (Exception e) {
             e.printStackTrace();
