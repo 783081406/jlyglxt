@@ -36,19 +36,7 @@ public class FamilyinformationDAOTest {
     public void testGetAllInformation() {
         List<Familyinformation> list = familyinformationDAO.getAllInformation(1);
         int resultLength = list.size();
-        Assert.assertEquals(2, resultLength);
-    }
-
-    /**
-     * 验证：是否能删除
-     */
-    @Test
-    @Transactional
-    @Rollback
-    public void testDeleteInformation() {
-        familyinformationDAO.deleteInformation(1);
-        //删除之后则没有eiId为1的数据，则size应该是0
-        Assert.assertEquals(0, familyinformationDAO.getAllInformation(1).size());
+        Assert.assertNotNull(resultLength);
     }
 
     /**
@@ -60,7 +48,6 @@ public class FamilyinformationDAOTest {
     public void testAddInformation() {
         int result = familyinformationDAO.getAllInformation(1).size();
         Elderlyinformation ei = elderlyinformationDAO.getSearchInformation(1);
-        //实例化
         Familyinformation fi = new Familyinformation("ccj", "123", "123", "123");
         fi.setElderlyinformation(ei);
         //插入数据
@@ -69,16 +56,6 @@ public class FamilyinformationDAOTest {
         Assert.assertEquals(result + 1, familyinformationDAO.getAllInformation(1).size());
     }
 
-    /**
-     * 验证：是否能根据主键得到实例化
-     */
-    @Test
-    @Transactional
-    @Rollback
-    public void testSearchInformation() {
-        Familyinformation db_fi = familyinformationDAO.getSearchInformation(1);
-        Assert.assertEquals(1, db_fi.getFId());
-    }
 
     /**
      * 验证：是否能更新
@@ -99,6 +76,19 @@ public class FamilyinformationDAOTest {
     }
 
     /**
+     * 验证：是否能删除
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testDeleteInformation() {
+        familyinformationDAO.deleteInformation(1);
+        //删除之后则没有eiId为1的数据，则size应该是0
+        Assert.assertEquals(0, familyinformationDAO.getAllInformation(1).size());
+    }
+
+
+    /**
      * 验证：是否能根据主键删除
      */
     @Test
@@ -113,5 +103,16 @@ public class FamilyinformationDAOTest {
         //删除之后再次查询，应该是resultSize-1的大小
         int resultSize2 = familyinformationDAO.getAllInformation(1).size();
         Assert.assertEquals(resultSize - 1, resultSize2);
+    }
+
+    /**
+     * 验证：是否能根据主键得到实例化
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testSearchInformation() {
+        Familyinformation db_fi = familyinformationDAO.getSearchInformation(1);
+        Assert.assertEquals(1, db_fi.getFId());
     }
 }
