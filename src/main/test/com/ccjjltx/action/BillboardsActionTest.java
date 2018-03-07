@@ -83,6 +83,7 @@ public class BillboardsActionTest extends StrutsSpringJUnit4TestCase<BillboardsA
         billboardsAction.setBtitle("123");
         billboardsAction.setBcontent("123");
         Assert.assertEquals("success", billboardsAction.saveInformation());
+        MyFile.deleteFile("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\123.jpg");
     }
 
     /**
