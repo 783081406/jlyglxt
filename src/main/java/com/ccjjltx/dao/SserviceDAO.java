@@ -49,10 +49,10 @@ public class SserviceDAO {
                 hql += " where sservice.elder=:elder and sservice.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", elder);
             }*/
-            hql += " where sservice.elder.ename like :ename and sservice.elder.isIn!=2";
+            hql += " where sservice.elder.ename like :ename and sservice.elder.isIn!=2 order by sservice.elder.eId desc";
             query = session.createQuery(hql).setParameter("ename", "%" + ename + "%");
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql + " where sservice.elder.isIn!=2");
+            query = session.createQuery(hql + " where sservice.elder.isIn!=2 order by sservice.elder.eId desc");
         }
         return (List<Sservice>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
