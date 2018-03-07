@@ -74,8 +74,7 @@ public class ElderDAO {
      *
      * @param e Elder实例化
      */
-    public void
-    updateInformation(Elder e) {
+    public void updateInformation(Elder e) {
         Session session = factory.getCurrentSession();
         //更新操作
         session.update(e);
