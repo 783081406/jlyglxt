@@ -32,7 +32,7 @@ public class BespeakDAO {
      */
     public List<Bespeak> getAllHandleInformation(int offset, int rows) {
         Session session = factory.getCurrentSession();
-        String hql = "from Bespeak bespeak where ishandle=1 order by submitDate desc";
+        String hql = "from Bespeak bespeak where ishandle=1 order by handleDate desc";
         Query query = session.createQuery(hql).setFirstResult(offset).setMaxResults(rows);
         return (List<Bespeak>) query.list();
     }
