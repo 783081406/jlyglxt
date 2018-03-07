@@ -57,8 +57,9 @@
                 <s:if test="#session.uType==1">
                 , {
                     "menuid": "4", "icon": "icon-sys", "menuname": "员工中心",
-                    "menus": [{"menuid": "41", "menuname": "员工信息", "icon": "icon-page", "url": "home/ygzx/ygxx.jsp"},
-                        {"menuid": "43", "menuname": "账户列表", "icon": "icon-nav", "url": "home/ygzx/zhlb.jsp"}
+                    "menus": [
+                        {"menuid": "41", "menuname": "账户列表", "icon": "icon-nav", "url": "home/ygzx/zhlb.jsp"},
+                        {"menuid": "42", "menuname": "员工信息", "icon": "icon-page", "url": "home/ygzx/ygxx.jsp"}
                     ]
                 }
                 </s:if>
