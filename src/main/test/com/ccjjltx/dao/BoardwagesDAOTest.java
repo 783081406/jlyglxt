@@ -52,10 +52,8 @@ public class BoardwagesDAOTest {
     @Transactional
     @Rollback
     public void testUpdateInformation() {
-        //得到一个实例化
-        Boardwages bw = boardwagesDAO.getSearchInformation(1);
-        //修改信息
-        bw.setMinimum(10);
+        Boardwages bw = boardwagesDAO.getSearchInformation(1);//得到一个实例化
+        bw.setMinimum(10);//修改信息
         //执行方法更新
         boardwagesDAO.updateInformation(bw);
         Assert.assertEquals(10, boardwagesDAO.getSearchInformation(1).getMinimum());
