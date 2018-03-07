@@ -65,7 +65,7 @@ public class UserDAO {
             hql += " where user.userName like :userName order by id desc";
             query = session.createQuery(hql).setParameter("userName", "%" + userName + "%");
         } else {
-            query = session.createQuery(hql+" order by id desc");
+            query = session.createQuery(hql + " order by id desc");
         }
         query = query.setFirstResult(offset).setMaxResults(rows);
         return (List<User>) query.list();
@@ -140,17 +140,10 @@ public class UserDAO {
      * 更新信息
      *
      * @param user User类实例化
-     * @return 返回是否插入成功
      */
-    public boolean updateUser(User user) {
+    public void updateUser(User user) {
         Session session = factory.getCurrentSession();
-        boolean result = true;
-        try {
-            session.update(user);
-        } catch (HibernateException e) {
-            result = false;
-        }
-        return result;
+        session.update(user);
     }
 
     /**
@@ -165,8 +158,8 @@ public class UserDAO {
         boolean result = true;
         try {
             //先得到员工信息
-            Einformation db_ef=einformationDAO.getSearchEinformation(db_user);
-            if(db_ef!=null){
+            Einformation db_ef = einformationDAO.getSearchEinformation(db_user);
+            if (db_ef != null) {
                 //删除Einformation表中的信息
                 einformationDAO.deleteInformation(db_ef.getPid());
             }
