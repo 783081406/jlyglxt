@@ -53,7 +53,7 @@ public class UserActionTest extends StrutsSpringJUnit4TestCase<UserAction> {
     @Test
     @Transactional
     @Rollback
-    public void testAddInformation1() {
+    public void testSaveUser1() {
         userAction.setUserName("ccjccjccj");
         userAction.setPassword("ccjccjccj");
         userAction.setUType(55);
@@ -67,7 +67,7 @@ public class UserActionTest extends StrutsSpringJUnit4TestCase<UserAction> {
     @Test
     @Transactional
     @Rollback
-    public void testAddInformation2() {
+    public void testSaveUser2() {
         userAction.setUserName("admin");
         userAction.setPassword("admin");
         userAction.setUType(1);
@@ -81,7 +81,7 @@ public class UserActionTest extends StrutsSpringJUnit4TestCase<UserAction> {
     @Test
     @Transactional
     @Rollback
-    public void testAddInformation3() {
+    public void testSaveUser3() {
         userAction.setUserName("ccjccjccj");
         userAction.setPassword("ccjccjccj");
         userAction.setUType(1);
@@ -90,7 +90,7 @@ public class UserActionTest extends StrutsSpringJUnit4TestCase<UserAction> {
 
     /**
      * describe：更新信息
-     * success
+     * error  更新失败：类型必须管理员或普通
      */
     @Test
     @Transactional
@@ -139,9 +139,7 @@ public class UserActionTest extends StrutsSpringJUnit4TestCase<UserAction> {
             executeAction("/backstage/index.action");
             request.setParameter("newpass", "admin");
             executeAction("/useraction/updatePassword.action");
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
