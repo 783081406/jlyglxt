@@ -55,7 +55,7 @@ public class EaeActionTest extends StrutsSpringJUnit4TestCase<EaeAction> {
     @Rollback
     public void testAddInformation1() {
         try {
-            eaeAction.setEname("16");
+            eaeAction.setEname("22");
             eaeAction.setStime(MyDateFormat.parse("2017-10-11"));
             eaeAction.setEtime(MyDateFormat.parse("2017-10-11"));
             eaeAction.setIsIn(1);
