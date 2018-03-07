@@ -64,7 +64,7 @@ public class RoominformationActionTest extends StrutsSpringJUnit4TestCase<Roomin
     @Transactional
     @Rollback
     public void testAddInformation2() {
-        roominformationAction.setEname("1");
+        roominformationAction.setEname("22");
         roominformationAction.setFloor("东");
         roominformationAction.setRoomNumber(101);
         roominformationAction.setRType("标准");
@@ -96,7 +96,7 @@ public class RoominformationActionTest extends StrutsSpringJUnit4TestCase<Roomin
     @Transactional
     @Rollback
     public void testAddInformation4() {
-        roominformationAction.setEname("16");
+        roominformationAction.setEname("22");
         roominformationAction.setFloor("ccc");
         roominformationAction.setRoomNumber(10);
         roominformationAction.setRType("豪华");
@@ -147,7 +147,7 @@ public class RoominformationActionTest extends StrutsSpringJUnit4TestCase<Roomin
     @Rollback
     public void testUpdateInformation3() {
         roominformationAction.setRId(1);
-        roominformationAction.setEname("qa");
+        roominformationAction.setEname("22");
         roominformationAction.setFloor("aaa");
         roominformationAction.setRoomNumber(123);
         roominformationAction.setRType("标准");
