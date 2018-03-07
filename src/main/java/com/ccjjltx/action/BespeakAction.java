@@ -167,7 +167,7 @@ public class BespeakAction extends ActionSupport {
         //修改状态
         bs.setIshandle(1);
         //添加处理人与时间
-        bs.setHandleUser((String) ActionContext.getContext().getSession().get("userName"));
+        bs.setHandleUser((String) ActionContext.getContext().getSession().get("name"));
         bs.setHandleDate(new Date());
         //更新
         bespeakDAO.handleInformation(bs);
