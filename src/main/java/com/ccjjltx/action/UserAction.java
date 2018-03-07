@@ -154,7 +154,7 @@ public class UserAction extends ActionSupport {
      */
     public String updateUser() {
         if (!(getUType() == 1 || getUType() == 2)) {
-            result = JsonMessage.returnMessage(false, "插入失败：类型必须是1或者2");
+            result = JsonMessage.returnMessage(false, "更新失败：类型必须管理员或普通");
             return ERROR;
         }
         //实例化得到的信息
