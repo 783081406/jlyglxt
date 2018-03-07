@@ -40,7 +40,7 @@ public class EinformationDAO {
         //总查询语句
         String hql = "from Einformation einformation";
         Query query;
-        User db_user;
+//        User db_user;
         //搜索引擎有提交数据过来触发
         if (name != null && userName != null) {//表示同时有name和userName
 /*            db_user = userDAO.searchUser(userName);
@@ -52,13 +52,13 @@ public class EinformationDAO {
                 hql += " where einformation.name=:name and einformation.user=:user and einformation.name!='管理员'";
                 query = session.createQuery(hql).setParameter("name", name).setParameter("user", db_user);
             }*/
-            hql += " where einformation.name like :name and einformation.user.userName like :userName and einformation.name!='管理员'";
+            hql += " where einformation.name like :name and einformation.user.userName like :userName and einformation.name!='管理员' order by einformation.user.id desc";
             query = session.createQuery(hql).setParameter("name", "%" + name + "%").setParameter("userName", "%" + userName + "%");
         } else {
             //进入该判断表示搜索框只填入一个或者什么都没填
             if (name != null) {
                 //搜索框的name有值开启模糊查询
-                hql += " where name like :name and einformation.name!='管理员'";
+                hql += " where name like :name and einformation.name!='管理员' order by einformation.user.id desc";
                 query = session.createQuery(hql).setParameter("name", "%" + name + "%");
             } else if (userName != null) {
                 //搜索框的userName值不为null，开启精确查询
@@ -93,7 +93,7 @@ public class EinformationDAO {
         Session session = factory.getCurrentSession();
         //得到总条数
         String hql = "select count(*) from Einformation einformation";
-        User db_user;
+//        User db_user;
         Query query;
         if (name != null && userName != null) {
            /* //通过UserDAO查询得到是否有该User账户
