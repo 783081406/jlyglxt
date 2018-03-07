@@ -34,11 +34,9 @@ public class ElderlyinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation1() {
-        List<Elderlyinformation> list = elderlyinformationDAO.getAllInformation(0, 20, null);
-        //得到实际的大小
-        //编写此代码测试的时候数据库的数据为15条
-        int result = list.size();
-        Assert.assertEquals(16, result);
+        int size = elderlyinformationDAO.getAllInformationNumber(null);
+        List<Elderlyinformation> result = elderlyinformationDAO.getAllInformation(0, 100, null);
+        Assert.assertEquals(size, result.size());
     }
 
     /**
@@ -47,23 +45,9 @@ public class ElderlyinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation2() {
-        List<Elderlyinformation> list = elderlyinformationDAO.getAllInformation(0, 10, "张志新");
-        int result = -1;
-        for (Elderlyinformation e : list) {
-            //得到那条唯一数据的eiId
-            result = e.getEiId();
-        }
-        Assert.assertEquals(1, result);
-    }
-
-    /**
-     * 验证：当错误用户名的时候是否返回null
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation3() {
-        List<Elderlyinformation> list = elderlyinformationDAO.getAllInformation(0, 10, "juncc");
-        Assert.assertNull(list);
+        int size = elderlyinformationDAO.getAllInformationNumber("张志新");
+        List<Elderlyinformation> result = elderlyinformationDAO.getAllInformation(0, 100, "张志新");
+        Assert.assertEquals(size, result.size());
     }
 
     /**
@@ -72,8 +56,9 @@ public class ElderlyinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber1() {
+        int size = elderlyinformationDAO.getAllInformation(0, 100, null).size();
         int result = elderlyinformationDAO.getAllInformationNumber(null);
-        Assert.assertEquals(16, result);
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -82,18 +67,9 @@ public class ElderlyinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber2() {
+        int size = elderlyinformationDAO.getAllInformation(0, 100, "张志新").size();
         int result = elderlyinformationDAO.getAllInformationNumber("张志新");
-        Assert.assertEquals(1, result);
-    }
-
-    /**
-     * 验证：当错误名字时候是否返回0
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformationNumber3() {
-        int result = elderlyinformationDAO.getAllInformationNumber("ccjccj");
-        Assert.assertEquals(0, result);
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -156,12 +132,9 @@ public class ElderlyinformationDAOTest {
     @Transactional
     @Rollback
     public void testDeleteInformation() {
-        //得到总条数
-        int result = elderlyinformationDAO.getAllInformationNumber(null);
-        //删除第一条数据
-        elderlyinformationDAO.deleteInformation(1);
-        //删除后的总条数
-        int result2 = elderlyinformationDAO.getAllInformationNumber(null);
+        int result = elderlyinformationDAO.getAllInformationNumber(null);//得到总条数
+        elderlyinformationDAO.deleteInformation(1);//删除第一条数据
+        int result2 = elderlyinformationDAO.getAllInformationNumber(null);//删除后的总条数
         Assert.assertEquals(result - 1, result2);
     }
 }
