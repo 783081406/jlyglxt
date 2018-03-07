@@ -71,11 +71,11 @@ public class EinformationDAO {
                     hql += " where einformation.user=:user and einformation.name!='管理员'";
                     query = session.createQuery(hql).setParameter("user", db_user);
                 }*/
-                hql += " where einformation.user.userName like :userName and einformation.name!='管理员'";
+                hql += " where einformation.user.userName like :userName and einformation.name!='管理员' order by einformation.user.id desc";
                 query = session.createQuery(hql).setParameter("userName", "%" + userName + "%");
             } else {
                 //搜索框什么都没有输入
-                query = session.createQuery(hql + " where einformation.name!='管理员'");
+                query = session.createQuery(hql + " where einformation.name!='管理员' order by einformation.user.id desc");
             }
         }
         query = query.setFirstResult(offset).setMaxResults(rows);
