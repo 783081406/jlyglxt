@@ -33,12 +33,9 @@ public class EinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation1() {
-        List<Einformation> list = einformationDAO.getAllInformation(0, 1, null, null);
-        int pid = 0;
-        for (Einformation einformation : list) {
-            pid = einformation.getPid();
-        }
-        Assert.assertEquals(1001, pid);
+        int size = einformationDAO.getAllInformationNumber(null, null);
+        List<Einformation> result = einformationDAO.getAllInformation(0, 100, null, null);
+        Assert.assertEquals(size, result.size());
     }
 
     /**
@@ -47,12 +44,9 @@ public class EinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation2() {
-        List<Einformation> list = einformationDAO.getAllInformation(0, 1, "卫照捷", null);
-        int pid = 0;
-        for (Einformation einformation : list) {
-            pid = einformation.getPid();
-        }
-        Assert.assertEquals(1001, pid);
+        int size = einformationDAO.getAllInformationNumber("卫照捷", null);
+        List<Einformation> result = einformationDAO.getAllInformation(0, 100, "卫照捷", null);
+        Assert.assertEquals(size, result.size());
     }
 
     /**
@@ -61,33 +55,9 @@ public class EinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation3() {
-        List<Einformation> list = einformationDAO.getAllInformation(0, 1, null, "weizj");
-        int pid = 0;
-        for (Einformation einformation : list) {
-            pid = einformation.getPid();
-        }
-        Assert.assertEquals(1001, pid);
-    }
-
-    /**
-     * 验证:当有数据正确name与错误userName的时候是否null
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation4() {
-        List<Einformation> list = einformationDAO.getAllInformation(0, 1, "ccc", "weizj");
-        //当list为空的时候，list为[]
-        Assert.assertEquals("[]", list.toString());
-    }
-
-    /**
-     * 验证:当有数据错误name与正确userName的时候是否null
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation5() {
-        List<Einformation> list = einformationDAO.getAllInformation(0, 1, "卫照捷", "ccc");
-        Assert.assertNull(list);
+        int size = einformationDAO.getAllInformationNumber(null, "weizj");
+        List<Einformation> result = einformationDAO.getAllInformation(0, 100, null, "weizj");
+        Assert.assertEquals(size, result.size());
     }
 
     /**
@@ -96,12 +66,9 @@ public class EinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation6() {
-        List<Einformation> list = einformationDAO.getAllInformation(0, 1, "卫照捷", "weizj");
-        int pid = 0;
-        for (Einformation e : list) {
-            pid = e.getPid();
-        }
-        Assert.assertEquals(1001, pid);
+        int size = einformationDAO.getAllInformationNumber("卫照捷", "weizj");
+        List<Einformation> result = einformationDAO.getAllInformation(0, 100, "卫照捷", "weizj");
+        Assert.assertEquals(size, result.size());
     }
 
     /**
@@ -110,8 +77,9 @@ public class EinformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber1() {
+        int size = einformationDAO.getAllInformation(0, 100, null, null).size();
         int result = einformationDAO.getAllInformationNumber(null, null);
-        Assert.assertEquals(12, result);
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -145,32 +113,11 @@ public class EinformationDAOTest {
     }
 
     /**
-     * 验证:当有正确user与错误username是否返回0
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformationNumber5() {
-        int result = einformationDAO.getAllInformationNumber("卫照捷", "zj");
-        Assert.assertEquals(0, result);
-    }
-
-
-    /**
-     * 验证:当有错误user与正确username是否返回0
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformationNumber6() {
-        int result = einformationDAO.getAllInformationNumber("天地人", "weizj");
-        Assert.assertEquals(0, result);
-    }
-
-    /**
      * 验证:当正确id号时
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testAddInformation() {
         try {
             Einformation einformation = new Einformation("陈彩君", "1234567894152", "男", "广东省广州市从化区", "护工", MyDateFormat.parse("2017-07-07"), "本科", MyDateFormat.parse("2017-07-07"));
@@ -185,7 +132,7 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateInformation() {
         try {
             Einformation einformation = new Einformation("陈彩君", "1234567894561423453", "男", "123", "123",
@@ -202,7 +149,7 @@ public class EinformationDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testDeleteInformation() {
         einformationDAO.deleteInformation(1016);
     }
