@@ -31,9 +31,9 @@ public class CasehistoryDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation1() {
-        //当时数据库只有十六条数据
-        List<Casehistory> list = casehistoryDAO.getAllInformation(0, 20, null);
-        Assert.assertEquals(16, list.size());
+        int size = casehistoryDAO.getAllInformationNumber(null);
+        List<Casehistory> list = casehistoryDAO.getAllInformation(0, 100, null);
+        Assert.assertEquals(size, list.size());
     }
 
     /**
@@ -44,16 +44,6 @@ public class CasehistoryDAOTest {
     public void testGetAllInformation2() {
         List<Casehistory> list = casehistoryDAO.getAllInformation(0, 10, "张志新");
         Assert.assertEquals(1, list.size());
-    }
-
-    /**
-     * 验证：假ename时候，是否返回null
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation3() {
-        List<Casehistory> list = casehistoryDAO.getAllInformation(0, 10, "ccj");
-        Assert.assertNull(list);
     }
 
     /**
@@ -120,7 +110,7 @@ public class CasehistoryDAOTest {
     @Test
     @Transactional
     public void testIsElder2() {
-        boolean result = casehistoryDAO.isElder(16);
+        boolean result = casehistoryDAO.isElder(22);
         Assert.assertFalse(result);
     }
 
@@ -143,7 +133,7 @@ public class CasehistoryDAOTest {
     @Rollback
     public void testAddInformation2() {
         Casehistory ch = new Casehistory("1", "2", "3", "4", "5", "6", "7");
-        boolean result = casehistoryDAO.addInformation(ch, 16);
+        boolean result = casehistoryDAO.addInformation(ch, 22);
         Assert.assertTrue(result);
     }
 
