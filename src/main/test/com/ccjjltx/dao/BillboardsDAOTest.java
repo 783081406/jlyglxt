@@ -31,9 +31,9 @@ public class BillboardsDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation() {
-        //测试时候数据库的数据为10条
-        int result = billboardsDAO.getAllInformation(0, 10).size();
-        Assert.assertEquals(10, result);
+        int size = billboardsDAO.getAllInformationNumber();
+        int result = billboardsDAO.getAllInformation(0, size).size();
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -42,9 +42,9 @@ public class BillboardsDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber() {
-        //测试的时候数据库的数据为12条
+        int size = billboardsDAO.getAllInformation(0, 100).size();
         int result = billboardsDAO.getAllInformationNumber();
-        Assert.assertEquals(12, result);
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -54,22 +54,24 @@ public class BillboardsDAOTest {
     @Transactional
     @Rollback
     public void testReelectInformation() {
-        //得到倒序的第一条数据
-        //测试时，该条数据的isSelect是1;
-        List<Billboards> list = billboardsDAO.getAllInformation(0, 1);
-        int bisSelect = 2;
+        List<Billboards> list = billboardsDAO.getAllInformation(0, 100);//得到所有的值
+        int record1 = 0;
         for (Billboards bb : list) {
-            bisSelect = bb.getIsSelect();
+            if (bb.getIsSelect() == 1) {
+                record1++;
+            }
         }
+        Assert.assertTrue(record1 > 0);//断言，选中的数据大于0
         //执行重选
         billboardsDAO.reelectInformation();
-        //再次数据，查看是否为0;
-        List<Billboards> list2 = billboardsDAO.getAllInformation(0, 1);
-        int bisSelect2 = 2;
+        List<Billboards> list2 = billboardsDAO.getAllInformation(0, 1);//再次得到所有的数据
+        int record2 = 0;
         for (Billboards bb : list2) {
-            bisSelect2 = bb.getIsSelect();
+            if (bb.getIsSelect() == 1) {
+                record2++;
+            }
         }
-        Assert.assertEquals(bisSelect - 1, bisSelect2);
+        Assert.assertTrue(record2 == 0);//断言，无选中数据
     }
 
     /**
@@ -93,10 +95,8 @@ public class BillboardsDAOTest {
         //测试该方法时，数据库的bid为1的数据，isSelect为0
         int result = billboardsDAO.getSearchInformation(1).getIsSelect();
         int[] data = new int[]{1};
-        //执行更新方法
-        billboardsDAO.updateIsSelect(data);
-        //进过上面的更新操作之后，isSelect为1
-        int result2 = billboardsDAO.getSearchInformation(1).getIsSelect();
+        billboardsDAO.updateIsSelect(data);//执行更新方法
+        int result2 = billboardsDAO.getSearchInformation(1).getIsSelect();//进过上面的更新操作之后，isSelect为1
         Assert.assertEquals(result, result2 - 1);
     }
 
@@ -107,11 +107,9 @@ public class BillboardsDAOTest {
     @Transactional
     @Rollback
     public void testAddInformation() {
-        //未插入前的数据量
-        int result1 = billboardsDAO.getAllInformationNumber();
+        int result1 = billboardsDAO.getAllInformationNumber();//未插入前的数据量
         Billboards bb = new Billboards("1.jpg", "134", "1234");
-        //执行插入数据操作
-        billboardsDAO.addInformation(bb);
+        billboardsDAO.addInformation(bb);//执行插入数据操作
         int result2 = billboardsDAO.getAllInformationNumber();
         Assert.assertEquals(result1 + 1, result2);
     }
@@ -123,12 +121,9 @@ public class BillboardsDAOTest {
     @Transactional
     @Rollback
     public void testUpdateInformation() {
-        //得到一个实例化
-        Billboards bb = billboardsDAO.getSearchInformation(1);
-        //更新content数据
-        bb.setBcontent("1234");
-        //更新操作
-        billboardsDAO.updateInformation(bb);
+        Billboards bb = billboardsDAO.getSearchInformation(1);//得到一个实例化
+        bb.setBcontent("1234");//更新content数据
+        billboardsDAO.updateInformation(bb);//更新操作
         //再次得到实例化,并且对比
         Assert.assertEquals("1234", billboardsDAO.getSearchInformation(1).getBcontent());
     }
