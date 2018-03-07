@@ -45,7 +45,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
 
     /**
      * describe：验证用户登录
-     * error    1
+     * error    用户名错误
      */
     @Test
     @Transactional
@@ -57,7 +57,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
 
     /**
      * describe：验证用户登录
-     * error    2
+     * error    密码错误
      */
     @Test
     @Transactional
@@ -129,7 +129,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
             request.setParameter("password", "admin");
             loginAction.checkForntLogin();
             String result = executeAction("/backstage/signOut.action");
-            System.out.println(result);
+            Assert.assertNotNull(result);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
