@@ -174,14 +174,9 @@ public class UserAction extends ActionSupport {
      * @return 失败或成功
      */
     public String removeUser() {
-        if (userDAO.deleteUser(getId())) {
-            //如果成功执行删除语句执行以下语句
-            result = JsonMessage.returnMessage(true, "success");
-            return SUCCESS;
-        } else {//执行删除语句失败执行以下方法
-            result = JsonMessage.returnMessage(false, "删除失败");
-            return ERROR;
-        }
+        userDAO.deleteUser(getId());
+        result = JsonMessage.returnMessage(true, "success");
+        return SUCCESS;
     }
 
     /**
