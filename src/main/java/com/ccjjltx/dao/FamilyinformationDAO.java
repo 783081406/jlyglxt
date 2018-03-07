@@ -34,7 +34,7 @@ public class FamilyinformationDAO {
      */
     public List<Familyinformation> getAllInformation(int eiId) {
         Session session = factory.getCurrentSession();
-        String hql = "from Familyinformation familyinformation where elderlyinformation=:elderlyinformation";
+        String hql = "from Familyinformation familyinformation where elderlyinformation=:elderlyinformation order by fId desc";
         Elderlyinformation elderlyinformation = elderlyinformationDAO.getSearchInformation(eiId);
         Query query = session.createQuery(hql).setParameter("elderlyinformation", elderlyinformation);
         return (List<Familyinformation>) query.list();
