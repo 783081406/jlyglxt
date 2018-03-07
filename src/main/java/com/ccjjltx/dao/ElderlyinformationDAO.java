@@ -50,10 +50,10 @@ public class ElderlyinformationDAO {
                 hql += " where elderlyinformation.elder=:elder and elderlyinformation.elder.isIn!=2";
                 query = session.createQuery(hql).setParameter("elder", db_elder);
             }*/
-            hql += " where elderlyinformation.elder.ename like:ename and elderlyinformation.elder.isIn!=2";
+            hql += " where elderlyinformation.elder.ename like:ename and elderlyinformation.elder.isIn!=2 order by elderlyinformation.elder.eId desc";
             query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql+" where elderlyinformation.elder.isIn!=2");
+            query = session.createQuery(hql+" where elderlyinformation.elder.isIn!=2 order by elderlyinformation.elder.eId desc");
         }
         return (List<Elderlyinformation>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
