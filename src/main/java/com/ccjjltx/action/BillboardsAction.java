@@ -38,14 +38,9 @@ public class BillboardsAction extends ActionSupport {
     private String bcontent;
     private int[] bids;
     ////////////////////上传//////////////////////////////////
-    // 封装上传文件域的属性
-    private File upload;
-    // 封装上传文件类型的属性
-    private String uploadContentType;
-    // 封装上传文件名的属性
-    private String uploadFileName;
-    // 直接在struts.xml文件中配置的属性
-    private String savePath;
+    private File upload;// 封装上传文件域的属性
+    private String uploadFileName;// 封装上传文件名的属性
+    private String savePath;// 直接在struts.xml文件中配置的属性
     /////////////////////////////////////////////////////
     public int getPage() {
         return page;
@@ -109,14 +104,6 @@ public class BillboardsAction extends ActionSupport {
 
     public void setUpload(File upload) {
         this.upload = upload;
-    }
-
-    public String getUploadContentType() {
-        return uploadContentType;
-    }
-
-    public void setUploadContentType(String uploadContentType) {
-        this.uploadContentType = uploadContentType;
     }
 
     public String getUploadFileName() {
