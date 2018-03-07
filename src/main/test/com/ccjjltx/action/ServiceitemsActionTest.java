@@ -80,6 +80,7 @@ public class ServiceitemsActionTest extends StrutsSpringJUnit4TestCase<Serviceit
         File upload = new File("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\f1.jpg");
         serviceitemsAction.setUpload(upload);
         Assert.assertEquals("success", serviceitemsAction.saveInformation());
+        MyFile.deleteFile("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\123.jpg");
     }
 
     /**
