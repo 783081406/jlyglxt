@@ -53,10 +53,10 @@ public class CasehistoryDAO {
             }
             hql += " where casehistory.elder=:elder and casehistory.elder.isIn!=2";
             query = session.createQuery(hql).setParameter("elder", elder);*/
-            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2 order by chId desc";
+            hql += " where casehistory.elder.ename like :ename and casehistory.elder.isIn!=2 order by casehistory.elder.eId desc";
             query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql+" where casehistory.elder.isIn!=2");
+            query = session.createQuery(hql+" where casehistory.elder.isIn!=2 order by casehistory.elder.eId desc");
         }
         return (List<Casehistory>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
