@@ -33,9 +33,9 @@ public class EaeDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation1() {
-        //测试该方法的时候该表的数据为15
-        int result = eaeDAO.getAllInformation(0, 20, null).size();
-        Assert.assertEquals(15, result);
+        int size = eaeDAO.getAllInformationNumber(null);
+        int result = eaeDAO.getAllInformation(0, 100, null).size();
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -45,19 +45,8 @@ public class EaeDAOTest {
     @Transactional
     public void testGetAllInformation2() {
         //测试该方法的时候名字为张志新的只有一个
-        int result = eaeDAO.getAllInformation(0, 20, "张志新").size();
+        int result = eaeDAO.getAllInformation(0, 100, "张志新").size();
         Assert.assertEquals(1, result);
-    }
-
-    /**
-     * 验证：是否返回null(ename不存在时)
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation3() {
-        //无此用户名返回null
-        List<Eae> result = eaeDAO.getAllInformation(0, 20, "ccj");
-        Assert.assertNull(result);
     }
 
     /**
@@ -66,8 +55,9 @@ public class EaeDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber1() {
+        int size = eaeDAO.getAllInformation(0, 100, null).size();
         int result = eaeDAO.getAllInformationNumber(null);
-        Assert.assertEquals(15, result);
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -78,34 +68,6 @@ public class EaeDAOTest {
     public void testGetAllInformationNumber2() {
         int result = eaeDAO.getAllInformationNumber("张志新");
         Assert.assertEquals(1, result);
-    }
-
-    /**
-     * 验证：是否能返回所有的数据总条数(ename不存在时候)
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformationNumber3() {
-        int result = eaeDAO.getAllInformationNumber("ccj");
-        Assert.assertEquals(0, result);
-    }
-
-    /**
-     * 验证：当用户存在表数据时，是否true
-     */
-    @Test
-    @Transactional
-    public void testIsExist1() {
-        Assert.assertTrue(eaeDAO.isExist(1));
-    }
-
-    /**
-     * 验证：当用户不存在表数据时，是否false
-     */
-    @Test
-    @Transactional
-    public void testIsExist2() {
-        Assert.assertFalse(eaeDAO.isExist(21));
     }
 
     /**
@@ -133,11 +95,29 @@ public class EaeDAOTest {
     public void testAddInformation2() {
         try {
             Eae eae = new Eae(MyDateFormat.parse("2017-12-31"), null);
-            int result = eaeDAO.addInformation(eae, 21, 1);
+            int result = eaeDAO.addInformation(eae, 22, 1);
             Assert.assertEquals(2, result);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 验证：当用户存在表数据时，是否true
+     */
+    @Test
+    @Transactional
+    public void testIsExist1() {
+        Assert.assertTrue(eaeDAO.isExist(1));
+    }
+
+    /**
+     * 验证：当用户不存在表数据时，是否false
+     */
+    @Test
+    @Transactional
+    public void testIsExist2() {
+        Assert.assertFalse(eaeDAO.isExist(22));
     }
 
     /**
@@ -159,10 +139,8 @@ public class EaeDAOTest {
     public void testUpdateInformation() {
         try {
             Eae eae = eaeDAO.getSearchEae(1);
-            //重新更新字段信息
-            eae.setStime(MyDateFormat.parse("2017-11-11"));
-            //更新
-            eaeDAO.updateInformation(eae);
+            eae.setStime(MyDateFormat.parse("2017-11-11"));//重新更新字段信息
+            eaeDAO.updateInformation(eae);//更新
             //重新获取数据，比较更新的字段
             Assert.assertEquals("2017-11-11", MyDateFormat.format(eaeDAO.getSearchEae(1).getStime()));
         } catch (ParseException e) {
@@ -178,8 +156,7 @@ public class EaeDAOTest {
     @Rollback
     public void testDeleteInformation() {
         int count1 = eaeDAO.getAllInformationNumber(null);
-        //删除数据
-        eaeDAO.deleteInformation(1);
+        eaeDAO.deleteInformation(1);//删除数据
         int count2 = eaeDAO.getAllInformationNumber(null);
         Assert.assertEquals(count2, count1 - 1);
     }
