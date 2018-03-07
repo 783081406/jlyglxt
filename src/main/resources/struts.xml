@@ -115,7 +115,7 @@
         </action>
     </package>
 
-    <!--信息中心>>信息查看>>老人信息信息-->
+    <!--信息中心>>信息查看>>老人信息-->
     <package name="elderlyimaction" namespace="/elderlyimaction" extends="struts-default,json-default">
         <action name="*" class="elderlyimAction" method="{1}">
             <result name="success" type="json">
