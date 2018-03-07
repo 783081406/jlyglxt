@@ -119,7 +119,7 @@ public class UserAction extends ActionSupport {
             js.put("id", user.getId());
             js.put("userName", user.getUserName());
             js.put("password", user.getPassword());
-            js.put("uType", user.getUType()==1?"管理员":"普通");
+            js.put("uType", user.getUType() == 1 ? "管理员" : "普通");
             jsonArray.add(js);
         }
         result.put("rows", jsonArray);
@@ -164,15 +164,8 @@ public class UserAction extends ActionSupport {
         user.setPassword(getPassword());
         user.setUType(getUType());
         //执行更新操作
-        if (userDAO.updateUser(user)) {
-            //如果返回true，表示更新成功执行if里面的语句
-            result = JsonMessage.returnMessage(true, "success");
-            return SUCCESS;
-        } else {
-            //如果返回false，表示更新失败，执行下面语句
-            result = JsonMessage.returnMessage(false, "更新失败");
-            return ERROR;
-        }
+        userDAO.updateUser(user);
+        return SUCCESS;
     }
 
     /**
