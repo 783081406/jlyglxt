@@ -26,43 +26,23 @@ public class ElderDAOTest {
     private ElderDAO elderDAO;
 
     /**
-     * 验证：当输入错误用户时候是否返回null
-     */
-    @Test
-    @Transactional
-    public void testGetSearchElder1() {
-        Elder elder = elderDAO.getSearchElder("ccj");
-        Assert.assertNull(elder);
-    }
-
-    /**
-     * 验证：当输入错误用户时候是否返回null
-     */
-    @Test
-    @Transactional
-    public void testGetSearchElder2() {
-        Elder elder = elderDAO.getSearchElder("张志新");
-        Assert.assertEquals(1, elder.getEId());
-    }
-
-    /**
      * 验证:是否返回所有的Elder信息
      */
     @Test
     @Transactional
     public void testGetAllElder() {
         List<Elder> list = elderDAO.getAllElder();
-        Assert.assertEquals(15, list.size());
+        Assert.assertNotNull(list);
     }
 
     /**
-     * 验证:当正确的eId的是否是否返回正确的Elder实例化
+     * 验证：当输入错误用户时候是否返回null
      */
     @Test
     @Transactional
-    public void testGetSearchElder3() {
-        Elder db_elder = elderDAO.getSearchElder(1);
-        Assert.assertEquals(1, db_elder.getEId());
+    public void testGetSearchElder1() {
+        Elder elder = elderDAO.getSearchElder("张志新");
+        Assert.assertEquals(1, elder.getEId());
     }
 
     /**
@@ -70,7 +50,7 @@ public class ElderDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testAddInformation() {
         Elder e = new Elder("ccc", 1);
         elderDAO.addInformation(e);
@@ -82,7 +62,7 @@ public class ElderDAOTest {
      */
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback
     public void testUpdateInformation() {
         Elder e = elderDAO.getSearchElder(16);
         e.setEname("ccc");
@@ -97,8 +77,10 @@ public class ElderDAOTest {
     @Transactional
     @Rollback
     public void testDeleteInformation() {
-        Elder elder = elderDAO.getSearchElder("陈岑");
-        elderDAO.deleteInformation(elder);
-        Assert.assertNull(elderDAO.getSearchElder("陈岑"));
+        int size1 = elderDAO.getAllElder().size();//删除前的数据量
+        Elder elder = elderDAO.getSearchElder("陈测试");
+        elderDAO.deleteInformation(elder);//执行删除操作
+        int size2 = elderDAO.getAllElder().size();//删除后的数据量
+        Assert.assertEquals(size1 - 1, size2);
     }
 }
