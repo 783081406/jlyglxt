@@ -79,7 +79,7 @@ public class SserviceActionTest extends StrutsSpringJUnit4TestCase<SserviceActio
     @Transactional
     @Rollback
     public void testAddInformation3() {
-        sserviceAction.setEname("16");
+        sserviceAction.setEname("22");
         sserviceAction.setStype("type");
         sserviceAction.setStime("time");
         sserviceAction.setRemark("remark");
