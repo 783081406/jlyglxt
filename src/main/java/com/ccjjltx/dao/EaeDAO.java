@@ -49,10 +49,10 @@ public class EaeDAO {
                 hql += " where elder=:elder";
                 query = session.createQuery(hql).setParameter("elder", elder);
             }*/
-            hql += " where elder.ename like :ename";
+            hql += " where eae.elder.ename like :ename order by eae.elder.eId desc";
             query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
         } else {//并非通过搜索框提交过来的
-            query = session.createQuery(hql);
+            query = session.createQuery(hql+" order by eae.elder.eId desc");
         }
         return (List<Eae>) query.setFirstResult(offset).setMaxResults(rows).list();
     }
