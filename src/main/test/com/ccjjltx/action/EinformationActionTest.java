@@ -50,20 +50,6 @@ public class EinformationActionTest extends StrutsSpringJUnit4TestCase<Einformat
     }
 
     /**
-     * describe：到全部或者特地（搜索框触发）的员工信息数据
-     * 搜索框：name is not null , userName  is  not null
-     */
-/*    @Test
-    @Transactional
-    public void testGetAllInformation2() {
-        einformationAction.setPage(1);
-        einformationAction.setRows(3);
-        einformationAction.setName("卫");
-        einformationAction.setUserName("w");
-        Assert.assertEquals("success", einformationAction.getAllInformation());
-    }*/
-
-    /**
      * describe：增加新员工信息
      * success
      */
@@ -89,7 +75,7 @@ public class EinformationActionTest extends StrutsSpringJUnit4TestCase<Einformat
 
     /**
      * describe：增加新员工信息
-     * error
+     * error  用户帐号错误
      */
     @Test
     @Transactional
@@ -137,7 +123,7 @@ public class EinformationActionTest extends StrutsSpringJUnit4TestCase<Einformat
 
     /**
      * describe：更新信息
-     * error
+     * error  用户帐号错误
      */
     @Test
     @Transactional
