@@ -2,7 +2,6 @@ package com.ccjjltx.dao;
 
 import com.ccjjltx.domain.Einformation;
 import com.ccjjltx.domain.User;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -150,25 +149,15 @@ public class UserDAO {
      * 根据id，得到User，进而删除User
      *
      * @param id User的id号，使用get方法根据主键得到User
-     * @return 删除成功得到true，失败返回false
      */
-    public boolean deleteUser(int id) {
+    public void deleteUser(int id) {
         Session session = factory.getCurrentSession();
         User db_user = (User) session.get(User.class, id);//根据id得到User
-        boolean result = true;
-        try {
-            //先得到员工信息
-            Einformation db_ef = einformationDAO.getSearchEinformation(db_user);
-            if (db_ef != null) {
-                //删除Einformation表中的信息
-                einformationDAO.deleteInformation(db_ef.getPid());
-            }
-            //删除操作
-            session.delete(db_user);
-        } catch (HibernateException e) {
-            result = false;
+        Einformation db_ef = einformationDAO.getSearchEinformation(db_user);//先得到员工信息
+        if (db_ef != null) {
+            einformationDAO.deleteInformation(db_ef.getPid());//删除Einformation表中的信息
         }
-        return result;
+        session.delete(db_user);//删除操作
     }
 
     /**
@@ -184,14 +173,14 @@ public class UserDAO {
         return (User) query.uniqueResult();
     }
 
-    /**
+    /*
      * 根据id得到User
      *
      * @param id 要查询的id号
      * @return User实例化
      */
-    public User searchUser(int id) {
+/*    public User searchUser(int id) {
         Session session = factory.getCurrentSession();
         return (User) session.get(User.class, id);
-    }
+    }*/
 }
