@@ -36,7 +36,7 @@ public class MedicalrecordDAO {
         Session session = factory.getCurrentSession();
         //得到casehistory实例化
         Casehistory casehistory = casehistoryDAO.getSearchInformation(chId);
-        String hql = "from Medicalrecord medicalrecord where casehistory=:casehistory";
+        String hql = "from Medicalrecord medicalrecord where casehistory=:casehistory order by mrId desc";
         Query query = session.createQuery(hql).setParameter("casehistory", casehistory);
         return (List<Medicalrecord>) query.list();
     }
