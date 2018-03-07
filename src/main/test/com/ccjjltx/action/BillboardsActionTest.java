@@ -80,6 +80,8 @@ public class BillboardsActionTest extends StrutsSpringJUnit4TestCase<BillboardsA
         billboardsAction.setUploadFileName("123.jpg");
         File upload = new File("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\a2.jpg");
         billboardsAction.setUpload(upload);
+        billboardsAction.setBtitle("123");
+        billboardsAction.setBcontent("123");
         Assert.assertEquals("success", billboardsAction.saveInformation());
     }
 
