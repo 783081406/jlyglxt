@@ -1,7 +1,7 @@
 /**
  * Created by ccjjltx on 2017/10/16.
- * 单元测试，测试相应java类的相关功能
+ * 单元测试
  *
- * @author ccj
+ * @author 陈彩君
  * @version 1.0
  */
