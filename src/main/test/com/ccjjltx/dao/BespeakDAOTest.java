@@ -31,9 +31,9 @@ public class BespeakDAOTest {
     @Test
     @Transactional
     public void testGetAllHandleInformation() {
-        //测试该方法时，数据库的数据已处理为12
-        int result = bespeakDAO.getAllHandleInformation(0, 20).size();
-        Assert.assertEquals(12, result);
+        int size = bespeakDAO.getAllHandleInformationNumber();
+        int result = bespeakDAO.getAllHandleInformation(0, size).size();
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -53,9 +53,10 @@ public class BespeakDAOTest {
     @Test
     @Transactional
     public void testGetAllUnhandleInformation() {
+        int size = bespeakDAO.getAllUnhandleInformationNumber();
         //测试该方法时，数据库的数据已处理为11
-        int result = bespeakDAO.getAllUnhandleInformation(0, 20).size();
-        Assert.assertEquals(11, result);
+        int result = bespeakDAO.getAllUnhandleInformation(0, size).size();
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -87,12 +88,9 @@ public class BespeakDAOTest {
     @Rollback
     public void testHandleInformation() {
         Bespeak bs = bespeakDAO.getSearchInformation(1);
-        //修改为处理状态
-        bs.setIshandle(1);
-        //添加处理人
-        bs.setHandleUser("ccj");
-        //添加处理时间
-        bs.setHandleDate(new Date());
+        bs.setIshandle(1);//修改为处理状态
+        bs.setHandleUser("ccj");//添加处理人
+        bs.setHandleDate(new Date());//添加处理时间
         bespeakDAO.handleInformation(bs);
     }
 
