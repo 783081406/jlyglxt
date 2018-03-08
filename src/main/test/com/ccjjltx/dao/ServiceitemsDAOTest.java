@@ -31,9 +31,9 @@ public class ServiceitemsDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation() {
-        //测试时候数据库的数据为12条
-        int result = serviceitemsDAO.getAllInformation(0, 12).size();
-        Assert.assertEquals(12, result);
+        int size = serviceitemsDAO.getAllInformationNumber();
+        int result = serviceitemsDAO.getAllInformation(0, 100).size();
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -42,9 +42,9 @@ public class ServiceitemsDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber() {
-        //测试的时候数据库的数据为12条
+        int size = serviceitemsDAO.getAllInformation(0, 100).size();
         int result = serviceitemsDAO.getAllInformationNumber();
-        Assert.assertEquals(12, result);
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -54,22 +54,24 @@ public class ServiceitemsDAOTest {
     @Transactional
     @Rollback
     public void testReelectInformation() {
-        //得到得到的第一条数据
-        //测试时，该条数据的isSelect是1;
-        List<Serviceitems> list = serviceitemsDAO.getAllInformation(0, 1);
-        int sisSelect = 2;
-        for (Serviceitems si : list) {
-            sisSelect = si.getIsSelect();
+        List<Serviceitems> list = serviceitemsDAO.getAllInformation(0, 90);//得到所有的值
+        int old_record = 0;
+        for (Serviceitems bb : list) {
+            if (bb.getIsSelect() == 1) {
+                ++old_record;
+            }
         }
+        Assert.assertTrue(old_record > 0);//断言，选中的数据大于0
         //执行重选
         serviceitemsDAO.reelectInformation();
-        //再次得到数据，查看是否为0
-        List<Serviceitems> list2 = serviceitemsDAO.getAllInformation(0, 1);
-        int sisSelect2 = 2;
-        for (Serviceitems si : list2) {
-            sisSelect2 = si.getIsSelect();
+        List<Serviceitems> list2 = serviceitemsDAO.getAllInformation(0, 90);//再次得到所有的数据
+        int new_record = 0;
+        for (Serviceitems bb : list2) {
+            if (bb.getIsSelect() == 1) {
+                ++new_record;
+            }
         }
-        Assert.assertEquals(sisSelect - 1, sisSelect2);
+        Assert.assertTrue(new_record == 0);//断言，无选中数据
     }
 
     /**
@@ -107,12 +109,11 @@ public class ServiceitemsDAOTest {
     @Transactional
     @Rollback
     public void testAddInformation() {
-        //为插入前的数据量
         int result1 = serviceitemsDAO.getAllInformationNumber();
         Serviceitems si = new Serviceitems("f1.jpg", "1234", "1234");
         //执行插入数据操作
         serviceitemsDAO.addInformation(si);
-        int result2 = serviceitemsDAO.getAllInformationNumber();
+        int result2 = serviceitemsDAO.getAllInformationNumber();//未插入前的数据量
         Assert.assertEquals(result1 + 1, result2);
     }
 
