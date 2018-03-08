@@ -49,14 +49,10 @@ public class NursingfeeDAOTest {
     @Transactional
     @Rollback
     public void testUpdateInformation() {
-        //得到一个实例化
-        Nursingfee nf = nursingfeeDAO.getSearchInformation(1);
-        //修改数据
-        nf.setNtype("1234");
-        //更新数据
-        nursingfeeDAO.updateInformation(nf);
-        //再次得到
-        Nursingfee nf1 = nursingfeeDAO.getSearchInformation(1);
+        Nursingfee nf = nursingfeeDAO.getSearchInformation(1);//得到一个实例化
+        nf.setNtype("1234");//修改数据
+        nursingfeeDAO.updateInformation(nf);//更新数据
+        Nursingfee nf1 = nursingfeeDAO.getSearchInformation(1);//再次得到该实例化
         Assert.assertEquals("1234", nf1.getNtype());
     }
 }
