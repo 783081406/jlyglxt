@@ -4,16 +4,13 @@ import net.sf.json.JSONObject;
 
 /**
  * Created by ccjjltx on 2017/10/21.
- * 工具类，无构造器
+ * 工具类
  * 作用：将成功与错误信息封装成JsonObject
  *
  * @author ccj
  * @version 1.0
  */
 public class JsonMessage {
-    private JsonMessage() {
-    }
-
     /**
      * 设置json返回的结果值处理中心
      *
