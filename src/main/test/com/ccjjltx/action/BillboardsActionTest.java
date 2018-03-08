@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by ccjjltx on 2018/3/5.
@@ -76,14 +77,18 @@ public class BillboardsActionTest extends StrutsSpringJUnit4TestCase<BillboardsA
     @Transactional
     @Rollback
     public void testSaveInformation() {
-        billboardsAction.setSavePath("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards");
-        billboardsAction.setUploadFileName("123.jpg");
-        File upload = new File("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\a2.jpg");
-        billboardsAction.setUpload(upload);
-        billboardsAction.setBtitle("123");
-        billboardsAction.setBcontent("123");
-        Assert.assertEquals("success", billboardsAction.saveInformation());
-        MyFile.deleteFile("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\123.jpg");
+        try {
+            billboardsAction.setSavePath("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards");
+            billboardsAction.setUploadFileName("123.jpg");
+            File upload = new File("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\a2.jpg");
+            billboardsAction.setUpload(upload);
+            billboardsAction.setBtitle("123");
+            billboardsAction.setBcontent("123");
+            Assert.assertEquals("success", billboardsAction.saveInformation());
+            MyFile.deleteFile("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\123.jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
