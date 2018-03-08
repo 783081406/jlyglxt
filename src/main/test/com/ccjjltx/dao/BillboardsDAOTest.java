@@ -64,7 +64,7 @@ public class BillboardsDAOTest {
         Assert.assertTrue(record1 > 0);//断言，选中的数据大于0
         //执行重选
         billboardsDAO.reelectInformation();
-        List<Billboards> list2 = billboardsDAO.getAllInformation(0, 1);//再次得到所有的数据
+        List<Billboards> list2 = billboardsDAO.getAllInformation(0, 100);//再次得到所有的数据
         int record2 = 0;
         for (Billboards bb : list2) {
             if (bb.getIsSelect() == 1) {
