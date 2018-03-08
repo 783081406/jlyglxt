@@ -8,11 +8,6 @@ package com.ccjjltx.utils;
  * @version 1.0
  */
 public class ResourcePath {
-    //将构造器私有化，不可实例，工具类，单例模式
-    private ResourcePath() {
-
-    }
-
     public static String parse(String str) {
         return str.replace("\\\\", "\\");
     }
