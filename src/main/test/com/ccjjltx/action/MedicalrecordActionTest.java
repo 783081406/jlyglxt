@@ -1,6 +1,5 @@
 package com.ccjjltx.action;
 
-import com.ccjjltx.utils.MyDateFormat;
 import org.apache.struts2.StrutsSpringJUnit4TestCase;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 
 /**
  * Created by ccjjltx on 2018/3/5.
