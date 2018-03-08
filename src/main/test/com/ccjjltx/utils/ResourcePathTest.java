@@ -16,5 +16,6 @@ public class ResourcePathTest {
         String str = "e:\\\\123\\\\1234";
         String result = ResourcePath.parse(str);
         Assert.assertEquals("e:\\123\\1234", result);
+        ResourcePath resourcePath = new ResourcePath();//弥补计算规则出错
     }
 }
