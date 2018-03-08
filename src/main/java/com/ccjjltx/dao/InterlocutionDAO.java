@@ -85,13 +85,13 @@ public class InterlocutionDAO {
      */
     public void updateIsSelect(int[] qaids) {
         Session session = factory.getCurrentSession();
-        Interlocution il;
+        Interlocution i2;
         int i = 0;
         for (int qaid : qaids) {
-            il = getSearchInformation(qaid);
-            il.setIsSelect(1);
-            session.update(il);
-            if (i % 8 == 0) {
+            i2 = getSearchInformation(qaid);
+            i2.setIsSelect(1);
+            session.update(i2);
+            if (i % 9 == 0) {
                 session.flush();
                 session.clear();
             }
