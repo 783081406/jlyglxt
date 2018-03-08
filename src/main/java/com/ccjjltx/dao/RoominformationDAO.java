@@ -56,19 +56,10 @@ public class RoominformationDAO {
         //拼接的查询语句
         String hqlSuffix = " order by floor asc,roomNumber asc";
         Query query;
-        Elder db_elder;
         //搜索引擎有提交数据过来触发
         if (ename != null) {
-/*            db_elder = elderDAO.getSearchElder(ename);
-            if (db_elder == null) {
-                return null;
-            } else {
-                hql += " where elder=:elder" + hqlSuffix;
-                query = session.createQuery(hql).setParameter("elder", db_elder).setFirstResult(offset).setMaxResults(rows);
-                return (List<Roominformation>) query.list();
-            }*/
             hql += " where roominformation.elder.ename like :ename" + hqlSuffix;
-            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%").setFirstResult(offset).setMaxResults(rows);
+            query = session.createQuery(hql).setParameter("ename", "%" + ename + "%").setFirstResult(offset).setMaxResults(rows);
             return (List<Roominformation>) query.list();
         } else {
             hql += hqlSuffix;
@@ -88,17 +79,9 @@ public class RoominformationDAO {
         //总查询语句
         String hql = "select count(*) from Roominformation roominformation";
         Query query;
-        Elder db_elder;
         if (ename != null) {
-/*            db_elder = elderDAO.getSearchElder(ename);
-            if (db_elder == null) {
-                return 0;
-            } else {
-                hql += " where elder=:elder";
-                query = session.createQuery(hql).setParameter("elder", db_elder);
-            }*/
-            hql += " where roominformation.elder.ename like :ename" ;
-            query = session.createQuery(hql).setParameter("ename", "%"+ename+"%");
+            hql += " where roominformation.elder.ename like :ename";
+            query = session.createQuery(hql).setParameter("ename", "%" + ename + "%");
         } else {
             query = session.createQuery(hql);
         }
@@ -135,7 +118,7 @@ public class RoominformationDAO {
             }
             /////////////////////////////////////////////////////////
             //验证该老人是否已经房间了
-            Elder db_elder;
+            Elder db_elder = null;
             if (eId != 0) {
                 //验证该老人是否已有房间
                 if (isLive(eId)) {//表示已经有房间//返回2插入失败
@@ -144,9 +127,6 @@ public class RoominformationDAO {
                     //表示还没有房间则实例化
                     db_elder = elderDAO.getSearchElder(eId);
                 }
-            } else {
-                //表示为eId为空
-                db_elder = null;
             }
             ///////////////////通过所有的判断则插入数据///////////////////////
             Roominformation ri = new Roominformation(floor, roomNumber, db_roomcost, db_elder);
@@ -278,6 +258,7 @@ public class RoominformationDAO {
 
     /**
      * 删除数据
+     *
      * @param rId 主键
      */
     public void deleteInformation(int rId) {
