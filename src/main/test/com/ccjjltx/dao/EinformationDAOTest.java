@@ -151,6 +151,6 @@ public class EinformationDAOTest {
     @Transactional
     @Rollback
     public void testDeleteInformation() {
-        einformationDAO.deleteInformation(1016);
+        einformationDAO.deleteInformation(1001);
     }
 }
