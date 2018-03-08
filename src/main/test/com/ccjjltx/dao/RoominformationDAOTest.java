@@ -35,56 +35,42 @@ public class RoominformationDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation1() {
-        List<Roominformation> list = roominformationDAO.getAllInformation(0, 1, null);
-        int rid = 0;
-        for (Roominformation roominformation : list) {
-            rid = roominformation.getRId();
-        }
-        Assert.assertEquals(1, rid);
+        int size = roominformationDAO.getAllInformationNumber(null);
+        List<Roominformation> result = roominformationDAO.getAllInformation(0, 100, null);
+        Assert.assertEquals(size, result.size());
     }
 
     /**
-     * 验证:错误ename的时候是否返回null
+     * 验证:当有ename是否返回正确的信息
      */
     @Test
     @Transactional
     public void testGetAllInformation2() {
-        List<Roominformation> list = roominformationDAO.getAllInformation(0, 1, "123456");
-        Assert.assertNull(list);
+        int size = roominformationDAO.getAllInformationNumber("张志新");
+        List<Roominformation> result = roominformationDAO.getAllInformation(0, 100, "张志新");
+        Assert.assertEquals(size, result.size());
     }
 
     /**
-     * 验证:无ename的时候是否返回正确的信息
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation3() {
-        List<Roominformation> list = roominformationDAO.getAllInformation(0, 1, "张志新");
-        int rid = 0;
-        for (Roominformation roominformation : list) {
-            rid = roominformation.getRId();
-        }
-        Assert.assertEquals(1, rid);
-    }
-
-    /**
-     * 验证：无enmae的是否是否返回正确的总条数
+     * 验证：无enmae的时候是否返回正确的总条数
      */
     @Test
     @Transactional
     public void testGetAllInformationNumber1() {
-        int result = roominformationDAO.getAllInformationNumber(null);
-        Assert.assertEquals(32, result);
+        int size = roominformationDAO.getAllInformationNumber(null);
+        int result = roominformationDAO.getAllInformation(0, 100, null).size();
+        Assert.assertEquals(size, result);
     }
 
     /**
-     * 验证：无enmae的是否是否返回正确的总条数
+     * 验证：有enmae的时候是否返回正确的总条数
      */
     @Test
     @Transactional
     public void testGetAllInformationNumber2() {
+        int size = roominformationDAO.getAllInformation(0, 100, "张志新").size();
         int result = roominformationDAO.getAllInformationNumber("张志新");
-        Assert.assertEquals(1, result);
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -153,7 +139,7 @@ public class RoominformationDAOTest {
     @Test
     @Transactional
     public void testIsLive1() {
-        boolean result = roominformationDAO.isLive(1);
+        boolean result = roominformationDAO.isLive(3);
         Assert.assertTrue(result);
     }
 
@@ -163,7 +149,7 @@ public class RoominformationDAOTest {
     @Test
     @Transactional
     public void testIsLive2() {
-        boolean result = roominformationDAO.isLive(15);
+        boolean result = roominformationDAO.isLive(22);
         Assert.assertFalse(result);
     }
 
@@ -173,7 +159,7 @@ public class RoominformationDAOTest {
     @Test
     @Transactional
     public void testIsLive3() {
-        boolean result = roominformationDAO.isLive(1, 2);
+        boolean result = roominformationDAO.isLive(2, 6);
         Assert.assertTrue(result);
     }
 
@@ -183,7 +169,7 @@ public class RoominformationDAOTest {
     @Test
     @Transactional
     public void testIsLive4() {
-        boolean result = roominformationDAO.isLive(1, 1);
+        boolean result = roominformationDAO.isLive(2, 1);
         Assert.assertFalse(result);
     }
 
