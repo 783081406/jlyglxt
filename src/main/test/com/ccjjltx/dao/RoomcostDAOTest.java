@@ -45,21 +45,10 @@ public class RoomcostDAOTest {
     }
 
     /**
-     * 验证：当错误的类型名的是否返回null
-     */
-    @Test
-    @Transactional
-    public void testGetSearchRoomcost3() {
-        Roomcost roomcost = roomcostDAO.getSearchRoomcost("ccj");
-        Assert.assertNull(roomcost);
-    }
-
-    /**
      * 验证:是否能新增房间类型与房价价格新数据
      */
     @Test
     @Transactional
-    //新增，防止数据冗余，回滚
     @Rollback
     public void testAddRoomcost() {
         roomcostDAO.addRoomcost("ccj", 1200);
@@ -78,42 +67,12 @@ public class RoomcostDAOTest {
     }
 
     /**
-     * 验证：是否得到三条数据
+     * 验证：是否得到所有数据
      */
     @Test
     @Transactional
-    public void testGetAllInformation1() {
+    public void testGetAllInformation() {
         int result = roomcostDAO.getAllInformation().size();
         Assert.assertEquals(3, result);
-    }
-
-    /**
-     * 验证：得到的第一条数据主键是否是1
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation2() {
-        Roomcost rc1 = roomcostDAO.getAllInformation().get(0);
-        Assert.assertEquals(1, rc1.getRcId());
-    }
-
-    /**
-     * 验证：得到的第二条数据主键是否是2
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation3() {
-        Roomcost rc2 = roomcostDAO.getAllInformation().get(1);
-        Assert.assertEquals(2, rc2.getRcId());
-    }
-
-    /**
-     * 验证：得到的第三条数据主键是否是3
-     */
-    @Test
-    @Transactional
-    public void testGetAllInformation4() {
-        Roomcost rc3 = roomcostDAO.getAllInformation().get(2);
-        Assert.assertEquals(3, rc3.getRcId());
     }
 }
