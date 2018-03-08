@@ -29,10 +29,9 @@ public class UserDAOTest {
      * 验证：当错误用户名时候是否返回1，表示用户名错误
      */
     @Test
+    @Transactional
     public void testCheckUser1() {
-        //实例化一个User类
-        int iResult = userDAO.checkUser("1234", "1234");
-        //断言
+        int iResult = userDAO.checkUser("1234", "1234");//实例化一个User类
         Assert.assertEquals(1, iResult);
     }
 
@@ -40,10 +39,9 @@ public class UserDAOTest {
      * 验证：当正确用户名错误密码时候是否返回2，表示密码错误
      */
     @Test
+    @Transactional
     public void testCheckUser2() {
-        //实例化一个User类
-        int iResult = userDAO.checkUser("admin", "1234");
-        //断言
+        int iResult = userDAO.checkUser("admin", "1234");//实例化一个User类
         Assert.assertEquals(2, iResult);
     }
 
@@ -51,6 +49,7 @@ public class UserDAOTest {
      * 验证：当正确用户名和正确密码时候是否返回3，表验证通过
      */
     @Test
+    @Transactional
     public void testCheckUser3() {
         //实例化一个User类
         int iResult = userDAO.checkUser("admin", "admin");
@@ -62,48 +61,42 @@ public class UserDAOTest {
      * 验证：是否能返回全部的User
      */
     @Test
+    @Transactional
     public void testGetAllUser1() {
-        //得到一个list，该list只有一条数据，首条数据，id为1，是admin的账户
-        List<User> list = userDAO.getAllUser(0, 1, null);
-        int id = 0;
-        for (User user : list) {
-            //如果正确返回，这个时候id变成1
-            id = user.getId();
-        }
-        Assert.assertEquals(1, id);
+        int size = userDAO.getAllUserNumber(null);
+        List<User> result = userDAO.getAllUser(0, 100, null);
+        Assert.assertEquals(size, result.size());
     }
 
     /**
      * 验证：是否能返回查询的数据
      */
     @Test
+    @Transactional
     public void testGetAllUser2() {
-        //得到一个list，该list只有一条数据，首条数据，id为1，是admin的账户
-        List<User> list = userDAO.getAllUser(0, 1, "admi");
-        int id = 0;
-        for (User user : list) {
-            //如果正确返回，这个时候id变成1
-            id = user.getId();
-        }
-        Assert.assertEquals(1, id);
+        int size = userDAO.getAllUserNumber("admi");
+        List<User> result = userDAO.getAllUser(0, 100, "admi");
+        Assert.assertEquals(size, result.size());
     }
 
     /**
      * 验证：是否返回正确的总条数
      */
     @Test
+    @Transactional
     public void testGetAllUserNumber1() {
-        //得到user表的总条数
-        int total = userDAO.getAllUserNumber(null);
-        Assert.assertEquals(15, total);
+        int size = userDAO.getAllUser(0, 100, null).size();
+        int total = userDAO.getAllUserNumber(null);//得到user表的总条数
+        Assert.assertEquals(size, total);
     }
 
     /**
      * 验证：是否返回正确的总条数
      */
     @Test
+    @Transactional
     public void testGetAllUserNumber2() {
-        //得到user表的总条数
+        int size = userDAO.getAllUser(0, 100, "admi").size();
         int total = userDAO.getAllUserNumber("admi");
         Assert.assertEquals(1, total);
     }
@@ -112,6 +105,7 @@ public class UserDAOTest {
      * 验证：当uType非1或2时候是否返回false
      */
     @Test
+    @Transactional
     public void testAddUser1() {
         int result = userDAO.addUser("1234", "134", 3);
         Assert.assertEquals(1, result);
@@ -121,6 +115,7 @@ public class UserDAOTest {
      * 验证：当有相同用户名时候是否返回false
      */
     @Test
+    @Transactional
     public void testAddUser2() {
         int result = userDAO.addUser("ccj2", "ccj2", 2);
         Assert.assertEquals(2, result);
@@ -130,9 +125,7 @@ public class UserDAOTest {
      * 验证：当唯一用户名，密码和正确utype时，数据是否插入成功
      */
     @Test
-    //标明此方法需使用事务
     @Transactional
-    //标明使用完此方法后事务回滚
     @Rollback
     public void testAddUser3() {
         int result = userDAO.addUser("ccj15", "ccj15", 2);
@@ -143,36 +136,13 @@ public class UserDAOTest {
      * 验证：全部信息错误是否是否返回false
      */
     @Test
-    //标明此方法需使用事务
     @Transactional
-    //标明使用完此方法后事务回滚
     @Rollback
     public void testUpdateUser1() {
-        User user = new User();
-        user.setId(100);
-        user.setUserName("ccj100");
-        user.setPassword("ccj100");
-        user.setUType(2);
-        //预期应该是插入失败，返回false
-        //boolean result = userDAO.updateUser(user);
-        //Assert.assertFalse(result);
-    }
-
-    /**
-     * 验证：全部信息正确是否是否能更新
-     */
-    @Test
-    //标明此方法需使用事务
-    @Transactional
-    //标明使用完此方法后事务回滚
-    @Rollback
-    public void testUpdateUser2() {
-        User user = new User();
-        user.setUserName("ccj1515");
-        user.setPassword("ccj1515");
-        user.setUType(2);
-        //预期应该是插入成功返回true
+        User user = userDAO.searchUser(1);
+        user.setPassword("123");
         userDAO.updateUser(user);
+        Assert.assertEquals("123", userDAO.searchUser(1).getPassword());
     }
 
     /**
@@ -182,9 +152,10 @@ public class UserDAOTest {
     @Transactional
     @Rollback
     public void testDeleteUser() {
-        //应该返回true
-        //boolean result = userDAO.deleteUser(15);
-        //Assert.assertTrue(result);
+        int result1 = userDAO.getAllUserNumber(null);//得到删除前的总数
+        userDAO.deleteUser(1);
+        int result2 = userDAO.getAllUserNumber(null);//得到删除后的总数
+        Assert.assertEquals(result1 - 1, result2);
     }
 
     /**
@@ -192,21 +163,10 @@ public class UserDAOTest {
      */
     @Test
     @Transactional
-    public void testSearchUser1() {
+    public void testSearchUser() {
         User db_User = userDAO.searchUser("admin");
         //admin数据的id号是1
         Assert.assertEquals(1, db_User.getId());
-    }
-
-    /**
-     * 验证：输入不合法用户名是否返回null
-     */
-    @Test
-    @Transactional
-    public void testSearchUser2() {
-        User db_User = userDAO.searchUser("123456789");
-        //数据库无此用户名，所以应该返回null
-        Assert.assertNull(db_User);
     }
 
     /**
@@ -215,7 +175,8 @@ public class UserDAOTest {
     @Test
     @Transactional
     public void testGetAllUser3() {
-        Assert.assertEquals(16, userDAO.getAllUser().size());
+        int size = userDAO.getAllUserNumber(null);
+        Assert.assertEquals(size, userDAO.getAllUser().size());
     }
 
 
@@ -227,15 +188,5 @@ public class UserDAOTest {
     public void testSearchUser3() {
         User db_user = userDAO.searchUser(1);
         Assert.assertEquals(1, db_user.getId());
-    }
-
-    /**
-     * 验证重载的searchUser是否能错误用户名返回null
-     */
-    @Test
-    @Transactional
-    public void testSearchUser4() {
-        User db_user = userDAO.searchUser(100);
-        Assert.assertNull(db_user);
     }
 }
