@@ -23,6 +23,7 @@ public class MyDateFormatTest {
     public void testFormat() {
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         Assert.assertEquals(date, MyDateFormat.format(new Date()));
+        MyDateFormat myDateFormat = new MyDateFormat();//弥补计算规则出错
     }
 
     /**
