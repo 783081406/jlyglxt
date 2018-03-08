@@ -36,6 +36,7 @@ public class RoominformationAction extends ActionSupport {
     private String rType;
     private int rCost;
     private String ename;
+
     ////////////////////////////////////////////////////////////
     public int getPage() {
         return page;
@@ -190,7 +191,8 @@ public class RoominformationAction extends ActionSupport {
         try {
             eId = Integer.parseInt(getEname());
         } catch (NumberFormatException e) {
-            eId = 0;
+            result = JsonMessage.returnMessage(false, "请选择正确人员");
+            return ERROR;
         }
         //执行更新操作
         int this_result = roominformationDAO.updateInformation(db_ri, eId);
