@@ -30,9 +30,9 @@ public class InterlocutionDAOTest {
     @Test
     @Transactional
     public void testGetAllInformation() {
-        //测试该方法时数据库的数据为16
-        int result = interlocutionDAO.getAllInformation(0, 20).size();
-        Assert.assertEquals(16, result);
+        int size = interlocutionDAO.getAllInformationNumber();
+        int result = interlocutionDAO.getAllInformation(0, 100).size();
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -41,9 +41,9 @@ public class InterlocutionDAOTest {
     @Test
     @Transactional
     public void testGetAllInformationNumber() {
-        int result = interlocutionDAO.getAllInformation(0, 30).size();
-        int result2 = interlocutionDAO.getAllInformationNumber();
-        Assert.assertEquals(result, result2);
+        int size = interlocutionDAO.getAllInformation(0, 100).size();
+        int result = interlocutionDAO.getAllInformationNumber();
+        Assert.assertEquals(size, result);
     }
 
     /**
@@ -53,13 +53,11 @@ public class InterlocutionDAOTest {
     @Transactional
     @Rollback
     public void testreelectInformation() {
-        //测试该方法时，数据库最后一条数据的isSelect为1
-        int result = interlocutionDAO.getAllInformation(0, 1).get(0).getIsSelect();
-        //执行批量更新
-        interlocutionDAO.reelectInformation();
-        //再次得到该数据
-        int result2 = interlocutionDAO.getAllInformation(0, 1).get(0).getIsSelect();
-        Assert.assertEquals(result - 1, result2);
+        int size1 = interlocutionDAO.getSelectInformation().size();
+        Assert.assertTrue(size1 > 0);//基本保持八条选中数据
+        interlocutionDAO.reelectInformation();//执行重选
+        int size2 = interlocutionDAO.getSelectInformation().size();//再次得到位0条
+        Assert.assertTrue(size2 == 0);
     }
 
     /**
