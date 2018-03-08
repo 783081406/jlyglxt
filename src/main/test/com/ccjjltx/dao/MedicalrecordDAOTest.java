@@ -76,16 +76,11 @@ public class MedicalrecordDAOTest {
     @Transactional
     @Rollback
     public void testUpdateInformation() {
-        //得到一个实例化
-        Medicalrecord mc = medicalrecordDAO.getSearchEinformation(1);
-        //更新一条数据
-        mc.setAdvice("123");
-        //执行更新
-        medicalrecordDAO.updateInformation(mc);
-        //再次得到该实例化
-        Medicalrecord mc2 = medicalrecordDAO.getSearchEinformation(1);
-        //断言
-        Assert.assertEquals("123", mc2.getAdvice());
+        Medicalrecord mc = medicalrecordDAO.getSearchEinformation(1);//得到一个实例化
+        mc.setAdvice("123");//更新一条数据
+        medicalrecordDAO.updateInformation(mc);//执行更新
+        Medicalrecord mc2 = medicalrecordDAO.getSearchEinformation(1);//再次得到该实例化
+        Assert.assertEquals("123", mc2.getAdvice());//断言
     }
 
     /**
@@ -95,12 +90,9 @@ public class MedicalrecordDAOTest {
     @Transactional
     @Rollback
     public void testDeleteInformation() {
-        //得到所有chId为1的数据量
-        int result1 = medicalrecordDAO.getAllInformation(1).size();
-        //删除mrId为1的数据，其中，该条数据的chId为1
-        medicalrecordDAO.deleteInformation(1);
-        //再次得到chId为1
-        int result2 = medicalrecordDAO.getAllInformation(1).size();
+        int result1 = medicalrecordDAO.getAllInformation(1).size();//得到所有chId为1的数据量
+        medicalrecordDAO.deleteInformation(1);//删除mrId为1的数据，其中，该条数据的chId为1
+        int result2 = medicalrecordDAO.getAllInformation(1).size();//再次得到chId为1
         Assert.assertEquals(result1 - 1, result2);
     }
 
