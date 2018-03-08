@@ -8,6 +8,11 @@ package com.ccjjltx.utils;
  * @version 1.0
  */
 public class ResourcePath {
+    /**
+     * 资源转换
+     * @param str 路径
+     * @return 新路径
+     */
     public static String parse(String str) {
         return str.replace("\\\\", "\\");
     }
