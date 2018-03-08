@@ -108,12 +108,16 @@ public class ServiceitemsActionTest extends StrutsSpringJUnit4TestCase<Serviceit
     @Transactional
     @Rollback
     public void testRemoveInformation() {
-        serviceitemsAction.setSid(1);
-        Assert.assertEquals("success", serviceitemsAction.removeInformation());
-        //实现文件拷贝复制,恢复数据
-        String backup = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\f1backup.jpg";
-        String oldfile = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\f1.jpg";
-        MyFile.copyFile(backup, oldfile);
+        try {
+            serviceitemsAction.setSid(1);
+            Assert.assertEquals("success", serviceitemsAction.removeInformation());
+            //实现文件拷贝复制,恢复数据
+            String backup = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\f1backup.jpg";
+            String oldfile = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\f1.jpg";
+            MyFile.copyFile(backup, oldfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

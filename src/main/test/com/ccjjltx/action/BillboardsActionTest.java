@@ -111,11 +111,15 @@ public class BillboardsActionTest extends StrutsSpringJUnit4TestCase<BillboardsA
     @Transactional
     @Rollback
     public void testRemoveInformation() {
-        billboardsAction.setBid(1);
-        Assert.assertEquals("success", billboardsAction.removeInformation());
-        //实现文件拷贝复制,恢复数据
-        String backup = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\a2backup.jpg";
-        String oldfile = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\a2.jpg";
-        MyFile.copyFile(backup, oldfile);
+        try {
+            billboardsAction.setBid(1);
+            Assert.assertEquals("success", billboardsAction.removeInformation());
+            //实现文件拷贝复制,恢复数据
+            String backup = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\a2backup.jpg";
+            String oldfile = "E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\billboards\\a2.jpg";
+            MyFile.copyFile(backup, oldfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
