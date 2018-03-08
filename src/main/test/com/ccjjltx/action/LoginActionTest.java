@@ -10,8 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by ccjjltx on 2018/3/5.
@@ -74,11 +72,14 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
     @Test
     @Transactional
     public void testCheckForntLogin4() {
-        loginAction.setUserName("admin");
-        loginAction.setPassword("admin");
-        loginAction.setResult(null);
-        Assert.assertEquals("success", loginAction.checkForntLogin());
-        Assert.assertNotNull(loginAction.getResult());
+        try {
+            request.setParameter("userName", "admin");
+            request.setParameter("password", "admin");
+            String result = executeAction("/backstage/index.action");
+            Assert.assertNotNull(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -91,9 +92,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         try {
             String result = executeAction("/backstage/signIn.action");
             Assert.assertNotNull(result);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -111,9 +110,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
             executeAction("/backstage/index.action");
             String result = executeAction("/backstage/signIn.action");
             Assert.assertNotNull(result);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -130,9 +127,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
             loginAction.checkForntLogin();
             String result = executeAction("/backstage/signOut.action");
             Assert.assertNotNull(result);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
