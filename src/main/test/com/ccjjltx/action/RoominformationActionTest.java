@@ -140,12 +140,29 @@ public class RoominformationActionTest extends StrutsSpringJUnit4TestCase<Roomin
 
     /**
      * describe：更新信息
-     * success
+     * error   请选择正确人员
      */
     @Test
     @Transactional
     @Rollback
     public void testUpdateInformation3() {
+        roominformationAction.setRId(1);
+        roominformationAction.setFloor("东");
+        roominformationAction.setRoomNumber(107);
+        roominformationAction.setRType("标准");
+        roominformationAction.setRCost(800);
+        roominformationAction.setEname("qa");
+        Assert.assertEquals("error", roominformationAction.updateInformation());
+    }
+
+    /**
+     * describe：更新信息
+     * success
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testUpdateInformation4() {
         roominformationAction.setRId(1);
         roominformationAction.setEname("22");
         roominformationAction.setFloor("aaa");
