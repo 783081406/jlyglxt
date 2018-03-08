@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by ccjjltx on 2018/3/6.
@@ -75,12 +76,16 @@ public class ServiceitemsActionTest extends StrutsSpringJUnit4TestCase<Serviceit
     @Transactional
     @Rollback
     public void testSaveInformation() {
-        serviceitemsAction.setUploadFileName("123.jpg");
-        serviceitemsAction.setSavePath("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service");
-        File upload = new File("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\f1.jpg");
-        serviceitemsAction.setUpload(upload);
-        Assert.assertEquals("success", serviceitemsAction.saveInformation());
-        MyFile.deleteFile("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\123.jpg");
+        try {
+            serviceitemsAction.setUploadFileName("123.jpg");
+            serviceitemsAction.setSavePath("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service");
+            File upload = new File("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\f1.jpg");
+            serviceitemsAction.setUpload(upload);
+            Assert.assertEquals("success", serviceitemsAction.saveInformation());
+            MyFile.deleteFile("E:\\pcCode\\ideaCode\\jlyglxt\\src\\main\\webapp\\reception\\img\\service\\123.jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
