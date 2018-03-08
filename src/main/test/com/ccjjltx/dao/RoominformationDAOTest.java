@@ -170,7 +170,7 @@ public class RoominformationDAOTest {
     @Transactional
     public void testIsLive4() {
         boolean result = roominformationDAO.isLive(2, 1);
-        Assert.assertFalse(result);
+        Assert.assertTrue(result);
     }
 
     /**
