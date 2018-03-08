@@ -126,6 +126,18 @@ public class CasehistoryActionTest extends StrutsSpringJUnit4TestCase<Casehistor
     @Transactional
     @Rollback
     public void testSaveInformation2() {
+        casehistoryAction.setEname("aq");
+        Assert.assertEquals("error", casehistoryAction.saveInformation());
+    }
+
+    /**
+     * describe：增加病历
+     * error
+     */
+    @Test
+    @Transactional
+    @Rollback
+    public void testSaveInformation3() {
         casehistoryAction.setEname("1");
         Assert.assertEquals("error", casehistoryAction.saveInformation());
     }
