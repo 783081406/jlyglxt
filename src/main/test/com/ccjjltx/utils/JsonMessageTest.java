@@ -19,6 +19,7 @@ public class JsonMessageTest {
     public void testReturnMessage1() {
         JSONObject result = JsonMessage.returnMessage(true, "success");
         Assert.assertEquals(true, result.get("success"));
+        JsonMessage jsonMessage = new JsonMessage();//弥补计算规则出错
     }
 
     /**
