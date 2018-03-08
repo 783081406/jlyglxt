@@ -12,8 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by ccjjltx on 2018/3/6.
