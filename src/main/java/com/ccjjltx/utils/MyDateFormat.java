@@ -19,6 +19,7 @@ public class MyDateFormat {
 
     /**
      * 装饰模式
+     * date 转 String
      *
      * @param date 传入date值
      * @return 字符串类型
@@ -27,6 +28,13 @@ public class MyDateFormat {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
+    /**
+     * String 转 date
+     *
+     * @param dateString 日期
+     * @return String类型
+     * @throws ParseException 转换错误异常
+     */
     public static Date parse(String dateString) throws ParseException {
         return new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
     }
