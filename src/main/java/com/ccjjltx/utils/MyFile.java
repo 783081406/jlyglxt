@@ -13,10 +13,6 @@ import java.io.InputStream;
  * @version 1.0
  */
 public class MyFile {
-    //私有化，不可实例化，单例，工具类
-    private MyFile() {
-
-    }
 
     /**
      * 复制单个文件
