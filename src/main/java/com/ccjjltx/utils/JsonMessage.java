@@ -23,11 +23,9 @@ public class JsonMessage {
      */
     public static JSONObject returnMessage(boolean trueOfFalse, String message) {
         JSONObject js = new JSONObject();
-        if (trueOfFalse) {
-            //表示成功
+        if (trueOfFalse) {//表示成功
             js.put("success", true);
-        } else {
-            //表示失败
+        } else {//表示失败
             js.put("msg", message);
         }
         return js;
