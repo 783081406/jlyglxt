@@ -1,15 +1,17 @@
 <component name="libraryTable">
   <library name="Maven: commons-IO:commons-IO:2.5">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-io-2.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-javadoc.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-javadoc.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-javadoc.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-sources.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-sources.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-sources.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-IO-2.5-sources.jar!/" />
